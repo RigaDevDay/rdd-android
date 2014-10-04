@@ -5,11 +5,14 @@ import android.content.res.Configuration;
 import android.support.v4.app.ActionBarDrawerToggle;
 import android.support.v4.widget.DrawerLayout;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.FrameLayout;
 
+import javax.inject.Inject;
+
+import butterknife.ButterKnife;
 import butterknife.InjectView;
 import lv.rigadevday.android.R;
+import lv.rigadevday.android.common.SharedPrefsService;
 
 public class MainActivityPresenterImpl implements MainActivityPresenter {
 
@@ -22,34 +25,27 @@ public class MainActivityPresenterImpl implements MainActivityPresenter {
     @InjectView(R.id.drawer_layout)
     DrawerLayout drawerLayout;
 
+    @Inject
+    SharedPrefsService preferences;
+
     ActionBarDrawerToggle drawerToggle;
+
+    @Override
+    public void initPresenter(Activity activity) {
+        ButterKnife.inject(this, activity);
+    }
 
     @Override
     public void initNavigationDrawer(final Activity activity) {
         drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED, rightDrawer);
 
         drawerToggle = new ActionBarDrawerToggle(
-                activity,                  /* host Activity */
-                drawerLayout,         /* DrawerLayout object */
-                R.drawable.ic_drawer,  /* nav drawer icon to replace 'Up' caret */
-                R.string.drawer_open,  /* "open drawer" description */
-                R.string.drawer_close  /* "close drawer" description */
-        ) {
-
-            /** Called when a drawer has settled in a completely closed state. */
-            public void onDrawerClosed(View view) {
-                super.onDrawerClosed(view);
-                activity.getActionBar().setTitle(R.string.app_name);
-            }
-
-            /** Called when a drawer has settled in a completely open state. */
-            public void onDrawerOpened(View drawerView) {
-                super.onDrawerOpened(drawerView);
-                activity.getActionBar().setTitle("Opened");
-            }
-        };
-
-        // Set the drawer toggle as the DrawerListener
+                activity,
+                drawerLayout,
+                R.drawable.ic_drawer,
+                R.string.app_name,
+                R.string.app_name
+        );
         drawerLayout.setDrawerListener(drawerToggle);
 
         activity.getActionBar().setDisplayHomeAsUpEnabled(true);
@@ -59,6 +55,15 @@ public class MainActivityPresenterImpl implements MainActivityPresenter {
     @Override
     public void syncNavigationDrawerState() {
         drawerToggle.syncState();
+    }
+
+    @Override
+    public void openNavigationDrawerOnFirstAppStart() {
+        boolean subsequentStart = preferences.getBool(Preferences.SUBSEQUENT_START);
+        if (!subsequentStart) {
+            preferences.setBool(Preferences.SUBSEQUENT_START, true);
+            drawerLayout.openDrawer(leftDrawer);
+        }
     }
 
     @Override

@@ -1,15 +1,17 @@
 package lv.rigadevday.android.infrastructure.dagger;
 
 import android.content.Context;
+
 import com.squareup.otto.Bus;
+
+import javax.inject.Singleton;
+
 import dagger.Module;
 import dagger.Provides;
 import lv.rigadevday.android.BaseApplication;
 import lv.rigadevday.android.ui.MainActivity;
 import lv.rigadevday.android.ui.MainActivityPresenter;
 import lv.rigadevday.android.ui.MainActivityPresenterImpl;
-
-import javax.inject.Singleton;
 
 @Module(
         injects = {
@@ -30,13 +32,13 @@ public class MainModule implements DaggerModule {
         return new Bus();
     }
 
-//    @Provides
-//    Context provideContext() {
-//        return appContext;
-//    }
+    @Provides
+    Context provideContext() {
+        return appContext;
+    }
 
     @Provides
-    MainActivityPresenter provideMainActivityPresenter() {
-        return new MainActivityPresenterImpl();
+    MainActivityPresenter provideMainActivityPresenter(MainActivityPresenterImpl impl) {
+        return impl;
     }
 }

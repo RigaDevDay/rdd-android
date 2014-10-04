@@ -6,9 +6,11 @@ import android.view.MenuItem;
 
 public interface MainActivityPresenter {
 
+    void initPresenter(final Activity activity);
     void initNavigationDrawer(final Activity activity);
 
     void syncNavigationDrawerState();
+    void openNavigationDrawerOnFirstAppStart();
 
     void changeConfigurationOfNavigationDrawer(Configuration newConfig);
 

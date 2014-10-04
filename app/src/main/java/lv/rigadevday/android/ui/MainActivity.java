@@ -10,7 +10,6 @@ import com.squareup.otto.Bus;
 
 import javax.inject.Inject;
 
-import butterknife.ButterKnife;
 import lv.rigadevday.android.BaseApplication;
 import lv.rigadevday.android.R;
 
@@ -27,9 +26,10 @@ public class MainActivity extends FragmentActivity {
         super.onCreate(savedInstanceState);
         BaseApplication.inject(this);
         setContentView(R.layout.activity_my);
-        ButterKnife.inject(presenter, this);
 
+        presenter.initPresenter(this);
         presenter.initNavigationDrawer(this);
+        presenter.openNavigationDrawerOnFirstAppStart();
     }
 
     @Override
@@ -46,7 +46,6 @@ public class MainActivity extends FragmentActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.my, menu);
         return true;
     }
