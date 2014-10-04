@@ -1,27 +1,47 @@
-package lv.rigadevday.android;
+package lv.rigadevday.android.ui;
 
-import android.app.Activity;
 import android.content.res.Configuration;
 import android.os.Bundle;
+import android.support.v4.app.FragmentActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.squareup.otto.Bus;
+
+import javax.inject.Inject;
+
 import butterknife.ButterKnife;
-import lv.rigadevday.android.ui.MainActivityPresenter;
-import lv.rigadevday.android.ui.MainActivityPresenterImpl;
+import lv.rigadevday.android.BaseApplication;
+import lv.rigadevday.android.R;
 
+public class MainActivity extends FragmentActivity {
 
-public class MainActivity extends Activity {
+    @Inject
+    Bus bus;
 
-    MainActivityPresenter presenter = new MainActivityPresenterImpl(this);
+    @Inject
+    MainActivityPresenter presenter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        BaseApplication.inject(this);
         setContentView(R.layout.activity_my);
         ButterKnife.inject(presenter, this);
 
-        presenter.initNavigationDrawer();
+        presenter.initNavigationDrawer(this);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        bus.register(this);
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        bus.unregister(this);
     }
 
     @Override

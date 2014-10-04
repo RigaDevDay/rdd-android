@@ -9,7 +9,6 @@ import android.view.View;
 import android.widget.FrameLayout;
 
 import butterknife.InjectView;
-import lv.rigadevday.android.MainActivity;
 import lv.rigadevday.android.R;
 
 public class MainActivityPresenterImpl implements MainActivityPresenter {
@@ -23,15 +22,10 @@ public class MainActivityPresenterImpl implements MainActivityPresenter {
     @InjectView(R.id.drawer_layout)
     DrawerLayout drawerLayout;
 
-    Activity activity;
     ActionBarDrawerToggle drawerToggle;
 
-    public MainActivityPresenterImpl(Activity activity) {
-        this.activity = activity;
-    }
-
     @Override
-    public void initNavigationDrawer() {
+    public void initNavigationDrawer(final Activity activity) {
         drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED, rightDrawer);
 
         drawerToggle = new ActionBarDrawerToggle(

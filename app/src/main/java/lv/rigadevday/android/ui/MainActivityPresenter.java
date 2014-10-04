@@ -1,13 +1,12 @@
 package lv.rigadevday.android.ui;
 
+import android.app.Activity;
 import android.content.res.Configuration;
 import android.view.MenuItem;
 
-import lv.rigadevday.android.MainActivity;
-
 public interface MainActivityPresenter {
 
-    void initNavigationDrawer();
+    void initNavigationDrawer(final Activity activity);
 
     void syncNavigationDrawerState();
 
