@@ -20,4 +20,7 @@
         </activity>
     </application>
 
+    <meta-data android:name="RDD_DB_NAME" android:value="Rdd.db" />
+    <meta-data android:name="RDD_DB_VERSION" android:value="0" />
+
 </manifest>

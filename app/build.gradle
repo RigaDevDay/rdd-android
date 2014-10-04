@@ -21,8 +21,15 @@ android {
 
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
-    compile 'com.android.support:support-v4:+'
-    compile 'com.android.support:cardview-v7:+'
-    compile 'com.android.support:recyclerview-v7:+'
-    compile 'com.android.support:palette-v7:+'
+    compile (
+        'com.android.support:palette-v7:+',
+        'com.android.support:cardview-v7:+',
+        'com.android.support:support-v4:+',
+
+        'com.jakewharton:butterknife:5.1.2',
+    )
+
+    // TODO
+    //https://github.com/pardom/ActiveAndroid/wiki/Getting-started
+    //https://github.com/loopj/android-smart-image-view
 }
