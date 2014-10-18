@@ -16,7 +16,9 @@
         android:layout_width="240dp"
         android:layout_height="match_parent"
         android:layout_gravity="start"
-        android:background="#a34"/>
+        android:background="#a34">
+            <include layout="@layout/navigation_content"/>
+    </FrameLayout>
 
     <FrameLayout
         android:id="@+id/right_drawer"

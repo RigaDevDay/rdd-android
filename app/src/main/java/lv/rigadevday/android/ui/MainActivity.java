@@ -31,7 +31,7 @@ public class MainActivity extends ActionBarActivity {
         presenter.initNavigationDrawer();
         presenter.openScheduleScreen();
         presenter.openNavigationDrawerOnFirstAppStart();
-    }
+     }
 
     @Override
     protected void onResume() {
