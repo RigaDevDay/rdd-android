@@ -14,6 +14,7 @@ import javax.inject.Singleton;
 import butterknife.ButterKnife;
 import butterknife.InjectView;
 import lv.rigadevday.android.R;
+import lv.rigadevday.android.application.navigation.NavigationService;
 import lv.rigadevday.android.common.SharedPrefsService;
 import lv.rigadevday.android.ui.schedule.ScheduleFragment;
 
@@ -31,6 +32,9 @@ public class MainActivityPresenter {
 
     @Inject
     SharedPrefsService preferences;
+
+    @Inject
+    NavigationService navigationService;
 
     ActionBarDrawerToggle drawerToggle;
 
@@ -62,9 +66,9 @@ public class MainActivityPresenter {
     }
 
     public void openNavigationDrawerOnFirstAppStart() {
-        boolean subsequentStart = preferences.getBool(Preferences.SUBSEQUENT_START);
+        boolean subsequentStart = preferences.getBool(PreferencesConstants.SUBSEQUENT_START);
         if (!subsequentStart) {
-            preferences.setBool(Preferences.SUBSEQUENT_START, true);
+            preferences.setBool(PreferencesConstants.SUBSEQUENT_START, true);
             drawerLayout.openDrawer(leftDrawer);
         }
     }

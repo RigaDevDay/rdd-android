@@ -25,7 +25,7 @@ public class MainActivity extends FragmentActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         BaseApplication.inject(this);
-        setContentView(R.layout.activity_my);
+        setContentView(R.layout.activity_screen);
 
         presenter.initPresenter(this);
         presenter.initNavigationDrawer();

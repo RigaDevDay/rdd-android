@@ -5,7 +5,6 @@
     android:layout_height="match_parent"
     tools:context=".MyActivity">
 
-
     <!-- The main content view -->
     <FrameLayout
         android:id="@+id/content_frame"

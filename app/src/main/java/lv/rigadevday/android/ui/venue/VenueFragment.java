@@ -1,15 +1,15 @@
-package lv.rigadevday.android.ui.schedule;
+package lv.rigadevday.android.ui.venue;
 
 import android.os.Bundle;
 
 import lv.rigadevday.android.R;
 import lv.rigadevday.android.ui.BaseFragment;
 
-public class ScheduleFragment extends BaseFragment {
+public class VenueFragment extends BaseFragment {
 
     @Override
     protected int contentViewId() {
-        return R.layout.schedule_screen;
+        return R.layout.venue_screen;
     }
 
     @Override

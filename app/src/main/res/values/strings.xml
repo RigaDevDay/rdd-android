@@ -2,9 +2,14 @@
 <resources>
 
     <string name="app_name">RigaDevDay</string>
-    <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
     <string name="drawer_open">Open</string>
     <string name="drawer_close">Closed</string>
+
+    <string name="venue">Venue</string>
+    <string name="agenda">Agenda</string>
+    <string name="schedule">My Schedule</string>
+    <string name="speakers">Speakers</string>
+    <string name="social">Social</string>
 
 </resources>
