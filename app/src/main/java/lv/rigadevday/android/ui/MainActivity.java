@@ -28,7 +28,8 @@ public class MainActivity extends FragmentActivity {
         setContentView(R.layout.activity_my);
 
         presenter.initPresenter(this);
-        presenter.initNavigationDrawer(this);
+        presenter.initNavigationDrawer();
+        presenter.openScheduleScreen();
         presenter.openNavigationDrawerOnFirstAppStart();
     }
 

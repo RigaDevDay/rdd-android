@@ -11,12 +11,13 @@ import dagger.Provides;
 import lv.rigadevday.android.BaseApplication;
 import lv.rigadevday.android.ui.MainActivity;
 import lv.rigadevday.android.ui.MainActivityPresenter;
-import lv.rigadevday.android.ui.MainActivityPresenterImpl;
+import lv.rigadevday.android.ui.schedule.ScheduleFragment;
 
 @Module(
         injects = {
                 BaseApplication.class,
-                MainActivity.class
+                MainActivity.class,
+                ScheduleFragment.class
         }
 )
 public class MainModule implements DaggerModule {
@@ -35,10 +36,5 @@ public class MainModule implements DaggerModule {
     @Provides
     Context provideContext() {
         return appContext;
-    }
-
-    @Provides
-    MainActivityPresenter provideMainActivityPresenter(MainActivityPresenterImpl impl) {
-        return impl;
     }
 }
