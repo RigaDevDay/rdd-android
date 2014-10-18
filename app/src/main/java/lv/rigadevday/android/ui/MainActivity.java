@@ -2,7 +2,7 @@ package lv.rigadevday.android.ui;
 
 import android.content.res.Configuration;
 import android.os.Bundle;
-import android.support.v4.app.FragmentActivity;
+import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 
@@ -13,7 +13,7 @@ import javax.inject.Inject;
 import lv.rigadevday.android.BaseApplication;
 import lv.rigadevday.android.R;
 
-public class MainActivity extends FragmentActivity {
+public class MainActivity extends ActionBarActivity {
 
     @Inject
     Bus bus;

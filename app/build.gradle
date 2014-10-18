@@ -1,13 +1,13 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 20
+    compileSdkVersion 21
     buildToolsVersion "20.0.0"
 
     defaultConfig {
         applicationId "android.rigadevday.lv.rigadevday"
         minSdkVersion 15
-        targetSdkVersion 20
+        targetSdkVersion 21
         versionCode 1
         versionName "1.0"
     }
@@ -22,7 +22,8 @@ android {
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     compile (                
-        'com.android.support:support-v4:+',
+		'com.android.support:support-v4:21.0.0',
+		'com.android.support:appcompat-v7:21.0.0',
 
         'com.jakewharton:butterknife:5.1.2',
 

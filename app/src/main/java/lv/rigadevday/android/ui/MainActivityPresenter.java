@@ -3,8 +3,8 @@ package lv.rigadevday.android.ui;
 import android.content.res.Configuration;
 import android.support.v4.app.ActionBarDrawerToggle;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentActivity;
 import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBarActivity;
 import android.view.MenuItem;
 import android.widget.FrameLayout;
 
@@ -38,9 +38,9 @@ public class MainActivityPresenter {
 
     ActionBarDrawerToggle drawerToggle;
 
-    private FragmentActivity activity;
+    private ActionBarActivity activity;
 
-    public void initPresenter(FragmentActivity activity) {
+    public void initPresenter(ActionBarActivity activity) {
         this.activity = activity;
         ButterKnife.inject(this, activity);
     }
@@ -57,8 +57,8 @@ public class MainActivityPresenter {
         );
         drawerLayout.setDrawerListener(drawerToggle);
 
-        activity.getActionBar().setDisplayHomeAsUpEnabled(true);
-        activity.getActionBar().setHomeButtonEnabled(true);
+        activity.getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        activity.getSupportActionBar().setHomeButtonEnabled(true);
     }
 
     public void syncNavigationDrawerState() {
