@@ -34,13 +34,16 @@ dependencies {
 
             'com.squareup.dagger:dagger:1.2.2',
             'com.squareup:otto:1.3.5',
+
             'com.tonicartos:stickygridheaders:1.0.1',
+
             'com.michaelpardo:activeandroid:3.1.0-SNAPSHOT',
-            'com.google.guava:guava:18.0'
+
+            'com.google.guava:guava:18.0',
+
+            'com.google.code.gson:gson:2.3'
     )
 
     provided 'com.squareup.dagger:dagger-compiler:1.2.2'
-    // TODO
-    //https://github.com/pardom/ActiveAndroid/wiki/Getting-started
     //https://github.com/loopj/android-smart-image-view
 }

@@ -1,13 +1,13 @@
 package lv.rigadevday.android;
 
-import com.activeandroid.Model;
 import com.activeandroid.app.Application;
-import com.activeandroid.query.Select;
+import com.activeandroid.query.Delete;
 
 import java.util.Arrays;
 import java.util.List;
 
 import dagger.ObjectGraph;
+import lv.rigadevday.android.domain.Contact;
 import lv.rigadevday.android.domain.Presentation;
 import lv.rigadevday.android.domain.Speaker;
 import lv.rigadevday.android.domain.SpeakerPresentation;
@@ -25,10 +25,13 @@ public class BaseApplication extends Application {
         objectGraph = ObjectGraph.create(modules);
 
         // TODO: Remove, prototyping.
-        if (Presentation.getAll().isEmpty()) {
-            Mocks.createPresentations();
-            Mocks.createSpeakers();
-        }
+        new Delete().from(Presentation.class).execute();
+        new Delete().from(SpeakerPresentation.class).execute();
+        new Delete().from(Contact.class).execute();
+        new Delete().from(Speaker.class).execute();
+
+        Mocks.createPresentations(this);
+        Mocks.createSpeakers(this);
     }
 
     public static <T> void inject(T instance) {

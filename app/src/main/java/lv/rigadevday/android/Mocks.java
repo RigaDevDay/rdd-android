@@ -1,5 +1,17 @@
 package lv.rigadevday.android;
 
+import android.content.Context;
+
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.reflect.TypeToken;
+
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.lang.reflect.Type;
+import java.util.List;
+
 import lv.rigadevday.android.domain.Contact;
 import lv.rigadevday.android.domain.ContactType;
 import lv.rigadevday.android.domain.Presentation;
@@ -9,7 +21,9 @@ import lv.rigadevday.android.domain.Speaker;
  * Valid for prototyping, remove once import over http is implemented
  */
 public class Mocks {
-    public static void createPresentations() {
+    public static void createPresentations(BaseApplication baseApplication) {
+
+
         for (int i = 0; i < 20; i++) {
             Presentation p = new Presentation();
             p.setStartTime("10:00");
@@ -22,17 +36,24 @@ public class Mocks {
         }
     }
 
-    public static void createSpeakers() {
-        for (int i = 0; i < 10; i++) {
-            Speaker sp = new Speaker();
-            sp.setBio("Bio " + i);
-            sp.setCompany("Company " + i);
-            sp.setCountry("LV");
-            sp.setName("Speaker " + i);
-            sp.setLineup(i);
-            sp.save();
+    public static void createSpeakers(Context ctx) {
+        InputStreamReader reader = null;
+        try {
+            InputStream stream = ctx.getAssets().open("speakers.json");
+             reader = new InputStreamReader(stream);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
-            createContact(sp);
+        Type listType = new TypeToken<List<Speaker>>() {}.getType();
+
+        final GsonBuilder builder = new GsonBuilder();
+        final Gson gson = builder.create();
+        List<Speaker> speakers = gson.fromJson(reader, listType);
+
+        for (Speaker speaker : speakers) {
+            speaker.save();
+            createContact(speaker);
         }
     }
 

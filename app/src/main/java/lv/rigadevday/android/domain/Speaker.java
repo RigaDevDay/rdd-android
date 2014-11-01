@@ -4,20 +4,30 @@ import com.activeandroid.Model;
 import com.activeandroid.annotation.Column;
 import com.activeandroid.annotation.Table;
 import com.activeandroid.query.Select;
+import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
 
 @Table(name = "Speakers")
 public class Speaker extends Model {
 
+    @SerializedName("order")
     @Column(name = "lineup")
     private Integer lineup;
+
+    @SerializedName("name")
     @Column(name = "name")
     private String name;
+
+    @SerializedName("bio")
     @Column(name = "bio")
     private String bio;
+
+    @SerializedName("country")
     @Column(name = "country")
     private String country;
+
+    @SerializedName("company")
     @Column(name = "company")
     private String company;
 
