@@ -1,10 +1,14 @@
-package lv.rigadevday.android.integration.data;
+package lv.rigadevday.android.integration.json;
+
+import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
 
 public class ScheduleDto {
 
+    @SerializedName("roomNames")
     private List<String> roomNames;
+    @SerializedName("schedule")
     private List<ScheduleSlotDto> schedule;
 
     public List<String> getRoomNames() {

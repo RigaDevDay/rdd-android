@@ -30,7 +30,12 @@ public class MainActivity extends ActionBarActivity {
         presenter.initPresenter(this);
         presenter.initNavigationDrawer();
         presenter.openScheduleScreen();
-        presenter.openNavigationDrawerOnFirstAppStart();
+        presenter.openNavigationDrawer();
+
+        if(presenter.firstApplicationStart()) {
+            presenter.openNavigationDrawer();
+            presenter.syncData();
+        }
      }
 
     @Override

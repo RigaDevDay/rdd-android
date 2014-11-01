@@ -12,16 +12,14 @@ public class Presentation extends Model {
 
     @Column(name = "title")
     private String title;
-    @Column(name = "start_time")
-    private String startTime;
-    @Column(name = "end_time")
-    private String endTime;
+    @Column(name = "subtitle")
+    private String subtitle;
+    @Column(name = "description")
+    private String description;
     @Column(name = "bookmarked")
     private boolean bookmarked;
     @Column(name = "header")
     private boolean header;
-    @Column(name = "room")
-    private String room;
 
     public String getTitle() {
         return title;
@@ -29,22 +27,6 @@ public class Presentation extends Model {
 
     public void setTitle(String title) {
         this.title = title;
-    }
-
-    public String getStartTime() {
-        return startTime;
-    }
-
-    public void setStartTime(String startTime) {
-        this.startTime = startTime;
-    }
-
-    public String getEndTime() {
-        return endTime;
-    }
-
-    public void setEndTime(String endTime) {
-        this.endTime = endTime;
     }
 
     public boolean isBookmarked() {
@@ -55,20 +37,28 @@ public class Presentation extends Model {
         this.bookmarked = bookmarked;
     }
 
-    public String getRoom() {
-        return room;
-    }
-
-    public void setRoom(String room) {
-        this.room = room;
-    }
-
     public boolean isHeader() {
         return header;
     }
 
     public void setHeader(boolean header) {
         this.header = header;
+    }
+
+    public String getSubtitle() {
+        return subtitle;
+    }
+
+    public void setSubtitle(String subtitle) {
+        this.subtitle = subtitle;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public static List<Presentation> getAll() {
@@ -99,11 +89,8 @@ public class Presentation extends Model {
     public String toString() {
         return "Presentation{" +
                 "title='" + title + '\'' +
-                ", startTime='" + startTime + '\'' +
-                ", endTime='" + endTime + '\'' +
                 ", bookmarked=" + bookmarked +
                 ", header=" + header +
-                ", room='" + room + '\'' +
                 '}';
     }
 }

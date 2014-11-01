@@ -114,7 +114,8 @@ public class ScheduleGridAdapter extends BaseAdapter implements StickyGridHeader
 
         TextView time = ViewHolder.get(convertView, ids.timePlaceId);
         time.setTypeface(robotoLight);
-        String info = assembleEventInfo(item.getStartTime(), item.getEndTime(), item.getRoom());
+        // TODO fix
+        String info = assembleEventInfo("Start", "End", "Room");
         time.setText(info);
 
         ImageView bookmark = ViewHolder.get(convertView, ids.bookmarkId);

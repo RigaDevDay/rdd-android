@@ -15,24 +15,37 @@ import java.util.List;
 import lv.rigadevday.android.domain.Contact;
 import lv.rigadevday.android.domain.ContactType;
 import lv.rigadevday.android.domain.Presentation;
+import lv.rigadevday.android.domain.ScheduleSlot;
 import lv.rigadevday.android.domain.Speaker;
+import lv.rigadevday.android.integration.json.PresentationDto;
+import lv.rigadevday.android.integration.json.ScheduleDto;
+import lv.rigadevday.android.integration.json.ScheduleSlotDto;
 
 /**
  * Valid for prototyping, remove once import over http is implemented
  */
 public class Mocks {
-    public static void createPresentations(BaseApplication baseApplication) {
+    public static void createScheduleSlots(Context ctx) {
+        InputStreamReader reader = null;
+        try {
+            InputStream stream = ctx.getAssets().open("schedule.json");
+            reader = new InputStreamReader(stream);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
+        Gson gson = new GsonBuilder().create();
+        ScheduleDto schedule = gson.fromJson(reader, ScheduleDto.class);
 
-        for (int i = 0; i < 20; i++) {
-            Presentation p = new Presentation();
-            p.setStartTime("10:00");
-            p.setEndTime("11:00");
-            p.setTitle("Presentation: " + i);
-            p.setHeader(i % 5 == 0);
-            p.setBookmarked(i % 4 == 0);
-            p.setRoom("Hall 2");
-            p.save();
+        for (ScheduleSlotDto slot : schedule.getSchedule()) {
+            List<PresentationDto> presentations = slot.getPresentations();
+            for (int i = 0; i < presentations.size(); i++) {
+                PresentationDto p = presentations.get(i);
+                Presentation presentation = p.toPresentation(presentations.size());
+                presentation.save();
+            }
+            ScheduleSlot scheduleSlot = slot.toScheduleSlot();
+            scheduleSlot.save();
         }
     }
 
@@ -46,9 +59,7 @@ public class Mocks {
         }
 
         Type listType = new TypeToken<List<Speaker>>() {}.getType();
-
-        final GsonBuilder builder = new GsonBuilder();
-        final Gson gson = builder.create();
+        Gson gson = new GsonBuilder().create();
         List<Speaker> speakers = gson.fromJson(reader, listType);
 
         for (Speaker speaker : speakers) {

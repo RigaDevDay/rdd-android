@@ -15,6 +15,7 @@ import javax.inject.Singleton;
 import butterknife.ButterKnife;
 import butterknife.InjectView;
 import butterknife.OnItemClick;
+import lv.rigadevday.android.Mocks;
 import lv.rigadevday.android.R;
 import lv.rigadevday.android.application.navigation.NavigationOption;
 import lv.rigadevday.android.common.SharedPrefsService;
@@ -66,12 +67,8 @@ public class MainActivityPresenter {
         drawerToggle.syncState();
     }
 
-    public void openNavigationDrawerOnFirstAppStart() {
-        boolean subsequentStart = preferences.getBool(PreferencesConstants.SUBSEQUENT_START);
-        if (!subsequentStart) {
-            preferences.setBool(PreferencesConstants.SUBSEQUENT_START, true);
-            drawerLayout.openDrawer(leftDrawer);
-        }
+    public void openNavigationDrawer() {
+        drawerLayout.openDrawer(leftDrawer);
     }
 
     public void changeConfigurationOfNavigationDrawer(Configuration newConfig) {
@@ -104,5 +101,19 @@ public class MainActivityPresenter {
 
         changeContentFragment(fragment);
         closeLeftDrawerLayout();
+    }
+
+    public boolean firstApplicationStart() {
+        boolean subsequentStart = preferences.getBool(PreferencesConstants.SUBSEQUENT_START);
+        if (!subsequentStart) {
+            preferences.setBool(PreferencesConstants.SUBSEQUENT_START, true);
+            return true;
+        }
+        return false;
+    }
+
+    public void syncData() {
+        Mocks.createScheduleSlots(activity);
+        Mocks.createSpeakers(activity);
     }
 }

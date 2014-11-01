@@ -1,23 +1,21 @@
-package lv.rigadevday.android.integration.data;
+package lv.rigadevday.android.integration.json;
 
+import com.activeandroid.Model;
+import com.activeandroid.query.Select;
 import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
 
-public class EventDto {
+import lv.rigadevday.android.domain.Presentation;
+
+public class PresentationDto extends Model {
 
     @SerializedName("title")
     private String title;
-
-    @SerializedName("icon")
-    private String icon;
-
     @SerializedName("subtitle")
     private String subtitle;
-
     @SerializedName("description")
     private String description;
-
     @SerializedName("speakers")
     private List<String> speakers;
 
@@ -27,14 +25,6 @@ public class EventDto {
 
     public void setTitle(String title) {
         this.title = title;
-    }
-
-    public String getIcon() {
-        return icon;
-    }
-
-    public void setIcon(String icon) {
-        this.icon = icon;
     }
 
     public String getSubtitle() {
@@ -59,5 +49,19 @@ public class EventDto {
 
     public void setSpeakers(List<String> speakers) {
         this.speakers = speakers;
+    }
+
+    public static List<PresentationDto> getAll() {
+        return new Select().from(PresentationDto.class).execute();
+    }
+
+    public Presentation toPresentation(int size) {
+        Presentation presentation = new Presentation();
+        presentation.setTitle(title);
+        presentation.setSubtitle(subtitle);
+        presentation.setDescription(description);
+        presentation.setHeader(size == 1);
+        //TODO: Add speakers
+        return presentation;
     }
 }
