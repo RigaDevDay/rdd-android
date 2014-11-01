@@ -1,23 +1,6 @@
-/*
- Copyright 2013 Tonic Artos
-
- Licensed under the Apache License, Version 2.0 (the "License");
- you may not use this file except in compliance with the License.
- You may obtain a copy of the License at
-
- http://www.apache.org/licenses/LICENSE-2.0
-
- Unless required by applicable law or agreed to in writing, software
- distributed under the License is distributed on an "AS IS" BASIS,
- WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- See the License for the specific language governing permissions and
- limitations under the License.
- */
-
 package lv.rigadevday.android.ui.schedule;
 
 import android.content.Context;
-import android.graphics.Typeface;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -27,30 +10,32 @@ import android.widget.TextView;
 
 import com.tonicartos.widget.stickygridheaders.StickyGridHeadersBaseAdapter;
 
+import javax.inject.Inject;
+
 import lv.rigadevday.android.R;
+import lv.rigadevday.android.common.TypefaceCache;
 import lv.rigadevday.android.domain.Presentation;
 import lv.rigadevday.android.ui.ViewHolder;
 
 public class ScheduleGridAdapter extends BaseAdapter implements StickyGridHeadersBaseAdapter {
-    private final Typeface robotoLight;
-    private final Typeface robotoRegular;
-    private final Context context;
-
-    private int headerResId;
-    private LayoutInflater inflater;
-    private int itemResId;
     private Schedule schedule;
 
+    private int headerResId;
+    private int itemResId;
 
-    public ScheduleGridAdapter(Context context, Schedule schedule, int headerResId, int itemResId) {
-        this.context = context;
-        this.schedule = schedule;
-        this.headerResId = headerResId;
-        this.itemResId = itemResId;
-        this.inflater = LayoutInflater.from(context);
-        //
-        this.robotoRegular = Typeface.createFromAsset(context.getAssets(), "fonts/RobotoCondensed-Regular.ttf");
-        this.robotoLight = Typeface.createFromAsset(context.getAssets(), "fonts/Roboto-Light.ttf");
+    @Inject
+    Context context;
+
+    @Inject
+    LayoutInflater inflater;
+
+    @Inject
+    TypefaceCache typefaceCache;
+
+    public ScheduleGridAdapter() {
+        this.schedule = new Schedule(Presentation.getAll());
+        this.headerResId = R.layout.schedule_header;
+        this.itemResId = R.layout.schedule_item;
     }
 
     @Override
@@ -109,11 +94,11 @@ public class ScheduleGridAdapter extends BaseAdapter implements StickyGridHeader
 
     private void pupulateView(View convertView, Presentation item, ViewIds ids) {
         TextView title = ViewHolder.get(convertView, ids.titleId);
-        title.setTypeface(robotoRegular);
+        title.setTypeface(typefaceCache.loadFromAsset("fonts/RobotoCondensed-Regular.ttf"));
         title.setText(item.getTitle());
 
         TextView time = ViewHolder.get(convertView, ids.timePlaceId);
-        time.setTypeface(robotoLight);
+        time.setTypeface(typefaceCache.loadFromAsset("fonts/Roboto-Light.ttf"));
         // TODO fix
         String info = assembleEventInfo("Start", "End", "Room");
         time.setText(info);

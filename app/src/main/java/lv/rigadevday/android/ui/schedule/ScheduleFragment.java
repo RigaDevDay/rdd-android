@@ -7,11 +7,19 @@ import android.view.ViewGroup;
 
 import com.tonicartos.widget.stickygridheaders.StickyGridHeadersGridView;
 
-import lv.rigadevday.android.domain.Presentation;
+import javax.inject.Inject;
+
+import butterknife.InjectView;
 import lv.rigadevday.android.R;
 import lv.rigadevday.android.ui.BaseFragment;
 
 public class ScheduleFragment extends BaseFragment {
+
+    @Inject
+    ScheduleGridAdapter gridAdapter;
+
+    @InjectView(R.id.schedule_grid)
+    StickyGridHeadersGridView gridView;
 
     @Override
     protected int contentViewId() {
@@ -32,10 +40,7 @@ public class ScheduleFragment extends BaseFragment {
     public void onResume() {
         super.onResume();
 
-        StickyGridHeadersGridView grid = (StickyGridHeadersGridView) getView().findViewById(R.id.schedule_grid);
-        grid.setAreHeadersSticky(false);
-        grid.setAdapter(new ScheduleGridAdapter(getActivity()
-                , new Schedule(Presentation.getAll()),
-                R.layout.schedule_header, R.layout.schedule_item));
+        gridView.setAreHeadersSticky(false);
+        gridView.setAdapter(gridAdapter);
     }
 }

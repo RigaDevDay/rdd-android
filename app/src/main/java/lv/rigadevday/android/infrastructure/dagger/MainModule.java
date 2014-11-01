@@ -1,6 +1,7 @@
 package lv.rigadevday.android.infrastructure.dagger;
 
 import android.content.Context;
+import android.view.LayoutInflater;
 
 import com.squareup.otto.Bus;
 
@@ -10,7 +11,6 @@ import dagger.Module;
 import dagger.Provides;
 import lv.rigadevday.android.BaseApplication;
 import lv.rigadevday.android.ui.MainActivity;
-import lv.rigadevday.android.ui.MainActivityPresenter;
 import lv.rigadevday.android.ui.agenda.AgendaFragment;
 import lv.rigadevday.android.ui.schedule.ScheduleFragment;
 import lv.rigadevday.android.ui.social.SocialFragment;
@@ -45,5 +45,11 @@ public class MainModule implements DaggerModule {
     @Provides
     Context provideContext() {
         return appContext;
+    }
+
+    @Provides
+    @Singleton
+    LayoutInflater provideLayoutInflater() {
+        return LayoutInflater.from(appContext);
     }
 }
