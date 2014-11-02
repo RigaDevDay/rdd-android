@@ -36,6 +36,8 @@
         android:layout_alignParentBottom="true"
         android:padding="10dp">
 
+        <View style="@style/WhiteLine"/>
+
         <TextView
             android:id="@+id/header_title"
             android:textSize="18sp"

@@ -5,4 +5,11 @@
         <!-- Customize your theme here. -->
     </style>
 
+    <!-- Style intended to be used in View -->
+    <style name="WhiteLine">
+        <item name="android:layout_width">150dp</item>
+        <item name="android:layout_height">0.1dp</item>
+        <item name="android:background">@color/white</item>
+    </style>
+
 </resources>

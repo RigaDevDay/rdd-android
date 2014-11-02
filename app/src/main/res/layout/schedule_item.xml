@@ -35,6 +35,8 @@
         android:layout_alignParentBottom="true"
         android:padding="10dp">
 
+        <View style="@style/WhiteLine"/>
+
         <TextView
             android:id="@+id/item_title"
             android:ellipsize="end"
