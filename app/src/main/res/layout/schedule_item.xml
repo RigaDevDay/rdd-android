@@ -47,7 +47,7 @@
 
         <TextView
             android:id="@+id/item_time_place"
-            android:textColor="@color/white"
+            android:textColor="@color/dodger_blue"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
 
