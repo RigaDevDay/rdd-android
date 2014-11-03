@@ -94,17 +94,18 @@ public class ScheduleGridAdapter extends BaseAdapter implements StickyGridHeader
 
     private void pupulateView(View convertView, Presentation item, ViewIds ids) {
         TextView title = ViewHolder.get(convertView, ids.titleId);
-        title.setTypeface(typefaceCache.loadFromAsset("fonts/RobotoCondensed-Regular.ttf"));
+        title.setTypeface(typefaceCache.loadFromAsset("fonts/Roboto-Regular.ttf"));
         title.setText(item.getTitle());
 
         TextView time = ViewHolder.get(convertView, ids.timePlaceId);
-        time.setTypeface(typefaceCache.loadFromAsset("fonts/Roboto-Light.ttf"));
+        time.setTypeface(typefaceCache.loadFromAsset("fonts/Roboto-Regular.ttf"));
         // TODO fix
         String info = assembleEventInfo("Start", "End", "Room");
         time.setText(info);
 
         ImageView bookmark = ViewHolder.get(convertView, ids.bookmarkId);
-        bookmark.setVisibility(item.isBookmarked() ? View.VISIBLE : View.INVISIBLE);
+        int bookmarkIcon = item.isBookmarked() ? R.drawable.icon_bookmark : R.drawable.icon_bookmark_empty;
+        bookmark.setImageDrawable(context.getResources().getDrawable(bookmarkIcon));
 
         // TODO: implement placeholder arawable assigning to presentations
         ImageView image = ViewHolder.get(convertView, ids.imageId);
@@ -117,8 +118,8 @@ public class ScheduleGridAdapter extends BaseAdapter implements StickyGridHeader
     }
 
     private static enum ViewIds {
-        HEADER(R.id.header_title, R.id.header_time_place, R.id.header_bookmark, R.id.header_image),
-        ITEM(R.id.item_title, R.id.item_time_place, R.id.item_bookmark, R.id.item_image);
+        HEADER(R.id.header_title, R.id.header_time_place, R.id.icon_bookmark, R.id.header_image),
+        ITEM(R.id.item_title, R.id.item_time_place, R.id.icon_bookmark, R.id.item_image);
 
         final int titleId;
         final int timePlaceId;

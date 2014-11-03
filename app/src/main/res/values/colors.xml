@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="dodger_blue">#0dacfe</color>
+    <color name="dodger_blue">#76d4ff</color>
     <color name="t_dodger_blue">#4B0dacfe</color>
 
     <color name="alto">#dedede</color>
@@ -10,7 +10,7 @@
     <color name="t_pickled_bluewood">#4B2c3e50</color>
 
     <color name="white">#ffffff</color>
-    <color name="t_white">#4Bffffff</color>
+    <color name="t_white">#80ffffff</color>
 
     <color name="smalt_blue">#56718c</color>
     <color name="cinnabar">#e74c3c</color>

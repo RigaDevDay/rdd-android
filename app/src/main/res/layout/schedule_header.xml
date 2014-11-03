@@ -16,41 +16,47 @@
 
     </RelativeLayout>
 
-    <ImageView
-        android:id="@+id/header_bookmark"
-        android:layout_width="48dp"
-        android:layout_height="32dp"
-        android:adjustViewBounds="true"
-        android:src="@drawable/bookmark_dodger_blue"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
-        android:layout_marginEnd="25dp"
-        android:layout_marginRight="25dp" />
-
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:layout_alignParentBottom="true"
-        android:padding="10dp">
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp"
+        android:paddingBottom="10dp">
 
-        <View style="@style/WhiteLine"/>
+        <LinearLayout
+            android:orientation="horizontal"
+            android:weightSum="2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:orientation="horizontal"
+                android:background="@color/t_white"
+                android:layout_height="1dp"
+                android:layout_marginRight="32dp"/>
+        </LinearLayout>
 
         <TextView
             android:id="@+id/header_title"
-            android:textSize="18sp"
-            android:textColor="@color/white"
-            android:layout_marginBottom="10dp"
+            android:layout_height="wrap_content"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:textColor="@color/white"
+            android:textSize="18sp"
+            android:layout_marginBottom="5dp" />
 
         <TextView
             android:id="@+id/header_time_place"
-            android:textColor="@color/dodger_blue"
+            android:layout_height="wrap_content"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:textColor="@color/dodger_blue"
+            android:textSize="16sp" />
 
     </LinearLayout>
+
+    <include layout="@layout/bookmark" />
 </RelativeLayout>
