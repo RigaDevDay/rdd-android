@@ -6,10 +6,12 @@
     <string name="drawer_open">Open</string>
     <string name="drawer_close">Closed</string>
 
-    <string name="venue">Venue</string>
-    <string name="agenda">Agenda</string>
-    <string name="schedule">My Schedule</string>
+    <string name="about">About</string>
+    <string name="talks">Talks</string>
     <string name="speakers">Speakers</string>
-    <string name="social">Social</string>
+    <string name="schedule">Schedule</string>
+    <string name="venue">Venue</string>
+    <string name="organizers">Organizers</string>
+    <string name="bookmarks">My bookmarks</string>
 
 </resources>

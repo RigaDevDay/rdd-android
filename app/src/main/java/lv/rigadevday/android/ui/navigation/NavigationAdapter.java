@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import javax.inject.Inject;
@@ -13,11 +14,15 @@ import lv.rigadevday.android.R;
 import lv.rigadevday.android.application.navigation.NavigationOption;
 import lv.rigadevday.android.application.navigation.NavigationService;
 import lv.rigadevday.android.common.StringService;
+import lv.rigadevday.android.common.TypefaceCache;
 import lv.rigadevday.android.common.ViewHolder;
 
 public class NavigationAdapter extends ArrayAdapter<NavigationOption> {
 
     StringService stringService;
+
+    @Inject
+    TypefaceCache typefaceCache;
 
     @Inject
     public NavigationAdapter(Context context, NavigationService service, StringService stringService) {
@@ -33,8 +38,12 @@ public class NavigationAdapter extends ArrayAdapter<NavigationOption> {
 
         NavigationOption option = getItem(position);
 
-        TextView title = (TextView) ViewHolder.get(convertView, R.id.navigation_title);
+        TextView title = ViewHolder.get(convertView, R.id.navigation_title);
         title.setText(stringService.loadString(option.getTitle()));
+        title.setTypeface(typefaceCache.loadFromAsset("fonts/Roboto-Regular.ttf"));
+
+        ImageView icon = ViewHolder.get(convertView, R.id.navigation_icon);
+        icon.setImageDrawable(getContext().getResources().getDrawable(option.getImage()));
 
         return convertView;
     }

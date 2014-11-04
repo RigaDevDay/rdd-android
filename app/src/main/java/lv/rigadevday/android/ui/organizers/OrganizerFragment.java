@@ -1,15 +1,15 @@
-package lv.rigadevday.android.ui.social;
+package lv.rigadevday.android.ui.organizers;
 
 import android.os.Bundle;
 
 import lv.rigadevday.android.R;
 import lv.rigadevday.android.ui.BaseFragment;
 
-public class SocialFragment extends BaseFragment {
+public class OrganizerFragment extends BaseFragment {
 
     @Override
     protected int contentViewId() {
-        return R.layout.social_screen;
+        return R.layout.organizer_screen;
     }
 
     @Override

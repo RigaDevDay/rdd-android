@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="dodger_blue">#76d4ff</color>
+
     <color name="t_dodger_blue">#4B0dacfe</color>
 
     <color name="alto">#dedede</color>
@@ -8,10 +8,6 @@
 
     <color name="pickled_bluewood">#2c3e50</color>
     <color name="t_pickled_bluewood">#4B2c3e50</color>
-
-    <color name="white">#ffffff</color>
-    <color name="t_white">#80ffffff</color>
-
     <color name="smalt_blue">#56718c</color>
     <color name="cinnabar">#e74c3c</color>
     <color name="t_cinnabar">#4be74c3c</color>
@@ -20,5 +16,15 @@
     <color name="night_rider">#040203</color>
     <color name="waterloo">#828297</color>
     <color name="cerulean">#0193e0</color>
-    <color name="flush_mahogany">#CC3A41</color>"
+    <color name="flush_mahogany">#CC3A41</color>
+
+    <!-- PSD colors -->
+
+    <color name="white">#ffffff</color>
+    <color name="t_white">#80ffffff</color>
+
+    <color name="primary">#212121</color>
+    <color name="menu_text">#404040</color>
+
+    <color name="dodger_blue">#76d4ff</color>
 </resources>

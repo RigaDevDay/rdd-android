@@ -1,10 +1,11 @@
 package lv.rigadevday.android.ui;
 
 import android.content.res.Configuration;
-import android.support.v4.app.ActionBarDrawerToggle;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarActivity;
+import android.support.v7.app.ActionBarDrawerToggle;
+import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.widget.FrameLayout;
 import android.widget.ListView;
@@ -36,6 +37,8 @@ public class MainActivityPresenter {
     DrawerLayout drawerLayout;
     @InjectView(R.id.navigation_listView)
     ListView listView;
+    @InjectView(R.id.toolbar)
+    Toolbar toolbar;
 
     @Inject
     SharedPrefsService preferences;
@@ -53,9 +56,11 @@ public class MainActivityPresenter {
     }
 
     public void initNavigationDrawer() {
-        drawerToggle = new ActionBarDrawerToggle(activity, drawerLayout, R.drawable.ic_drawer, R.string.app_name, R.string.app_name);
+        activity.setSupportActionBar(toolbar);
 
-        drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED, rightDrawer);
+        drawerToggle = new ActionBarDrawerToggle(activity, drawerLayout, R.string.app_name, R.string.app_name);
+        drawerToggle.setDrawerIndicatorEnabled(true);
+
         drawerLayout.setDrawerListener(drawerToggle);
 
         activity.getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -96,6 +101,7 @@ public class MainActivityPresenter {
 
     @OnItemClick(R.id.navigation_listView)
     public void onItemClick(int position) {
+        //TODO: doesn't work anymore ;[
         NavigationOption option = navigationAdapter.getItem(position);
         BaseFragment fragment = FragmentFactory.create(option.getFragmentClass());
 

@@ -1,32 +1,46 @@
-<android.support.v4.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/drawer_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".MyActivity">
 
-    <!-- The main content view -->
-    <FrameLayout
-        android:id="@+id/content_frame"
-        android:background="@color/white"
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_height="wrap_content"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:minHeight="?attr/actionBarSize"
+        android:background="?attr/colorPrimary" />
 
-    <FrameLayout
-        android:id="@+id/left_drawer"
-        android:layout_width="240dp"
-        android:layout_height="match_parent"
-        android:layout_gravity="start"
-        android:background="#a34">
-            <include layout="@layout/navigation_content"/>
-    </FrameLayout>
+    <android.support.v4.widget.DrawerLayout
+        android:id="@+id/drawer_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <!-- The main content view -->
+        <FrameLayout
+            android:id="@+id/content_frame"
+            android:background="@color/white"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
 
-    <FrameLayout
-        android:id="@+id/right_drawer"
-        android:layout_width="240dp"
-        android:layout_height="match_parent"
-        android:layout_gravity="end"
-        android:background="#42b"
-        android:visibility="invisible"/>
+        <FrameLayout
+            android:id="@+id/left_drawer"
+            android:layout_width="240dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="start"
+            android:paddingTop="30dp"
+            android:background="@color/white">
 
-</android.support.v4.widget.DrawerLayout>
+            <include layout="@layout/navigation_content" />
+        </FrameLayout>
+
+        <FrameLayout
+            android:id="@+id/right_drawer"
+            android:layout_width="240dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="end"
+            android:background="#42b"
+            android:visibility="invisible" />
+
+    </android.support.v4.widget.DrawerLayout>
+</LinearLayout>

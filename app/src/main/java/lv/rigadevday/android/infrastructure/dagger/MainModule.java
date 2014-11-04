@@ -11,10 +11,12 @@ import dagger.Module;
 import dagger.Provides;
 import lv.rigadevday.android.BaseApplication;
 import lv.rigadevday.android.ui.MainActivity;
-import lv.rigadevday.android.ui.agenda.AgendaFragment;
+import lv.rigadevday.android.ui.about.AboutFragment;
+import lv.rigadevday.android.ui.bookmark.BookmarkFragment;
+import lv.rigadevday.android.ui.organizers.OrganizerFragment;
 import lv.rigadevday.android.ui.schedule.ScheduleFragment;
-import lv.rigadevday.android.ui.social.SocialFragment;
 import lv.rigadevday.android.ui.speakers.SpeakersFragment;
+import lv.rigadevday.android.ui.talks.TalkFragment;
 import lv.rigadevday.android.ui.venue.VenueFragment;
 
 @Module(
@@ -22,11 +24,13 @@ import lv.rigadevday.android.ui.venue.VenueFragment;
                 BaseApplication.class,
                 MainActivity.class,
 
-                ScheduleFragment.class,
-                AgendaFragment.class,
-                SocialFragment.class,
+                AboutFragment.class,
+                TalkFragment.class,
                 SpeakersFragment.class,
-                VenueFragment.class
+                ScheduleFragment.class,
+                VenueFragment.class,
+                OrganizerFragment.class,
+                BookmarkFragment.class
         }
 )
 public class MainModule implements DaggerModule {
@@ -37,7 +41,8 @@ public class MainModule implements DaggerModule {
         this.appContext = appContext.getApplicationContext();
     }
 
-    @Provides @Singleton
+    @Provides
+    @Singleton
     Bus provideBus() {
         return new Bus();
     }
