@@ -99,7 +99,6 @@ public class MainActivityPresenter {
                 .commit();
     }
 
-
     @OnItemClick(R.id.navigation_listView)
     public void onItemClick(int position) {
         //TODO: doesn't work anymore ;[
