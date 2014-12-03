@@ -7,6 +7,7 @@ import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ListView;
 
@@ -58,7 +59,24 @@ public class MainActivityPresenter {
     public void initNavigationDrawer() {
         activity.setSupportActionBar(toolbar);
 
-        drawerToggle = new ActionBarDrawerToggle(activity, drawerLayout, R.string.app_name, R.string.app_name);
+        drawerToggle = new ActionBarDrawerToggle(activity, drawerLayout, R.string.app_name, R.string.app_name) {
+            @Override
+            public void onDrawerSlide(View drawerView, float slideOffset) {
+                if (drawerView != null && drawerView == rightDrawer) {
+                    super.onDrawerSlide(drawerView, 0);
+                } else {
+                    super.onDrawerSlide(drawerView, slideOffset);
+                }
+            }
+
+            @Override
+            public void onDrawerOpened(View drawerView) {
+                super.onDrawerOpened(drawerView);
+                if (drawerView != null && drawerView == rightDrawer) {
+                    super.onDrawerSlide(drawerView, 0);
+                }
+            }
+        };
         drawerToggle.setDrawerIndicatorEnabled(true);
 
         drawerLayout.setDrawerListener(drawerToggle);
