@@ -18,13 +18,11 @@ import lv.rigadevday.android.ui.ViewHolder;
 public class SpeakersGridAdapter extends ArrayAdapter<Speaker> {
 
     LayoutInflater inflater;
-    TypefaceCache typefaceCache;
 
     @Inject
-    public SpeakersGridAdapter(Context context, LayoutInflater inflater, TypefaceCache typefaceCache) {
+    public SpeakersGridAdapter(Context context, LayoutInflater inflater) {
         super(context, 0, Speaker.getAll());
         this.inflater = inflater;
-        this.typefaceCache = typefaceCache;
     }
 
     @Override
@@ -39,11 +37,9 @@ public class SpeakersGridAdapter extends ArrayAdapter<Speaker> {
 
     private void pupulateView(View convertView, Speaker item) {
         TextView title = ViewHolder.get(convertView, R.id.item_title);
-        title.setTypeface(typefaceCache.loadFromAsset("fonts/RobotoCondensed-Regular.ttf"));
         title.setText(item.getName());
 
         TextView time = ViewHolder.get(convertView, R.id.item_time_place);
-        time.setTypeface(typefaceCache.loadFromAsset("fonts/Roboto-Light.ttf"));
         time.setText(item.getCompany());
 
 //        ImageView bookmark = ViewHolder.get(convertView, R.id.item_bookmark);

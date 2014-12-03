@@ -41,7 +41,7 @@
                 android:layout_marginRight="32dp"/>
         </LinearLayout>
 
-        <TextView
+        <lv.rigadevday.android.ui.custom.view.TextViewRobotoRegular
             android:id="@+id/header_title"
             android:layout_height="wrap_content"
             android:layout_width="wrap_content"
@@ -49,7 +49,7 @@
             android:textSize="18sp"
             android:layout_marginBottom="5dp" />
 
-        <TextView
+        <lv.rigadevday.android.ui.custom.view.TextViewRobotoRegular
             android:id="@+id/header_time_place"
             android:layout_height="wrap_content"
             android:layout_width="wrap_content"

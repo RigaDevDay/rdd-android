@@ -33,7 +33,7 @@
             android:layout_height="1dp"
             android:layout_marginBottom="5dp" />
 
-        <TextView
+        <lv.rigadevday.android.ui.custom.view.TextViewRobotoRegular
             android:id="@+id/item_title"
             android:ellipsize="end"
             android:singleLine="true"
@@ -43,7 +43,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
 
-        <TextView
+        <lv.rigadevday.android.ui.custom.view.TextViewRobotoLight
             android:id="@+id/item_time_place"
             android:layout_height="wrap_content"
             android:layout_width="wrap_content"

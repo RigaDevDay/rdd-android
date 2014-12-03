@@ -22,9 +22,6 @@ public class NavigationAdapter extends ArrayAdapter<NavigationOption> {
     StringService stringService;
 
     @Inject
-    TypefaceCache typefaceCache;
-
-    @Inject
     public NavigationAdapter(Context context, NavigationService service, StringService stringService) {
         super(context, 0, service.getDrawerNavigationOptions());
         this.stringService = stringService;
@@ -40,7 +37,6 @@ public class NavigationAdapter extends ArrayAdapter<NavigationOption> {
 
         TextView title = ViewHolder.get(convertView, R.id.navigation_title);
         title.setText(stringService.loadString(option.getTitle()));
-        title.setTypeface(typefaceCache.loadFromAsset("fonts/Roboto-Regular.ttf"));
 
         ImageView icon = ViewHolder.get(convertView, R.id.navigation_icon);
         icon.setImageDrawable(getContext().getResources().getDrawable(option.getImage()));

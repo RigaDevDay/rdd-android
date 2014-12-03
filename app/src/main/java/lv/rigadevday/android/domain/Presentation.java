@@ -65,6 +65,11 @@ public class Presentation extends Model {
         return new Select().from(Presentation.class).execute();
     }
 
+    public static List<Presentation> getBookmarked() {
+        //TODO: implement!
+        return new Select().from(Presentation.class).execute();
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -93,4 +98,6 @@ public class Presentation extends Model {
                 ", header=" + header +
                 '}';
     }
+
+
 }

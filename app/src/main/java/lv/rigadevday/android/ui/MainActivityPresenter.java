@@ -65,7 +65,7 @@ public class MainActivityPresenter {
 
         activity.getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         activity.getSupportActionBar().setHomeButtonEnabled(true);
-        listView.setAdapter(navigationAdapter);       
+        listView.setAdapter(navigationAdapter);
     }
 
     public void syncNavigationDrawerState() {
@@ -101,7 +101,6 @@ public class MainActivityPresenter {
 
     @OnItemClick(R.id.navigation_listView)
     public void onItemClick(int position) {
-        //TODO: doesn't work anymore ;[
         NavigationOption option = navigationAdapter.getItem(position);
         BaseFragment fragment = FragmentFactory.create(option.getFragmentClass());
 

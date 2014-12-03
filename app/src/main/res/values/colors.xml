@@ -22,9 +22,12 @@
 
     <color name="white">#ffffff</color>
     <color name="t_white">#80ffffff</color>
+    <color name="color_fafafa">#fafafa</color>
 
     <color name="primary">#212121</color>
-    <color name="menu_text">#404040</color>
+    <color name="color_404040">#404040</color>
+    <color name="color_a87_3f3f3f">#573f3f3f</color>
+    <color name="color_a50_3f3f3f">#323f3f3f</color>
 
     <color name="dodger_blue">#76d4ff</color>
 </resources>

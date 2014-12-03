@@ -29,9 +29,6 @@ public class ScheduleGridAdapter extends BaseAdapter implements StickyGridHeader
     @Inject
     LayoutInflater inflater;
 
-    @Inject
-    TypefaceCache typefaceCache;
-
     public ScheduleGridAdapter() {
         this.schedule = new Schedule(Presentation.getAll());
         this.headerResId = R.layout.schedule_header;
@@ -94,11 +91,9 @@ public class ScheduleGridAdapter extends BaseAdapter implements StickyGridHeader
 
     private void pupulateView(View convertView, Presentation item, ViewIds ids) {
         TextView title = ViewHolder.get(convertView, ids.titleId);
-        title.setTypeface(typefaceCache.loadFromAsset("fonts/Roboto-Regular.ttf"));
         title.setText(item.getTitle());
 
         TextView time = ViewHolder.get(convertView, ids.timePlaceId);
-        time.setTypeface(typefaceCache.loadFromAsset("fonts/Roboto-Regular.ttf"));
         // TODO fix
         String info = assembleEventInfo("Start", "End", "Room");
         time.setText(info);

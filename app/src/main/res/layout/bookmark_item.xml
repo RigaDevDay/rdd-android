@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="10dp">
+
+    <lv.rigadevday.android.ui.custom.view.TextViewRobotoRegular
+        android:id="@+id/speaker_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/primary"
+        android:textSize="16sp"
+        android:text="Samuel Rats" />
+
+    <lv.rigadevday.android.ui.custom.view.TextViewRobotoLight
+        android:id="@+id/presentation_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ellipsize="end"
+        android:singleLine="true"
+        android:textColor="@color/color_404040"
+        android:textSize="14sp"
+        android:layout_marginRight="45dp"
+        android:text="Genymotion, the new Android emulator ellipsize ellipsize ellipsizefeafpawpfrlwpalr"
+        android:layout_below="@id/speaker_name" />
+
+    <lv.rigadevday.android.ui.custom.view.TextViewRobotoLight
+        android:id="@+id/presentation_location"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/color_404040"
+        android:textSize="14sp"
+        android:text="Hall 3"
+        android:layout_below="@id/presentation_title" />
+
+    <lv.rigadevday.android.ui.custom.view.TextViewRobotoRegular
+        android:id="@+id/presentation_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/color_404040"
+        android:textSize="14sp"
+        android:text="11:30"
+        android:layout_alignParentRight="true" />
+
+
+    <ImageView
+        android:id="@+id/icon_bookmark"
+        android:src="@drawable/icon_bookmark"
+        android:adjustViewBounds="true"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:layout_marginBottom="5dp"
+        android:layout_alignBottom="@id/presentation_location"
+        android:layout_alignParentRight="true" />
+
+
+</RelativeLayout>

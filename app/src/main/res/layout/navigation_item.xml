@@ -1,29 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<com.andexert.library.RippleView xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:ripple="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="horizontal"
-    ripple:rv_color="@color/menu_text"
+    ripple:rv_color="@color/color_404040"
     ripple:rv_alpha="35"
     ripple:rv_zoom="true"
-    ripple:rv_rippleDuration="250"
-    >
+    ripple:rv_rippleDuration="250">
 
     <ImageView
         android:id="@+id/navigation_icon"
         android:layout_width="16dp"
         android:layout_height="16dp"
-        android:src="@drawable/icon_menu_organizers"
         android:layout_centerVertical="true"
         android:layout_margin="15dp" />
 
-    <TextView
+    <lv.rigadevday.android.ui.custom.view.TextViewRobotoRegular
         android:id="@+id/navigation_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textColor="@color/menu_text"
+        android:textColor="@color/color_404040"
         android:layout_marginStart="15dp"
         android:layout_marginLeft="15dp"
         android:layout_marginTop="10dp"
@@ -36,4 +34,4 @@
         android:layout_gravity="center_vertical" />
 
 
-</com.andexert.library.RippleView>
+</RelativeLayout>
