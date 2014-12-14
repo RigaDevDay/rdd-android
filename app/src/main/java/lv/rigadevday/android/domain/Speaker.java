@@ -4,32 +4,46 @@ import com.activeandroid.Model;
 import com.activeandroid.annotation.Column;
 import com.activeandroid.annotation.Table;
 import com.activeandroid.query.Select;
-import com.google.gson.annotations.SerializedName;
 
+import java.io.Serializable;
 import java.util.List;
 
-@Table(name = "Speakers")
-public class Speaker extends Model {
+import lv.rigadevday.android.domain.reference.SpeakerType;
 
-    @SerializedName("order")
+@Table(name = "Speakers")
+public class Speaker extends Model implements Serializable {
+
+    @Column(name = "uid")
+    private Integer uid;
+
     @Column(name = "lineup")
     private Integer lineup;
 
-    @SerializedName("name")
     @Column(name = "name")
     private String name;
 
-    @SerializedName("bio")
     @Column(name = "bio")
     private String bio;
 
-    @SerializedName("country")
     @Column(name = "country")
     private String country;
 
-    @SerializedName("company")
     @Column(name = "company")
     private String company;
+
+    @Column(name = "type")
+    private int type;
+
+    private List<Contact> contacts;
+    private List<Presentation> presentations;
+
+    public Integer getUid() {
+        return uid;
+    }
+
+    public void setUid(Integer uid) {
+        this.uid = uid;
+    }
 
     public Integer getLineup() {
         return lineup;
@@ -71,12 +85,42 @@ public class Speaker extends Model {
         this.company = company;
     }
 
+    public void setContacts(List<Contact> contacts) {
+        this.contacts = contacts;
+    }
+
+    public SpeakerType getType() {
+        return SpeakerType.byId(type);
+    }
+
+    public void setType(SpeakerType type) {
+        this.type = type.getId();
+    }
+
     public List<Contact> getContacts() {
-        return getMany(Contact.class, "speaker");
+        if (contacts == null) {
+            contacts = getMany(Contact.class, "speaker");
+        }
+        return contacts;
+    }
+
+    public List<Presentation> getPresentations() {
+        if (presentations == null) {
+            presentations = new Select()
+                    .from(Presentation.class)
+                    .innerJoin(SpeakerPresentation.class).on("Presentations.id = SpeakerPresentation.presentation")
+                    .where("SpeakerPresentation.speaker = ?", getId())
+                    .execute();
+        }
+        return presentations;
     }
 
     public static List<Speaker> getAll() {
         return new Select().from(Speaker.class).execute();
+    }
+
+    public static Speaker getByUid(Integer uid) {
+        return new Select().from(Speaker.class).where("uid = ?", uid).executeSingle();
     }
 
     @Override

@@ -53,7 +53,7 @@
             android:id="@+id/header_time_place"
             android:layout_height="wrap_content"
             android:layout_width="wrap_content"
-            android:textColor="@color/dodger_blue"
+            android:textColor="@color/color_76d4ff"
             android:textSize="16sp" />
 
     </LinearLayout>

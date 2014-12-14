@@ -15,7 +15,7 @@ import javax.inject.Inject;
 import lv.rigadevday.android.R;
 import lv.rigadevday.android.common.TypefaceCache;
 import lv.rigadevday.android.domain.Presentation;
-import lv.rigadevday.android.ui.ViewHolder;
+import lv.rigadevday.android.common.ViewHolder;
 
 public class ScheduleGridAdapter extends BaseAdapter implements StickyGridHeadersBaseAdapter {
     private Schedule schedule;
@@ -104,8 +104,8 @@ public class ScheduleGridAdapter extends BaseAdapter implements StickyGridHeader
 
         // TODO: implement placeholder arawable assigning to presentations
         ImageView image = ViewHolder.get(convertView, ids.imageId);
-        int drawableId = item.isHeader() ? R.drawable.pic_1_edited : R.drawable.pic_2_edited;
-        image.setImageDrawable(context.getResources().getDrawable(drawableId));
+//        int drawableId = item.isHeader() ? R.drawable.pic_1_edited : R.drawable.pic_2_edited;
+//        image.setImageDrawable(context.getResources().getDrawable(drawableId));
     }
 
     private String assembleEventInfo(String start, String end, String room) {

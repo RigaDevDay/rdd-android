@@ -13,7 +13,7 @@ import javax.inject.Inject;
 import lv.rigadevday.android.R;
 import lv.rigadevday.android.common.TypefaceCache;
 import lv.rigadevday.android.domain.Speaker;
-import lv.rigadevday.android.ui.ViewHolder;
+import lv.rigadevday.android.common.ViewHolder;
 
 public class SpeakersGridAdapter extends ArrayAdapter<Speaker> {
 

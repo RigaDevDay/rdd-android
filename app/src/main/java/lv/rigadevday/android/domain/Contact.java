@@ -4,8 +4,12 @@ import com.activeandroid.Model;
 import com.activeandroid.annotation.Column;
 import com.activeandroid.annotation.Table;
 
+import java.io.Serializable;
+
+import lv.rigadevday.android.domain.reference.ContactType;
+
 @Table(name = "Contacts")
-public class Contact extends Model {
+public class Contact extends Model implements Serializable {
 
     @Column(name = "type")
     private int type;

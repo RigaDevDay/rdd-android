@@ -4,10 +4,11 @@ import com.activeandroid.Model;
 import com.activeandroid.annotation.Column;
 import com.activeandroid.annotation.Table;
 
+import java.io.Serializable;
 import java.util.List;
 
 @Table(name = "ScheduleSlot")
-public class ScheduleSlot extends Model {
+public class ScheduleSlot extends Model implements Serializable {
 
     @Column(name = "time")
     private String startTime;

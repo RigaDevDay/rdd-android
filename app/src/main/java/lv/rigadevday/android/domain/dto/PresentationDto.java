@@ -1,14 +1,11 @@
-package lv.rigadevday.android.integration.json;
+package lv.rigadevday.android.domain.dto;
 
-import com.activeandroid.Model;
-import com.activeandroid.query.Select;
 import com.google.gson.annotations.SerializedName;
 
+import java.util.ArrayList;
 import java.util.List;
 
-import lv.rigadevday.android.domain.Presentation;
-
-public class PresentationDto extends Model {
+public class PresentationDto {
 
     @SerializedName("title")
     private String title;
@@ -17,7 +14,9 @@ public class PresentationDto extends Model {
     @SerializedName("description")
     private String description;
     @SerializedName("speakers")
-    private List<String> speakers;
+    private List<Integer> speakers;
+    @SerializedName("tags")
+    private List<String> tags = new ArrayList<>();
 
     public String getTitle() {
         return title;
@@ -43,25 +42,30 @@ public class PresentationDto extends Model {
         this.description = description;
     }
 
-    public List<String> getSpeakers() {
+    public List<Integer> getSpeakers() {
         return speakers;
     }
 
-    public void setSpeakers(List<String> speakers) {
+    public void setSpeakers(List<Integer> speakers) {
         this.speakers = speakers;
     }
 
-    public static List<PresentationDto> getAll() {
-        return new Select().from(PresentationDto.class).execute();
+    public List<String> getTags() {
+        return tags;
     }
 
-    public Presentation toPresentation(int size) {
-        Presentation presentation = new Presentation();
-        presentation.setTitle(title);
-        presentation.setSubtitle(subtitle);
-        presentation.setDescription(description);
-        presentation.setHeader(size == 1);
-        //TODO: Add speakers
-        return presentation;
+    public void setTags(List<String> tags) {
+        this.tags = tags;
+    }
+
+    @Override
+    public String toString() {
+        return "PresentationDto{" +
+                "title='" + title + '\'' +
+                ", subtitle='" + subtitle + '\'' +
+                ", description='" + description + '\'' +
+                ", speakers=" + speakers +
+                ", tags=" + tags +
+                '}';
     }
 }

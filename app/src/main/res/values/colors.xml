@@ -21,6 +21,7 @@
     <!-- PSD colors -->
 
     <color name="white">#ffffff</color>
+    <color name="inactive_white">#bebfcd</color>
     <color name="t_white">#80ffffff</color>
     <color name="color_fafafa">#fafafa</color>
 
@@ -29,5 +30,6 @@
     <color name="color_a87_3f3f3f">#573f3f3f</color>
     <color name="color_a50_3f3f3f">#323f3f3f</color>
 
-    <color name="dodger_blue">#76d4ff</color>
+    <color name="color_76d4ff">#76d4ff</color>
+    <color name="color_a4a5ba">#a4a5ba</color>
 </resources>

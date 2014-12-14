@@ -1,15 +1,10 @@
-package lv.rigadevday.android.integration.json;
+package lv.rigadevday.android.domain.dto;
 
-import com.activeandroid.Model;
-import com.activeandroid.annotation.Table;
 import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
 
-import lv.rigadevday.android.domain.ScheduleSlot;
-
-@Table(name = "ScheduleSlot")
-public class ScheduleSlotDto extends Model {
+public class ScheduleSlotDto {
 
     @SerializedName("time")
     private String startTime;
@@ -24,8 +19,8 @@ public class ScheduleSlotDto extends Model {
         return startTime;
     }
 
-    public void setStartTime(String time) {
-        this.startTime = time;
+    public void setStartTime(String startTime) {
+        this.startTime = startTime;
     }
 
     public String getEndTime() {
@@ -50,13 +45,5 @@ public class ScheduleSlotDto extends Model {
 
     public void setPresentations(List<PresentationDto> presentations) {
         this.presentations = presentations;
-    }
-
-    public ScheduleSlot toScheduleSlot() {
-        ScheduleSlot slot = new ScheduleSlot();
-        slot.setStartTime(startTime);
-        slot.setEndTime(endTime);
-        slot.setIcon(icon);
-        return slot;
     }
 }

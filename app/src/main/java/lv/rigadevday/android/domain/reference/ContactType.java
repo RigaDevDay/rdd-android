@@ -1,4 +1,4 @@
-package lv.rigadevday.android.domain;
+package lv.rigadevday.android.domain.reference;
 
 import com.google.common.collect.Maps;
 

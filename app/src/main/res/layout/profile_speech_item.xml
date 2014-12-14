@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingTop="10dp"
+    android:paddingLeft="10dp"
+    android:paddingRight="10dp">
+
+    <lv.rigadevday.android.ui.custom.view.TextViewRobotoRegular
+        android:id="@+id/speech_venue"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/color_a4a5ba"
+        android:layout_marginBottom="10dp"
+        android:textSize="14sp" />
+
+    <lv.rigadevday.android.ui.custom.view.TextViewRobotoRegular
+        android:id="@+id/speech_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@color/color_404040"
+        android:textStyle="bold"
+        android:textSize="18sp"
+        android:layout_marginBottom="10dp" />
+
+    <lv.rigadevday.android.ui.custom.view.TextViewRobotoLight
+        android:id="@+id/speech_description"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@color/color_404040"
+        android:textSize="14sp"
+        android:lineSpacingMultiplier="1.2" />
+</LinearLayout>

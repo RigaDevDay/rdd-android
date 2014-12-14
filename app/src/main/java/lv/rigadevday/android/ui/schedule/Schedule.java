@@ -28,7 +28,7 @@ public class Schedule {
                         presentations, new Predicate<Presentation>() {
                             @Override
                             public boolean apply(Presentation input) {
-                                return input.isHeader();
+                                return false; //input.isHeader();
                             }
                         }));
     }
@@ -40,15 +40,15 @@ public class Schedule {
         int headerItemCnt = 0;
 
         for (Presentation presentation : presentations) {
-            if (presentation.isHeader()) {
-                if (currentHeader != null) {
-                    headerMap.put(currentHeader, headerItemCnt);
-                }
-                currentHeader = presentation;
-                headerItemCnt = 0;
-            } else {
-                headerItemCnt++;
-            }
+//            if (presentation.isHeader()) {
+//                if (currentHeader != null) {
+//                    headerMap.put(currentHeader, headerItemCnt);
+//                }
+//                currentHeader = presentation;
+//                headerItemCnt = 0;
+//            } else {
+//                headerItemCnt++;
+//            }
         }
 
         headerMap.put(currentHeader, headerItemCnt); //put last

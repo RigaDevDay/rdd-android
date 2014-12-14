@@ -22,7 +22,6 @@
         android:textColor="@color/color_404040"
         android:textSize="14sp"
         android:layout_marginRight="45dp"
-        android:text="Genymotion, the new Android emulator ellipsize ellipsize ellipsizefeafpawpfrlwpalr"
         android:layout_below="@id/speaker_name" />
 
     <lv.rigadevday.android.ui.custom.view.TextViewRobotoLight
@@ -31,7 +30,6 @@
         android:layout_height="wrap_content"
         android:textColor="@color/color_404040"
         android:textSize="14sp"
-        android:text="Hall 3"
         android:layout_below="@id/presentation_title" />
 
     <lv.rigadevday.android.ui.custom.view.TextViewRobotoRegular
@@ -40,7 +38,6 @@
         android:layout_height="wrap_content"
         android:textColor="@color/color_404040"
         android:textSize="14sp"
-        android:text="11:30"
         android:layout_alignParentRight="true" />
 
 

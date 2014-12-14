@@ -1,4 +1,4 @@
-package lv.rigadevday.android.integration.json;
+package lv.rigadevday.android.domain.dto;
 
 import com.google.gson.annotations.SerializedName;
 
@@ -25,5 +25,13 @@ public class ScheduleDto {
 
     public void setSchedule(List<ScheduleSlotDto> schedule) {
         this.schedule = schedule;
+    }
+
+    @Override
+    public String toString() {
+        return "ScheduleDto{" +
+                "roomNames=" + roomNames +
+                ", schedule=" + schedule +
+                '}';
     }
 }

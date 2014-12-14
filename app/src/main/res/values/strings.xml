@@ -13,5 +13,7 @@
     <string name="venue">Venue</string>
     <string name="organizers">Organizers</string>
     <string name="bookmarks">My bookmarks</string>
+    <string name="speech">Speech</string>
+    <string name="empty_bookmark_message">Go hit a star!</string>
 
 </resources>

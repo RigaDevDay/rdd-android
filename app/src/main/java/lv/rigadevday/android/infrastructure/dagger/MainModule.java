@@ -13,6 +13,9 @@ import lv.rigadevday.android.BaseApplication;
 import lv.rigadevday.android.ui.MainActivity;
 import lv.rigadevday.android.ui.about.AboutFragment;
 import lv.rigadevday.android.ui.bookmark.BookmarkFragment;
+import lv.rigadevday.android.ui.details.ProfileAboutFragment;
+import lv.rigadevday.android.ui.details.ProfileFragment;
+import lv.rigadevday.android.ui.details.ProfileSpeechFragment;
 import lv.rigadevday.android.ui.organizers.OrganizerFragment;
 import lv.rigadevday.android.ui.schedule.ScheduleFragment;
 import lv.rigadevday.android.ui.speakers.SpeakersFragment;
@@ -30,7 +33,11 @@ import lv.rigadevday.android.ui.venue.VenueFragment;
                 ScheduleFragment.class,
                 VenueFragment.class,
                 OrganizerFragment.class,
-                BookmarkFragment.class
+                BookmarkFragment.class,
+
+                ProfileFragment.class,
+                ProfileAboutFragment.class,
+                ProfileSpeechFragment.class
         }
 )
 public class MainModule implements DaggerModule {

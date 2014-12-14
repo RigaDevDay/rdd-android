@@ -17,11 +17,11 @@ import javax.inject.Singleton;
 import butterknife.ButterKnife;
 import butterknife.InjectView;
 import butterknife.OnItemClick;
-import lv.rigadevday.android.Mocks;
 import lv.rigadevday.android.R;
 import lv.rigadevday.android.application.navigation.NavigationOption;
 import lv.rigadevday.android.common.SharedPrefsService;
 import lv.rigadevday.android.infrastructure.FragmentFactory;
+import lv.rigadevday.android.infrastructure.db.DataImportHelper;
 import lv.rigadevday.android.ui.navigation.NavigationAdapter;
 import lv.rigadevday.android.ui.schedule.ScheduleFragment;
 
@@ -136,7 +136,6 @@ public class MainActivityPresenter {
     }
 
     public void syncData() {
-        Mocks.createScheduleSlots(activity);
-        Mocks.createSpeakers(activity);
+        DataImportHelper.importFromJson(activity);
     }
 }
