@@ -15,5 +15,6 @@
     <string name="bookmarks">My bookmarks</string>
     <string name="speech">Speech</string>
     <string name="empty_bookmark_message">Go hit a star!</string>
+    <string name="go_top">Go top</string>
 
 </resources>

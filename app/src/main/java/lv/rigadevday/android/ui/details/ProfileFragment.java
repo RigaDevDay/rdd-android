@@ -4,9 +4,13 @@ import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.squareup.picasso.Picasso;
 
 import javax.inject.Inject;
 
@@ -18,6 +22,9 @@ import lv.rigadevday.android.infrastructure.FragmentFactory;
 import lv.rigadevday.android.ui.BaseFragment;
 
 public class ProfileFragment extends BaseFragment {
+
+    @Inject
+    Context context;
 
     @InjectView(R.id.profile_about_tab_text)
     TextView aboutTextView;
@@ -37,6 +44,12 @@ public class ProfileFragment extends BaseFragment {
     @InjectView(R.id.profile_company)
     TextView companyTextView;
 
+    @InjectView(R.id.profile_photo)
+    ImageView photoImageView;
+
+    @InjectView(R.id.profile_backstage)
+    ImageView backstageImageView;
+
 
     private Class<? extends BaseFragment> currentFragment;
     private Speaker speaker;
@@ -49,22 +62,44 @@ public class ProfileFragment extends BaseFragment {
     @Override
     protected void init(Bundle savedInstanceState) {
         super.init(savedInstanceState);
-
     }
 
     @Override
-    public void onResume() {
-        super.onResume();
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        View view = super.onCreateView(inflater, container, savedInstanceState);
 
         Bundle arguments = getArguments();
         speaker = (Speaker) arguments.get("speaker");
+
+        Picasso.with(context)
+                .load(speaker.getImageUrl(context))
+                .placeholder(R.drawable.speaker_0)
+                .priority(Picasso.Priority.HIGH)
+                .skipMemoryCache()
+                .into(photoImageView);
+
+        Picasso.with(context)
+                .load(speaker.getBackstageImageResource(context))
+                .priority(Picasso.Priority.HIGH)
+                .skipMemoryCache()
+                .into(backstageImageView);
+
 
         String name = speaker.getName();
         nameTextView.setText(name);
         String company = speaker.getCompany();
         companyTextView.setText(company);
 
+        aboutTextView.setText(String.format("%s %s", getString(R.string.about), name.split(" ")[0]));
+
         onSpeechClick();
+
+        return view;
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
     }
 
     @OnClick(R.id.profile_speech_tab)

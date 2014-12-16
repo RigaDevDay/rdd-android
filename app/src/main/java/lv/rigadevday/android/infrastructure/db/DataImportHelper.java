@@ -56,6 +56,7 @@ public class DataImportHelper {
 
     private static void savePresentations(List<Presentation> presentations) {
         for (Presentation presentation : presentations) {
+            presentation.setBookmarked(true); //TODO: REMOVE THIS
             presentation.save();
 
             List<Speaker> speakers = presentation.getSpeakers();

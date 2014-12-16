@@ -1,17 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <com.tonicartos.widget.stickygridheaders.StickyGridHeadersGridView
-        android:id="@+id/schedule_grid"
+    <lv.rigadevday.android.ui.custom.view.parallax.ParallaxListView
+        android:id="@+id/speaker_list"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:clipToPadding="false"
-        android:numColumns="auto_fit"
-        android:layout_margin="5dp"
-        android:verticalSpacing="5dp"
-        android:horizontalSpacing="5dp" />
+        android:layout_height="match_parent" />
 
 </LinearLayout>

@@ -32,11 +32,11 @@ public class MainActivity extends ActionBarActivity {
         presenter.openScheduleScreen();
         presenter.openNavigationDrawer();
 
-        if(presenter.firstApplicationStart()) {
+        if (presenter.firstApplicationStart()) {
             presenter.openNavigationDrawer();
             presenter.syncData();
         }
-     }
+    }
 
     @Override
     protected void onResume() {
@@ -59,7 +59,7 @@ public class MainActivity extends ActionBarActivity {
     @Override
     public boolean onPrepareOptionsMenu(Menu menu) {
         // If the nav drawer is open, hide action items related to the content view
-//        boolean drawerOpen = drawerLayout.isDrawerOpen(leftDrawer);
+        //boolean drawerOpen = drawerLayout.isDrawerOpen(leftDrawer);
         //menu.findItem(R.id.action_websearch).setVisible(!drawerOpen);
         return super.onPrepareOptionsMenu(menu);
     }

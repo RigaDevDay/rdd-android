@@ -10,8 +10,7 @@
         android:layout_height="wrap_content">
 
         <ImageView
-            android:id="@+id/profile_background"
-            android:src="@drawable/profile_background_1"
+            android:id="@+id/profile_backstage"
             android:scaleType="fitXY"
             android:layout_alignLeft="@+id/profile_image_holder"
             android:layout_alignStart="@+id/profile_image_holder"
@@ -31,7 +30,6 @@
 
             <ImageView
                 android:id="@+id/profile_photo"
-                android:src="@drawable/profile_pic"
                 android:adjustViewBounds="true"
                 android:layout_centerInParent="true"
                 android:padding="10dp"
@@ -57,9 +55,8 @@
                 android:layout_width="32dp"
                 android:layout_height="32dp" />
 
-            <TextView
+            <lv.rigadevday.android.ui.custom.view.TextViewRobotoRegular
                 android:id="@+id/profile_name"
-                android:text="Gleb Smirnov"
                 android:layout_marginTop="10dp"
                 android:textSize="16sp"
                 android:layout_below="@+id/profile_photo"
@@ -68,10 +65,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
 
-            <TextView
+            <lv.rigadevday.android.ui.custom.view.TextViewRobotoRegular
                 android:id="@+id/profile_company"
                 android:layout_below="@id/profile_name"
-                android:text="Deutsche Bank"
                 android:textSize="12sp"
                 android:textColor="@color/color_76d4ff"
                 android:layout_centerHorizontal="true"
