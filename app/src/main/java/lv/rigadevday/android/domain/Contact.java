@@ -19,7 +19,7 @@ public class Contact extends Model implements Serializable {
     private Speaker speaker;
 
     public ContactType getType() {
-        return ContactType.byId(type);
+        return ContactType.getById(type);
     }
 
     public void setType(ContactType type) {

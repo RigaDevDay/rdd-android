@@ -128,6 +128,13 @@ public class Speaker extends Model implements Serializable, ParallaxListItem {
         return presentations;
     }
 
+    public boolean isBookmarked() {
+        for (Presentation presentation : getPresentations()) {
+            if (presentation.isBookmarked()) return true;
+        }
+        return false;
+    }
+
     public static List<Speaker> getAll() {
         return new Select().from(Speaker.class).execute();
     }

@@ -26,7 +26,7 @@ public enum ContactType {
         return id;
     }
 
-    public static ContactType byId(int id) {
-        return byId(id);
+    public static ContactType getById(int id) {
+        return byId.get(id);
     }
 }
