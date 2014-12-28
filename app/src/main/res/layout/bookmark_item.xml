@@ -10,8 +10,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textColor="@color/primary"
-        android:textSize="16sp"
-        android:text="Samuel Rats" />
+        android:textSize="16sp"/>
 
     <lv.rigadevday.android.ui.custom.view.TextViewRobotoLight
         android:id="@+id/presentation_title"
@@ -22,6 +21,7 @@
         android:textColor="@color/color_404040"
         android:textSize="14sp"
         android:layout_marginRight="45dp"
+        android:layout_marginEnd="45dp"
         android:layout_below="@id/speaker_name" />
 
     <lv.rigadevday.android.ui.custom.view.TextViewRobotoLight
@@ -38,6 +38,7 @@
         android:layout_height="wrap_content"
         android:textColor="@color/color_404040"
         android:textSize="14sp"
+        android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true" />
 
 
@@ -49,6 +50,7 @@
         android:layout_height="20dp"
         android:layout_marginBottom="5dp"
         android:layout_alignBottom="@id/presentation_location"
+        android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true" />
 
 
