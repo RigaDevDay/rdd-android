@@ -92,6 +92,13 @@ public class Presentation extends Model implements Serializable {
     }
 
     public List<Tag> getTags() {
+        if (tags == null) {
+            tags = new Select()
+                    .from(Tag.class)
+                    .innerJoin(PresentationTag.class).on("Tags.id = PresentationTag.tag")
+                    .where("PresentationTag.presentation = ?", getId())
+                    .execute();
+        }
         return tags;
     }
 

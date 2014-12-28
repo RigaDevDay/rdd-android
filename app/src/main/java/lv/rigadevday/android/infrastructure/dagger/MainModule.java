@@ -11,13 +11,13 @@ import dagger.Module;
 import dagger.Provides;
 import lv.rigadevday.android.BaseApplication;
 import lv.rigadevday.android.ui.MainActivity;
-import lv.rigadevday.android.ui.about.AboutFragment;
 import lv.rigadevday.android.ui.bookmark.BookmarkFragment;
 import lv.rigadevday.android.ui.details.ProfileAboutFragment;
 import lv.rigadevday.android.ui.details.ProfileFragment;
 import lv.rigadevday.android.ui.details.ProfileSpeechFragment;
 import lv.rigadevday.android.ui.organizers.OrganizerFragment;
 import lv.rigadevday.android.ui.schedule.ScheduleFragment;
+import lv.rigadevday.android.ui.schedule.ScheduleTrackFragment;
 import lv.rigadevday.android.ui.speakers.SpeakersFragment;
 import lv.rigadevday.android.ui.talks.TalkFragment;
 import lv.rigadevday.android.ui.venue.VenueFragment;
@@ -27,10 +27,10 @@ import lv.rigadevday.android.ui.venue.VenueFragment;
                 BaseApplication.class,
                 MainActivity.class,
 
-                AboutFragment.class,
                 TalkFragment.class,
                 SpeakersFragment.class,
                 ScheduleFragment.class,
+                ScheduleTrackFragment.class,
                 VenueFragment.class,
                 OrganizerFragment.class,
                 BookmarkFragment.class,

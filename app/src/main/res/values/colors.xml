@@ -21,6 +21,8 @@
     <!-- PSD colors -->
 
     <color name="white">#ffffff</color>
+    <color name="near_white">#ffebebeb</color>
+    <color name="tag_color">#ffb4b4b4</color>
     <color name="inactive_white">#bebfcd</color>
     <color name="t_white">#80ffffff</color>
     <color name="color_fafafa">#fafafa</color>

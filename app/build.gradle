@@ -1,8 +1,9 @@
 apply plugin: 'com.android.application'
 
 repositories {
-    mavenCentral()
+    maven { url "http://dl.bintray.com/populov/maven" }
     maven { url "https://oss.sonatype.org/content/repositories/snapshots/" }
+    mavenCentral()
 }
 
 android {
@@ -42,7 +43,9 @@ dependencies {
             'com.google.code.gson:gson:2.3',
             'com.github.traex.rippleeffect:library:1.2.2',
             'com.squareup.picasso:picasso:2.4.0',
-            'com.fmsirvent:parallaxeverywhere:1.0.1'
+            'com.fmsirvent:parallaxeverywhere:1.0.1',
+            'com.viewpagerindicator:library:2.4.1@aar'
+
     )
 
     provided 'com.squareup.dagger:dagger-compiler:1.2.2'

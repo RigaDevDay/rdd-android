@@ -7,7 +7,18 @@
 
         <!-- colorPrimaryDark is used for the status bar -->
         <item name="colorPrimaryDark">@color/night_rider</item>
+        <item name="tagViewStyle">@style/Widget.TagView</item>
     </style>
     <!-- Style intended to be used in View -->
+    <style name="Widget" />
 
+    <style name="Widget.TagView" parent="@android:style/Widget.TextView">
+        <item name="tagCornerRadius">6dp</item>
+        <item name="tagPadding">4dp</item>
+        <item name="tagUppercase">true</item>
+        <item name="android:textColor">#FFFFFF</item>
+        <item name="android:textSize">9sp</item>
+        <item name="android:lineSpacingExtra">3sp</item>
+        <item name="android:textStyle">bold</item>
+    </style>
 </resources>

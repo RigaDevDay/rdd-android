@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    android:padding="10dp">
+
+    <lv.rigadevday.android.ui.custom.view.TextViewRobotoLight
+        android:id="@+id/sie_start_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:textColor="@color/primary"
+        android:layout_marginRight="10dp"
+        android:layout_marginEnd="10dp"
+        android:textSize="14sp" />
+
+    <lv.rigadevday.android.ui.custom.view.TextViewRobotoRegular
+        android:id="@+id/sie_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="14sp"
+        android:textStyle="bold"
+        android:textColor="@color/primary"
+        android:gravity="center_horizontal"
+        android:layout_centerVertical="true" />
+
+</RelativeLayout>
