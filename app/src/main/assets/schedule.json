@@ -62,7 +62,6 @@
               "22"
            ],
            "tags": [
-              "JVM",
               "Java"
            ]
          },
@@ -74,8 +73,7 @@
            ],
            "tags": [
              "Mobile",
-             "Android",
-             "Infrastructure"
+             "Android"
            ]
          },
          {
@@ -86,8 +84,7 @@
            ],
            "tags": [
              "Web",
-             "JavaScript",
-             "Infrastructure"
+             "JavaScript"
            ]
          },
          {
@@ -97,8 +94,7 @@
               "16"
            ],
            "tags": [
-             "DevOps",
-             "Infrastructure"
+             "DevOps"
            ]
          },
          {
@@ -109,8 +105,7 @@
            ],
            "tags": [
              "DB",
-             "Oracle",
-             "Infrastructure"
+             "Oracle"
            ]
          }
       ]
@@ -162,8 +157,7 @@
            "tags": [
              "DB",
              "NoSQL",
-             "JavaScript",
-             "Infrastructure"
+             "JavaScript"
            ]
          },
          {
@@ -174,8 +168,7 @@
            ],
            "tags": [
              "DB",
-             "NoSQL",
-             "Infrastructure"
+             "NoSQL"
            ]
          },
          {
@@ -186,8 +179,7 @@
            ],
            "tags": [
              "DB",
-             "Oracle",
-             "Infrastructure"
+             "Oracle"
            ]
          }
       ]
@@ -236,8 +228,7 @@
               "25"
            ],
            "tags": [
-             "DevOps",
-             "Infrastructure"
+             "DevOps"
            ]
          },
          {
@@ -298,7 +289,7 @@
               "26"
            ],
            "tags": [
-             "DB",
+             "Web",
              "NoSQL",
              "JavaScript"
            ]
@@ -310,7 +301,6 @@
               "21"
            ],
            "tags": [
-             "Infrastructure",
              "Internet of Things"
            ]
          },
@@ -322,11 +312,8 @@
            ],
            "tags": [
              "DB",
-             "Web",
              "Mobile",
-             "Oracle",
-             "JavaScript",
-             "Infrastructure"
+             "Oracle"
            ]
          }
       ]
@@ -354,7 +341,6 @@
               "4"
            ],
            "tags": [
-             "Mobile",
              "Android",
              "Internet of Things"
            ]
@@ -377,7 +363,6 @@
               "28"
            ],
            "tags": [
-             "JVM",
              "Java"
            ]
          },
@@ -389,8 +374,7 @@
            ],
            "tags": [
              "DB",
-             "Oracle",
-             "Infrastructure"
+             "Oracle"
            ]
          }
       ]
@@ -409,7 +393,6 @@
            ],
            "tags": [
              "Java",
-             "Mobile",
              "Internet of Things"
            ]
          },
@@ -420,7 +403,6 @@
               "15"
            ],
            "tags": [
-             "Mobile",
              "Android",
              "Internet of Things"
            ]
@@ -432,7 +414,6 @@
               "3"
            ],
            "tags": [
-             "JVM",
              "Java"
            ]
          },
@@ -454,9 +435,8 @@
               "8"
            ],
            "tags": [
-             "Web",
-             "Oracle",
-             "Infrastructure"
+             "Java",
+             "Oracle"
            ]
          }
       ]
