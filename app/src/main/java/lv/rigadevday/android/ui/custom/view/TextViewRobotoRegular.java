@@ -22,7 +22,11 @@ public class TextViewRobotoRegular extends TextView {
     }
 
     public void createFont() {
-        Typeface font = Typeface.createFromAsset(getContext().getAssets(), "fonts/Roboto-Regular.ttf");
-        setTypeface(font);
+        try {
+            Typeface font = Typeface.createFromAsset(getContext().getAssets(), "fonts/Roboto-Regular.ttf");
+            setTypeface(font);
+        } catch (RuntimeException e) {
+
+        }
     }
 }

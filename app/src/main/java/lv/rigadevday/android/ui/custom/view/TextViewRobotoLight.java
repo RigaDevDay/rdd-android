@@ -22,7 +22,11 @@ public class TextViewRobotoLight extends TextView {
     }
 
     public void createFont() {
-        Typeface font = Typeface.createFromAsset(getContext().getAssets(), "fonts/Roboto-Light.ttf");
-        setTypeface(font);
+        try {
+            Typeface font = Typeface.createFromAsset(getContext().getAssets(), "fonts/Roboto-Light.ttf");
+            setTypeface(font);
+        } catch (RuntimeException e) {
+
+        }
     }
 }
