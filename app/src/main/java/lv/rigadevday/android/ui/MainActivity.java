@@ -3,7 +3,6 @@ package lv.rigadevday.android.ui;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
-import android.view.Menu;
 import android.view.MenuItem;
 
 import com.squareup.otto.Bus;
@@ -51,20 +50,6 @@ public class MainActivity extends ActionBarActivity {
     }
 
     @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.my, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onPrepareOptionsMenu(Menu menu) {
-        // If the nav drawer is open, hide action items related to the content view
-        //boolean drawerOpen = drawerLayout.isDrawerOpen(leftDrawer);
-        //menu.findItem(R.id.action_websearch).setVisible(!drawerOpen);
-        return super.onPrepareOptionsMenu(menu);
-    }
-
-    @Override
     protected void onPostCreate(Bundle savedInstanceState) {
         super.onPostCreate(savedInstanceState);
         // Sync the toggle state after onRestoreInstanceState has occurred.
@@ -79,9 +64,6 @@ public class MainActivity extends ActionBarActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        if (presenter.navigationDrawerHasHandledTouchEvent(item)) {
-            return true;
-        }
-        return super.onOptionsItemSelected(item);
+        return presenter.navigationDrawerHasHandledTouchEvent(item) || super.onOptionsItemSelected(item);
     }
 }
