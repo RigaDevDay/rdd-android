@@ -5,6 +5,7 @@
     <string name="action_settings">Settings</string>
     <string name="drawer_open">Open</string>
     <string name="drawer_close">Closed</string>
+    <string name="OK">OK</string>
 
     <string name="about">About</string>
     <string name="talks">Talks</string>
@@ -16,5 +17,26 @@
     <string name="speech">Speech</string>
     <string name="empty_bookmark_message">Go hit a star!</string>
     <string name="go_top">Go top</string>
+    <string name="dear_sponsors">Our dear Sponsors</string>
+    <string name="organizers_of_event">Organizers of the Event</string>
+    <string name="jug_description">
+        A Java User Group (JUG) is a group of people who share a common
+        interest in Java technology and meet on a regular basis to share technical ideas and information.
+    </string>
+    <string name="gdg_description">
+        Google Developer Group (GDG) Riga is a place to discuss, learn, and share passion for technology.
+        We focus on developer culture and rich technical content, with the ultimate goal to grow and
+        expand interest in IT within Riga and beyond. All our events are free to attend for everyone
+        and hosted by true technology advocates.
+    </string>
+    <string name="lvoug_description">
+        Latvian Oracle User Group (LVOUG) is an independent organization that brings together Oracle
+        users, professionals and other interested people in Latvia. Its purpose is to promote the
+        knowledge and experience among the group members. Inform about the Oracle product enhancements
+        and upgrades as well as provide feedback to Oracle.\nAnyone can become a member of the group.
+    </string>
+    <string name="jug_name">Java User Group</string>
+    <string name="gdg_name">"Google Developers Group"</string>
+    <string name="lvoug_name">Latvian Oracle Usergroup</string>
 
 </resources>

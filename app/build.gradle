@@ -44,7 +44,8 @@ dependencies {
             'com.github.traex.rippleeffect:library:1.2.2',
             'com.squareup.picasso:picasso:2.4.0',
             'com.fmsirvent:parallaxeverywhere:1.0.1',
-            'com.viewpagerindicator:library:2.4.1@aar'
+            'com.viewpagerindicator:library:2.4.1@aar',
+            'com.afollestad:material-dialogs:0.5.0'
 
     )
 
