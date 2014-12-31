@@ -15,7 +15,7 @@
     <string name="organizers">Organizers</string>
     <string name="bookmarks">My bookmarks</string>
     <string name="speech">Speech</string>
-    <string name="empty_bookmark_message">Bookmark talks \n to fill the list</string>
+    <string name="empty_bookmark_message">No talks bookmarked</string>
     <string name="go_top">Go top</string>
     <string name="dear_sponsors">Our dear Sponsors</string>
     <string name="organizers_of_event">Organizers of the Event</string>
@@ -38,5 +38,7 @@
     <string name="jug_name">Java User Group</string>
     <string name="gdg_name">"Google Developers Group"</string>
     <string name="lvoug_name">Latvian Oracle Usergroup</string>
+    <string name="bookmarked">Talk is added to bookmarks</string>
+    <string name="unbookmarked">Talk is removed from bookmarks</string>
 
 </resources>

@@ -16,7 +16,6 @@
     <RelativeLayout
         android:id="@+id/empty_bookmarks_message_holder"
         android:layout_width="match_parent"
-        android:background="@color/primary"
         android:layout_height="match_parent"
         android:orientation="vertical">
 
@@ -25,7 +24,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
-            android:src="@drawable/icon_bookmark_empty"/>
+            android:src="@drawable/icon_bookmark_empty_dark"/>
 
         <lv.rigadevday.android.ui.custom.view.TextViewRobotoRegular
             android:layout_width="match_parent"
@@ -34,7 +33,7 @@
             android:layout_marginTop="10dp"
             android:layout_below="@+id/bookmark_icon"
             android:gravity="center_horizontal"
-            android:textColor="@color/inactive_white"
+            android:textColor="@color/primary"
             android:text="@string/empty_bookmark_message" />
     </RelativeLayout>
 

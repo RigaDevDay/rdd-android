@@ -14,6 +14,7 @@ import javax.inject.Inject;
 
 import butterknife.InjectView;
 import butterknife.OnItemClick;
+import butterknife.OnItemLongClick;
 import lv.rigadevday.android.R;
 import lv.rigadevday.android.domain.Event;
 import lv.rigadevday.android.domain.Presentation;
@@ -22,6 +23,7 @@ import lv.rigadevday.android.domain.Track;
 import lv.rigadevday.android.domain.TrackPresentations;
 import lv.rigadevday.android.infrastructure.FragmentFactory;
 import lv.rigadevday.android.ui.BaseFragment;
+import lv.rigadevday.android.ui.custom.BookmarkSnackBarDisplayFunction;
 import lv.rigadevday.android.ui.details.ProfileFragment;
 
 public class ScheduleTrackFragment extends BaseFragment {
@@ -38,6 +40,7 @@ public class ScheduleTrackFragment extends BaseFragment {
     @Inject
     LayoutInflater layoutInflater;
     private ScheduleTrackItemsAdapter adapter;
+    private BookmarkSnackBarDisplayFunction snackBarDisplayFunction;
 
     public static ScheduleTrackFragment newInstance(Track track) {
         Bundle args = new Bundle();
@@ -60,6 +63,7 @@ public class ScheduleTrackFragment extends BaseFragment {
         }
 
         List<TrackItemHolder> items = getItemsList(track);
+        snackBarDisplayFunction = new BookmarkSnackBarDisplayFunction(getActivity(), scheduleTrackItems);
         adapter = new ScheduleTrackItemsAdapter(context, layoutInflater, items);
         scheduleTrackItems.setAdapter(adapter);
     }
@@ -108,5 +112,19 @@ public class ScheduleTrackFragment extends BaseFragment {
                 .beginTransaction()
                 .replace(R.id.content_frame, profileFragment, profileFragment.getClass().getName())
                 .commit();
+    }
+
+    @OnItemLongClick(R.id.schedule_track_items)
+    public boolean onPresentationLongItemClick(int position) {
+        TrackItemHolder item = adapter.getItem(position);
+        if (item.isEventItem()) return false;
+
+        Presentation presentation = item.getPresentation();
+
+        presentation.setBookmarked(!presentation.isBookmarked());
+        presentation.save();
+        snackBarDisplayFunction.apply(presentation.isBookmarked());
+
+        return true;
     }
 }
