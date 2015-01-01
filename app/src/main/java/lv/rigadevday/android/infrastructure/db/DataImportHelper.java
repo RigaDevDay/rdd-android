@@ -29,6 +29,7 @@ import lv.rigadevday.android.domain.dto.SpeakerInfo;
 import lv.rigadevday.android.domain.mapper.EventMapper;
 import lv.rigadevday.android.domain.mapper.PresentationMapper;
 import lv.rigadevday.android.domain.mapper.SpeakerMapper;
+import lv.rigadevday.android.domain.reference.SpeakerType;
 
 
 public class DataImportHelper {
@@ -152,6 +153,7 @@ public class DataImportHelper {
 
         for (SpeakerInfo speakerInfo : speakers) {
             Speaker speaker = speakerMapper.getSpeaker(speakerInfo);
+            if (speaker.getType().equals(SpeakerType.WORKSHOPER)) continue;
             speaker.save();
             createContact(speaker);
         }
