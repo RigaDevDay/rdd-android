@@ -20,7 +20,6 @@ import lv.rigadevday.android.ui.schedule.ScheduleFragment;
 import lv.rigadevday.android.ui.schedule.ScheduleTrackFragment;
 import lv.rigadevday.android.ui.speakers.SpeakersFragment;
 import lv.rigadevday.android.ui.talks.TalkFragment;
-import lv.rigadevday.android.ui.venue.VenueFragment;
 
 @Module(
         injects = {
@@ -31,7 +30,6 @@ import lv.rigadevday.android.ui.venue.VenueFragment;
                 SpeakersFragment.class,
                 ScheduleFragment.class,
                 ScheduleTrackFragment.class,
-                VenueFragment.class,
                 OrganizerFragment.class,
                 BookmarkFragment.class,
 
