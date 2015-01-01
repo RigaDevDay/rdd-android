@@ -1,5 +1,6 @@
 package lv.rigadevday.android.domain.mapper;
 
+import com.google.common.base.Strings;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Sets;
 
@@ -10,7 +11,6 @@ import java.util.Date;
 import java.util.List;
 import java.util.Set;
 
-import lv.rigadevday.android.common.StringUtils;
 import lv.rigadevday.android.domain.Presentation;
 import lv.rigadevday.android.domain.Speaker;
 import lv.rigadevday.android.domain.Tag;
@@ -59,7 +59,7 @@ public class PresentationMapper {
             for (int i = 0; i < presentations.size(); i++) {
                 PresentationDto presentationDto = presentations.get(i);
 
-                if (StringUtils.isEmpty(presentationDto.getSubtitle()))
+                if (Strings.isNullOrEmpty(presentationDto.getSubtitle()))
                     continue;
 
                 Presentation presentation = new Presentation();

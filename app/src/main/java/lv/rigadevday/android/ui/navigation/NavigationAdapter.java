@@ -13,18 +13,16 @@ import javax.inject.Inject;
 import lv.rigadevday.android.R;
 import lv.rigadevday.android.application.navigation.NavigationOption;
 import lv.rigadevday.android.application.navigation.NavigationService;
-import lv.rigadevday.android.common.StringService;
-import lv.rigadevday.android.common.TypefaceCache;
 import lv.rigadevday.android.common.ViewHolder;
 
 public class NavigationAdapter extends ArrayAdapter<NavigationOption> {
 
-    StringService stringService;
+    private Context context;
 
     @Inject
-    public NavigationAdapter(Context context, NavigationService service, StringService stringService) {
+    public NavigationAdapter(Context context, NavigationService service) {
         super(context, 0, service.getDrawerNavigationOptions());
-        this.stringService = stringService;
+        this.context = context;
     }
 
     @Override
@@ -36,7 +34,8 @@ public class NavigationAdapter extends ArrayAdapter<NavigationOption> {
         NavigationOption option = getItem(position);
 
         TextView title = ViewHolder.get(convertView, R.id.navigation_title);
-        title.setText(stringService.loadString(option.getTitle()));
+
+        title.setText(context.getString(option.getTitle()));
 
         ImageView icon = ViewHolder.get(convertView, R.id.navigation_icon);
         icon.setImageDrawable(getContext().getResources().getDrawable(option.getImage()));

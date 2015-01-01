@@ -1,5 +1,6 @@
 package lv.rigadevday.android.domain.mapper;
 
+import com.google.common.base.Strings;
 import com.google.common.collect.Lists;
 
 import java.text.ParseException;
@@ -8,7 +9,6 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
-import lv.rigadevday.android.common.StringUtils;
 import lv.rigadevday.android.domain.Event;
 import lv.rigadevday.android.domain.dto.PresentationDto;
 import lv.rigadevday.android.domain.dto.ScheduleDto;
@@ -37,7 +37,7 @@ public class EventMapper {
             for (int i = 0; i < presentations.size(); i++) {
                 PresentationDto presentationDto = presentations.get(i);
 
-                if (StringUtils.isEmpty(presentationDto.getTitle()))
+                if (Strings.isNullOrEmpty(presentationDto.getTitle()))
                     continue;
 
                 Event event = new Event();

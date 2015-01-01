@@ -7,7 +7,6 @@ import android.preference.PreferenceManager;
 import javax.inject.Inject;
 
 public class SharedPrefsService {
-	ClassLogger logger = new ClassLogger(NetworkService.class);
 
 	@Inject
 	public Context context;

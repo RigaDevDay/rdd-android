@@ -71,7 +71,6 @@ public class ScheduleTrackFragment extends BaseFragment {
     @Override
     public void onResume() {
         super.onResume();
-        adapter.notifyDataSetChanged();
     }
 
     @Override

@@ -26,8 +26,8 @@ public enum SpeakerType {
         return id;
     }
 
-    public static SpeakerType byId(int id) {
-        return byId(id);
+    public static SpeakerType getById(int id) {
+        return byId.get(id);
     }
 
 

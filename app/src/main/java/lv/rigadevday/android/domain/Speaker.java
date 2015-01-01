@@ -103,7 +103,7 @@ public class Speaker extends Model implements Serializable, ParallaxListItem {
     }
 
     public SpeakerType getType() {
-        return SpeakerType.byId(type);
+        return SpeakerType.getById(type);
     }
 
     public void setType(SpeakerType type) {

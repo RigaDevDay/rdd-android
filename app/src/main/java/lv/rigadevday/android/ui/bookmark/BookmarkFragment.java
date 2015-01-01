@@ -22,9 +22,6 @@ import lv.rigadevday.android.ui.details.ProfileFragment;
 
 public class BookmarkFragment extends BaseFragment {
 
-    @Inject
-    Context context;
-
     @InjectView(R.id.bookmark_list)
     ListView bookmarkList;
 
