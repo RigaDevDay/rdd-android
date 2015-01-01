@@ -28,6 +28,7 @@ import lv.rigadevday.android.ui.schedule.ScheduleFragment;
 @Singleton
 public class MainActivityPresenter {
 
+    public static final String MAIN_FRAGMENT_TAG = "MainFragment";
     @InjectView(R.id.content_frame)
     FrameLayout contentFrame;
     @InjectView(R.id.left_drawer)
@@ -113,16 +114,21 @@ public class MainActivityPresenter {
     public void changeContentFragment(Fragment fragment) {
         activity.getSupportFragmentManager()
                 .beginTransaction()
-                .replace(R.id.content_frame, fragment, fragment.getClass().getName())
+                .replace(R.id.content_frame, fragment, MAIN_FRAGMENT_TAG)
+                .addToBackStack(MAIN_FRAGMENT_TAG)
                 .commit();
     }
 
     @OnItemClick(R.id.navigation_listView)
     public void onItemClick(int position) {
         NavigationOption option = navigationAdapter.getItem(position);
-        BaseFragment fragment = FragmentFactory.create(option.getFragmentClass());
+        Fragment currentFragment = activity.getSupportFragmentManager().findFragmentByTag(MAIN_FRAGMENT_TAG);
 
-        changeContentFragment(fragment);
+        if (currentFragment == null || !currentFragment.getClass().equals(option.getFragmentClass())) {
+            BaseFragment fragment = FragmentFactory.create(option.getFragmentClass());
+            changeContentFragment(fragment);
+        }
+
         closeLeftDrawerLayout();
     }
 
