@@ -2,7 +2,7 @@ package lv.rigadevday.android.ui.speakers;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v4.app.FragmentActivity;
+import android.support.v4.app.FragmentManager;
 import android.view.View;
 
 import com.google.common.base.Function;
@@ -37,8 +37,13 @@ public class SpeakersFragment extends BaseFragment {
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+    }
 
-        ItemClickFunction itemClickFunction = new ItemClickFunction(this.getActivity());
+    @Override
+    public void onResume() {
+        super.onResume();
+
+        ItemClickFunction itemClickFunction = new ItemClickFunction(this.getActivity().getSupportFragmentManager());
         List<ParallaxListItem> items = Lists.newArrayList();
         items.addAll(Speaker.getAll());
 
@@ -46,17 +51,12 @@ public class SpeakersFragment extends BaseFragment {
         parallaxListView.setOnItemClickListener(itemClickFunction);
     }
 
-    @Override
-    public void onResume() {
-        super.onResume();
-    }
-
     private static class ItemClickFunction implements Function<Speaker, Void> {
 
-        private FragmentActivity activity;
+        private FragmentManager fragmentManager;
 
-        private ItemClickFunction(FragmentActivity activity) {
-            this.activity = activity;
+        private ItemClickFunction(FragmentManager fragmentManager) {
+            this.fragmentManager = fragmentManager;
         }
 
         @Override
@@ -68,7 +68,7 @@ public class SpeakersFragment extends BaseFragment {
             bundle.putSerializable("speaker", speaker);
             profileFragment.setArguments(bundle);
 
-            activity.getSupportFragmentManager()
+            fragmentManager
                     .beginTransaction()
                     .replace(R.id.content_frame, profileFragment, profileFragment.getClass().getName())
                     .addToBackStack(null)

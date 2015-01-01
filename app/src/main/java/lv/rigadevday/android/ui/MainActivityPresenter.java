@@ -2,6 +2,7 @@ package lv.rigadevday.android.ui;
 
 import android.content.res.Configuration;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarActivity;
@@ -107,10 +108,18 @@ public class MainActivityPresenter {
 
         if (currentFragment == null || !currentFragment.getClass().equals(option.getFragmentClass())) {
             BaseFragment fragment = FragmentFactory.create(option.getFragmentClass());
+            clearBackStack();
             changeContentFragment(fragment);
         }
 
         closeLeftDrawerLayout();
+    }
+
+    private void clearBackStack() {
+        FragmentManager fm = activity.getSupportFragmentManager();
+        for(int i = 0; i < fm.getBackStackEntryCount(); ++i) {
+            fm.popBackStack();
+        }
     }
 
     public boolean firstApplicationStart() {

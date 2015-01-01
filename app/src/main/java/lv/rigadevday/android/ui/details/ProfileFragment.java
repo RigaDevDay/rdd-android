@@ -171,7 +171,7 @@ public class ProfileFragment extends BaseFragment {
         currentFragment = fragmentClass;
 
         BaseFragment fragment = FragmentFactory.create(fragmentClass);
-        FragmentManager fragmentManager = getChildFragmentManager();
+        FragmentManager fragmentManager = this.getActivity().getSupportFragmentManager();
 
         Bundle bundle = new Bundle();
         bundle.putSerializable("speaker", speaker);
