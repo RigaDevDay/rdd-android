@@ -37,13 +37,5 @@
                 android:layout_height="match_parent"/>
         </FrameLayout>
 
-        <FrameLayout
-            android:id="@+id/right_drawer"
-            android:layout_width="240dp"
-            android:layout_height="match_parent"
-            android:layout_gravity="end"
-            android:background="#42b"
-            android:visibility="invisible" />
-
     </android.support.v4.widget.DrawerLayout>
 </LinearLayout>
