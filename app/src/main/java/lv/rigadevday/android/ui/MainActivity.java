@@ -66,4 +66,14 @@ public class MainActivity extends ActionBarActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         return presenter.navigationDrawerHasHandledTouchEvent(item) || super.onOptionsItemSelected(item);
     }
+
+    @Override
+    public void onBackPressed() {
+        int backStackEntryCount = getSupportFragmentManager().getBackStackEntryCount();
+        if (backStackEntryCount == 0 && !presenter.isDrawerOpen()) {
+            presenter.openNavigationDrawer();
+        } else {
+            super.onBackPressed();
+        }
+    }
 }

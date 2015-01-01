@@ -39,7 +39,7 @@ public class ScheduleFragment extends BaseFragment {
 
     @Override
     protected void init(Bundle savedInstanceState) {
-        SchedulePageAdapter schedulePageAdapter = new SchedulePageAdapter(getFragmentManager(), Track.getAll());
+        SchedulePageAdapter schedulePageAdapter = new SchedulePageAdapter(getChildFragmentManager(), Track.getAll());
         scheduleViewPager.setAdapter(schedulePageAdapter);
         pageIndicator.setViewPager(scheduleViewPager);
     }

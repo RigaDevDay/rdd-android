@@ -71,6 +71,7 @@ public class SpeakersFragment extends BaseFragment {
             activity.getSupportFragmentManager()
                     .beginTransaction()
                     .replace(R.id.content_frame, profileFragment, profileFragment.getClass().getName())
+                    .addToBackStack(null)
                     .commit();
 
             return null;

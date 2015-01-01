@@ -2,6 +2,7 @@ package lv.rigadevday.android.ui.schedule;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.widget.ListView;
 
@@ -69,11 +70,6 @@ public class ScheduleTrackFragment extends BaseFragment {
     }
 
     @Override
-    public void onResume() {
-        super.onResume();
-    }
-
-    @Override
     public void onSaveInstanceState(Bundle out) {
         super.onSaveInstanceState(out);
         out.putSerializable(TRACK, track);
@@ -110,6 +106,7 @@ public class ScheduleTrackFragment extends BaseFragment {
         this.getActivity().getSupportFragmentManager()
                 .beginTransaction()
                 .replace(R.id.content_frame, profileFragment, profileFragment.getClass().getName())
+                .addToBackStack(null)
                 .commit();
     }
 

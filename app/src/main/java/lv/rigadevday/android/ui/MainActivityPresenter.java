@@ -2,6 +2,7 @@ package lv.rigadevday.android.ui;
 
 import android.content.res.Configuration;
 import android.support.v4.app.Fragment;
+import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -115,7 +116,6 @@ public class MainActivityPresenter {
         activity.getSupportFragmentManager()
                 .beginTransaction()
                 .replace(R.id.content_frame, fragment, MAIN_FRAGMENT_TAG)
-                .addToBackStack(MAIN_FRAGMENT_TAG)
                 .commit();
     }
 
@@ -143,5 +143,9 @@ public class MainActivityPresenter {
 
     public void syncData() {
         DataImportHelper.importFromJson(activity);
+    }
+
+    public boolean isDrawerOpen() {
+        return drawerLayout.isDrawerOpen(GravityCompat.START);
     }
 }

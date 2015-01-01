@@ -65,6 +65,7 @@ public class BookmarkFragment extends BaseFragment {
         this.getActivity().getSupportFragmentManager()
                 .beginTransaction()
                 .replace(R.id.content_frame, profileFragment, profileFragment.getClass().getName())
+                .addToBackStack(null)
                 .commit();
     }
 }

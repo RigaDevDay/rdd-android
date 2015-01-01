@@ -65,7 +65,6 @@ public class ProfileFragment extends BaseFragment {
     @InjectView(R.id.profile_bookmark)
     ImageView bookmarkImageView;
 
-
     private Class<? extends BaseFragment> currentFragment;
     private Speaker speaker;
 
@@ -82,6 +81,7 @@ public class ProfileFragment extends BaseFragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = super.onCreateView(inflater, container, savedInstanceState);
+        currentFragment = null;
 
         Bundle arguments = getArguments();
         speaker = (Speaker) arguments.get("speaker");
@@ -98,7 +98,6 @@ public class ProfileFragment extends BaseFragment {
                 .priority(Picasso.Priority.HIGH)
                 .skipMemoryCache()
                 .into(backstageImageView);
-
 
         String name = speaker.getName();
         nameTextView.setText(name);
@@ -134,7 +133,6 @@ public class ProfileFragment extends BaseFragment {
             twitterImageView.setVisibility(View.INVISIBLE);
         }
     }
-
 
     @Override
     public void onResume() {
@@ -173,7 +171,7 @@ public class ProfileFragment extends BaseFragment {
         currentFragment = fragmentClass;
 
         BaseFragment fragment = FragmentFactory.create(fragmentClass);
-        FragmentManager fragmentManager = this.getActivity().getSupportFragmentManager();
+        FragmentManager fragmentManager = getChildFragmentManager();
 
         Bundle bundle = new Bundle();
         bundle.putSerializable("speaker", speaker);
@@ -183,7 +181,6 @@ public class ProfileFragment extends BaseFragment {
         transaction.setCustomAnimations(side.enter, side.exit);
 
         transaction.replace(R.id.profile_content_frame, fragment);
-        transaction.addToBackStack(null);
         transaction.commit();
     }
 
