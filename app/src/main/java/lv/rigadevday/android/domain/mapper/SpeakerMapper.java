@@ -19,7 +19,7 @@ public class SpeakerMapper {
 
         entity.setUid(dto.getId());
         entity.setName(dto.getName());
-        entity.setBio(dto.getBio());
+        entity.setBio(dto.getBio().replace("</br>", ""));
         entity.setCompany(dto.getCompany());
         entity.setCountry(dto.getCountry());
         entity.setLineup(dto.getLineup());

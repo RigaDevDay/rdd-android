@@ -65,7 +65,7 @@ public class PresentationMapper {
                 Presentation presentation = new Presentation();
 
                 presentation.setTitle(presentationDto.getSubtitle());
-                presentation.setDescription(presentationDto.getDescription());
+                presentation.setDescription(presentationDto.getDescription().replace("</br>", ""));
                 presentation.setStartTime(start);
                 presentation.setEndTime(end);
 
