@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="lv.rigadevday.android">
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
     <application
         android:allowBackup="true"
@@ -21,13 +23,13 @@
         <activity android:name=".ui.MainActivity"
             android:screenOrientation="portrait" />
 
-    </application>
+        <meta-data
+            android:name="AA_DB_NAME"
+            android:value="Rdd.db" />
+        <meta-data
+            android:name="AA_DB_VERSION"
+            android:value="1" />
 
-    <meta-data
-        android:name="RDD_DB_NAME"
-        android:value="Rdd.db" />
-    <meta-data
-        android:name="RDD_DB_VERSION"
-        android:value="1" />
+    </application>
 
 </manifest>

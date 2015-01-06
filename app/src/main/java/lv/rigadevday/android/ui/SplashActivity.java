@@ -7,6 +7,8 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 
+import java.io.IOException;
+
 import lv.rigadevday.android.R;
 import lv.rigadevday.android.infrastructure.db.DataImportHelper;
 
@@ -16,15 +18,19 @@ public class SplashActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.splash_screen);
-        new JsonParseOperation().execute();
+        new DatabaseImportOperation().execute();
     }
 
-    private class JsonParseOperation extends AsyncTask<String, Void, String> {
+    private class DatabaseImportOperation extends AsyncTask<String, Void, String> {
         @Override
         protected String doInBackground(String... params) {
             SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(SplashActivity.this);
             if (!preferences.getBoolean("importDone", false)) {
-                DataImportHelper.importFromJson(SplashActivity.this);
+                try {
+                    DataImportHelper.importFromAsset(SplashActivity.this);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
                 preferences.edit().putBoolean("importDone", true).commit();
             } else {
                 try {

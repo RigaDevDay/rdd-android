@@ -7,9 +7,12 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
 
+import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.OutputStream;
 import java.lang.reflect.Type;
 import java.util.Comparator;
 import java.util.List;
@@ -34,6 +37,7 @@ import lv.rigadevday.android.domain.reference.SpeakerType;
 
 public class DataImportHelper {
 
+    private static final String DB_NAME = "Rdd.db";
     private static SpeakerMapper speakerMapper = new SpeakerMapper();
     private static PresentationMapper presentationMapper = new PresentationMapper();
     private static EventMapper eventMapper = new EventMapper();
@@ -41,6 +45,21 @@ public class DataImportHelper {
     public static void importFromJson(Context ctx) {
         importSpeakers(ctx);
         importSchedule(ctx);
+    }
+
+    public static void importFromAsset(Context ctx) throws IOException {
+        File dbFile = ctx.getDatabasePath(DB_NAME);
+        InputStream is = ctx.getAssets().open(DB_NAME);
+        OutputStream os = new FileOutputStream(dbFile);
+
+        byte[] buffer = new byte[1024];
+        while (is.read(buffer) > 0) {
+            os.write(buffer);
+        }
+
+        os.flush();
+        os.close();
+        is.close();
     }
 
     public static void importSchedule(Context ctx) {
