@@ -131,10 +131,6 @@ public class MainActivityPresenter {
         return false;
     }
 
-    public void syncData() {
-        DataImportHelper.importFromJson(activity);
-    }
-
     public boolean isDrawerOpen() {
         return drawerLayout.isDrawerOpen(GravityCompat.START);
     }

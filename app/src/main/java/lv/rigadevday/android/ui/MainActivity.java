@@ -33,7 +33,6 @@ public class MainActivity extends ActionBarActivity {
 
         if (presenter.firstApplicationStart()) {
             presenter.openNavigationDrawer();
-            presenter.syncData();
         }
     }
 

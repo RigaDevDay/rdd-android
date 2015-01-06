@@ -1,26 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    package="lv.rigadevday.android" >
+    package="lv.rigadevday.android">
 
     <application
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
+        android:theme="@style/AppTheme"
         android:name=".BaseApplication">
         <activity
-            android:name=".ui.MainActivity"
-            android:theme="@style/AppTheme"
+            android:name=".ui.SplashActivity"
             android:screenOrientation="portrait"
-            android:label="@string/app_name" >
+            android:label="@string/app_name">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <activity android:name=".ui.MainActivity"
+            android:screenOrientation="portrait" />
+
     </application>
 
-    <meta-data android:name="RDD_DB_NAME" android:value="Rdd.db" />
-    <meta-data android:name="RDD_DB_VERSION" android:value="1" />
+    <meta-data
+        android:name="RDD_DB_NAME"
+        android:value="Rdd.db" />
+    <meta-data
+        android:name="RDD_DB_VERSION"
+        android:value="1" />
 
 </manifest>
