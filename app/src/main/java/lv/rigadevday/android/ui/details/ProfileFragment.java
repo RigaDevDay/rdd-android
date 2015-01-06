@@ -87,7 +87,7 @@ public class ProfileFragment extends BaseFragment {
         speaker = (Speaker) arguments.get("speaker");
 
         Picasso.with(context)
-                .load(speaker.getImageUrl(context))
+                .load(speaker.getImageResource(context))
                 .placeholder(R.drawable.speaker_0)
                 .priority(Picasso.Priority.HIGH)
                 .skipMemoryCache()

@@ -5,6 +5,8 @@ import android.graphics.Typeface;
 import android.util.AttributeSet;
 import android.widget.TextView;
 
+import lv.rigadevday.android.common.TypefaceHelper;
+
 public class TextViewRobotoLight extends TextView {
     public TextViewRobotoLight(Context context) {
         super(context);
@@ -23,7 +25,7 @@ public class TextViewRobotoLight extends TextView {
 
     public void createFont() {
         try {
-            Typeface font = Typeface.createFromAsset(getContext().getAssets(), "fonts/Roboto-Light.ttf");
+            Typeface font = TypefaceHelper.getFont(getContext(), "fonts/Roboto-Light.ttf");
             setTypeface(font);
         } catch (RuntimeException e) {
 

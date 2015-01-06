@@ -9,7 +9,7 @@
         android:id="@+id/item_background"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:src="@drawable/backstage_1"
+        android:background="@color/primary"
         android:scaleType="centerCrop" />
 
     <LinearLayout
@@ -18,33 +18,25 @@
         android:layout_gravity="center"
         android:orientation="vertical">
 
-
-        <com.fmsirvent.ParallaxEverywhere.PEWImageView
+        <ImageView
             android:id="@+id/speaker_list_item_image"
             android:layout_width="100dp"
             android:layout_height="100dp"
-            android:layout_gravity="center"
-            android:src="@drawable/speaker_1"
-            pew:reverse="reverseX"/>
+            android:layout_gravity="center"/>
 
-
-        <com.fmsirvent.ParallaxEverywhere.PEWTextView
+        <TextView
             android:id="@+id/speaker_list_item_name"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:gravity="center_horizontal"
             android:textSize="16sp"
-            android:text="Arun Gupta"
-            android:textColor="@color/white"
-            pew:reverse="reverseX" />
+            android:textColor="@color/white" />
 
-        <com.fmsirvent.ParallaxEverywhere.PEWTextView
+        <TextView
             android:id="@+id/speaker_list_item_company"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center_horizontal"
-            android:text="Deutsche Bank"
-            pew:reverse="reverseX"
             android:textSize="12sp"
             android:textColor="@color/color_76d4ff"/>
 
@@ -54,6 +46,5 @@
         android:id="@+id/fading_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
-
 
 </FrameLayout>

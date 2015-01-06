@@ -161,7 +161,7 @@ public class Speaker extends Model implements Serializable, ParallaxListItem {
         return backstageImageResource;
     }
 
-    public int getImageUrl(Context ctx) {
+    public int getImageResource(Context ctx) {
         if (profileImageResource == 0) {
             int id = ctx.getResources().getIdentifier(PHOTO_DRAWABLE + uid, "drawable", ctx.getPackageName());
             profileImageResource = (id == 0) ? R.drawable.speaker_0 : id;
@@ -186,10 +186,15 @@ public class Speaker extends Model implements Serializable, ParallaxListItem {
         ImageView speakerImage = ViewHolder.get(view, R.id.speaker_list_item_image);
 
         ImageView backstage = ViewHolder.get(view, R.id.item_background);
-        backstage.setImageResource(getBackstageImageResource(ctx));
 
         Picasso.with(ctx)
-                .load(getImageUrl(ctx))
+                .load(getBackstageImageResource(ctx))
+                .priority(Picasso.Priority.HIGH)
+                .into(backstage);
+
+
+        Picasso.with(ctx)
+                .load(getImageResource(ctx))
                 .placeholder(R.drawable.speaker_0)
                 .priority(Picasso.Priority.HIGH)
                 .into(speakerImage);
