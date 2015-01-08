@@ -2,7 +2,6 @@ package lv.rigadevday.android.ui.schedule;
 
 import android.content.Context;
 import android.os.Bundle;
-import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.widget.ListView;
 
@@ -30,7 +29,7 @@ import lv.rigadevday.android.ui.details.ProfileFragment;
 public class ScheduleTrackFragment extends BaseFragment {
 
     public static final String TRACK = "track";
-    private Track track;
+    private long trackId;
 
     @InjectView(R.id.schedule_track_items)
     ListView scheduleTrackItems;
@@ -43,9 +42,9 @@ public class ScheduleTrackFragment extends BaseFragment {
     private ScheduleTrackItemsAdapter adapter;
     private BookmarkSnackBarDisplayFunction snackBarDisplayFunction;
 
-    public static ScheduleTrackFragment newInstance(Track track) {
+    public static ScheduleTrackFragment newInstance(long trackId) {
         Bundle args = new Bundle();
-        args.putSerializable(TRACK, track);
+        args.putLong(TRACK, trackId);
         ScheduleTrackFragment fragment = new ScheduleTrackFragment();
         fragment.setArguments(args);
         return fragment;
@@ -60,10 +59,9 @@ public class ScheduleTrackFragment extends BaseFragment {
     protected void init(Bundle in) {
         Bundle bundle = in != null ? in : getArguments();
         if (bundle != null) {
-            track = (Track) bundle.getSerializable(TRACK);
+            trackId = bundle.getLong(TRACK);
         }
-
-        List<TrackItemHolder> items = getItemsList(track);
+        List<TrackItemHolder> items = getItemsList(trackId);
         snackBarDisplayFunction = new BookmarkSnackBarDisplayFunction(getActivity(), scheduleTrackItems);
         adapter = new ScheduleTrackItemsAdapter(context, layoutInflater, items);
         scheduleTrackItems.setAdapter(adapter);
@@ -72,11 +70,11 @@ public class ScheduleTrackFragment extends BaseFragment {
     @Override
     public void onSaveInstanceState(Bundle out) {
         super.onSaveInstanceState(out);
-        out.putSerializable(TRACK, track);
+        out.putLong(TRACK, trackId);
     }
 
-    private List<TrackItemHolder> getItemsList(Track track) {
-        List<TrackPresentations> presentationsByTrack = TrackPresentations.getByTrack(track.getId());
+    private List<TrackItemHolder> getItemsList(long trackId) {
+        List<TrackPresentations> presentationsByTrack = TrackPresentations.getByTrack(trackId);
         List<Event> events = Event.getAll();
 
         TreeSet<TrackItemHolder> trackItemsSet = new TreeSet<>();

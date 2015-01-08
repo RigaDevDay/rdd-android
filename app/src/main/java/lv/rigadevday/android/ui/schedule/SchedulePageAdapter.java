@@ -20,7 +20,7 @@ public class SchedulePageAdapter extends FragmentStatePagerAdapter {
         this.tracks = tracks;
 
         for (Track track : tracks) {
-            fragments.add(ScheduleTrackFragment.newInstance(track));
+            fragments.add(ScheduleTrackFragment.newInstance(track.getId()));
         }
     }
 

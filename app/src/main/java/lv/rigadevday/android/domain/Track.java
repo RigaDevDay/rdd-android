@@ -14,7 +14,6 @@ public class Track extends Model implements Serializable {
     @Column(name = "trackName")
     private String trackName;
 
-
     public Track() {
     }
 
