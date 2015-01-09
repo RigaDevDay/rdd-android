@@ -22,17 +22,20 @@ import lv.rigadevday.android.domain.Event;
 import lv.rigadevday.android.domain.Presentation;
 import lv.rigadevday.android.domain.Speaker;
 import lv.rigadevday.android.domain.Tag;
+import lv.rigadevday.android.ui.custom.BookmarkClickListener;
 import lv.rigadevday.android.ui.custom.view.tag.TagView;
 
 public class ScheduleTrackItemsAdapter extends ArrayAdapter<TrackItemHolder> {
 
     private final int tagColor;
-    LayoutInflater inflater;
-    SimpleDateFormat dateFormat;
+    private LayoutInflater inflater;
+    private BookmarkClickListener bookmarkClickListener;
+    private SimpleDateFormat dateFormat;
 
-    public ScheduleTrackItemsAdapter(Context context, LayoutInflater inflater, List<TrackItemHolder> items) {
+    public ScheduleTrackItemsAdapter(Context context, LayoutInflater inflater, List<TrackItemHolder> items, BookmarkClickListener bookmarkClickListener) {
         super(context, 0, items);
         this.inflater = inflater;
+        this.bookmarkClickListener = bookmarkClickListener;
         this.dateFormat = new SimpleDateFormat("HH:mm");
         this.tagColor = context.getResources().getColor(R.color.tag_color);
     }
@@ -82,6 +85,11 @@ public class ScheduleTrackItemsAdapter extends ArrayAdapter<TrackItemHolder> {
 
         List<TagView.Tag> tagViews = getTags(presentation);
         tagView.setTags(tagViews, " ");
+
+        ImageView bookmark = ViewHolder.get(convertView, R.id.sip_bookmark);
+        bookmark.setImageResource(presentation.isBookmarked() ? R.drawable.icon_bookmark : R.drawable.icon_menu_bookmark);
+        bookmark.setTag(R.string.bookmark_item, presentation);
+        bookmark.setOnClickListener(bookmarkClickListener);
     }
 
     private List<TagView.Tag> getTags(Presentation presentation) {

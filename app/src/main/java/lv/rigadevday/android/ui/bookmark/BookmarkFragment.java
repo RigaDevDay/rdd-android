@@ -2,9 +2,9 @@ package lv.rigadevday.android.ui.bookmark;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.LinearLayout;
 import android.widget.ListView;
 
 import java.util.List;
@@ -25,11 +25,15 @@ public class BookmarkFragment extends BaseFragment {
     @InjectView(R.id.bookmark_list)
     ListView bookmarkList;
 
-    @Inject
-    BookmarkListAdapter adapter;
-
     @InjectView(R.id.empty_bookmarks_message_holder)
     ViewGroup messageHolder;
+
+    @Inject
+    Context context;
+
+    @Inject
+    LayoutInflater layoutInflater;
+    private BookmarkListAdapter adapter;
 
     @Override
     protected int contentViewId() {
@@ -45,6 +49,7 @@ public class BookmarkFragment extends BaseFragment {
     public void onResume() {
         super.onResume();
 
+        adapter = new BookmarkListAdapter(context, layoutInflater, Presentation.getBookmarked());
         bookmarkList.setAdapter(adapter);
 
         int count = adapter.getCount();

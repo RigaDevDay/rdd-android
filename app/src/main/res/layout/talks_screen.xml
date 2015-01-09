@@ -9,6 +9,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:divider="@color/color_a87_3f3f3f"
+        android:descendantFocusability="beforeDescendants"
         android:dividerHeight="1dp" />
 
 </LinearLayout>

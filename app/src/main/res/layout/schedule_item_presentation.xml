@@ -1,20 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@color/white"
     android:padding="10dp">
 
-    <lv.rigadevday.android.ui.custom.view.TextViewRobotoLight
-        android:id="@+id/sip_start_time"
+    <RelativeLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerVertical="true"
-        android:textColor="@color/primary"
-        android:layout_marginRight="10dp"
-        android:layout_marginEnd="10dp"
-        android:textSize="14sp" />
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true">
+
+        <lv.rigadevday.android.ui.custom.view.TextViewRobotoLight
+            android:id="@+id/sip_start_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/primary"
+            android:layout_centerHorizontal="true"
+            android:textSize="16sp" />
+
+        <ImageView
+            android:id="@+id/sip_bookmark"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:scaleType="centerCrop"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@+id/sip_start_time"
+            android:layout_marginTop="5dp" />
+
+    </RelativeLayout>
+
 
     <lv.rigadevday.android.ui.custom.view.TextViewRobotoRegular
         android:id="@+id/sip_name"
@@ -22,9 +37,7 @@
         android:layout_height="wrap_content"
         android:textSize="16sp"
         android:textColor="@color/primary"
-        android:textStyle="bold"
-        android:layout_toEndOf="@id/sip_start_time"
-        android:layout_toRightOf="@id/sip_start_time" />
+        android:textStyle="bold" />
 
     <lv.rigadevday.android.ui.custom.view.TextViewRobotoLight
         android:id="@+id/sip_title"
@@ -34,10 +47,8 @@
         android:textColor="@color/color_404040"
         android:textSize="14sp"
         android:maxLines="2"
-        android:layout_marginRight="30dp"
-        android:layout_marginEnd="30dp"
-        android:layout_toEndOf="@id/sip_start_time"
-        android:layout_toRightOf="@id/sip_start_time"
+        android:layout_marginRight="40dp"
+        android:layout_marginEnd="40dp"
         android:layout_below="@id/sip_name" />
 
     <lv.rigadevday.android.ui.custom.view.tag.TagView
@@ -45,9 +56,7 @@
         style="@style/Widget.TagView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_toEndOf="@id/sip_start_time"
-        android:layout_toRightOf="@id/sip_start_time"
-        android:layout_below="@id/sip_title"/>
+        android:layout_below="@id/sip_title" />
 
 
 </RelativeLayout>

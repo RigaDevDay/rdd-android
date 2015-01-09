@@ -2,6 +2,8 @@ package lv.rigadevday.android.ui.talks;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 
 import java.util.List;
@@ -15,7 +17,7 @@ import lv.rigadevday.android.domain.Presentation;
 import lv.rigadevday.android.domain.SpeakerPresentation;
 import lv.rigadevday.android.infrastructure.FragmentFactory;
 import lv.rigadevday.android.ui.BaseFragment;
-import lv.rigadevday.android.ui.custom.BookmarkSnackBarDisplayFunction;
+import lv.rigadevday.android.ui.custom.BookmarkClickListener;
 import lv.rigadevday.android.ui.details.ProfileFragment;
 
 public class TalkFragment extends BaseFragment {
@@ -38,7 +40,7 @@ public class TalkFragment extends BaseFragment {
     protected void init(Bundle savedInstanceState) {
         super.init(savedInstanceState);
 
-        BookmarkSnackBarDisplayFunction function = new BookmarkSnackBarDisplayFunction(getActivity(), talksList);
+        View.OnClickListener function = new BookmarkClickListener(getActivity(), talksList);
         adapter = new TalkListAdapter(getActivity(), inflater, function);
         talksList.setAdapter(adapter);
     }

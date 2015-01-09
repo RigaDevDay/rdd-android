@@ -6,14 +6,14 @@
     android:padding="10dp">
 
     <lv.rigadevday.android.ui.custom.view.TextViewRobotoRegular
-        android:id="@+id/speaker_name"
+        android:id="@+id/bi_speaker"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textColor="@color/primary"
         android:textSize="16sp"/>
 
     <lv.rigadevday.android.ui.custom.view.TextViewRobotoLight
-        android:id="@+id/presentation_title"
+        android:id="@+id/bi_presentation_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ellipsize="end"
@@ -22,36 +22,41 @@
         android:textSize="14sp"
         android:layout_marginRight="45dp"
         android:layout_marginEnd="45dp"
-        android:layout_below="@id/speaker_name" />
+        android:layout_below="@id/bi_speaker" />
 
     <lv.rigadevday.android.ui.custom.view.TextViewRobotoLight
-        android:id="@+id/presentation_location"
+        android:id="@+id/bi_presentation_location"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textColor="@color/color_404040"
         android:textSize="14sp"
-        android:layout_below="@id/presentation_title" />
+        android:layout_below="@id/bi_presentation_title" />
 
-    <lv.rigadevday.android.ui.custom.view.TextViewRobotoRegular
-        android:id="@+id/presentation_time"
+    <RelativeLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textColor="@color/color_404040"
-        android:textSize="14sp"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true" />
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true">
 
+        <lv.rigadevday.android.ui.custom.view.TextViewRobotoLight
+            android:id="@+id/bi_start_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/primary"
+            android:layout_centerHorizontal="true"
+            android:textSize="16sp" />
 
-    <ImageView
-        android:id="@+id/icon_bookmark"
-        android:src="@drawable/icon_bookmark"
-        android:adjustViewBounds="true"
-        android:layout_width="20dp"
-        android:layout_height="20dp"
-        android:layout_marginBottom="5dp"
-        android:layout_alignBottom="@id/presentation_location"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true" />
+        <ImageView
+            android:id="@+id/bi_bookmark"
+            android:src="@drawable/icon_bookmark"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:scaleType="centerCrop"
+            android:layout_below="@id/bi_start_time"
+            android:layout_marginTop="5dp"
+            android:layout_centerHorizontal="true"/>
+
+    </RelativeLayout>
 
 
 </RelativeLayout>

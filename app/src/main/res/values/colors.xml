@@ -26,6 +26,7 @@
     <color name="inactive_white">#bebfcd</color>
     <color name="t_white">#80ffffff</color>
     <color name="color_fafafa">#fafafa</color>
+    <color name="notification">#ffff0e10</color>
 
     <color name="primary">#212121</color>
     <color name="color_404040">#404040</color>

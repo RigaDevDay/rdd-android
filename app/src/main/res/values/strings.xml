@@ -38,6 +38,7 @@
     <string name="gdg_name">"Google Developers Group"</string>
     <string name="lvoug_name">Latvian Oracle Usergroup</string>
     <string name="bookmarked">Talk is added to bookmarks</string>
+    <string name="bookmark_item">Bookmark item</string>
     <string name="unbookmarked">Talk is removed from bookmarks</string>
 
 </resources>

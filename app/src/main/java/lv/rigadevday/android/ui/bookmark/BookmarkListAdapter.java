@@ -5,29 +5,51 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.google.common.base.Function;
+import com.google.common.collect.Collections2;
+
 import java.text.SimpleDateFormat;
-import java.util.Date;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 
 import javax.inject.Inject;
 
 import lv.rigadevday.android.R;
+import lv.rigadevday.android.common.ViewHolder;
 import lv.rigadevday.android.domain.Presentation;
 import lv.rigadevday.android.domain.Speaker;
-import lv.rigadevday.android.common.ViewHolder;
 
 public class BookmarkListAdapter extends ArrayAdapter<Presentation> {
 
-    LayoutInflater inflater;
-    SimpleDateFormat dateFormat;
+    private final int primaryColor;
+    private final int notificationColor;
+    private LayoutInflater inflater;
+    private List<Presentation> items;
+    private SimpleDateFormat dateFormat;
+    private Collection<String> startTimes;
 
     @Inject
-    public BookmarkListAdapter(Context context, LayoutInflater inflater) {
-        super(context, 0, Presentation.getBookmarked());
+    public BookmarkListAdapter(Context context, LayoutInflater inflater, List<Presentation> items) {
+        super(context, 0, items);
         this.inflater = inflater;
+        this.items = items;
         this.dateFormat = new SimpleDateFormat("HH:mm");
+        this.startTimes = collectStartTimes(items);
+        this.primaryColor = context.getResources().getColor(R.color.primary);
+        this.notificationColor = context.getResources().getColor(R.color.notification);
+    }
+
+    private Collection<String> collectStartTimes(List<Presentation> items) {
+        return Collections2.transform(items, new Function<Presentation, String>() {
+            @Override
+            public String apply(Presentation item) {
+                return dateFormat.format(item.getStartTime());
+            }
+        });
     }
 
     @Override
@@ -43,7 +65,7 @@ public class BookmarkListAdapter extends ArrayAdapter<Presentation> {
     }
 
     private void pupulateView(View convertView, Presentation item) {
-        TextView speakerName = ViewHolder.get(convertView, R.id.speaker_name);
+        TextView speakerName = ViewHolder.get(convertView, R.id.bi_speaker);
 
         List<Speaker> speakers = item.getSpeakers();
         String name = "";
@@ -53,16 +75,30 @@ public class BookmarkListAdapter extends ArrayAdapter<Presentation> {
         }
         speakerName.setText(name);
 
-        TextView title = ViewHolder.get(convertView, R.id.presentation_title);
+        TextView title = ViewHolder.get(convertView, R.id.bi_presentation_title);
         title.setText(item.getTitle());
 
-        TextView location = ViewHolder.get(convertView, R.id.presentation_location);
+        TextView location = ViewHolder.get(convertView, R.id.bi_presentation_location);
         location.setText(item.getRoom());
 
-        Date startTime = item.getStartTime();
-        String start = dateFormat.format(startTime);
+        TextView startTime = ViewHolder.get(convertView, R.id.bi_start_time);
+        String start = dateFormat.format(item.getStartTime());
+        startTime.setText(start);
+        int frequency = Collections.frequency(startTimes, start);
+        startTime.setTextColor(frequency > 1 ? notificationColor : primaryColor);
 
-        TextView time = ViewHolder.get(convertView, R.id.presentation_time);
-        time.setText(start);
+        ImageView bookmark = ViewHolder.get(convertView, R.id.bi_bookmark);
+        bookmark.setTag(R.string.bookmark_item, item);
+        bookmark.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Presentation presentation = (Presentation) view.getTag(R.string.bookmark_item);
+                presentation.setBookmarked(false);
+                presentation.save();
+                items.remove(presentation);
+                startTimes = collectStartTimes(items);
+                BookmarkListAdapter.this.notifyDataSetChanged();
+            }
+        });
     }
 }
