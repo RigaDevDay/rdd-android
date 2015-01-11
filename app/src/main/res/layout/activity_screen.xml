@@ -28,13 +28,92 @@
             android:layout_width="240dp"
             android:layout_height="match_parent"
             android:layout_gravity="start"
+            android:clickable="true"
             android:paddingTop="30dp"
             android:background="@color/white">
 
-            <ListView
-                android:id="@+id/navigation_listView"
+            <LinearLayout
+                android:orientation="vertical"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"/>
+                android:layout_height="match_parent">
+
+                <ListView
+                    android:id="@+id/navigation_listView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginBottom="5dp"
+                    android:background="@color/tag_color" />
+
+                <lv.rigadevday.android.ui.custom.view.TextViewRobotoRegular
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/color_404040"
+                    android:layout_marginStart="15dp"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginBottom="15dp"
+                    android:textSize="15sp"
+                    android:text="@string/wifi" />
+
+                <lv.rigadevday.android.ui.custom.view.TextViewRobotoRegular
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/color_404040"
+                    android:layout_marginStart="15dp"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginBottom="15dp"
+                    android:textSize="15sp"
+                    android:text="@string/hashtag" />
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="12dp"
+                    android:layout_marginLeft="12dp">
+
+                    <ImageView
+                        android:id="@+id/twitter"
+                        android:layout_width="36dp"
+                        android:layout_height="36dp"
+                        android:layout_marginRight="10dp"
+                        android:layout_marginEnd="10dp"
+                        android:src="@drawable/social_twitter" />
+
+                    <ImageView
+                        android:id="@+id/google_plus"
+                        android:layout_width="36dp"
+                        android:layout_height="36dp"
+                        android:layout_marginRight="10dp"
+                        android:layout_marginEnd="10dp"
+                        android:src="@drawable/social_google_plus" />
+
+                    <ImageView
+                        android:id="@+id/facebook"
+                        android:layout_width="36dp"
+                        android:layout_height="36dp"
+                        android:layout_marginRight="10dp"
+                        android:layout_marginEnd="10dp"
+                        android:src="@drawable/social_facebook" />
+
+                    <ImageView
+                        android:id="@+id/linkedin"
+                        android:layout_width="36dp"
+                        android:layout_height="36dp"
+                        android:src="@drawable/social_linkedin" />
+
+                </LinearLayout>
+
+
+            </LinearLayout>
+
         </FrameLayout>
 
     </android.support.v4.widget.DrawerLayout>

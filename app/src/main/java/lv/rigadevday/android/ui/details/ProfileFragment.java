@@ -20,7 +20,7 @@ import javax.inject.Inject;
 import butterknife.InjectView;
 import butterknife.OnClick;
 import lv.rigadevday.android.R;
-import lv.rigadevday.android.common.TwitterService;
+import lv.rigadevday.android.common.SocialNetworkNagivationService;
 import lv.rigadevday.android.domain.Contact;
 import lv.rigadevday.android.domain.Speaker;
 import lv.rigadevday.android.domain.reference.ContactType;
@@ -33,7 +33,7 @@ public class ProfileFragment extends BaseFragment {
     Context context;
 
     @Inject
-    TwitterService twitterService;
+    SocialNetworkNagivationService socialsService;
 
     @InjectView(R.id.profile_about_tab_text)
     TextView aboutTextView;
@@ -126,7 +126,7 @@ public class ProfileFragment extends BaseFragment {
             twitterImageView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    twitterService.goTwitter(contact.get().getValue());
+                    socialsService.goTwitter(contact.get().getValue());
                 }
             });
         } else {

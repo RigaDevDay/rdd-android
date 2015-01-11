@@ -1,6 +1,9 @@
 package lv.rigadevday.android.ui;
 
+import android.content.Context;
+import android.content.Intent;
 import android.content.res.Configuration;
+import android.net.Uri;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.view.GravityCompat;
@@ -18,12 +21,13 @@ import javax.inject.Singleton;
 
 import butterknife.ButterKnife;
 import butterknife.InjectView;
+import butterknife.OnClick;
 import butterknife.OnItemClick;
 import lv.rigadevday.android.R;
 import lv.rigadevday.android.application.navigation.NavigationOption;
 import lv.rigadevday.android.common.SharedPrefsService;
+import lv.rigadevday.android.common.SocialNetworkNagivationService;
 import lv.rigadevday.android.infrastructure.FragmentFactory;
-import lv.rigadevday.android.infrastructure.db.DataImportHelper;
 import lv.rigadevday.android.ui.navigation.NavigationAdapter;
 import lv.rigadevday.android.ui.schedule.ScheduleFragment;
 
@@ -31,6 +35,8 @@ import lv.rigadevday.android.ui.schedule.ScheduleFragment;
 public class MainActivityPresenter {
 
     public static final String MAIN_FRAGMENT_TAG = "MainFragment";
+    @Inject
+    Context context;
     @InjectView(R.id.content_frame)
     FrameLayout contentFrame;
     @InjectView(R.id.left_drawer)
@@ -41,6 +47,8 @@ public class MainActivityPresenter {
     ListView listView;
     @InjectView(R.id.toolbar)
     Toolbar toolbar;
+    @Inject
+    SocialNetworkNagivationService socialsService;
 
     @Inject
     SharedPrefsService preferences;
@@ -60,7 +68,13 @@ public class MainActivityPresenter {
     public void initNavigationDrawer() {
         activity.setSupportActionBar(toolbar);
 
-        drawerToggle = new ActionBarDrawerToggle(activity, drawerLayout, R.string.app_name, R.string.app_name);
+        drawerToggle = new ActionBarDrawerToggle(activity, drawerLayout, R.string.app_name, R.string.app_name) {
+            @Override
+            public void onDrawerOpened(View drawerView) {
+                super.onDrawerOpened(drawerView);
+                listView.invalidateViews(); //Refresh counter for bookmarks
+            }
+        };
         drawerToggle.setDrawerIndicatorEnabled(true);
 
         drawerLayout.setDrawerListener(drawerToggle);
@@ -115,9 +129,32 @@ public class MainActivityPresenter {
         closeLeftDrawerLayout();
     }
 
+    @OnClick(R.id.google_plus)
+    public void onGooglePlus() {
+        socialsService.goGooglePlus(context.getString(R.string.rddGooglePlus));
+    }
+
+    @OnClick(R.id.facebook)
+    public void onFacebook() {
+        socialsService.goFacebook(context.getString(R.string.rddFacebook));
+    }
+
+    @OnClick(R.id.twitter)
+    public void onTwitter() {
+        socialsService.goTwitter(context.getString(R.string.rddTwitter));
+    }
+
+    @OnClick(R.id.linkedin)
+    public void onLinkedIn() {
+        String linkedInUrl = context.getString(R.string.rddLinkedIn);
+        Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(linkedInUrl));
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        context.startActivity(intent);
+    }
+
     private void clearBackStack() {
         FragmentManager fm = activity.getSupportFragmentManager();
-        for(int i = 0; i < fm.getBackStackEntryCount(); ++i) {
+        for (int i = 0; i < fm.getBackStackEntryCount(); ++i) {
             fm.popBackStack();
         }
     }

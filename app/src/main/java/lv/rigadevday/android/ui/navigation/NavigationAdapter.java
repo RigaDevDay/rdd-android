@@ -14,6 +14,7 @@ import lv.rigadevday.android.R;
 import lv.rigadevday.android.application.navigation.NavigationOption;
 import lv.rigadevday.android.application.navigation.NavigationService;
 import lv.rigadevday.android.common.ViewHolder;
+import lv.rigadevday.android.domain.Presentation;
 
 public class NavigationAdapter extends ArrayAdapter<NavigationOption> {
 
@@ -33,11 +34,19 @@ public class NavigationAdapter extends ArrayAdapter<NavigationOption> {
 
         NavigationOption option = getItem(position);
 
-        TextView title = ViewHolder.get(convertView, R.id.navigation_title);
-
+        TextView title = ViewHolder.get(convertView, R.id.ni_title);
         title.setText(context.getString(option.getTitle()));
 
-        ImageView icon = ViewHolder.get(convertView, R.id.navigation_icon);
+        ImageView bookmarksCount = ViewHolder.get(convertView, R.id.ni_bookmark_count);
+        if (option.getTitle() == R.string.bookmarks) {
+            bookmarksCount.setVisibility(View.VISIBLE);
+            int count = Presentation.getBookmarked().size();
+            bookmarksCount.setImageResource(Presentation.getBookmarkCounter(context, count));
+        } else {
+            bookmarksCount.setVisibility(View.GONE);
+        }
+
+        ImageView icon = ViewHolder.get(convertView, R.id.ni_icon);
         icon.setImageDrawable(getContext().getResources().getDrawable(option.getImage()));
 
         return convertView;

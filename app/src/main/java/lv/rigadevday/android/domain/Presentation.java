@@ -1,5 +1,7 @@
 package lv.rigadevday.android.domain;
 
+import android.content.Context;
+
 import com.activeandroid.Model;
 import com.activeandroid.annotation.Column;
 import com.activeandroid.annotation.Table;
@@ -113,6 +115,11 @@ public class Presentation extends Model implements Serializable {
 
     public static List<Presentation> getBookmarked() {
         return new Select().from(Presentation.class).where("bookmarked = ?", true).execute();
+    }
+
+    public static int getBookmarkCounter(Context ctx, int count) {
+        if (count > 9) count = 10;
+        return ctx.getResources().getIdentifier("numeric_" + count, "drawable", ctx.getPackageName());
     }
 
     @Override
