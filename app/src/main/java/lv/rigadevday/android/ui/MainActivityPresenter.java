@@ -146,10 +146,7 @@ public class MainActivityPresenter {
 
     @OnClick(R.id.linkedin)
     public void onLinkedIn() {
-        String linkedInUrl = context.getString(R.string.rddLinkedIn);
-        Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(linkedInUrl));
-        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        context.startActivity(intent);
+        socialsService.goWeb(context.getString(R.string.rddLinkedIn));
     }
 
     private void clearBackStack() {
