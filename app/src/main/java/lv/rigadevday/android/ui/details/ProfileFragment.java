@@ -107,7 +107,11 @@ public class ProfileFragment extends BaseFragment {
         aboutTextView.setText(String.format("%s %s", getString(R.string.about), name.split(" ")[0]));
 
         bookmarkImageView.setImageResource(speaker.isBookmarked() ? R.drawable.icon_bookmark : R.drawable.icon_bookmark_empty);
-
+        bookmarkImageView.setOnClickListener(new ProfileBookmarkClickListener(
+                getActivity(),
+                speaker.getPresentations(),
+                bookmarkImageView)
+        );
         initTwitterButton(speaker);
         onSpeechClick();
 

@@ -40,11 +40,14 @@
     <string name="bookmarked">Talk is added to bookmarks</string>
     <string name="bookmark_item">Bookmark item</string>
     <string name="unbookmarked">Talk is removed from bookmarks</string>
-    <string name="wifi">Wi-Fi password: rigadevday2015</string>
+    <string name="wifi">Wi-Fi pass: rigadevday2015</string>
     <string name="hashtag">Share: #rigadevday</string>
     <string name="rddGooglePlus">104346723645688269517</string>
     <string name="rddTwitter">rigadevday</string>
     <string name="rddFacebook">rigadevday</string>
     <string name="rddLinkedIn">https://www.linkedin.com/groups/Riga-Dev-Day-2015-6734834/about</string>
+    <string name="presentations">Presentations</string>
+    <string name="choose">Choose</string>
+    <string name="cancel">Cancel</string>
 
 </resources>

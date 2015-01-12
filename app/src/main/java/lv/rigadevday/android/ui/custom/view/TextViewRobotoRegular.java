@@ -1,6 +1,7 @@
 package lv.rigadevday.android.ui.custom.view;
 
 import android.content.Context;
+import android.graphics.Paint;
 import android.graphics.Typeface;
 import android.util.AttributeSet;
 import android.widget.TextView;
@@ -27,6 +28,7 @@ public class TextViewRobotoRegular extends TextView {
         try {
             Typeface font = TypefaceHelper.getFont(getContext(), "fonts/Roboto-Regular.ttf");
             setTypeface(font);
+            setPaintFlags(getPaintFlags() | Paint.SUBPIXEL_TEXT_FLAG);
         } catch (RuntimeException e) {
 
         }

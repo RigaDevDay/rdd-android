@@ -2,11 +2,10 @@ package lv.rigadevday.android.ui.organizers;
 
 import android.os.Bundle;
 
-import com.afollestad.materialdialogs.MaterialDialog;
-
 import butterknife.OnClick;
 import lv.rigadevday.android.R;
 import lv.rigadevday.android.ui.BaseFragment;
+import lv.rigadevday.android.common.DialogHelper;
 
 public class OrganizerFragment extends BaseFragment {
 
@@ -36,12 +35,9 @@ public class OrganizerFragment extends BaseFragment {
     }
 
     private void showDetailsDialog(int titleRes, int descriptionRes) {
-        new MaterialDialog.Builder(getActivity())
+        DialogHelper.getStyled(getActivity())
                 .title(titleRes)
-                .titleColorRes(R.color.primary)
                 .content(descriptionRes)
-                .contentColorRes(R.color.color_404040)
-                .positiveColorRes(R.color.cerulean)
                 .positiveText(R.string.OK)
                 .show();
     }
