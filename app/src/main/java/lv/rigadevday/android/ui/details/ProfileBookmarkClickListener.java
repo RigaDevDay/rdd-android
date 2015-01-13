@@ -55,9 +55,10 @@ public class ProfileBookmarkClickListener implements View.OnClickListener {
     }
 
     private void bookmarkSingle() {
-        Presentation presentation = presentations.get(0);
-        presentation.setBookmarked(!presentation.isBookmarked());
-        icon.setImageResource(presentation.isBookmarked() ? R.drawable.icon_bookmark : R.drawable.icon_bookmark_empty);
+        Presentation p = presentations.get(0);
+        p.setBookmarked(!p.isBookmarked());
+        p.save();
+        icon.setImageResource(p.isBookmarked() ? R.drawable.icon_bookmark : R.drawable.icon_bookmark_empty);
     }
 
 
