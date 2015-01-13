@@ -16,7 +16,7 @@ public class PresentationDto {
     @SerializedName("speakers")
     private List<Integer> speakers;
     @SerializedName("tags")
-    private List<String> tags = new ArrayList<>();
+    private List<String> tags = new ArrayList<String>();
 
     public String getTitle() {
         return title;

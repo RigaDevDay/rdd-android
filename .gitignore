@@ -26,6 +26,7 @@ gen-external-apklibs/
 .project
 .classpath
 .settings/
+gradle.properties
 
 # Misc
 .DS_Store

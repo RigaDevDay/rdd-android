@@ -21,7 +21,7 @@ public class NavigationService {
     }
 
     public List<NavigationOption> getDrawerNavigationOptions() {
-        return new ArrayList<>(Arrays.asList(
+        return new ArrayList<NavigationOption>(Arrays.asList(
                 new NavigationOption(R.string.schedule, R.drawable.icon_menu_schedule, ScheduleFragment.class),
                 new NavigationOption(R.string.speakers, R.drawable.icon_menu_speakers, SpeakersFragment.class),
                 new NavigationOption(R.string.talks, R.drawable.icon_menu_talks, TalkFragment.class),

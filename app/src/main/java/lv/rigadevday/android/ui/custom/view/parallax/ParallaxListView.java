@@ -197,7 +197,7 @@ public final class ParallaxListView extends ScrollView {
      */
     private final class ViewContainer extends ViewGroup {
 
-        private final Stack<View> viewStack = new Stack<>();
+        private final Stack<View> viewStack = new Stack<View>();
 
         private int mFirstVisibleItem = -1;
 

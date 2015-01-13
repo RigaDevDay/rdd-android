@@ -75,7 +75,7 @@ public class ScheduleTrackFragment extends BaseFragment {
         List<TrackPresentations> presentationsByTrack = TrackPresentations.getByTrack(trackId);
         List<Event> events = Event.getAll();
 
-        TreeSet<TrackItemHolder> trackItemsSet = new TreeSet<>();
+        TreeSet<TrackItemHolder> trackItemsSet = new TreeSet<TrackItemHolder>();
         for (TrackPresentations p : presentationsByTrack) {
             trackItemsSet.add(new TrackItemHolder(p.getPresentation()));
         }
