@@ -353,30 +353,5 @@
             "twitter": "speakjava",
             "blog": "http://blogs.oracle.com/speakjava"
         }
-    },
-    {
-        "id": "30",
-        "order": -22,
-        "name": "Patroklos Papapetrou",
-        "bio": "Patroklos Papapetrou is a software architect, addicted to software quality and an agile team leader with more than 15 years of experience in software development. He believes and invests in people and team spirit seeking quality excellence. He's one of the authors of SonarQube in action book and he's currently writing \"The Art of Software Gardening\". He treats software systems as flowers that's why he prefers calling himself a software gardener.",
-        "country": "Greece",
-        "company": "Oracle",
-        "type": "workshoper",
-        "contacts": {
-            "twitter": "ppapapetrou76",
-            "blog": "http://softwaregarden.io/about-patroklos-papapetrou"
-        }
-    },
-    {
-        "id": "31",
-        "order": -23,
-        "name": "Richard Warburton",
-        "bio": "Richard is an empirical technologist and solver of deep-dive technical problems.  Recently he has been working on data analytics for high performance computing and has written a book on Java 8 Lambdas for O’Reilly.  He is a leader in the London Java Community and organised the Adopt-a-JSR programs for Java 8 and runs the Openjdk Hackdays.  Richard is also a known conference speaker, having talked at JavaOne, JFokus, Devoxx, Geecon and JAX London. Previously he worked on static analysis problems and compilers and has obtained a PhD in Computer Science from The University of Warwick.",
-        "country": "UK",
-        "company": "Monotonic Ltd",
-        "type": "workshoper",
-        "contacts": {
-            "twitter": "richardwarburto"
-        }
     }
 ]

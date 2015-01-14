@@ -49,5 +49,16 @@
     <string name="presentations">Presentations</string>
     <string name="choose">Choose</string>
     <string name="cancel">Cancel</string>
+    <string name="afterparty">Afterparty @ Pacho music café</string>
+    <string name="afterparty_description">
+        Every attendee from the conference is invited to join afterparty!
+        Welcome drink and snacks will be provided.\n
+        This is a great time to network so don\’t forget to pick up your badges at Registration so others can clearly identify what your interests are.
+        It\'s time to party with food, drink, music and fun. The evening will start with a band playing some smooth tunes to get the evening started, followed by STAND UP SHOW residents.
+        You must show your delegate badge to be admitted to the RDD Social, so remember to wear it.
+        It will also make networking much easier. It\'s going to be a great evening. See you there!\n
+        Address: Mārstaļu iela 16\n
+        Transport: bus will be located next to the Multikino Entrance of the Plaza at 18:45\n
+    </string>
 
 </resources>

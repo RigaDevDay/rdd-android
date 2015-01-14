@@ -451,6 +451,17 @@
             "title": "Conference closing"
           }
        ]
+    },
+    {
+       "time": "19:00",
+       "endTime": "20:00",
+       "icon": "afterparty",
+       "color": "light-blue",
+       "events": [
+          {
+            "title": "Afterparty @ Pacho Music Cafe"
+          }
+       ]
     }
   ]
 }

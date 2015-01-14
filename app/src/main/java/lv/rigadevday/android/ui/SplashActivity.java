@@ -2,15 +2,10 @@ package lv.rigadevday.android.ui;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
-
-import java.io.IOException;
 
 import lv.rigadevday.android.R;
-import lv.rigadevday.android.infrastructure.db.DataImportHelper;
 
 public class SplashActivity extends Activity {
 
@@ -24,20 +19,10 @@ public class SplashActivity extends Activity {
     private class DatabaseImportOperation extends AsyncTask<String, Void, String> {
         @Override
         protected String doInBackground(String... params) {
-            SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(SplashActivity.this);
-            if (!preferences.getBoolean("importDone", false)) {
-                try {
-                    DataImportHelper.importFromAsset(SplashActivity.this);
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-                preferences.edit().putBoolean("importDone", true).commit();
-            } else {
-                try {
-                    Thread.sleep(1000);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
+            try {
+                Thread.sleep(1000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
             }
             return null;
         }

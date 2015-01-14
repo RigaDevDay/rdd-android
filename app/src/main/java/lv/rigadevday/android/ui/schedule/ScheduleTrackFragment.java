@@ -14,8 +14,8 @@ import javax.inject.Inject;
 
 import butterknife.InjectView;
 import butterknife.OnItemClick;
-import butterknife.OnItemLongClick;
 import lv.rigadevday.android.R;
+import lv.rigadevday.android.common.DialogHelper;
 import lv.rigadevday.android.domain.Event;
 import lv.rigadevday.android.domain.Presentation;
 import lv.rigadevday.android.domain.SpeakerPresentation;
@@ -88,7 +88,16 @@ public class ScheduleTrackFragment extends BaseFragment {
     @OnItemClick(R.id.schedule_track_items)
     public void onPresentationItemClick(int position) {
         TrackItemHolder item = adapter.getItem(position);
-        if (item.isEventItem()) return;
+        if (item.isEventItem()) {
+            if (item.getEvent().getTitle().contains("Afterparty")) {
+                DialogHelper.getStyled(getActivity())
+                        .positiveText(R.string.OK)
+                        .title(R.string.afterparty)
+                        .content(R.string.afterparty_description)
+                        .show();
+            }
+            return;
+        }
 
         Presentation presentation = item.getPresentation();
 
@@ -105,18 +114,4 @@ public class ScheduleTrackFragment extends BaseFragment {
                 .addToBackStack(null)
                 .commit();
     }
-
-//    @OnItemLongClick(R.id.schedule_track_items)
-//    public boolean onPresentationLongItemClick(int position) {
-//        TrackItemHolder item = adapter.getItem(position);
-//        if (item.isEventItem()) return false;
-//
-//        Presentation presentation = item.getPresentation();
-//
-//        presentation.setBookmarked(!presentation.isBookmarked());
-//        presentation.save();
-//        snackBarDisplayFunction.apply(presentation.isBookmarked());
-//
-//        return true;
-//    }
 }
