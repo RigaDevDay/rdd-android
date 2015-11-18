@@ -36,9 +36,9 @@ public class ProfileBookmarkClickListener implements View.OnClickListener {
             DialogHelper.getStyled(ctx)
                     .title(R.string.presentations)
                     .items(helper.titles)
-                    .itemsCallbackMultiChoice(helper.getSelectedIndeces(), new MaterialDialog.ListCallbackMulti() {
+                    .itemsCallbackMultiChoice(helper.getSelectedIndeces(), new MaterialDialog.ListCallbackMultiChoice() {
                         @Override
-                        public void onSelection(MaterialDialog dialog, Integer[] which, CharSequence[] text) {
+                        public boolean onSelection(MaterialDialog dialog, Integer[] which, CharSequence[] text) {
                             Set<Integer> selected = Sets.newHashSet(which);
                             for (int i = 0; i < presentations.size(); i++) {
                                 Presentation p = presentations.get(i);
@@ -46,6 +46,7 @@ public class ProfileBookmarkClickListener implements View.OnClickListener {
                                 p.save();
                             }
                             icon.setImageResource(which.length > 0 ? R.drawable.icon_bookmark : R.drawable.icon_bookmark_empty);
+                            return true;
                         }
                     })
                     .positiveText(R.string.choose)

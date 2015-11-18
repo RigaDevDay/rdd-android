@@ -3,43 +3,47 @@ apply plugin: 'com.android.application'
 repositories {
     maven { url "http://dl.bintray.com/populov/maven" }
     maven { url "https://oss.sonatype.org/content/repositories/snapshots/" }
+    maven { url "https://jitpack.io" }
     mavenCentral()
 }
 
 android {
-    compileSdkVersion 21
-    buildToolsVersion "20.0.0"
+    compileSdkVersion 23
+    buildToolsVersion "23.0.2"
 
     defaultConfig {
         applicationId "lv.rigadevday.android"
         minSdkVersion 15
-        targetSdkVersion 21
+        targetSdkVersion 22
         versionCode 3
         versionName "1.2"
     }
 
     signingConfigs {
         release {
-            storeFile file(RELEASE_STORE_FILE)
-            storePassword RELEASE_STORE_PASSWORD
-            keyAlias RELEASE_KEY_ALIAS
-            keyPassword RELEASE_KEY_PASSWORD
+            storeFile file('RELEASE_STORE_FILE')
+            storePassword 'RELEASE_STORE_PASSWORD'
+            keyAlias 'RELEASE_KEY_ALIAS'
+            keyPassword 'RELEASE_KEY_PASSWORD'
         }
     }
 
     buildTypes {
-	      release {
-	          signingConfig signingConfigs.release
-	      }
+        debug {
+        }
+        release {
+            signingConfig signingConfigs.release
+        }
     }
 }
 
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
-    compile (
-            'com.android.support:support-v4:21.0.3',
-            'com.android.support:appcompat-v7:21.0.3',
-
+    compile(
+            'com.android.support:support-v4:23.0.1',
+            'com.android.support:appcompat-v7:23.0.1',
+            'com.android.support:design:23.0.1',
+            'com.android.support:recyclerview-v7:23.0.1',
             'com.jakewharton:butterknife:5.1.2',
 
             'com.squareup.dagger:dagger:1.2.2',
@@ -56,10 +60,11 @@ dependencies {
             'com.squareup.picasso:picasso:2.4.0',
             'com.fmsirvent:parallaxeverywhere:1.0.1',
             'com.viewpagerindicator:library:2.4.1@aar',
-            'com.afollestad:material-dialogs:0.5.0',
-            'com.nispok:snackbar:2.7.3'
-
+            'com.nispok:snackbar:2.7.3',
     )
+    compile('com.github.afollestad.material-dialogs:commons:0.8.5.1@aar') {
+        transitive = true
+    }
 
     provided 'com.squareup.dagger:dagger-compiler:1.2.2'
 }
