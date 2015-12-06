@@ -18,7 +18,6 @@ import lv.rigadevday.android.ui.details.ProfileSpeechFragment;
 import lv.rigadevday.android.ui.organizers.OrganizerFragment;
 import lv.rigadevday.android.ui.schedule.ScheduleFragment;
 import lv.rigadevday.android.ui.schedule.ScheduleTrackFragment;
-import lv.rigadevday.android.ui.speakers.SpeakersFragment;
 import lv.rigadevday.android.ui.talks.TalkFragment;
 
 @Module(
@@ -27,7 +26,6 @@ import lv.rigadevday.android.ui.talks.TalkFragment;
                 MainActivity.class,
 
                 TalkFragment.class,
-                SpeakersFragment.class,
                 ScheduleFragment.class,
                 ScheduleTrackFragment.class,
                 OrganizerFragment.class,

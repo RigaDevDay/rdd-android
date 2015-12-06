@@ -1,15 +1,12 @@
 package lv.rigadevday.android.ui.custom;
 
 import android.content.Context;
+import android.support.design.widget.Snackbar;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ListView;
-
-import com.nispok.snackbar.Snackbar;
-import com.nispok.snackbar.SnackbarManager;
 
 import lv.rigadevday.android.R;
 import lv.rigadevday.android.domain.Presentation;
@@ -62,12 +59,8 @@ public class BookmarkClickListener implements View.OnClickListener {
 
     public Void showSnackbar(Boolean input) {
         int msg = input ? R.string.bookmarked : R.string.unbookmarked;
-        SnackbarManager.show(
-                Snackbar.with(context)
-                        .attachToAbsListView(listView)
-                        .colorResource(R.color.primary)
-                        .textColorResource(R.color.white)
-                        .text(msg));
+        Snackbar.make(listView.getRootView(), msg, Snackbar.LENGTH_SHORT)
+                .show();
         return null;
     }
 

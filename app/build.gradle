@@ -1,10 +1,11 @@
 apply plugin: 'com.android.application'
+apply plugin: 'me.tatarka.retrolambda'
 
 repositories {
-    maven { url "http://dl.bintray.com/populov/maven" }
     maven { url "https://oss.sonatype.org/content/repositories/snapshots/" }
     maven { url "https://jitpack.io" }
     mavenCentral()
+    jcenter()
 }
 
 android {
@@ -13,10 +14,15 @@ android {
 
     defaultConfig {
         applicationId "lv.rigadevday.android"
-        minSdkVersion 15
-        targetSdkVersion 22
-        versionCode 3
-        versionName "1.2"
+        minSdkVersion 16
+        targetSdkVersion 23
+        versionCode 4
+        versionName "2.0.0"
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
     }
 
     signingConfigs {
@@ -29,8 +35,7 @@ android {
     }
 
     buildTypes {
-        debug {
-        }
+        debug {}
         release {
             signingConfig signingConfigs.release
         }
@@ -39,29 +44,20 @@ android {
 
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
-    compile(
-            'com.android.support:support-v4:23.0.1',
-            'com.android.support:appcompat-v7:23.0.1',
-            'com.android.support:design:23.0.1',
-            'com.android.support:recyclerview-v7:23.0.1',
-            'com.jakewharton:butterknife:5.1.2',
+    compile 'com.android.support:support-v4:23.1.1'
+    compile 'com.android.support:appcompat-v7:23.1.1'
+    compile 'com.android.support:design:23.1.1'
+    compile 'com.android.support:recyclerview-v7:23.1.1'
 
-            'com.squareup.dagger:dagger:1.2.2',
-            'com.squareup:otto:1.3.5',
+    compile 'com.jakewharton:butterknife:7.0.1'
+    compile 'com.squareup.dagger:dagger:1.2.2'
+    compile 'com.squareup:otto:1.3.8'
+    compile 'com.squareup.picasso:picasso:2.5.2'
+    compile 'com.google.code.gson:gson:2.4'
+    compile 'com.annimon:stream:1.0.5'
 
-            'com.tonicartos:stickygridheaders:1.0.1',
-
-            'com.michaelpardo:activeandroid:3.1.0-SNAPSHOT',
-
-            'com.google.guava:guava:18.0',
-
-            'com.google.code.gson:gson:2.3',
-            'com.github.traex.rippleeffect:library:1.2.2',
-            'com.squareup.picasso:picasso:2.4.0',
-            'com.fmsirvent:parallaxeverywhere:1.0.1',
-            'com.viewpagerindicator:library:2.4.1@aar',
-            'com.nispok:snackbar:2.7.3',
-    )
+    // things that need to go
+    compile 'com.michaelpardo:activeandroid:3.1.0-SNAPSHOT'
     compile('com.github.afollestad.material-dialogs:commons:0.8.5.1@aar') {
         transitive = true
     }

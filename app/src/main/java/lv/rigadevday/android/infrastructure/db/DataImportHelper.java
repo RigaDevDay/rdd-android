@@ -2,7 +2,6 @@ package lv.rigadevday.android.infrastructure.db;
 
 import android.content.Context;
 
-import com.google.common.collect.Sets;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
@@ -17,6 +16,7 @@ import java.lang.reflect.Type;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Set;
+import java.util.TreeSet;
 
 import lv.rigadevday.android.domain.Contact;
 import lv.rigadevday.android.domain.Event;
@@ -131,12 +131,7 @@ public class DataImportHelper {
     }
 
     private static void saveTracks(List<Presentation> presentations) {
-        Set<Track> tracks = Sets.newTreeSet(new Comparator<Track>() {
-            @Override
-            public int compare(Track o, Track o2) {
-                return o.getTrackName().compareTo(o2.getTrackName());
-            }
-        });
+        Set<Track> tracks = new TreeSet<>((Comparator<Track>) (o, o2) -> o.getTrackName().compareTo(o2.getTrackName()));
 
         for (Presentation presentation : presentations) {
             tracks.add(new Track(presentation.getRoom()));

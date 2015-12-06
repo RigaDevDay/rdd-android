@@ -1,26 +1,20 @@
 package lv.rigadevday.android.domain;
 
 import android.content.Context;
-import android.view.View;
-import android.widget.ImageView;
-import android.widget.TextView;
 
 import com.activeandroid.Model;
 import com.activeandroid.annotation.Column;
 import com.activeandroid.annotation.Table;
 import com.activeandroid.query.Select;
-import com.squareup.picasso.Picasso;
 
 import java.io.Serializable;
 import java.util.List;
 
 import lv.rigadevday.android.R;
-import lv.rigadevday.android.common.ViewHolder;
 import lv.rigadevday.android.domain.reference.SpeakerType;
-import lv.rigadevday.android.ui.custom.view.parallax.ParallaxListItem;
 
 @Table(name = "Speakers")
-public class Speaker extends Model implements Serializable, ParallaxListItem {
+public class Speaker extends Model implements Serializable {
     public static final String BACKSTAGE_DRAWABLE = "backstage_";
     public static final String PHOTO_DRAWABLE = "speaker_";
 
@@ -169,34 +163,4 @@ public class Speaker extends Model implements Serializable, ParallaxListItem {
         return profileImageResource;
     }
 
-    @Override
-    public int getItemLayoutResource() {
-        return R.layout.speaker_list_item;
-    }
-
-    @Override
-    public void present(View view, Context ctx) {
-
-        TextView speakerName = ViewHolder.get(view, R.id.speaker_list_item_name);
-        speakerName.setText(name);
-
-        TextView speakerCompany = ViewHolder.get(view, R.id.speaker_list_item_company);
-        speakerCompany.setText(company);
-
-        ImageView speakerImage = ViewHolder.get(view, R.id.speaker_list_item_image);
-
-        ImageView backstage = ViewHolder.get(view, R.id.item_background);
-
-        Picasso.with(ctx)
-                .load(getBackstageImageResource(ctx))
-                .priority(Picasso.Priority.HIGH)
-                .into(backstage);
-
-
-        Picasso.with(ctx)
-                .load(getImageResource(ctx))
-                .placeholder(R.drawable.speaker_0)
-                .priority(Picasso.Priority.HIGH)
-                .into(speakerImage);
-    }
 }

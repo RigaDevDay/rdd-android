@@ -11,7 +11,7 @@ import java.util.List;
 
 import javax.inject.Inject;
 
-import butterknife.InjectView;
+import butterknife.Bind;
 import butterknife.OnItemClick;
 import lv.rigadevday.android.R;
 import lv.rigadevday.android.domain.Presentation;
@@ -22,10 +22,10 @@ import lv.rigadevday.android.ui.details.ProfileFragment;
 
 public class BookmarkFragment extends BaseFragment {
 
-    @InjectView(R.id.bookmark_list)
+    @Bind(R.id.bookmark_list)
     ListView bookmarkList;
 
-    @InjectView(R.id.empty_bookmarks_message_holder)
+    @Bind(R.id.empty_bookmarks_message_holder)
     ViewGroup messageHolder;
 
     @Inject

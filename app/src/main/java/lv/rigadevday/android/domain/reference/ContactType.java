@@ -1,14 +1,14 @@
 package lv.rigadevday.android.domain.reference;
 
-import com.google.common.collect.Maps;
 
+import java.util.HashMap;
 import java.util.Map;
 
 public enum ContactType {
     TWITTER(0),
     BLOG(1);
 
-    private static final Map<Integer, ContactType> byId = Maps.newHashMap();
+    private static final Map<Integer, ContactType> byId = new HashMap<>();
 
     static {
         for (ContactType e : ContactType.values()) {

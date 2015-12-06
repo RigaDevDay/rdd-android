@@ -4,15 +4,14 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 
-import com.google.common.collect.Lists;
-
+import java.util.ArrayList;
 import java.util.List;
 
 import lv.rigadevday.android.domain.Track;
 
 public class SchedulePageAdapter extends FragmentStatePagerAdapter {
 
-    private final List<ScheduleTrackFragment> fragments = Lists.newArrayList();
+    private final List<ScheduleTrackFragment> fragments = new ArrayList<>();
     private final List<Track> tracks;
 
     public SchedulePageAdapter(FragmentManager fm, List<Track> tracks) {

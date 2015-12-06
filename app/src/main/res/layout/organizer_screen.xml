@@ -13,10 +13,11 @@
         android:padding="10dp"
         android:orientation="vertical">
 
-        <lv.rigadevday.android.ui.custom.view.TextViewRobotoLight
+        <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/organizers_of_event"
+            android:fontFamily="sans-serif-light"
             android:textSize="20sp"
             android:gravity="center"
             android:textColor="@color/color_404040" />
@@ -69,11 +70,12 @@
                 android:layout_height="wrap_content" />
         </LinearLayout>
 
-        <lv.rigadevday.android.ui.custom.view.TextViewRobotoLight
+        <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/dear_sponsors"
             android:textSize="20sp"
+            android:fontFamily="sans-serif-light"
             android:gravity="center"
             android:textColor="@color/color_404040" />
 

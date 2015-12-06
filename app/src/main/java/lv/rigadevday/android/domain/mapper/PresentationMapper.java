@@ -1,16 +1,15 @@
 package lv.rigadevday.android.domain.mapper;
 
-import com.google.common.base.Strings;
-import com.google.common.collect.Lists;
-import com.google.common.collect.Sets;
-
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import lv.rigadevday.android.common.Utils;
 import lv.rigadevday.android.domain.Presentation;
 import lv.rigadevday.android.domain.Speaker;
 import lv.rigadevday.android.domain.Tag;
@@ -27,7 +26,7 @@ public class PresentationMapper {
     }
 
     public Set<String> getTags(ScheduleDto dto) {
-        Set<String> tags = Sets.newHashSet();
+        Set<String> tags = new HashSet<>();
         for (ScheduleSlotDto scheduleSlotDto : dto.getSchedule()) {
             for (PresentationDto presentationDto : scheduleSlotDto.getPresentations()) {
                 List<String> rawTags = presentationDto.getTags();
@@ -43,7 +42,7 @@ public class PresentationMapper {
     }
 
     public List<Presentation> getPresentations(ScheduleDto dto) {
-        List<Presentation> entities = Lists.newArrayList();
+        List<Presentation> entities = new ArrayList<>();
 
         List<String> roomNames = dto.getRoomNames();
 
@@ -59,7 +58,7 @@ public class PresentationMapper {
             for (int i = 0; i < presentations.size(); i++) {
                 PresentationDto presentationDto = presentations.get(i);
 
-                if (Strings.isNullOrEmpty(presentationDto.getSubtitle()))
+                if (Utils.isNullOrEmpty(presentationDto.getSubtitle()))
                     continue;
 
                 Presentation presentation = new Presentation();
@@ -90,7 +89,7 @@ public class PresentationMapper {
     }
 
     private List<Speaker> getSpeakers(List<Integer> uids) {
-        List<Speaker> speakers = Lists.newArrayList();
+        List<Speaker> speakers = new ArrayList<>();
         for (Integer uid : uids) {
             Speaker s = Speaker.getByUid(uid);
             speakers.add(s);
@@ -99,7 +98,7 @@ public class PresentationMapper {
     }
 
     private List<Tag> getTags(List<String> tagStrings) {
-        List<Tag> tags = Lists.newArrayList();
+        List<Tag> tags = new ArrayList<>();
         for (String name : tagStrings) {
             Tag tag = Tag.getByName(name);
             tags.add(tag);

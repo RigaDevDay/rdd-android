@@ -1,10 +1,9 @@
 package lv.rigadevday.android.domain.mapper;
 
-import com.google.common.base.Strings;
-import com.google.common.collect.Lists;
-
+import java.util.ArrayList;
 import java.util.List;
 
+import lv.rigadevday.android.common.Utils;
 import lv.rigadevday.android.domain.Contact;
 import lv.rigadevday.android.domain.Speaker;
 import lv.rigadevday.android.domain.dto.ContactInfo;
@@ -32,14 +31,14 @@ public class SpeakerMapper {
     }
 
     private List<Contact> mapToContacts(ContactInfo contactInfo) {
-        List<Contact> contacts = Lists.newArrayList();
-        if (!Strings.isNullOrEmpty(contactInfo.getBlog())) {
+        List<Contact> contacts = new ArrayList<>();
+        if (!Utils.isNullOrEmpty(contactInfo.getBlog())) {
             Contact blog = new Contact();
             blog.setType(ContactType.BLOG);
             blog.setValue(contactInfo.getBlog());
             contacts.add(blog);
         }
-        if (!Strings.isNullOrEmpty(contactInfo.getTwitter())) {
+        if (!Utils.isNullOrEmpty(contactInfo.getTwitter())) {
             Contact blog = new Contact();
             blog.setType(ContactType.TWITTER);
             blog.setValue(contactInfo.getTwitter());

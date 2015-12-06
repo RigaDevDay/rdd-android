@@ -9,13 +9,13 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.google.common.base.Function;
-import com.google.common.base.Joiner;
-import com.google.common.collect.Iterables;
-import com.google.common.collect.Lists;
+import com.annimon.stream.Collectors;
+import com.annimon.stream.Stream;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.StringTokenizer;
 
 import lv.rigadevday.android.R;
 import lv.rigadevday.android.common.ViewHolder;
@@ -77,7 +77,7 @@ public class TalkListAdapter extends ArrayAdapter<Presentation> {
 
     private List<TagView.Tag> getTags(Presentation presentation) {
         List<Tag> tags = presentation.getTags();
-        List<TagView.Tag> tagViews = Lists.newArrayList();
+        List<TagView.Tag> tagViews = new ArrayList<>();
         for (Tag tag : tags) {
             tagViews.add(new TagView.Tag(tag.getName(), tagColor));
         }
@@ -85,13 +85,10 @@ public class TalkListAdapter extends ArrayAdapter<Presentation> {
     }
 
     private String getSpeakerNames(Presentation presentation) {
-        List<Speaker> speakers = presentation.getSpeakers();
-        Iterable<String> names = Iterables.transform(speakers, new Function<Speaker, String>() {
-            public String apply(Speaker s) {
-                return s.getName();
-            }
-        });
-        return Joiner.on(", ").skipNulls().join(names);
+        return Stream.of(presentation.getSpeakers())
+                .filter(speaker -> speaker == null)
+                .map(Speaker::getName)
+                .collect(Collectors.joining(", "));
     }
 
 

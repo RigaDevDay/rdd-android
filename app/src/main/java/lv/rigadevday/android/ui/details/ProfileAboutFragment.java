@@ -4,14 +4,14 @@ import android.os.Bundle;
 import android.widget.TextView;
 
 
-import butterknife.InjectView;
+import butterknife.Bind;
 import lv.rigadevday.android.R;
 import lv.rigadevday.android.domain.Speaker;
 import lv.rigadevday.android.ui.BaseFragment;
 
 public class ProfileAboutFragment extends BaseFragment {
 
-    @InjectView(R.id.profile_about)
+    @Bind(R.id.profile_about)
     TextView profileAbout;
 
 
