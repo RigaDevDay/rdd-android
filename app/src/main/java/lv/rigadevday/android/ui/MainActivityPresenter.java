@@ -19,8 +19,8 @@ import android.widget.ListView;
 import javax.inject.Inject;
 import javax.inject.Singleton;
 
+import butterknife.Bind;
 import butterknife.ButterKnife;
-import butterknife.InjectView;
 import butterknife.OnClick;
 import butterknife.OnItemClick;
 import lv.rigadevday.android.R;
@@ -37,15 +37,15 @@ public class MainActivityPresenter {
     public static final String MAIN_FRAGMENT_TAG = "MainFragment";
     @Inject
     Context context;
-    @InjectView(R.id.content_frame)
+    @Bind(R.id.content_frame)
     FrameLayout contentFrame;
-    @InjectView(R.id.left_drawer)
+    @Bind(R.id.left_drawer)
     FrameLayout leftDrawer;
-    @InjectView(R.id.drawer_layout)
+    @Bind(R.id.drawer_layout)
     DrawerLayout drawerLayout;
-    @InjectView(R.id.navigation_listView)
+    @Bind(R.id.navigation_listView)
     ListView listView;
-    @InjectView(R.id.toolbar)
+    @Bind(R.id.toolbar)
     Toolbar toolbar;
     @Inject
     SocialNetworkNagivationService socialsService;
@@ -62,7 +62,7 @@ public class MainActivityPresenter {
 
     public void initPresenter(ActionBarActivity activity) {
         this.activity = activity;
-        ButterKnife.inject(this, activity);
+        ButterKnife.bind(this, activity);
     }
 
     public void initNavigationDrawer() {

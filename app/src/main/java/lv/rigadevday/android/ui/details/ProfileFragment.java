@@ -10,14 +10,12 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.google.common.base.Optional;
-import com.google.common.base.Predicate;
-import com.google.common.collect.Iterables;
+import com.annimon.stream.Stream;
 import com.squareup.picasso.Picasso;
 
 import javax.inject.Inject;
 
-import butterknife.InjectView;
+import butterknife.Bind;
 import butterknife.OnClick;
 import lv.rigadevday.android.R;
 import lv.rigadevday.android.common.SocialNetworkNagivationService;
@@ -35,34 +33,34 @@ public class ProfileFragment extends BaseFragment {
     @Inject
     SocialNetworkNagivationService socialsService;
 
-    @InjectView(R.id.profile_about_tab_text)
+    @Bind(R.id.profile_about_tab_text)
     TextView aboutTextView;
 
-    @InjectView(R.id.profile_speech_tab_text)
+    @Bind(R.id.profile_speech_tab_text)
     TextView speechTextView;
 
-    @InjectView(R.id.profile_about_tab_line)
+    @Bind(R.id.profile_about_tab_line)
     ImageView aboutLine;
 
-    @InjectView(R.id.profile_speech_tab_line)
+    @Bind(R.id.profile_speech_tab_line)
     ImageView speechLine;
 
-    @InjectView(R.id.profile_name)
+    @Bind(R.id.profile_name)
     TextView nameTextView;
 
-    @InjectView(R.id.profile_company)
+    @Bind(R.id.profile_company)
     TextView companyTextView;
 
-    @InjectView(R.id.profile_photo)
+    @Bind(R.id.profile_photo)
     ImageView photoImageView;
 
-    @InjectView(R.id.profile_backstage)
+    @Bind(R.id.profile_backstage)
     ImageView backstageImageView;
 
-    @InjectView(R.id.profile_twitter)
+    @Bind(R.id.profile_twitter)
     ImageView twitterImageView;
 
-    @InjectView(R.id.profile_bookmark)
+    @Bind(R.id.profile_bookmark)
     ImageView bookmarkImageView;
 
     private Class<? extends BaseFragment> currentFragment;
@@ -90,13 +88,11 @@ public class ProfileFragment extends BaseFragment {
                 .load(speaker.getImageResource(context))
                 .placeholder(R.drawable.speaker_0)
                 .priority(Picasso.Priority.HIGH)
-                .skipMemoryCache()
                 .into(photoImageView);
 
         Picasso.with(context)
                 .load(speaker.getBackstageImageResource(context))
                 .priority(Picasso.Priority.HIGH)
-                .skipMemoryCache()
                 .into(backstageImageView);
 
         String name = speaker.getName();
@@ -119,23 +115,13 @@ public class ProfileFragment extends BaseFragment {
     }
 
     private void initTwitterButton(final Speaker speaker) {
-        final Optional<Contact> contact = Iterables.tryFind(speaker.getContacts(), new Predicate<Contact>() {
-            @Override
-            public boolean apply(Contact input) {
-                return input.getType().equals(ContactType.TWITTER);
+        for (final Contact contact: speaker.getContacts()) {
+            if (contact.getType().equals(ContactType.TWITTER)) {
+                twitterImageView.setOnClickListener(view -> socialsService.goTwitter(contact.getValue()));
+                return;
             }
-        });
-
-        if (contact.isPresent()) {
-            twitterImageView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    socialsService.goTwitter(contact.get().getValue());
-                }
-            });
-        } else {
-            twitterImageView.setVisibility(View.INVISIBLE);
         }
+        twitterImageView.setVisibility(View.INVISIBLE);
     }
 
     @Override

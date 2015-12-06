@@ -51,10 +51,11 @@
                     android:layout_marginBottom="5dp"
                     android:background="@color/tag_color" />
 
-                <lv.rigadevday.android.ui.custom.view.TextViewRobotoRegular
+                <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textColor="@color/color_404040"
+                    android:fontFamily="sans-serif"
                     android:layout_marginStart="15dp"
                     android:layout_marginLeft="15dp"
                     android:layout_marginTop="15dp"
@@ -62,10 +63,11 @@
                     android:textSize="15sp"
                     android:text="@string/wifi" />
 
-                <lv.rigadevday.android.ui.custom.view.TextViewRobotoRegular
+                <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textColor="@color/color_404040"
+                    android:fontFamily="sans-serif"
                     android:layout_marginStart="15dp"
                     android:layout_marginLeft="15dp"
                     android:layout_marginBottom="15dp"

@@ -22,7 +22,7 @@ public abstract class BaseFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         BaseApplication.inject(this);
         View view = inflater.inflate(contentViewId(), container, false);
-        ButterKnife.inject(this, view);
+        ButterKnife.bind(this, view);
         init(savedInstanceState);
 
         return view;

@@ -5,8 +5,9 @@ import android.view.View;
 import android.widget.ImageView;
 
 import com.afollestad.materialdialogs.MaterialDialog;
-import com.google.common.collect.Sets;
 
+import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -36,18 +37,15 @@ public class ProfileBookmarkClickListener implements View.OnClickListener {
             DialogHelper.getStyled(ctx)
                     .title(R.string.presentations)
                     .items(helper.titles)
-                    .itemsCallbackMultiChoice(helper.getSelectedIndeces(), new MaterialDialog.ListCallbackMultiChoice() {
-                        @Override
-                        public boolean onSelection(MaterialDialog dialog, Integer[] which, CharSequence[] text) {
-                            Set<Integer> selected = Sets.newHashSet(which);
-                            for (int i = 0; i < presentations.size(); i++) {
-                                Presentation p = presentations.get(i);
-                                p.setBookmarked(selected.contains(i));
-                                p.save();
-                            }
-                            icon.setImageResource(which.length > 0 ? R.drawable.icon_bookmark : R.drawable.icon_bookmark_empty);
-                            return true;
+                    .itemsCallbackMultiChoice(helper.getSelectedIndeces(), (dialog, which, text) -> {
+                        List<Integer> selected = Arrays.asList(which);
+                        for (int i = 0; i < presentations.size(); i++) {
+                            Presentation p = presentations.get(i);
+                            p.setBookmarked(selected.contains(i));
+                            p.save();
                         }
+                        icon.setImageResource(which.length > 0 ? R.drawable.icon_bookmark : R.drawable.icon_bookmark_empty);
+                        return true;
                     })
                     .positiveText(R.string.choose)
                     .negativeText(R.string.cancel)
@@ -64,7 +62,7 @@ public class ProfileBookmarkClickListener implements View.OnClickListener {
 
 
     private class DialogBuilderHelper {
-        Set<Integer> selectedIndeces = Sets.newHashSet();
+        Set<Integer> selectedIndeces = new HashSet<>();
         CharSequence[] titles = new CharSequence[presentations.size()];
 
         private DialogBuilderHelper() {

@@ -5,10 +5,11 @@
     android:background="@color/white"
     android:padding="10dp">
 
-    <lv.rigadevday.android.ui.custom.view.TextViewRobotoRegular
+    <TextView
         android:id="@+id/sie_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:fontFamily="sans-serif"
         android:textSize="14sp"
         android:textStyle="bold"
         android:textColor="@color/primary"
@@ -16,12 +17,13 @@
         android:layout_centerVertical="true" />
 
 
-    <lv.rigadevday.android.ui.custom.view.TextViewRobotoLight
+    <TextView
         android:id="@+id/sie_start_time"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerVertical="true"
         android:textColor="@color/primary"
+        android:fontFamily="sans-serif-light"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
         android:textSize="16sp" />

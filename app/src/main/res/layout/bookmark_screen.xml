@@ -26,9 +26,10 @@
             android:layout_centerInParent="true"
             android:src="@drawable/icon_bookmark_empty_dark"/>
 
-        <lv.rigadevday.android.ui.custom.view.TextViewRobotoRegular
+        <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:fontFamily="sans-serif"
             android:textSize="24sp"
             android:layout_marginTop="10dp"
             android:layout_below="@+id/bookmark_icon"

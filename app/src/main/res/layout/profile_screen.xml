@@ -55,20 +55,22 @@
                 android:layout_width="32dp"
                 android:layout_height="32dp" />
 
-            <lv.rigadevday.android.ui.custom.view.TextViewRobotoRegular
+            <TextView
                 android:id="@+id/profile_name"
                 android:layout_marginTop="10dp"
                 android:textSize="16sp"
                 android:layout_below="@+id/profile_photo"
+                android:fontFamily="sans-serif"
                 android:textColor="@color/white"
                 android:layout_centerHorizontal="true"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
 
-            <lv.rigadevday.android.ui.custom.view.TextViewRobotoRegular
+            <TextView
                 android:id="@+id/profile_company"
                 android:layout_below="@id/profile_name"
                 android:textSize="12sp"
+                android:fontFamily="sans-serif"
                 android:textColor="@color/color_76d4ff"
                 android:layout_centerHorizontal="true"
                 android:layout_width="wrap_content"

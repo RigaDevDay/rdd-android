@@ -9,11 +9,12 @@
         android:layout_height="wrap_content"
         android:padding="10dp">
 
-        <lv.rigadevday.android.ui.custom.view.TextViewRobotoLight
+        <TextView
             android:id="@+id/profile_about"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textColor="@color/color_404040"
+            android:fontFamily="sans-serif-light"
             android:textSize="14sp"
             android:lineSpacingMultiplier="1.2" />
 

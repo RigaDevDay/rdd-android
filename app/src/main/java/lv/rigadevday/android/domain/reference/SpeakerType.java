@@ -1,14 +1,13 @@
 package lv.rigadevday.android.domain.reference;
 
-import com.google.common.collect.Maps;
-
+import java.util.HashMap;
 import java.util.Map;
 
 public enum SpeakerType {
     SPEAKER(0),
     WORKSHOPER(1);
 
-    private static final Map<Integer, SpeakerType> byId = Maps.newHashMap();
+    private static final Map<Integer, SpeakerType> byId = new HashMap<>();
 
     static {
         for (SpeakerType e : SpeakerType.values()) {

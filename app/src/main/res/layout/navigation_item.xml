@@ -12,11 +12,12 @@
         android:layout_centerVertical="true"
         android:layout_margin="15dp" />
 
-    <lv.rigadevday.android.ui.custom.view.TextViewRobotoRegular
+    <TextView
         android:id="@+id/ni_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textColor="@color/color_404040"
+        android:fontFamily="sans-serif"
         android:layout_marginStart="15dp"
         android:layout_marginLeft="15dp"
         android:layout_marginTop="15dp"

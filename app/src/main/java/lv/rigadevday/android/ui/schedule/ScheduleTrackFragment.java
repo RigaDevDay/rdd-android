@@ -5,14 +5,13 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.widget.ListView;
 
-import com.google.common.collect.Lists;
-
+import java.util.ArrayList;
 import java.util.List;
 import java.util.TreeSet;
 
 import javax.inject.Inject;
 
-import butterknife.InjectView;
+import butterknife.Bind;
 import butterknife.OnItemClick;
 import lv.rigadevday.android.R;
 import lv.rigadevday.android.common.DialogHelper;
@@ -30,7 +29,7 @@ public class ScheduleTrackFragment extends BaseFragment {
     public static final String TRACK = "track";
     private long trackId;
 
-    @InjectView(R.id.schedule_track_items)
+    @Bind(R.id.schedule_track_items)
     ListView scheduleTrackItems;
 
     @Inject
@@ -75,14 +74,14 @@ public class ScheduleTrackFragment extends BaseFragment {
         List<TrackPresentations> presentationsByTrack = TrackPresentations.getByTrack(trackId);
         List<Event> events = Event.getAll();
 
-        TreeSet<TrackItemHolder> trackItemsSet = new TreeSet<TrackItemHolder>();
+        TreeSet<TrackItemHolder> trackItemsSet = new TreeSet<>();
         for (TrackPresentations p : presentationsByTrack) {
             trackItemsSet.add(new TrackItemHolder(p.getPresentation()));
         }
         for (Event e : events) {
             trackItemsSet.add(new TrackItemHolder(e));
         }
-        return Lists.newArrayList(trackItemsSet);
+        return new ArrayList<>(trackItemsSet);
     }
 
     @OnItemClick(R.id.schedule_track_items)

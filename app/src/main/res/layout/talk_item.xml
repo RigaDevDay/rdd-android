@@ -5,22 +5,24 @@
     android:layout_height="wrap_content"
     android:padding="10dp">
 
-    <lv.rigadevday.android.ui.custom.view.TextViewRobotoRegular
+    <TextView
         android:id="@+id/ti_speakers_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:fontFamily="sans-serif"
         android:textColor="@color/primary"
         android:layout_marginRight="45dp"
         android:layout_marginEnd="45dp"
         android:textSize="16sp" />
 
-    <lv.rigadevday.android.ui.custom.view.TextViewRobotoLight
+    <TextView
         android:id="@+id/ti_presentation_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ellipsize="end"
         android:maxLines="2"
         android:textColor="@color/color_404040"
+        android:fontFamily="sans-serif-light"
         android:textSize="14sp"
         android:layout_marginRight="45dp"
         android:layout_marginEnd="45dp"
@@ -41,10 +43,11 @@
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true">
 
-        <lv.rigadevday.android.ui.custom.view.TextViewRobotoLight
+        <TextView
             android:id="@+id/ti_start_time"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:fontFamily="sans-serif-light"
             android:textColor="@color/primary"
             android:layout_centerHorizontal="true"
             android:textSize="16sp" />

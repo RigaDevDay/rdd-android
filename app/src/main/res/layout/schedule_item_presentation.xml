@@ -11,11 +11,12 @@
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true">
 
-        <lv.rigadevday.android.ui.custom.view.TextViewRobotoLight
+        <TextView
             android:id="@+id/sip_start_time"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="@color/primary"
+            android:fontFamily="sans-serif-light"
             android:layout_centerHorizontal="true"
             android:textSize="16sp" />
 
@@ -31,19 +32,21 @@
     </RelativeLayout>
 
 
-    <lv.rigadevday.android.ui.custom.view.TextViewRobotoRegular
+    <TextView
         android:id="@+id/sip_name"
+        android:fontFamily="sans-serif"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="16sp"
         android:textColor="@color/primary"
         android:textStyle="bold" />
 
-    <lv.rigadevday.android.ui.custom.view.TextViewRobotoLight
+    <TextView
         android:id="@+id/sip_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ellipsize="end"
+        android:fontFamily="sans-serif-light"
         android:textColor="@color/color_404040"
         android:textSize="14sp"
         android:maxLines="2"

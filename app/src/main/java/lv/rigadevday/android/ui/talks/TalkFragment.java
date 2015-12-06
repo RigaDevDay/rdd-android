@@ -10,7 +10,7 @@ import java.util.List;
 
 import javax.inject.Inject;
 
-import butterknife.InjectView;
+import butterknife.Bind;
 import butterknife.OnItemClick;
 import lv.rigadevday.android.R;
 import lv.rigadevday.android.domain.Presentation;
@@ -25,7 +25,7 @@ public class TalkFragment extends BaseFragment {
     @Inject
     LayoutInflater inflater;
 
-    @InjectView(R.id.talks_list)
+    @Bind(R.id.talks_list)
     ListView talksList;
 
 

@@ -9,7 +9,7 @@ import java.util.List;
 
 import javax.inject.Inject;
 
-import butterknife.InjectView;
+import butterknife.Bind;
 import lv.rigadevday.android.R;
 import lv.rigadevday.android.domain.Presentation;
 import lv.rigadevday.android.domain.Speaker;
@@ -23,7 +23,7 @@ public class ProfileSpeechFragment extends BaseFragment {
     @Inject
     LayoutInflater inflater;
 
-    @InjectView(R.id.speech_list)
+    @Bind(R.id.speech_list)
     ListView speechList;
 
     @Override

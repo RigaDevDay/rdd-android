@@ -8,10 +8,8 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.google.common.base.Function;
-import com.google.common.collect.Collections2;
-
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
@@ -44,12 +42,11 @@ public class BookmarkListAdapter extends ArrayAdapter<Presentation> {
     }
 
     private Collection<String> collectStartTimes(List<Presentation> items) {
-        return Collections2.transform(items, new Function<Presentation, String>() {
-            @Override
-            public String apply(Presentation item) {
-                return dateFormat.format(item.getStartTime());
-            }
-        });
+        List<String> dates = new ArrayList<>(items.size());
+        for (Presentation item: items) {
+            dates.add(dateFormat.format(item.getStartTime()));
+        }
+        return dates;
     }
 
     @Override
@@ -89,16 +86,13 @@ public class BookmarkListAdapter extends ArrayAdapter<Presentation> {
 
         ImageView bookmark = ViewHolder.get(convertView, R.id.bi_bookmark);
         bookmark.setTag(R.string.bookmark_item, item);
-        bookmark.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Presentation presentation = (Presentation) view.getTag(R.string.bookmark_item);
-                presentation.setBookmarked(false);
-                presentation.save();
-                items.remove(presentation);
-                startTimes = collectStartTimes(items);
-                BookmarkListAdapter.this.notifyDataSetChanged();
-            }
+        bookmark.setOnClickListener(view -> {
+            Presentation presentation = (Presentation) view.getTag(R.string.bookmark_item);
+            presentation.setBookmarked(false);
+            presentation.save();
+            items.remove(presentation);
+            startTimes = collectStartTimes(items);
+            BookmarkListAdapter.this.notifyDataSetChanged();
         });
     }
 }
