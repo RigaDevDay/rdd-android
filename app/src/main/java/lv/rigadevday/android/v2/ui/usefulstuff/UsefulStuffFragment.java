@@ -1,4 +1,4 @@
-package lv.rigadevday.android.v2.ui.UsefulStuffFragment;
+package lv.rigadevday.android.v2.ui.usefulstuff;
 
 import lv.rigadevday.android.R;
 import lv.rigadevday.android.v2.ui.base.BaseFragment;

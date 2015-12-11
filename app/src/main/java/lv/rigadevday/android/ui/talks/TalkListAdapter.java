@@ -5,7 +5,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -15,7 +14,6 @@ import com.annimon.stream.Stream;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.StringTokenizer;
 
 import lv.rigadevday.android.R;
 import lv.rigadevday.android.common.ViewHolder;
@@ -42,7 +40,7 @@ public class TalkListAdapter extends ArrayAdapter<Presentation> {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         if (convertView == null) {
-            convertView = inflater.inflate(R.layout.talk_item, parent, false);
+            convertView = inflater.inflate(R.layout.old_talk_item, parent, false);
         }
 
         Presentation p = getItem(position);

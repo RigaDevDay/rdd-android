@@ -11,7 +11,7 @@ public class OrganizerFragment extends BaseFragment {
 
     @Override
     protected int contentViewId() {
-        return R.layout.organizer_screen;
+        return R.layout.old_organizer_screen;
     }
 
     @Override

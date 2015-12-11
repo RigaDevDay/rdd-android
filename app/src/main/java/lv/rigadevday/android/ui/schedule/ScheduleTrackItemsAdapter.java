@@ -45,7 +45,7 @@ public class ScheduleTrackItemsAdapter extends ArrayAdapter<TrackItemHolder> {
         ViewType type = ViewType.values()[getItemViewType(i)];
 
         if (convertView == null) {
-            int layout = ViewType.EVENT.equals(type) ? R.layout.schedule_item_event : R.layout.schedule_item_presentation;
+            int layout = ViewType.EVENT.equals(type) ? R.layout.old_schedule_item_event : R.layout.old_schedule_item_presentation;
             convertView = inflater.inflate(layout, parent, false);
         }
 

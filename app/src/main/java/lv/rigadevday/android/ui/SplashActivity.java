@@ -12,7 +12,7 @@ public class SplashActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.splash_screen);
+        setContentView(R.layout.old_splash_screen);
         new DatabaseImportOperation().execute();
     }
 

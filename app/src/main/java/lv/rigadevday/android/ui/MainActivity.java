@@ -23,7 +23,7 @@ public class MainActivity extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         BaseApplication.inject(this);
-        setContentView(R.layout.activity_screen);
+        setContentView(R.layout.old_activity_screen);
 
         presenter.initPresenter(this);
         presenter.initNavigationDrawer();

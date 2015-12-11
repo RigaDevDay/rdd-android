@@ -3,7 +3,7 @@ package lv.rigadevday.android.v2.ui.drawer;
 import android.view.MenuItem;
 
 import lv.rigadevday.android.R;
-import lv.rigadevday.android.v2.ui.UsefulStuffFragment.UsefulStuffFragment;
+import lv.rigadevday.android.v2.ui.usefulstuff.UsefulStuffFragment;
 import lv.rigadevday.android.v2.ui.favorites.FavoritesFragment;
 import lv.rigadevday.android.v2.ui.organizers.OrganizersFragment;
 import lv.rigadevday.android.v2.ui.schedule.ScheduleFragment;

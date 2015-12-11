@@ -22,7 +22,7 @@ public class ScheduleFragment extends BaseFragment {
 
     @Override
     protected int contentViewId() {
-        return R.layout.schedule_screen;
+        return R.layout.old_schedule_screen;
     }
 
     @Override

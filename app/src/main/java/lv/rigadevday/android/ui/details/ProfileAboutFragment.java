@@ -17,7 +17,7 @@ public class ProfileAboutFragment extends BaseFragment {
 
     @Override
     protected int contentViewId() {
-        return R.layout.profile_about_fragment;
+        return R.layout.old_profile_about_fragment;
     }
 
     @Override

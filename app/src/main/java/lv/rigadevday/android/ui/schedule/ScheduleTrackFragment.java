@@ -49,7 +49,7 @@ public class ScheduleTrackFragment extends BaseFragment {
 
     @Override
     protected int contentViewId() {
-        return R.layout.schedule_track;
+        return R.layout.old_schedule_track;
     }
 
     @Override

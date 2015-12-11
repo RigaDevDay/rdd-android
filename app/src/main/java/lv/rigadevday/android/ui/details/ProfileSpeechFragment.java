@@ -28,7 +28,7 @@ public class ProfileSpeechFragment extends BaseFragment {
 
     @Override
     protected int contentViewId() {
-        return R.layout.profile_speech_fragment;
+        return R.layout.old_profile_speech_fragment;
     }
 
     @Override

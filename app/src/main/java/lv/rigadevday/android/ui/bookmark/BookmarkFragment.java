@@ -37,7 +37,7 @@ public class BookmarkFragment extends BaseFragment {
 
     @Override
     protected int contentViewId() {
-        return R.layout.bookmark_screen;
+        return R.layout.old_bookmark_screen;
     }
 
     @Override

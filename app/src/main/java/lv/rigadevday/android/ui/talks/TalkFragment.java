@@ -32,7 +32,7 @@ public class TalkFragment extends BaseFragment {
 
     @Override
     protected int contentViewId() {
-        return R.layout.talks_screen;
+        return R.layout.old_talks_screen;
     }
 
     @Override

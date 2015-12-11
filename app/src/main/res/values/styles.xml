@@ -9,7 +9,7 @@
 
 
 
-    <!--  Old stuff -->
+    <!--  Old  -->
     <style name="Widget.TagView" parent="@android:style/Widget.TextView">
         <item name="tagCornerRadius">6dp</item>
         <item name="tagPadding">4dp</item>
