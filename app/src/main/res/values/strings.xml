@@ -1,11 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">RigaDevDay</string>
+    <string name="app_name">RigaDevDay 2016</string>
+
+    <string name="drawer_schedule">Schedule</string>
+    <string name="drawer_favorites">Favorites</string>
+    <string name="drawer_sponsors">Sponsors</string>
+    <string name="drawer_organizers">Organizers</string>
+    <string name="drawer_useful">Useful</string>
+
+    <string name="talks">Talk</string>
+
+
     <string name="OK">OK</string>
 
     <string name="about">About</string>
-    <string name="talks">Talks</string>
     <string name="schedule">Schedule</string>
     <string name="organizers">Organizers</string>
     <string name="bookmarks">My bookmarks</string>

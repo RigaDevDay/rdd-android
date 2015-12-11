@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/navigation_item_schedule"
+            android:checked="true"
+            android:icon="@drawable/vector_schedule"
+            android:title="@string/drawer_schedule"/>
+        <item
+            android:id="@+id/navigation_item_favorites"
+            android:icon="@drawable/vector_favorites"
+            android:title="@string/drawer_favorites"/>
+        <item
+            android:id="@+id/navigation_item_sponsors"
+            android:icon="@drawable/vector_sponsors"
+            android:title="@string/drawer_sponsors"/>
+        <item
+            android:id="@+id/navigation_item_organizers"
+            android:icon="@drawable/vector_organizers"
+            android:title="@string/drawer_organizers"/>
+        <item
+            android:id="@+id/navigation_item_useful"
+            android:icon="@drawable/vector_useful"
+            android:title="@string/drawer_useful"/>
+    </group>
+
+</menu>

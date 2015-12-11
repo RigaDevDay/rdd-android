@@ -1,6 +1,8 @@
 package lv.rigadevday.android;
 
 import com.activeandroid.app.Application;
+import com.bettervectordrawable.Convention;
+import com.bettervectordrawable.VectorDrawableCompat;
 
 import java.util.Arrays;
 import java.util.List;
@@ -16,6 +18,8 @@ public class BaseApplication extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
+        initVectors();
+
         DaggerModule[] modules = getModules();
         objectGraph = ObjectGraph.create(modules);
     }
@@ -29,5 +33,13 @@ public class BaseApplication extends Application {
                 new MainModule(this)
         );
         return modules.toArray(new DaggerModule[modules.size()]);
+    }
+
+    private void initVectors() {
+        int[] ids = VectorDrawableCompat.findVectorResourceIdsByConvention(
+                getResources(),
+                R.drawable.class,
+                Convention.RESOURCE_NAME_HAS_VECTOR_PREFIX);
+        VectorDrawableCompat.enableResourceInterceptionFor(getResources(), ids);
     }
 }

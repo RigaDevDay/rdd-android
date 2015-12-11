@@ -17,7 +17,7 @@ import lv.rigadevday.android.R;
 import lv.rigadevday.android.domain.Presentation;
 import lv.rigadevday.android.domain.SpeakerPresentation;
 import lv.rigadevday.android.infrastructure.FragmentFactory;
-import lv.rigadevday.android.ui.BaseFragment;
+import lv.rigadevday.android.v2.ui.base.BaseFragment;
 import lv.rigadevday.android.ui.details.ProfileFragment;
 
 public class BookmarkFragment extends BaseFragment {

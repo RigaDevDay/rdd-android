@@ -1,17 +1,15 @@
 <resources>
 
-    <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.NoActionBar">
-        <!-- colorPrimary is used for the default action bar background -->
-        <item name="colorPrimary">@color/primary</item>
+    <!-- Font family values -->
+    <string name="family_regular">sans-serif</string>
+    <string name="family_light">sans-serif-light</string>
+    <string name="family_condensed">sans-serif-condensed</string>
+    <string name="family_thin">sans-serif-thin</string>
+    <string name="family_medium">sans-serif-medium</string>
 
-        <!-- colorPrimaryDark is used for the status bar -->
-        <item name="colorPrimaryDark">@color/night_rider</item>
-        <item name="tagViewStyle">@style/Widget.TagView</item>
-    </style>
-    <!-- Style intended to be used in View -->
-    <style name="Widget" />
 
+
+    <!--  Old stuff -->
     <style name="Widget.TagView" parent="@android:style/Widget.TextView">
         <item name="tagCornerRadius">6dp</item>
         <item name="tagPadding">4dp</item>

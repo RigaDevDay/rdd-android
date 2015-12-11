@@ -10,7 +10,6 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.annimon.stream.Stream;
 import com.squareup.picasso.Picasso;
 
 import javax.inject.Inject;
@@ -23,7 +22,7 @@ import lv.rigadevday.android.domain.Contact;
 import lv.rigadevday.android.domain.Speaker;
 import lv.rigadevday.android.domain.reference.ContactType;
 import lv.rigadevday.android.infrastructure.FragmentFactory;
-import lv.rigadevday.android.ui.BaseFragment;
+import lv.rigadevday.android.v2.ui.base.BaseFragment;
 
 public class ProfileFragment extends BaseFragment {
 

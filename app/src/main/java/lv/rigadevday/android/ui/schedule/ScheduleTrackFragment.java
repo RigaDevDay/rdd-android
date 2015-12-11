@@ -20,7 +20,7 @@ import lv.rigadevday.android.domain.Presentation;
 import lv.rigadevday.android.domain.SpeakerPresentation;
 import lv.rigadevday.android.domain.TrackPresentations;
 import lv.rigadevday.android.infrastructure.FragmentFactory;
-import lv.rigadevday.android.ui.BaseFragment;
+import lv.rigadevday.android.v2.ui.base.BaseFragment;
 import lv.rigadevday.android.ui.custom.BookmarkClickListener;
 import lv.rigadevday.android.ui.details.ProfileFragment;
 
