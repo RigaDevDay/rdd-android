@@ -28,7 +28,7 @@ public class SpeechListAdapter extends ArrayAdapter<Presentation> {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         if (convertView == null) {
-            convertView = inflater.inflate(R.layout.profile_speech_item, parent, false);
+            convertView = inflater.inflate(R.layout.old_profile_speech_item, parent, false);
         }
 
         Presentation p = getItem(position);

@@ -1,6 +1,6 @@
 package lv.rigadevday.android.application.navigation;
 
-import lv.rigadevday.android.ui.BaseFragment;
+import lv.rigadevday.android.v2.ui.base.BaseFragment;
 
 public class NavigationOption {
 

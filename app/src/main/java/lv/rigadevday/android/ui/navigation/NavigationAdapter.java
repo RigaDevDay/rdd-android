@@ -29,7 +29,7 @@ public class NavigationAdapter extends ArrayAdapter<NavigationOption> {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         if (convertView == null) {
-            convertView = LayoutInflater.from(getContext()).inflate(R.layout.navigation_item, parent, false);
+            convertView = LayoutInflater.from(getContext()).inflate(R.layout.old_navigation_item, parent, false);
         }
 
         NavigationOption option = getItem(position);

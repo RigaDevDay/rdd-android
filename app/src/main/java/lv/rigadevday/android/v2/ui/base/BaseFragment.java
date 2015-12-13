@@ -1,22 +1,23 @@
-package lv.rigadevday.android.ui;
+package lv.rigadevday.android.v2.ui.base;
 
 import android.os.Bundle;
+import android.support.annotation.LayoutRes;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.squareup.otto.Bus;
-
 import javax.inject.Inject;
 
 import butterknife.ButterKnife;
+import de.greenrobot.event.EventBus;
 import lv.rigadevday.android.BaseApplication;
+import lv.rigadevday.android.v2.navigation.StubEvent;
 
 public abstract class BaseFragment extends Fragment {
 
     @Inject
-    Bus bus;
+    EventBus bus;
 
 	@Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -42,10 +43,12 @@ public abstract class BaseFragment extends Fragment {
 
     protected void init(Bundle savedInstanceState){}
 
+    @LayoutRes
     protected abstract int contentViewId();
 
-    public MainActivity getMainActivity() {
-        return (MainActivity) getActivity();
+    public void onEvent(final StubEvent event){
+        // EventBus supports registering of base classes, but it needs at
+        // least one onEvent() method in base class to register
     }
 
 }

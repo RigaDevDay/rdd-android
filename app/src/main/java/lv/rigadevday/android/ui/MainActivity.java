@@ -5,17 +5,16 @@ import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.view.MenuItem;
 
-import com.squareup.otto.Bus;
-
 import javax.inject.Inject;
 
+import de.greenrobot.event.EventBus;
 import lv.rigadevday.android.BaseApplication;
 import lv.rigadevday.android.R;
 
 public class MainActivity extends ActionBarActivity {
 
     @Inject
-    Bus bus;
+    EventBus bus;
 
     @Inject
     MainActivityPresenter presenter;
@@ -24,7 +23,7 @@ public class MainActivity extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         BaseApplication.inject(this);
-        setContentView(R.layout.activity_screen);
+        setContentView(R.layout.old_activity_screen);
 
         presenter.initPresenter(this);
         presenter.initNavigationDrawer();

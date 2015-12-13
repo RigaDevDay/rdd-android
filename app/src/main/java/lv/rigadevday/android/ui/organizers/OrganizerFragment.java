@@ -4,14 +4,14 @@ import android.os.Bundle;
 
 import butterknife.OnClick;
 import lv.rigadevday.android.R;
-import lv.rigadevday.android.ui.BaseFragment;
+import lv.rigadevday.android.v2.ui.base.BaseFragment;
 import lv.rigadevday.android.common.DialogHelper;
 
 public class OrganizerFragment extends BaseFragment {
 
     @Override
     protected int contentViewId() {
-        return R.layout.organizer_screen;
+        return R.layout.old_organizer_screen;
     }
 
     @Override

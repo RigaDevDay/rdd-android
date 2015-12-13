@@ -3,38 +3,38 @@ package lv.rigadevday.android.infrastructure.dagger;
 import android.content.Context;
 import android.view.LayoutInflater;
 
-import com.squareup.otto.Bus;
-
 import javax.inject.Singleton;
 
 import dagger.Module;
 import dagger.Provides;
+import de.greenrobot.event.EventBus;
 import lv.rigadevday.android.BaseApplication;
-import lv.rigadevday.android.ui.MainActivity;
-import lv.rigadevday.android.ui.bookmark.BookmarkFragment;
-import lv.rigadevday.android.ui.details.ProfileAboutFragment;
-import lv.rigadevday.android.ui.details.ProfileFragment;
-import lv.rigadevday.android.ui.details.ProfileSpeechFragment;
-import lv.rigadevday.android.ui.organizers.OrganizerFragment;
-import lv.rigadevday.android.ui.schedule.ScheduleFragment;
-import lv.rigadevday.android.ui.schedule.ScheduleTrackFragment;
-import lv.rigadevday.android.ui.talks.TalkFragment;
+import lv.rigadevday.android.v2.ui.usefulstuff.UsefulStuffFragment;
+import lv.rigadevday.android.v2.ui.base.BaseActivity;
+import lv.rigadevday.android.v2.ui.drawer.DrawerActivity;
+import lv.rigadevday.android.v2.ui.favorites.FavoritesFragment;
+import lv.rigadevday.android.v2.ui.organizers.OrganizersFragment;
+import lv.rigadevday.android.v2.ui.schedule.ScheduleFragment;
+import lv.rigadevday.android.v2.ui.sponsors.SponsorsFragment;
+import lv.rigadevday.android.v2.ui.talk.TalkActivity;
+import lv.rigadevday.android.v2.ui.talk.TalkFragment;
 
 @Module(
         injects = {
                 BaseApplication.class,
-                MainActivity.class,
 
-                TalkFragment.class,
+                BaseActivity.class,
+                DrawerActivity.class,
+                TalkActivity.class,
+
                 ScheduleFragment.class,
-                ScheduleTrackFragment.class,
-                OrganizerFragment.class,
-                BookmarkFragment.class,
-
-                ProfileFragment.class,
-                ProfileAboutFragment.class,
-                ProfileSpeechFragment.class
-        }
+                FavoritesFragment.class,
+                SponsorsFragment.class,
+                OrganizersFragment.class,
+                UsefulStuffFragment.class,
+                TalkFragment.class,
+        },
+        library = true
 )
 public class MainModule implements DaggerModule {
 
@@ -46,8 +46,8 @@ public class MainModule implements DaggerModule {
 
     @Provides
     @Singleton
-    Bus provideBus() {
-        return new Bus();
+    EventBus provideBus() {
+        return new EventBus();
     }
 
     @Provides

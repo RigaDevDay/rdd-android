@@ -1,9 +1,7 @@
 package lv.rigadevday.android.ui;
 
 import android.content.Context;
-import android.content.Intent;
 import android.content.res.Configuration;
-import android.net.Uri;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.view.GravityCompat;
@@ -30,6 +28,7 @@ import lv.rigadevday.android.common.SocialNetworkNagivationService;
 import lv.rigadevday.android.infrastructure.FragmentFactory;
 import lv.rigadevday.android.ui.navigation.NavigationAdapter;
 import lv.rigadevday.android.ui.schedule.ScheduleFragment;
+import lv.rigadevday.android.v2.ui.base.BaseFragment;
 
 @Singleton
 public class MainActivityPresenter {

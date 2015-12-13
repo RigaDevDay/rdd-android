@@ -7,7 +7,7 @@ import android.widget.TextView;
 import butterknife.Bind;
 import lv.rigadevday.android.R;
 import lv.rigadevday.android.domain.Speaker;
-import lv.rigadevday.android.ui.BaseFragment;
+import lv.rigadevday.android.v2.ui.base.BaseFragment;
 
 public class ProfileAboutFragment extends BaseFragment {
 
@@ -17,7 +17,7 @@ public class ProfileAboutFragment extends BaseFragment {
 
     @Override
     protected int contentViewId() {
-        return R.layout.profile_about_fragment;
+        return R.layout.old_profile_about_fragment;
     }
 
     @Override

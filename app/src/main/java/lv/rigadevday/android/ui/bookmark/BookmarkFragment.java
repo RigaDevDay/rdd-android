@@ -17,7 +17,7 @@ import lv.rigadevday.android.R;
 import lv.rigadevday.android.domain.Presentation;
 import lv.rigadevday.android.domain.SpeakerPresentation;
 import lv.rigadevday.android.infrastructure.FragmentFactory;
-import lv.rigadevday.android.ui.BaseFragment;
+import lv.rigadevday.android.v2.ui.base.BaseFragment;
 import lv.rigadevday.android.ui.details.ProfileFragment;
 
 public class BookmarkFragment extends BaseFragment {
@@ -37,7 +37,7 @@ public class BookmarkFragment extends BaseFragment {
 
     @Override
     protected int contentViewId() {
-        return R.layout.bookmark_screen;
+        return R.layout.old_bookmark_screen;
     }
 
     @Override

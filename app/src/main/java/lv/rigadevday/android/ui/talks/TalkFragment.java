@@ -3,7 +3,6 @@ package lv.rigadevday.android.ui.talks;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.ListView;
 
 import java.util.List;
@@ -16,7 +15,7 @@ import lv.rigadevday.android.R;
 import lv.rigadevday.android.domain.Presentation;
 import lv.rigadevday.android.domain.SpeakerPresentation;
 import lv.rigadevday.android.infrastructure.FragmentFactory;
-import lv.rigadevday.android.ui.BaseFragment;
+import lv.rigadevday.android.v2.ui.base.BaseFragment;
 import lv.rigadevday.android.ui.custom.BookmarkClickListener;
 import lv.rigadevday.android.ui.details.ProfileFragment;
 
@@ -33,7 +32,7 @@ public class TalkFragment extends BaseFragment {
 
     @Override
     protected int contentViewId() {
-        return R.layout.talks_screen;
+        return R.layout.old_talks_screen;
     }
 
     @Override
