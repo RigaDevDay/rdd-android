@@ -6,10 +6,10 @@ import java.util.List;
  */
 public class TimeSlot {
 
-    String time;
-    String endTime;
-    String icon;
-    String color;
-    List<Event> events;
+    public String time;
+    public String endTime;
+    public String icon;
+    public String color;
+    public List<Event> events;
 
 }
