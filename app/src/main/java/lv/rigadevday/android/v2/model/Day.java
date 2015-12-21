@@ -2,7 +2,7 @@ package lv.rigadevday.android.v2.model;
 
 /**
  */
-public class Days {
+public class Day {
 
     public String title;
     public Schedule schedule;

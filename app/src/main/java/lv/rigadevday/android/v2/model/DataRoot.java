@@ -8,6 +8,6 @@ public class DataRoot {
 
     public List<Staff> staff;
     public List<Speaker> speakers;
-    public List<Days> days;
+    public List<Day> days;
 
 }

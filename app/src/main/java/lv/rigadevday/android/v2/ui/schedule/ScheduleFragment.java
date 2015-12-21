@@ -3,32 +3,34 @@ package lv.rigadevday.android.v2.ui.schedule;
 import android.os.Bundle;
 import android.support.annotation.LayoutRes;
 import android.support.annotation.Nullable;
+import android.support.design.widget.TabLayout;
+import android.support.v4.view.ViewPager;
 import android.view.View;
-import android.widget.TextView;
-
-import java.util.List;
-
-import javax.inject.Inject;
 
 import butterknife.Bind;
-import butterknife.OnClick;
-import de.greenrobot.event.EventBus;
 import lv.rigadevday.android.R;
-import lv.rigadevday.android.v2.model.Days;
+import lv.rigadevday.android.v2.model.Day;
+import lv.rigadevday.android.v2.networking.DataFetchStub;
 import lv.rigadevday.android.v2.ui.base.BaseFragment;
-import lv.rigadevday.android.v2.navigation.OpenTalkEvent;
+import lv.rigadevday.android.v2.ui.base.ViewPagerAdapter;
+import lv.rigadevday.android.v2.ui.schedule.day.DayScheduleFragment;
+import rx.Observable;
+import rx.Subscriber;
+import rx.Subscription;
+import rx.android.schedulers.AndroidSchedulers;
+import rx.schedulers.Schedulers;
 
 /**
  */
-public class ScheduleFragment extends BaseFragment implements ScheduleFragmentPresenter {
+public class ScheduleFragment extends BaseFragment {
 
-    @Inject
-    EventBus mBus;
+    @Bind(R.id.schedule_tabs)
+    TabLayout mTabs;
+    @Bind(R.id.schedule_pager)
+    ViewPager mPager;
 
-    @Bind(R.id.schedule_label)
-    TextView mLabel;
-
-    private ScheduleFragmentController mController;
+    private ViewPagerAdapter mAdapter;
+    private Subscription mDataFetch;
 
     @Override
     @LayoutRes
@@ -38,40 +40,46 @@ public class ScheduleFragment extends BaseFragment implements ScheduleFragmentPr
 
     @Override
     protected void init(Bundle savedInstanceState) {
-        mController = new ScheduleFragmentController(this);
-    }
-
-    @Override
-    public void openTalk() {
-        mBus.post(new OpenTalkEvent());
-    }
-
-    @OnClick(R.id.schedule_button)
-    protected void onButtonClicked() {
-        mController.buttonClicked();
-    }
-
-    @Override
-    public void onResume() {
-        super.onResume();
-        mController.onResume();
-        mController.fetch();
-    }
-
-    @Override
-    public void onPause() {
-        super.onPause();
-        mController.onPause();
+        mAdapter = new ViewPagerAdapter(getChildFragmentManager());
     }
 
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        if (savedInstanceState == null)
+            setupList();
+    }
+
+    public void setupList() {
+        // TODO make call for DataFetchService.getData() when it is in place
+        mDataFetch = DataFetchStub.getData(getContext())
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .flatMap(data -> Observable.from(data.days))
+                .subscribe(new Subscriber<Day>() {
+                    @Override
+                    public void onCompleted() {
+                        mPager.setAdapter(mAdapter);
+                        mTabs.setupWithViewPager(mPager);
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        e.printStackTrace();
+                    }
+
+                    @Override
+                    public void onNext(Day day) {
+                        mAdapter.addFragment(DayScheduleFragment.newInstance(day.schedule), day.title);
+                    }
+                });
     }
 
     @Override
-    public void setupList(List<Days> data) {
-        mLabel.setText(data.toString());
+    public void onDestroy() {
+        mDataFetch.unsubscribe();
+        super.onDestroy();
     }
+
 }
 
