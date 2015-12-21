@@ -4,10 +4,10 @@ package lv.rigadevday.android.v2.model;
  */
 public class Staff {
 
-    String name;
-    String img;
-    String twitter;
-    String linkedin;
-    String description;
+   public String name;
+   public String img;
+   public String twitter;
+   public String linkedin;
+   public String description;
 
 }

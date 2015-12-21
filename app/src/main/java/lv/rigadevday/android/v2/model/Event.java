@@ -6,10 +6,10 @@ import java.util.List;
  */
 public class Event {
 
-    String title;
-    String subtitle;
-    String description;
-    List<String> speaker;
-    List<String> tags;
+    public String title;
+    public String subtitle;
+    public String description;
+    public List<String> speaker;
+    public List<String> tags;
 
 }

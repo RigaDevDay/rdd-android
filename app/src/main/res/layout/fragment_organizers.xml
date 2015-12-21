@@ -8,7 +8,6 @@
         android:id="@+id/organizers_label"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/toolbar"
         android:layout_centerInParent="true"
         android:layout_margin="@dimen/base_margin"
         android:fontFamily="@string/family_regular"

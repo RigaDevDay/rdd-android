@@ -6,8 +6,8 @@ import java.util.List;
  */
 public class Schedule {
 
-    List<String> roomNames;
-    List<String> trackNames;
-    List<TimeSlot> schedule;
+    public List<String> roomNames;
+    public List<String> trackNames;
+    public List<TimeSlot> schedule;
 
 }

@@ -4,7 +4,7 @@ package lv.rigadevday.android.v2.model;
  */
 public class Days {
 
-    String title;
-    Schedule schedule;
+    public String title;
+    public Schedule schedule;
 
 }

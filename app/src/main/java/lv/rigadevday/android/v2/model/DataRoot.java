@@ -6,8 +6,8 @@ import java.util.List;
  */
 public class DataRoot {
 
-    List<Staff> staff;
-    List<Speaker> speakers;
-    List<Days> days;
+    public List<Staff> staff;
+    public List<Speaker> speakers;
+    public List<Days> days;
 
 }

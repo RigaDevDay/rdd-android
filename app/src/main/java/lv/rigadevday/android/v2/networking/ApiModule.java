@@ -7,6 +7,7 @@ import javax.inject.Singleton;
 
 import dagger.Module;
 import dagger.Provides;
+import lv.rigadevday.android.infrastructure.dagger.MainModule;
 import retrofit.GsonConverterFactory;
 import retrofit.Retrofit;
 import retrofit.RxJavaCallAdapterFactory;
@@ -15,7 +16,8 @@ import retrofit.RxJavaCallAdapterFactory;
  */
 @Module(
         complete = false,
-        library = true
+        library = true,
+        addsTo = MainModule.class
 )
 public class ApiModule {
 

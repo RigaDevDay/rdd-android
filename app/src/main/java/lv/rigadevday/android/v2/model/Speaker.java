@@ -4,14 +4,14 @@ package lv.rigadevday.android.v2.model;
  */
 public class Speaker {
 
-    String id;
-    String name;
-    String company;
-    String title;
-    String country;
-    String img;
-    String twitter;
-    String blog;
-    String description;
+    public String id;
+    public String name;
+    public String company;
+    public String title;
+    public String country;
+    public String img;
+    public String twitter;
+    public String blog;
+    public String description;
 
 }
