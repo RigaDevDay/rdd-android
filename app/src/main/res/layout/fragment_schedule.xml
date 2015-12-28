@@ -1,28 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/schedule_label"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:layout_margin="@dimen/base_margin"
-        android:fontFamily="@string/family_regular"
-        android:gravity="center"
-        android:text="This is schedule fragment"
-        android:textColor="@color/text_dark_primary"
-        android:textSize="@dimen/text_size_body" />
+    <android.support.design.widget.AppBarLayout
+        android:id="@+id/schedule_app_bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
-    <Button
-        android:id="@+id/schedule_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/schedule_label"
-        android:layout_centerHorizontal="true"
-        android:layout_margin="@dimen/base_margin"
-        android:text="Go to Speach" />
+        <android.support.design.widget.TabLayout
+            android:id="@+id/schedule_tabs"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            app:tabTextColor="@color/text_light_secondary"
+            app:tabSelectedTextColor="@color/text_light_primary"
+            app:tabGravity="fill" />
+    </android.support.design.widget.AppBarLayout>
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/schedule_pager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/schedule_app_bar"
+        tools:background="#543d" />
 
 </RelativeLayout>

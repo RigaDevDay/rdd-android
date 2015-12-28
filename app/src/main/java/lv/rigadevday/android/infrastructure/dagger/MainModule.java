@@ -9,6 +9,7 @@ import dagger.Module;
 import dagger.Provides;
 import de.greenrobot.event.EventBus;
 import lv.rigadevday.android.BaseApplication;
+import lv.rigadevday.android.v2.ui.schedule.day.DayScheduleFragment;
 import lv.rigadevday.android.v2.ui.usefulstuff.UsefulStuffFragment;
 import lv.rigadevday.android.v2.ui.base.BaseActivity;
 import lv.rigadevday.android.v2.ui.drawer.DrawerActivity;
@@ -28,6 +29,7 @@ import lv.rigadevday.android.v2.ui.talk.TalkFragment;
                 TalkActivity.class,
 
                 ScheduleFragment.class,
+                DayScheduleFragment.class,
                 FavoritesFragment.class,
                 SponsorsFragment.class,
                 OrganizersFragment.class,

@@ -37,6 +37,12 @@ public class DataFetchStub {
 
                 if (reader != null) {
                     subscriber.onNext(gson.fromJson(reader, DataRoot.class));
+
+                    try {
+                        reader.close();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
                 }
                 subscriber.onCompleted();
             }
