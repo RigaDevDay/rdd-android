@@ -13,26 +13,4 @@
     <color name="text_dark_primary">#de000000</color>
     <color name="text_dark_secondary">#88000000</color>
 
-
-    <!-- Old -->
-
-    <color name="night_rider">#040203</color>
-    <color name="cerulean">#0193e0</color>
-
-    <!-- PSD colors -->
-
-    <color name="white">#ffffff</color>
-    <color name="near_white">#ffebebeb</color>
-    <color name="tag_color">#ffb4b4b4</color>
-    <color name="inactive_white">#bebfcd</color>
-    <color name="color_fafafa">#fafafa</color>
-    <color name="notification">#ffff0e10</color>
-
-    <color name="primary">#212121</color>
-    <color name="color_404040">#404040</color>
-    <color name="color_a87_3f3f3f">#573f3f3f</color>
-
-    <color name="color_76d4ff">#76d4ff</color>
-    <color name="color_a4a5ba">#a4a5ba</color>
-    <color name="color_262931">#262931</color>
 </resources>

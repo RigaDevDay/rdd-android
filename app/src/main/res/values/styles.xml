@@ -28,14 +28,4 @@
         <item name="android:layout_height">match_parent</item>
     </style>
 
-    <!--  Old  -->
-    <style name="Widget.TagView" parent="@android:style/Widget.TextView">
-        <item name="tagCornerRadius">6dp</item>
-        <item name="tagPadding">4dp</item>
-        <item name="tagUppercase">true</item>
-        <item name="android:textColor">#FFFFFF</item>
-        <item name="android:textSize">9sp</item>
-        <item name="android:lineSpacingExtra">3sp</item>
-        <item name="android:textStyle">bold</item>
-    </style>
 </resources>

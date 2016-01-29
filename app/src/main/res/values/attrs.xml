@@ -1,13 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <resources>
-    <attr name="tagViewStyle" format="reference" />
-    <declare-styleable name="TagView">
-        <attr name="tagCornerRadius" format="dimension" />
-        <attr name="tagPadding" format="dimension" />
-        <attr name="tagUppercase" format="boolean" />
-    </declare-styleable>
-
 
     <declare-styleable name="verticaltextview">
         <attr name="direction">
