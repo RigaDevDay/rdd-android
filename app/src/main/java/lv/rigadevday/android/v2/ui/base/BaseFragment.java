@@ -13,11 +13,17 @@ import butterknife.ButterKnife;
 import de.greenrobot.event.EventBus;
 import lv.rigadevday.android.BaseApplication;
 import lv.rigadevday.android.v2.navigation.StubEvent;
+import lv.rigadevday.android.v2.repository.Repository;
 
 public abstract class BaseFragment extends Fragment {
 
     @Inject
     EventBus bus;
+
+    @Inject
+    protected Repository mRepository;
+
+
 
 	@Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {

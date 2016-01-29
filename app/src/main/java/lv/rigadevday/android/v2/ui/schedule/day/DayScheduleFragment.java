@@ -12,11 +12,14 @@ import butterknife.Bind;
 import lv.rigadevday.android.R;
 import lv.rigadevday.android.v2.model.Schedule;
 import lv.rigadevday.android.v2.ui.base.BaseFragment;
+import rx.android.schedulers.AndroidSchedulers;
+import rx.schedulers.Schedulers;
 
 /**
  */
 public class DayScheduleFragment extends BaseFragment {
 
+    public static final String DAY_TITLE = "day_title";
     @Bind(R.id.day_schedule_recycler)
     protected RecyclerView mRecycler;
 
@@ -32,9 +35,12 @@ public class DayScheduleFragment extends BaseFragment {
 
     private Schedule mSchedule;
 
-    public static DayScheduleFragment newInstance(Schedule schedule) {
+    public static DayScheduleFragment newInstance(String dayTitle) {
+        Bundle b = new Bundle();
+        b.putString(DAY_TITLE, dayTitle);
+
         DayScheduleFragment fragment = new DayScheduleFragment();
-        fragment.setSchedule(schedule);
+        fragment.setArguments(b);
         return fragment;
     }
 
@@ -43,19 +49,22 @@ public class DayScheduleFragment extends BaseFragment {
         return R.layout.fragment_day_schedule;
     }
 
-    public void setSchedule(Schedule schedule) {
-        this.mSchedule = schedule;
-    }
 
     @Override
     protected void init(Bundle savedInstanceState) {
         super.init(savedInstanceState);
+        mRepository.getDay(getArguments().getString(DAY_TITLE))
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(day -> {
+                    mSchedule = day.schedule;
 
-        setRooms(mSchedule.roomNames);
+                    setRooms(mSchedule.roomNames);
 
-        mRecycler.setHasFixedSize(true);
-        mRecycler.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
-        mRecycler.setAdapter(new DayScheduleAdapter(mSchedule.schedule));
+                    mRecycler.setHasFixedSize(true);
+                    mRecycler.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
+                    mRecycler.setAdapter(new DayScheduleAdapter(mSchedule.schedule));
+                });
     }
 
     public void setRooms(List<String> rooms) {

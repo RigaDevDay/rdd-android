@@ -46,8 +46,7 @@ public class DataFetchStub {
                 }
                 subscriber.onCompleted();
             }
-        });
-
+        }).cache();
     }
 
 }

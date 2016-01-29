@@ -1,5 +1,7 @@
 package lv.rigadevday.android;
 
+import android.content.Context;
+
 import com.activeandroid.app.Application;
 import com.bettervectordrawable.Convention;
 import com.bettervectordrawable.VectorDrawableCompat;
@@ -14,11 +16,14 @@ import lv.rigadevday.android.infrastructure.dagger.MainModule;
 public class BaseApplication extends Application {
 
     private static ObjectGraph objectGraph;
+    private static Context appContext;
 
     @Override
     public void onCreate() {
         super.onCreate();
         initVectors();
+
+        appContext = getApplicationContext();
 
         DaggerModule[] modules = getModules();
         objectGraph = ObjectGraph.create(modules);
@@ -41,5 +46,9 @@ public class BaseApplication extends Application {
                 R.drawable.class,
                 Convention.RESOURCE_NAME_HAS_VECTOR_PREFIX);
         VectorDrawableCompat.enableResourceInterceptionFor(getResources(), ids);
+    }
+
+    public static Context getContext() {
+        return appContext;
     }
 }

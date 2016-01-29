@@ -5,12 +5,15 @@ import android.support.annotation.LayoutRes;
 import android.support.annotation.Nullable;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
+import android.util.Log;
 import android.view.View;
 
 import butterknife.Bind;
 import lv.rigadevday.android.R;
 import lv.rigadevday.android.v2.model.Day;
 import lv.rigadevday.android.v2.networking.DataFetchStub;
+import lv.rigadevday.android.v2.repository.InMemoryStorage;
+import lv.rigadevday.android.v2.repository.Repository;
 import lv.rigadevday.android.v2.ui.base.BaseFragment;
 import lv.rigadevday.android.v2.ui.base.ViewPagerAdapter;
 import lv.rigadevday.android.v2.ui.schedule.day.DayScheduleFragment;
@@ -51,11 +54,9 @@ public class ScheduleFragment extends BaseFragment {
     }
 
     public void setupList() {
-        // TODO make call for DataFetchService.getData() when it is in place
-        mDataFetch = DataFetchStub.getData(getContext())
+        mDataFetch = mRepository.getAllDays()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .flatMap(data -> Observable.from(data.days))
                 .subscribe(new Subscriber<Day>() {
                     @Override
                     public void onCompleted() {
@@ -70,7 +71,7 @@ public class ScheduleFragment extends BaseFragment {
 
                     @Override
                     public void onNext(Day day) {
-                        mAdapter.addFragment(DayScheduleFragment.newInstance(day.schedule), day.title);
+                        mAdapter.addFragment(DayScheduleFragment.newInstance(day.title), day.title);
                     }
                 });
     }

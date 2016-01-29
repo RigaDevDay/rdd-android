@@ -9,6 +9,8 @@ import dagger.Module;
 import dagger.Provides;
 import de.greenrobot.event.EventBus;
 import lv.rigadevday.android.BaseApplication;
+import lv.rigadevday.android.v2.repository.InMemoryStorage;
+import lv.rigadevday.android.v2.repository.Repository;
 import lv.rigadevday.android.v2.ui.schedule.day.DayScheduleFragment;
 import lv.rigadevday.android.v2.ui.usefulstuff.UsefulStuffFragment;
 import lv.rigadevday.android.v2.ui.base.BaseActivity;
@@ -50,6 +52,12 @@ public class MainModule implements DaggerModule {
     @Singleton
     EventBus provideBus() {
         return new EventBus();
+    }
+
+    @Provides
+    @Singleton
+    Repository provideRepository() {
+        return InMemoryStorage.getInstance();
     }
 
     @Provides
