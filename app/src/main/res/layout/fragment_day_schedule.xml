@@ -17,35 +17,35 @@
         android:paddingStart="@dimen/schedule_grid_padding_left"
         android:scrollbars="none" />
 
-    <lv.rigadevday.android.v2.ui.VerticalTextView
+    <lv.rigadevday.android.utils.views.VerticalTextView
         android:id="@+id/schedule_room_1"
         style="@style/Schedule.Room"
         android:layout_marginTop="43dp"
         app:direction="downtoup"
         tools:visibility="visible" />
 
-    <lv.rigadevday.android.v2.ui.VerticalTextView
+    <lv.rigadevday.android.utils.views.VerticalTextView
         android:id="@+id/schedule_room_2"
         style="@style/Schedule.Room"
         android:layout_marginTop="123dp"
         app:direction="downtoup"
         tools:visibility="visible" />
 
-    <lv.rigadevday.android.v2.ui.VerticalTextView
+    <lv.rigadevday.android.utils.views.VerticalTextView
         android:id="@+id/schedule_room_3"
         style="@style/Schedule.Room"
         android:layout_marginTop="203dp"
         app:direction="downtoup"
         tools:visibility="visible" />
 
-    <lv.rigadevday.android.v2.ui.VerticalTextView
+    <lv.rigadevday.android.utils.views.VerticalTextView
         android:id="@+id/schedule_room_4"
         style="@style/Schedule.Room"
         android:layout_marginTop="283dp"
         app:direction="downtoup"
         tools:visibility="visible" />
 
-    <lv.rigadevday.android.v2.ui.VerticalTextView
+    <lv.rigadevday.android.utils.views.VerticalTextView
         android:id="@+id/schedule_room_5"
         style="@style/Schedule.Room"
         android:layout_marginTop="363dp"
