@@ -1,28 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical">
+    xmlns:tools="http://schemas.android.com/tools"
+    style="@style/Match">
 
-    <TextView
-        android:id="@+id/speakers_label"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:layout_margin="@dimen/base_margin"
-        android:fontFamily="@string/family_regular"
-        android:gravity="center"
-        android:text="This is speakers fragment"
-        android:textColor="@color/text_dark_primary"
-        android:textSize="@dimen/text_size_body" />
-
-    <Button
-        android:id="@+id/speakers_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/speakers_label"
-        android:layout_centerHorizontal="true"
-        android:layout_margin="@dimen/base_margin"
-        android:text="Go to Speaker" />
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/speakers_recycler"
+        tools:listitem="@layout/item_speakers"
+        style="@style/Match" />
 
 </RelativeLayout>

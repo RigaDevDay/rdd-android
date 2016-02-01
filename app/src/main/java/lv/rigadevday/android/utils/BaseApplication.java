@@ -42,7 +42,7 @@ public class BaseApplication extends Application {
                 getResources(),
                 R.drawable.class,
                 Convention.RESOURCE_NAME_HAS_VECTOR_PREFIX);
-        VectorDrawableCompat.enableResourceInterceptionFor(getResources(), ids);
+        VectorDrawableCompat.enableResourceInterceptionFor(false, getResources(), ids);
     }
 
 }

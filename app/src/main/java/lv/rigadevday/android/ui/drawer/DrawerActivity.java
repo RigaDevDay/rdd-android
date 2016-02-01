@@ -2,6 +2,7 @@ package lv.rigadevday.android.ui.drawer;
 
 import android.content.res.Configuration;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.annotation.StringRes;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.Snackbar;
@@ -18,6 +19,7 @@ import lv.rigadevday.android.ui.base.BaseActivity;
  */
 public class DrawerActivity extends BaseActivity implements DrawerActivityPresenter {
 
+    @Nullable
     @Bind(R.id.toolbar)
     protected Toolbar mToolbar;
     @Bind(R.id.activity_drawer_layout)

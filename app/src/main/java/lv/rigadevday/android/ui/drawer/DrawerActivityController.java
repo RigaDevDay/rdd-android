@@ -16,7 +16,7 @@ public class DrawerActivityController {
     private final DrawerActivityPresenter mPresenter;
 
     private ScheduleFragment mScheduleFragment;
-    private SpeakersFragment mFavoritesFragment;
+    private SpeakersFragment mSpeakersFragment;
     private SponsorsFragment mSponsorsFragment;
     private OrganizersFragment mOrganizersFragment;
     private UsefulStuffFragment mUsefulFragment;
@@ -38,7 +38,7 @@ public class DrawerActivityController {
                 lazyLoadSchedule();
                 return true;
             case R.id.navigation_item_speakers:
-                lazyLoadFavorites();
+                lazyLoadSpeakers();
                 return true;
             case R.id.navigation_item_sponsors:
                 lazyLoadSponsors();
@@ -59,10 +59,10 @@ public class DrawerActivityController {
         mPresenter.openFragment(R.string.drawer_schedule, mScheduleFragment);
     }
 
-    private void lazyLoadFavorites() {
-        if (mFavoritesFragment == null)
-            mFavoritesFragment = new SpeakersFragment();
-        mPresenter.openFragment(R.string.drawer_speakers, mFavoritesFragment);
+    private void lazyLoadSpeakers() {
+        if (mSpeakersFragment == null)
+            mSpeakersFragment = new SpeakersFragment();
+        mPresenter.openFragment(R.string.drawer_speakers, mSpeakersFragment);
     }
 
     private void lazyLoadSponsors() {

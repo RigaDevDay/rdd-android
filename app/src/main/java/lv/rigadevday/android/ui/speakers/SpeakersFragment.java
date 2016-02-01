@@ -2,23 +2,35 @@ package lv.rigadevday.android.ui.speakers;
 
 import android.os.Bundle;
 import android.support.annotation.LayoutRes;
+import android.support.annotation.Nullable;
+import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
+import android.util.Log;
+import android.view.View;
 
 import javax.inject.Inject;
 
-import butterknife.OnClick;
+import butterknife.Bind;
 import de.greenrobot.event.EventBus;
 import lv.rigadevday.android.R;
-import lv.rigadevday.android.ui.navigation.OpenTalkEvent;
 import lv.rigadevday.android.ui.base.BaseFragment;
+import rx.Subscription;
+import rx.android.schedulers.AndroidSchedulers;
+import rx.schedulers.Schedulers;
 
 /**
  */
-public class SpeakersFragment extends BaseFragment implements SpeakersFragmentPresenter {
+public class SpeakersFragment extends BaseFragment {
 
     @Inject
-    EventBus mBus;
+    EventBus bus;
 
-    private SpeakersFragmentController mController;
+    @Bind(R.id.speakers_recycler)
+    protected RecyclerView mRecycler;
+
+    private Subscription mDataFetch;
+    private SpeakersAdapter mAdapter;
 
     @Override
     @LayoutRes
@@ -28,18 +40,34 @@ public class SpeakersFragment extends BaseFragment implements SpeakersFragmentPr
 
     @Override
     protected void init(Bundle savedInstanceState) {
-        mController = new SpeakersFragmentController(this);
     }
 
     @Override
-    public void openTalk() {
-        mBus.post(new OpenTalkEvent());
+    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        if (savedInstanceState == null)
+            setupList();
     }
 
-    @OnClick(R.id.speakers_button)
-    protected void onButtonClicked() {
-        mController.buttonClicked();
+    private void setupList() {
+        RecyclerView.LayoutManager manager = new GridLayoutManager(getContext(), 2, LinearLayoutManager.VERTICAL, false);
+        mRecycler.setLayoutManager(manager);
+
+        mDataFetch = mRepository.getAllSpeakers()
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .toList()
+                .subscribe(list -> {
+                    mAdapter = new SpeakersAdapter(list);
+                    mRecycler.setAdapter(mAdapter);
+                });
     }
 
+    @Override
+    public void onDestroy() {
+        if (mDataFetch != null)
+            mDataFetch.unsubscribe();
+        super.onDestroy();
+    }
 }
 

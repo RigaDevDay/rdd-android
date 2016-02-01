@@ -13,4 +13,6 @@
     <color name="text_dark_primary">#de000000</color>
     <color name="text_dark_secondary">#88000000</color>
 
+    <color name="speakers_item_overlay">#bb000000</color>
+
 </resources>
