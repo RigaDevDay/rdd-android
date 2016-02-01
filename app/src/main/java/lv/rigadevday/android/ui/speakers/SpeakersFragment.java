@@ -1,4 +1,4 @@
-package lv.rigadevday.android.ui.favorites;
+package lv.rigadevday.android.ui.speakers;
 
 import android.os.Bundle;
 import android.support.annotation.LayoutRes;
@@ -13,22 +13,22 @@ import lv.rigadevday.android.ui.base.BaseFragment;
 
 /**
  */
-public class FavoritesFragment extends BaseFragment implements FavoritesFragmentPresenter {
+public class SpeakersFragment extends BaseFragment implements SpeakersFragmentPresenter {
 
     @Inject
     EventBus mBus;
 
-    private FavoritesFragmentController mController;
+    private SpeakersFragmentController mController;
 
     @Override
     @LayoutRes
     protected int contentViewId() {
-        return R.layout.fragment_favorites;
+        return R.layout.fragment_speakers;
     }
 
     @Override
     protected void init(Bundle savedInstanceState) {
-        mController = new FavoritesFragmentController(this);
+        mController = new SpeakersFragmentController(this);
     }
 
     @Override
@@ -36,7 +36,7 @@ public class FavoritesFragment extends BaseFragment implements FavoritesFragment
         mBus.post(new OpenTalkEvent());
     }
 
-    @OnClick(R.id.favorites_button)
+    @OnClick(R.id.speakers_button)
     protected void onButtonClicked() {
         mController.buttonClicked();
     }

@@ -15,7 +15,7 @@ import lv.rigadevday.android.ui.schedule.day.DayScheduleFragment;
 import lv.rigadevday.android.ui.usefulstuff.UsefulStuffFragment;
 import lv.rigadevday.android.ui.base.BaseActivity;
 import lv.rigadevday.android.ui.drawer.DrawerActivity;
-import lv.rigadevday.android.ui.favorites.FavoritesFragment;
+import lv.rigadevday.android.ui.speakers.SpeakersFragment;
 import lv.rigadevday.android.ui.organizers.OrganizersFragment;
 import lv.rigadevday.android.ui.schedule.ScheduleFragment;
 import lv.rigadevday.android.ui.sponsors.SponsorsFragment;
@@ -32,7 +32,7 @@ import lv.rigadevday.android.ui.talk.TalkFragment;
 
                 ScheduleFragment.class,
                 DayScheduleFragment.class,
-                FavoritesFragment.class,
+                SpeakersFragment.class,
                 SponsorsFragment.class,
                 OrganizersFragment.class,
                 UsefulStuffFragment.class,

@@ -4,7 +4,7 @@
     <string name="app_name">RigaDevDay 2016</string>
 
     <string name="drawer_schedule">Schedule</string>
-    <string name="drawer_favorites">Favorites</string>
+    <string name="drawer_speakers">Speakers</string>
     <string name="drawer_sponsors">Sponsors</string>
     <string name="drawer_organizers">Organizers</string>
     <string name="drawer_useful">Useful</string>

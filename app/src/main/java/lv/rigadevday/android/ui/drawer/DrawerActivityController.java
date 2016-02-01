@@ -4,7 +4,7 @@ import android.view.MenuItem;
 
 import lv.rigadevday.android.R;
 import lv.rigadevday.android.ui.usefulstuff.UsefulStuffFragment;
-import lv.rigadevday.android.ui.favorites.FavoritesFragment;
+import lv.rigadevday.android.ui.speakers.SpeakersFragment;
 import lv.rigadevday.android.ui.organizers.OrganizersFragment;
 import lv.rigadevday.android.ui.schedule.ScheduleFragment;
 import lv.rigadevday.android.ui.sponsors.SponsorsFragment;
@@ -16,7 +16,7 @@ public class DrawerActivityController {
     private final DrawerActivityPresenter mPresenter;
 
     private ScheduleFragment mScheduleFragment;
-    private FavoritesFragment mFavoritesFragment;
+    private SpeakersFragment mFavoritesFragment;
     private SponsorsFragment mSponsorsFragment;
     private OrganizersFragment mOrganizersFragment;
     private UsefulStuffFragment mUsefulFragment;
@@ -37,7 +37,7 @@ public class DrawerActivityController {
             case R.id.navigation_item_schedule:
                 lazyLoadSchedule();
                 return true;
-            case R.id.navigation_item_favorites:
+            case R.id.navigation_item_speakers:
                 lazyLoadFavorites();
                 return true;
             case R.id.navigation_item_sponsors:
@@ -61,8 +61,8 @@ public class DrawerActivityController {
 
     private void lazyLoadFavorites() {
         if (mFavoritesFragment == null)
-            mFavoritesFragment = new FavoritesFragment();
-        mPresenter.openFragment(R.string.drawer_favorites, mFavoritesFragment);
+            mFavoritesFragment = new SpeakersFragment();
+        mPresenter.openFragment(R.string.drawer_speakers, mFavoritesFragment);
     }
 
     private void lazyLoadSponsors() {
