@@ -28,7 +28,6 @@ public class ScheduleFragment extends BaseFragment {
     ViewPager mPager;
 
     private ViewPagerAdapter mAdapter;
-    private Subscription mDataFetch;
 
     @Override
     @LayoutRes
@@ -70,13 +69,5 @@ public class ScheduleFragment extends BaseFragment {
                     }
                 });
     }
-
-    @Override
-    public void onDestroy() {
-        if (mDataFetch != null)
-            mDataFetch.unsubscribe();
-        super.onDestroy();
-    }
-
 }
 

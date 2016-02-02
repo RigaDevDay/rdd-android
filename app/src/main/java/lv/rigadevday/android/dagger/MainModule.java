@@ -23,7 +23,9 @@ import lv.rigadevday.android.ui.organizers.OrganizersFragment;
 import lv.rigadevday.android.ui.schedule.ScheduleFragment;
 import lv.rigadevday.android.ui.schedule.day.DayScheduleFragment;
 import lv.rigadevday.android.ui.speakers.SpeakersAdapter;
-import lv.rigadevday.android.ui.speakers.SpeakersFragment;
+import lv.rigadevday.android.ui.speakers.SpeakersListFragment;
+import lv.rigadevday.android.ui.speakers.speaker.SpeakerActivity;
+import lv.rigadevday.android.ui.speakers.speaker.SpeakerFragment;
 import lv.rigadevday.android.ui.sponsors.SponsorsFragment;
 import lv.rigadevday.android.ui.talk.TalkActivity;
 import lv.rigadevday.android.ui.talk.TalkFragment;
@@ -37,12 +39,14 @@ import lv.rigadevday.android.utils.BaseApplication;
                 BaseActivity.class,
                 DrawerActivity.class,
                 TalkActivity.class,
+                SpeakerActivity.class,
 
                 SpeakersAdapter.class,
 
                 ScheduleFragment.class,
                 DayScheduleFragment.class,
-                SpeakersFragment.class,
+                SpeakersListFragment.class,
+                SpeakerFragment.class,
                 SponsorsFragment.class,
                 OrganizersFragment.class,
                 UsefulStuffFragment.class,
@@ -84,7 +88,6 @@ public class MainModule implements DaggerModule {
         client.setProtocols(Collections.singletonList(Protocol.HTTP_1_1));
 
         return new Picasso.Builder(appContext)
-                .indicatorsEnabled(true)
                 .downloader(new OkHttpDownloader(client))
                 .build();
     }

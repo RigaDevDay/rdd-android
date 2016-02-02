@@ -4,7 +4,7 @@ import android.view.MenuItem;
 
 import lv.rigadevday.android.R;
 import lv.rigadevday.android.ui.usefulstuff.UsefulStuffFragment;
-import lv.rigadevday.android.ui.speakers.SpeakersFragment;
+import lv.rigadevday.android.ui.speakers.SpeakersListFragment;
 import lv.rigadevday.android.ui.organizers.OrganizersFragment;
 import lv.rigadevday.android.ui.schedule.ScheduleFragment;
 import lv.rigadevday.android.ui.sponsors.SponsorsFragment;
@@ -16,7 +16,7 @@ public class DrawerActivityController {
     private final DrawerActivityPresenter mPresenter;
 
     private ScheduleFragment mScheduleFragment;
-    private SpeakersFragment mSpeakersFragment;
+    private SpeakersListFragment mSpeakersFragment;
     private SponsorsFragment mSponsorsFragment;
     private OrganizersFragment mOrganizersFragment;
     private UsefulStuffFragment mUsefulFragment;
@@ -61,7 +61,7 @@ public class DrawerActivityController {
 
     private void lazyLoadSpeakers() {
         if (mSpeakersFragment == null)
-            mSpeakersFragment = new SpeakersFragment();
+            mSpeakersFragment = new SpeakersListFragment();
         mPresenter.openFragment(R.string.drawer_speakers, mSpeakersFragment);
     }
 

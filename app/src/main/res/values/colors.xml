@@ -14,5 +14,6 @@
     <color name="text_dark_secondary">#88000000</color>
 
     <color name="speakers_item_overlay">#bb000000</color>
+    <color name="speaker_social_button_color">@color/color_accent</color>
 
 </resources>

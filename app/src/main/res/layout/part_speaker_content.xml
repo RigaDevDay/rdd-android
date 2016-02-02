@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v4.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    style="@style/Match"
+    android:padding="@dimen/speaker_content_padding"
+    android:clipToPadding="false"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:showIn="@layout/fragment_speaker">
+
+    <LinearLayout
+        android:orientation="vertical"
+        style="@style/Match">
+
+        <TextView
+            android:id="@+id/speaker_title_company"
+            style="@style/Speakers.Text.Title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:text="Code Writer\n at Generic company" />
+
+        <LinearLayout
+            android:layout_margin="@dimen/base_margin"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:gravity="center"
+            android:layout_height="wrap_content">
+
+            <ImageButton
+                android:id="@+id/speaker_button_blog"
+                android:src="@drawable/vector_button_blog"
+                style="@style/Speaker.Button.Social" />
+
+
+            <ImageButton
+                android:id="@+id/speaker_button_twitter"
+                android:src="@drawable/vector_button_twitter"
+                style="@style/Speaker.Button.Social" />
+
+            <ImageButton
+                android:id="@+id/speaker_button_linkedin"
+                android:src="@drawable/vector_button_linkedin"
+                style="@style/Speaker.Button.Social" />
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/speaker_bio"
+            style="@style/Speakers.Text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:text="some long text" />
+
+    </LinearLayout>
+</android.support.v4.widget.NestedScrollView>

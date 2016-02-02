@@ -12,6 +12,7 @@ public class Speaker {
     public String img;
     public String twitter;
     public String blog;
+    public String linkedin;
     public String description;
 
 }
