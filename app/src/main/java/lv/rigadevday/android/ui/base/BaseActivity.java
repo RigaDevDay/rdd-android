@@ -10,6 +10,7 @@ import javax.inject.Inject;
 
 import butterknife.ButterKnife;
 import de.greenrobot.event.EventBus;
+import lv.rigadevday.android.ui.navigation.OpenSpeakerScreen;
 import lv.rigadevday.android.utils.BaseApplication;
 import lv.rigadevday.android.ui.navigation.OpenTalkEvent;
 import lv.rigadevday.android.ui.talk.TalkActivity;
@@ -48,6 +49,10 @@ public abstract class BaseActivity extends AppCompatActivity {
     }
 
     public void onEvent(final OpenTalkEvent event) {
+        startActivity(new Intent(this, TalkActivity.class));
+    }
+
+    public void onEvent(final OpenSpeakerScreen event) {
         startActivity(new Intent(this, TalkActivity.class));
     }
 }

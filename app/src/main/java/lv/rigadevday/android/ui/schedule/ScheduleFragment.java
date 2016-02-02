@@ -73,7 +73,8 @@ public class ScheduleFragment extends BaseFragment {
 
     @Override
     public void onDestroy() {
-        mDataFetch.unsubscribe();
+        if (mDataFetch != null)
+            mDataFetch.unsubscribe();
         super.onDestroy();
     }
 

@@ -8,9 +8,9 @@
             android:icon="@drawable/vector_schedule"
             android:title="@string/drawer_schedule"/>
         <item
-            android:id="@+id/navigation_item_favorites"
-            android:icon="@drawable/vector_favorites"
-            android:title="@string/drawer_favorites"/>
+            android:id="@+id/navigation_item_speakers"
+            android:icon="@drawable/vector_speakers"
+            android:title="@string/drawer_speakers"/>
         <item
             android:id="@+id/navigation_item_sponsors"
             android:icon="@drawable/vector_sponsors"
