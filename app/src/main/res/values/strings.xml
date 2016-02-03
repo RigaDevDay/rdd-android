@@ -7,11 +7,59 @@
     <string name="drawer_speakers">Speakers</string>
     <string name="drawer_sponsors">Sponsors</string>
     <string name="drawer_organizers">Organizers</string>
-    <string name="drawer_useful">Useful</string>
+    <string name="drawer_venues">Venues</string>
 
     <string name="talks">Talk</string>
 
     <string name="speaker_title_company_pattern">%1$s\n at %2$s</string>
+
+    <string name="venue_conference">Conference</string>
+    <string name="venue_workshops">Workshops</string>
+    <string name="venue_afterparty">Afterparty</string>
+    <string name="venue_hotel">Avalon hotel</string>
+
+    <string name="venue_address">Address:</string>
+    <string name="venue_website">Website:</string>
+    <string name="venue_reservation">Reservation:</string>
+    <string name="venue_wifi">Wifi pass:</string>
+
+    <string name="venue_conference_name">Kino Citadele</string>
+    <string name="venue_conference_address">13 Janvara street, 8</string>
+    <string name="venue_conference_web">http://www.forumcinemas.lv</string>
+    <string name="venue_conference_description">Kino Citadele - main conference venue, the largest cinema complex in the very centre of Riga.</string>
+    <string name="venue_conference_wifi">DevDay123</string>
+    <string name="venue_conference_coordinates">56.946323,24.1168107</string>
+
+    <string name="venue_workshops_name">Mercure Hotel</string>
+    <string name="venue_workshops_address">Elizabetes street, 101</string>
+    <string name="venue_workshops_web">http://mercureriga.lv/</string>
+    <string name="venue_workshops_email">H9436@accor.com</string>
+    <string name="venue_workshops_description">Workshops will take place at Mercure Hotel.
+        \n\nPlease mention conference code RIGADEVDAY when you request the reservation at the hotel.
+        \n\nClassic Single room - 68.00 EUR per night.
+        \nClassic Double room - 73.00 EUR per night.
+        \n\nPrice includes a rich breakfast buffet, free WIFI and VAT
+    </string>
+    <string name="venue_workshops_coordinates">56.9475278,24.1216957</string>
+
+    <string name="venue_afterparty_name">Club Friends</string>
+    <string name="venue_afterparty_address">Elizabetes str. 55</string>
+    <string name="venue_afterparty_web">http://www.clubfriends.lv</string>
+    <string name="venue_afterparty_description">The official afterparty location after the first conference day on Wednesday (March 2nd). Everyone is invited!</string>
+    <string name="venue_afterparty_coordinates">56.954886,24.1154179</string>
+
+    <string name="venue_hotel_name">Avalon Hotel</string>
+    <string name="venue_hotel_address">13.Janvara street, 19.</string>
+    <string name="venue_hotel_web">http://www.hotelavalon.eu</string>
+    <string name="venue_hotel_email">Reservations@hotelavalon.eu</string>
+    <string name="venue_hotel_description">Please mention conference code RIGADEVDAY when you request the reservation at the hotel.
+        \n\nStandard Single room EUR 55.00 per night.
+        \nStandard Double room EUR 60.00 per night.
+        \nSuperior Single room EUR 60.00 per night.
+        \nSuperior Double room EUR 70.00 per night.
+        \n\nPrice includes a rich breakfast "buffet", high speed WIFI and VAT. Additional discount for stays of 3 nights min 15%.
+    </string>
+    <string name="venue_hotel_coordinates">56.9454952,24.1098326</string>
 
     <string name="jug_description">
         A Java User Group (JUG) is a group of people who share a common
@@ -37,5 +85,6 @@
     <string name="rddGooglePlus">104346723645688269517</string>
     <string name="rddTwitter">rigadevday</string>
     <string name="rddFacebook">rigadevday</string>
+
 
 </resources>

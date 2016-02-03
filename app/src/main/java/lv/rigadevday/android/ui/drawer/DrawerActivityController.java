@@ -3,7 +3,7 @@ package lv.rigadevday.android.ui.drawer;
 import android.view.MenuItem;
 
 import lv.rigadevday.android.R;
-import lv.rigadevday.android.ui.usefulstuff.UsefulStuffFragment;
+import lv.rigadevday.android.ui.venues.VenuesFragment;
 import lv.rigadevday.android.ui.speakers.SpeakersListFragment;
 import lv.rigadevday.android.ui.organizers.OrganizersFragment;
 import lv.rigadevday.android.ui.schedule.ScheduleFragment;
@@ -19,7 +19,7 @@ public class DrawerActivityController {
     private SpeakersListFragment mSpeakersFragment;
     private SponsorsFragment mSponsorsFragment;
     private OrganizersFragment mOrganizersFragment;
-    private UsefulStuffFragment mUsefulFragment;
+    private VenuesFragment mVenuesFragment;
 
     public DrawerActivityController(DrawerActivityPresenter presenter) {
         mPresenter = presenter;
@@ -40,14 +40,14 @@ public class DrawerActivityController {
             case R.id.navigation_item_speakers:
                 lazyLoadSpeakers();
                 return true;
+            case R.id.navigation_item_venues:
+                lazyLoadVenues();
+                return true;
             case R.id.navigation_item_sponsors:
                 lazyLoadSponsors();
                 return true;
             case R.id.navigation_item_organizers:
                 lazyLoadOrganizers();
-                return true;
-            case R.id.navigation_item_useful:
-                lazyLoadUseful();
                 return true;
         }
         return false;
@@ -77,10 +77,10 @@ public class DrawerActivityController {
         mPresenter.openFragment(R.string.drawer_organizers, mOrganizersFragment);
     }
 
-    private void lazyLoadUseful() {
-        if (mUsefulFragment == null)
-            mUsefulFragment = new UsefulStuffFragment();
-        mPresenter.openFragment(R.string.drawer_useful, mUsefulFragment);
+    private void lazyLoadVenues() {
+        if (mVenuesFragment == null)
+            mVenuesFragment = new VenuesFragment();
+        mPresenter.openFragment(R.string.drawer_venues, mVenuesFragment);
     }
 
 }
