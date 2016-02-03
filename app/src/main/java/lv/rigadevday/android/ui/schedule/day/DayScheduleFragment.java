@@ -53,7 +53,7 @@ public class DayScheduleFragment extends BaseFragment {
     @Override
     protected void init(Bundle savedInstanceState) {
         super.init(savedInstanceState);
-        mRepository.getDay(getArguments().getString(DAY_TITLE))
+        mDataFetch = mRepository.getDay(getArguments().getString(DAY_TITLE))
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(day -> {

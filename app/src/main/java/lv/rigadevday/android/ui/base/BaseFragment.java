@@ -14,6 +14,7 @@ import de.greenrobot.event.EventBus;
 import lv.rigadevday.android.utils.BaseApplication;
 import lv.rigadevday.android.ui.navigation.StubEvent;
 import lv.rigadevday.android.repository.Repository;
+import rx.Subscription;
 
 public abstract class BaseFragment extends Fragment {
 
@@ -23,7 +24,7 @@ public abstract class BaseFragment extends Fragment {
     @Inject
     protected Repository mRepository;
 
-
+    protected Subscription mDataFetch;
 
 	@Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -45,6 +46,13 @@ public abstract class BaseFragment extends Fragment {
     public void onPause() {
         super.onPause();
         bus.unregister(this);
+    }
+
+    @Override
+    public void onDestroy() {
+        if (mDataFetch != null)
+            mDataFetch.unsubscribe();
+        super.onDestroy();
     }
 
     protected void init(Bundle savedInstanceState){}

@@ -21,15 +21,11 @@ import rx.schedulers.Schedulers;
 
 /**
  */
-public class SpeakersFragment extends BaseFragment {
-
-    @Inject
-    EventBus bus;
+public class SpeakersListFragment extends BaseFragment {
 
     @Bind(R.id.speakers_recycler)
     protected RecyclerView mRecycler;
 
-    private Subscription mDataFetch;
     private SpeakersAdapter mAdapter;
 
     @Override
@@ -63,11 +59,5 @@ public class SpeakersFragment extends BaseFragment {
                 });
     }
 
-    @Override
-    public void onDestroy() {
-        if (mDataFetch != null)
-            mDataFetch.unsubscribe();
-        super.onDestroy();
-    }
 }
 

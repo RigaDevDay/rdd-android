@@ -25,6 +25,10 @@
             android:label="@string/talks"
             android:screenOrientation="portrait" />
 
+        <activity
+            android:name=".ui.speakers.speaker.SpeakerActivity"
+            android:label=""
+            android:screenOrientation="portrait" />
     </application>
 
 </manifest>

@@ -11,6 +11,8 @@ import javax.inject.Inject;
 import butterknife.ButterKnife;
 import de.greenrobot.event.EventBus;
 import lv.rigadevday.android.ui.navigation.OpenSpeakerScreen;
+import lv.rigadevday.android.ui.speakers.speaker.SpeakerActivity;
+import lv.rigadevday.android.ui.speakers.speaker.SpeakerFragment;
 import lv.rigadevday.android.utils.BaseApplication;
 import lv.rigadevday.android.ui.navigation.OpenTalkEvent;
 import lv.rigadevday.android.ui.talk.TalkActivity;
@@ -53,6 +55,8 @@ public abstract class BaseActivity extends AppCompatActivity {
     }
 
     public void onEvent(final OpenSpeakerScreen event) {
-        startActivity(new Intent(this, TalkActivity.class));
+        Intent i = new Intent(this, SpeakerActivity.class);
+        i.putExtra(SpeakerFragment.SPEAKER_ID, event.id);
+        startActivity(i);
     }
 }

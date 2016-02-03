@@ -11,7 +11,7 @@
 
     <string name="talks">Talk</string>
 
-
+    <string name="speaker_title_company_pattern">%1$s\n at %2$s</string>
 
     <string name="jug_description">
         A Java User Group (JUG) is a group of people who share a common
