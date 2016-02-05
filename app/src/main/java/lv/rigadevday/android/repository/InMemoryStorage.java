@@ -24,8 +24,9 @@ public class InMemoryStorage implements Repository {
     private static InMemoryStorage sInstance;
 
     public static InMemoryStorage getInstance() {
-        if (sInstance == null)
+        if (sInstance == null) {
             sInstance = new InMemoryStorage();
+        }
         return new InMemoryStorage();
     }
 
@@ -58,7 +59,14 @@ public class InMemoryStorage implements Repository {
     }
 
     @Override
-    public Observable<List<SponsorLogo>> getSponsors(Resources res) {
+    public Observable<Integer> getVersion() {
+        return DataFetchStub.getData(appContext)
+                .flatMap(dataRoot -> Observable.just(dataRoot.version))
+                .cache();
+    }
+
+    @Override
+    public Observable<List<SponsorLogo>> getSponsors() {
         return DataFetchStub.getSponsors(appContext);
     }
 }

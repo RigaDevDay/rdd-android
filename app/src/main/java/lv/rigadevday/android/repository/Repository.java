@@ -21,5 +21,7 @@ public interface Repository {
 
     Observable<Speaker> getSpeakers(String id);
 
-    Observable<List<SponsorLogo>> getSponsors(Resources res);
+    Observable<Integer> getVersion();
+
+    Observable<List<SponsorLogo>> getSponsors();
 }

@@ -10,7 +10,6 @@ import android.view.View;
 import butterknife.Bind;
 import lv.rigadevday.android.R;
 import lv.rigadevday.android.ui.base.BaseFragment;
-import lv.rigadevday.android.ui.speakers.SpeakersAdapter;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
 
@@ -51,7 +50,7 @@ public class OrganizersFragment extends BaseFragment {
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        mDataFetch = mRepository.getSponsors(getContext().getResources())
+        mDataFetch = mRepository.getSponsors()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(list -> {

@@ -35,6 +35,7 @@ import lv.rigadevday.android.ui.venues.places.ConferenceVenueFragment;
 import lv.rigadevday.android.ui.venues.places.HotelVenueFragment;
 import lv.rigadevday.android.ui.venues.places.WorkshopsVenueFragment;
 import lv.rigadevday.android.utils.BaseApplication;
+import lv.rigadevday.android.utils.connectivity.DownloadManager;
 
 @Module(
         injects = {
@@ -63,7 +64,8 @@ import lv.rigadevday.android.utils.BaseApplication;
                 AfterpartyVenueFragment.class,
                 HotelVenueFragment.class,
 
-                InMemoryStorage.class
+                InMemoryStorage.class,
+                DownloadManager.class
         },
         library = true
 )
@@ -79,6 +81,12 @@ public class MainModule implements DaggerModule {
     @Singleton
     EventBus provideBus() {
         return new EventBus();
+    }
+
+    @Provides
+    @Singleton
+    DownloadManager provideDownloadManager() {
+        return DownloadManager.getInstance();
     }
 
     @Provides
