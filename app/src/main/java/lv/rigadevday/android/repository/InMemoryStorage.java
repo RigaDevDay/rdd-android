@@ -4,10 +4,11 @@ import android.content.Context;
 
 import javax.inject.Inject;
 
-import lv.rigadevday.android.utils.BaseApplication;
 import lv.rigadevday.android.repository.model.Day;
 import lv.rigadevday.android.repository.model.Speaker;
 import lv.rigadevday.android.repository.networking.DataFetchStub;
+import lv.rigadevday.android.utils.BaseApplication;
+import lv.rigadevday.android.utils.connectivity.DownloadManager;
 import rx.Observable;
 
 /**
@@ -20,8 +21,9 @@ public class InMemoryStorage implements Repository {
     private static InMemoryStorage sInstance;
 
     public static InMemoryStorage getInstance() {
-        if (sInstance == null)
+        if (sInstance == null) {
             sInstance = new InMemoryStorage();
+        }
         return new InMemoryStorage();
     }
 
@@ -51,5 +53,12 @@ public class InMemoryStorage implements Repository {
     @Override
     public Observable<Speaker> getSpeakers(String id) {
         return getAllSpeakers().filter(speaker -> speaker.id.equalsIgnoreCase(id)).first();
+    }
+
+    @Override
+    public Observable<Integer> getVersion() {
+        return DataFetchStub.getData(appContext)
+                .flatMap(dataRoot -> Observable.just(dataRoot.version))
+                .cache();
     }
 }

@@ -70,7 +70,5 @@ dependencies {
     compile 'de.greenrobot:eventbus:2.4.0'
     compile 'com.bettervectordrawable:lib:0.7'
 
-
     provided 'com.squareup.dagger:dagger-compiler:1.2.2'
-
 }

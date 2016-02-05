@@ -15,4 +15,6 @@ public interface Repository {
     Observable<Speaker> getAllSpeakers();
 
     Observable<Speaker> getSpeakers(String id);
+
+    Observable<Integer> getVersion();
 }
