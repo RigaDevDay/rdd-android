@@ -27,4 +27,7 @@
     <dimen name="speaker_content_padding">16dp</dimen>
     <dimen name="speaker_button_size">56dp</dimen>
 
+    <dimen name="venues_block_spacing_bottom">24dp</dimen>
+    <dimen name="venues_open_button_size">36dp</dimen>
+
 </resources>

@@ -12,6 +12,10 @@
             android:icon="@drawable/vector_speakers"
             android:title="@string/drawer_speakers"/>
         <item
+            android:id="@+id/navigation_item_venues"
+            android:icon="@drawable/vector_venues"
+            android:title="@string/drawer_venues"/>
+        <item
             android:id="@+id/navigation_item_sponsors"
             android:icon="@drawable/vector_sponsors"
             android:title="@string/drawer_sponsors"/>
@@ -19,10 +23,6 @@
             android:id="@+id/navigation_item_organizers"
             android:icon="@drawable/vector_organizers"
             android:title="@string/drawer_organizers"/>
-        <item
-            android:id="@+id/navigation_item_useful"
-            android:icon="@drawable/vector_useful"
-            android:title="@string/drawer_useful"/>
     </group>
 
 </menu>

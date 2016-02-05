@@ -29,7 +29,11 @@ import lv.rigadevday.android.ui.speakers.speaker.SpeakerFragment;
 import lv.rigadevday.android.ui.sponsors.SponsorsFragment;
 import lv.rigadevday.android.ui.talk.TalkActivity;
 import lv.rigadevday.android.ui.talk.TalkFragment;
-import lv.rigadevday.android.ui.usefulstuff.UsefulStuffFragment;
+import lv.rigadevday.android.ui.venues.VenuesFragment;
+import lv.rigadevday.android.ui.venues.places.AfterpartyVenueFragment;
+import lv.rigadevday.android.ui.venues.places.ConferenceVenueFragment;
+import lv.rigadevday.android.ui.venues.places.HotelVenueFragment;
+import lv.rigadevday.android.ui.venues.places.WorkshopsVenueFragment;
 import lv.rigadevday.android.utils.BaseApplication;
 
 @Module(
@@ -45,12 +49,19 @@ import lv.rigadevday.android.utils.BaseApplication;
 
                 ScheduleFragment.class,
                 DayScheduleFragment.class,
+                TalkFragment.class,
+
                 SpeakersListFragment.class,
                 SpeakerFragment.class,
+
                 SponsorsFragment.class,
                 OrganizersFragment.class,
-                UsefulStuffFragment.class,
-                TalkFragment.class,
+
+                VenuesFragment.class,
+                ConferenceVenueFragment.class,
+                WorkshopsVenueFragment.class,
+                AfterpartyVenueFragment.class,
+                HotelVenueFragment.class,
 
                 InMemoryStorage.class
         },
