@@ -11,11 +11,13 @@ import javax.inject.Inject;
 import butterknife.ButterKnife;
 import de.greenrobot.event.EventBus;
 import lv.rigadevday.android.ui.navigation.OpenSpeakerScreen;
+import lv.rigadevday.android.ui.navigation.OpenWeb;
 import lv.rigadevday.android.ui.speakers.speaker.SpeakerActivity;
 import lv.rigadevday.android.ui.speakers.speaker.SpeakerFragment;
 import lv.rigadevday.android.utils.BaseApplication;
 import lv.rigadevday.android.ui.navigation.OpenTalkEvent;
 import lv.rigadevday.android.ui.talk.TalkActivity;
+import lv.rigadevday.android.utils.Utils;
 
 /**
  */
@@ -59,4 +61,9 @@ public abstract class BaseActivity extends AppCompatActivity {
         i.putExtra(SpeakerFragment.SPEAKER_ID, event.id);
         startActivity(i);
     }
+
+    public void onEvent(final OpenWeb event) {
+        Utils.goToWeb(this, event.url);
+    }
+
 }

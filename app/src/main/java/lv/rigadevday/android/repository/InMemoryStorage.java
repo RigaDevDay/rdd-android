@@ -1,9 +1,13 @@
 package lv.rigadevday.android.repository;
 
 import android.content.Context;
+import android.content.res.Resources;
+
+import java.util.List;
 
 import javax.inject.Inject;
 
+import lv.rigadevday.android.repository.model.SponsorLogo;
 import lv.rigadevday.android.utils.BaseApplication;
 import lv.rigadevday.android.repository.model.Day;
 import lv.rigadevday.android.repository.model.Speaker;
@@ -51,5 +55,10 @@ public class InMemoryStorage implements Repository {
     @Override
     public Observable<Speaker> getSpeakers(String id) {
         return getAllSpeakers().filter(speaker -> speaker.id.equalsIgnoreCase(id)).first();
+    }
+
+    @Override
+    public Observable<List<SponsorLogo>> getSponsors(Resources res) {
+        return DataFetchStub.getSponsors(appContext);
     }
 }

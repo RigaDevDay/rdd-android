@@ -19,6 +19,7 @@ import lv.rigadevday.android.repository.InMemoryStorage;
 import lv.rigadevday.android.repository.Repository;
 import lv.rigadevday.android.ui.base.BaseActivity;
 import lv.rigadevday.android.ui.drawer.DrawerActivity;
+import lv.rigadevday.android.ui.organizers.OrganizersAdapter;
 import lv.rigadevday.android.ui.organizers.OrganizersFragment;
 import lv.rigadevday.android.ui.schedule.ScheduleFragment;
 import lv.rigadevday.android.ui.schedule.day.DayScheduleFragment;
@@ -46,6 +47,7 @@ import lv.rigadevday.android.utils.BaseApplication;
                 SpeakerActivity.class,
 
                 SpeakersAdapter.class,
+                OrganizersAdapter.class,
 
                 ScheduleFragment.class,
                 DayScheduleFragment.class,

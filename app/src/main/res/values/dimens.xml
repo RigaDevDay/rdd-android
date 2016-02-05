@@ -30,4 +30,7 @@
     <dimen name="venues_block_spacing_bottom">24dp</dimen>
     <dimen name="venues_open_button_size">36dp</dimen>
 
+    <dimen name="organizers_title_margin_top">24dp</dimen>
+    <dimen name="organizers_logo_size">100dp</dimen>
+
 </resources>
