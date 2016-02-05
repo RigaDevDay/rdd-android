@@ -3,10 +3,8 @@
 
     <!-- Theme colors -->
     <color name="color_primary">#2196F3</color>
-    <color name="color_primary_dark">#1565C0</color>
-    <color name="text_color_primary">#deFFFFFF</color>
+    <color name="color_primary_dark">#1565C0</color>>
     <color name="color_accent">#f44336</color>
-    <color name="window_background">#FFFFFF</color>
 
     <color name="text_light_primary">#deFFFFFF</color>
     <color name="text_light_secondary">#88FFFFFF</color>

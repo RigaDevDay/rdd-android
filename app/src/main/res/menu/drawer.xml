@@ -16,10 +16,6 @@
             android:icon="@drawable/vector_venues"
             android:title="@string/drawer_venues"/>
         <item
-            android:id="@+id/navigation_item_sponsors"
-            android:icon="@drawable/vector_sponsors"
-            android:title="@string/drawer_sponsors"/>
-        <item
             android:id="@+id/navigation_item_organizers"
             android:icon="@drawable/vector_organizers"
             android:title="@string/drawer_organizers"/>

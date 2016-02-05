@@ -3,11 +3,10 @@ package lv.rigadevday.android.ui.drawer;
 import android.view.MenuItem;
 
 import lv.rigadevday.android.R;
-import lv.rigadevday.android.ui.venues.VenuesFragment;
-import lv.rigadevday.android.ui.speakers.SpeakersListFragment;
 import lv.rigadevday.android.ui.organizers.OrganizersFragment;
 import lv.rigadevday.android.ui.schedule.ScheduleFragment;
-import lv.rigadevday.android.ui.sponsors.SponsorsFragment;
+import lv.rigadevday.android.ui.speakers.SpeakersListFragment;
+import lv.rigadevday.android.ui.venues.VenuesFragment;
 
 /**
  */
@@ -17,7 +16,6 @@ public class DrawerActivityController {
 
     private ScheduleFragment mScheduleFragment;
     private SpeakersListFragment mSpeakersFragment;
-    private SponsorsFragment mSponsorsFragment;
     private OrganizersFragment mOrganizersFragment;
     private VenuesFragment mVenuesFragment;
 
@@ -43,9 +41,6 @@ public class DrawerActivityController {
             case R.id.navigation_item_venues:
                 lazyLoadVenues();
                 return true;
-            case R.id.navigation_item_sponsors:
-                lazyLoadSponsors();
-                return true;
             case R.id.navigation_item_organizers:
                 lazyLoadOrganizers();
                 return true;
@@ -63,12 +58,6 @@ public class DrawerActivityController {
         if (mSpeakersFragment == null)
             mSpeakersFragment = new SpeakersListFragment();
         mPresenter.openFragment(R.string.drawer_speakers, mSpeakersFragment);
-    }
-
-    private void lazyLoadSponsors() {
-        if (mSponsorsFragment == null)
-            mSponsorsFragment = new SponsorsFragment();
-        mPresenter.openFragment(R.string.drawer_sponsors, mSponsorsFragment);
     }
 
     private void lazyLoadOrganizers() {

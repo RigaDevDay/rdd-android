@@ -19,7 +19,6 @@
     <dimen name="schedule_room_label_width">24dp</dimen>
     <dimen name="schedule_room_label_height">75dp</dimen>
 
-    <dimen name="speaker_item_cover_height">400dp</dimen>
     <dimen name="speaker_item_text_overlay_height">68dp</dimen>
     <dimen name="speaker_item_text_padding">16dp</dimen>
 

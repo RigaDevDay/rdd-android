@@ -27,7 +27,6 @@ import lv.rigadevday.android.ui.speakers.SpeakersAdapter;
 import lv.rigadevday.android.ui.speakers.SpeakersListFragment;
 import lv.rigadevday.android.ui.speakers.speaker.SpeakerActivity;
 import lv.rigadevday.android.ui.speakers.speaker.SpeakerFragment;
-import lv.rigadevday.android.ui.sponsors.SponsorsFragment;
 import lv.rigadevday.android.ui.talk.TalkActivity;
 import lv.rigadevday.android.ui.talk.TalkFragment;
 import lv.rigadevday.android.ui.venues.VenuesFragment;
@@ -56,7 +55,6 @@ import lv.rigadevday.android.utils.BaseApplication;
                 SpeakersListFragment.class,
                 SpeakerFragment.class,
 
-                SponsorsFragment.class,
                 OrganizersFragment.class,
 
                 VenuesFragment.class,
