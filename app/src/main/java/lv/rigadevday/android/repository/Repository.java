@@ -1,7 +1,5 @@
 package lv.rigadevday.android.repository;
 
-import android.content.res.Resources;
-
 import java.util.List;
 
 import lv.rigadevday.android.repository.model.Day;

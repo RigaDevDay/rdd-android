@@ -1,7 +1,6 @@
 package lv.rigadevday.android.repository;
 
 import android.content.Context;
-import android.content.res.Resources;
 
 import java.util.List;
 
