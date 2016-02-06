@@ -1,0 +1,161 @@
+[
+  {
+    "isHeader": true,
+    "title": "Organizers of the Event"
+  },
+  {
+    "isHeader": false,
+    "image": "assets/img/partners/organizers/gdg-riga.png",
+    "url": "https://plus.google.com/105327287996815830446/posts"
+  },
+  {
+    "isHeader": false,
+    "image": "assets/img/partners/organizers/juglv.png",
+    "url": "http://jug.lv/"
+  },
+  {
+    "isHeader": false,
+    "image": "assets/img/partners/organizers/lvoug.gif",
+    "url": "http://lvoug.lv/"
+  },
+
+  {
+    "isHeader": true,
+    "title": "Our dear Sponsors"
+  },
+  {
+    "isHeader": false,
+    "image": "assets/img/partners/sponsors/accenture.png",
+    "url": "https://www.accenture.com/lv-en"
+  },
+  {
+    "isHeader": false,
+    "image": "assets/img/partners/sponsors/ok.png",
+    "url": "https://v.ok.ru/"
+  },
+  {
+    "isHeader": false,
+    "image": "assets/img/partners/sponsors/ctco_logo.png",
+    "url": "http://ctco.lv/"
+  },
+  {
+    "isHeader": false,
+    "image": "assets/img/partners/sponsors/avonitech.png",
+    "url": "http://avonitech.com/"
+  },
+  {
+    "isHeader": false,
+    "image": "assets/img/partners/sponsors/cluster.png",
+    "url": "https://www.clusterpoint.com/"
+  },
+  {
+    "isHeader": false,
+    "image": "assets/img/partners/sponsors/tele2.png",
+    "url": "http://www.tele2.com/career/ssc/"
+  },
+  {
+    "isHeader": false,
+    "image": "assets/img/partners/sponsors/sap.png",
+    "url": "http://go.sap.com/index.html"
+  },
+  {
+    "isHeader": false,
+    "image": "assets/img/partners/sponsors/evolution.png",
+    "url": "https://www.evolutiongaming.com/"
+  },
+  {
+    "isHeader": false,
+    "image": "assets/img/partners/sponsors/dynatrace.png",
+    "url": "http://www.dynatrace.com/en/index.html"
+  },
+  {
+    "isHeader": false,
+    "image": "assets/img/partners/sponsors/idea-port-riga.png",
+    "url": "http://www.ideaportriga.com/"
+  },
+  {
+    "isHeader": false,
+    "image": "assets/img/partners/sponsors/ibm.png",
+    "url": "http://www-03.ibm.com/employment/"
+  },
+  {
+    "isHeader": false,
+    "image": "assets/img/partners/sponsors/neueda.png",
+    "url": "http://neueda.lv/"
+  },
+
+  {
+    "isHeader": true,
+    "title": "Supported by"
+  },
+  {
+    "isHeader": false,
+    "image": "assets/img/partners/friends/relayr.png",
+    "url": "https://www.relayr.io/"
+  },
+  {
+    "isHeader": false,
+    "image": "assets/img/partners/friends/zparks.png",
+    "url": "http://zparks.lv/"
+  },
+  {
+    "isHeader": false,
+    "image": "assets/img/partners/friends/likeit.png",
+    "url": "http://www.likeit.lv/"
+  },
+  {
+    "isHeader": false,
+    "image": "assets/img/partners/friends/enjoy.png",
+    "url": "http://www.enjoyrecruitment.lv/lv/personala-atlase"
+  },
+  {
+    "isHeader": false,
+    "image": "assets/img/partners/friends/pluralsight.jpg",
+    "url": "https://www.pluralsight.com/"
+  },
+  {
+    "isHeader": false,
+    "image": "assets/img/partners/friends/rigas-dome.png",
+    "url": "https://www.riga.lv/LV/Channels/"
+  },
+  {
+    "isHeader": false,
+    "image": "assets/img/partners/friends/oracle_press.jpg",
+    "url": "http://community.oraclepressbooks.com/"
+  },
+  {
+    "isHeader": false,
+    "image": "assets/img/partners/friends/BdaLogo.png",
+    "url": "http://www.bda.lv/bda4/"
+  },
+
+  {
+    "isHeader": true,
+    "title": "With help from the Community"
+  },
+  {
+    "isHeader": false,
+    "image": "assets/img/partners/friends/latcraft.png",
+    "url": "http://latcraft.lv/"
+  },
+  {
+    "isHeader": false,
+    "image": "assets/img/partners/friends/jug_vilnius.png",
+    "url": "http://vilnius-jug.lt/"
+  },
+  {
+    "isHeader": false,
+    "image": "assets/img/partners/friends/jug_kaunas.png",
+    "url": "http://kaunas-jug.lt/"
+  },
+  {
+    "isHeader": false,
+    "image": "assets/img/partners/friends/gdg_vilnius.png",
+    "url": "https://www.facebook.com/gdgvilnius/"
+  },
+  {
+    "isHeader": false,
+    "image": "assets/img/partners/friends/ldn.png",
+    "url": "http://www.meetup.com/Latvian-Developers-Network/?https=off"
+  }
+]

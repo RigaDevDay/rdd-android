@@ -19,6 +19,7 @@ import lv.rigadevday.android.repository.InMemoryStorage;
 import lv.rigadevday.android.repository.Repository;
 import lv.rigadevday.android.ui.base.BaseActivity;
 import lv.rigadevday.android.ui.drawer.DrawerActivity;
+import lv.rigadevday.android.ui.organizers.OrganizersAdapter;
 import lv.rigadevday.android.ui.organizers.OrganizersFragment;
 import lv.rigadevday.android.ui.schedule.ScheduleFragment;
 import lv.rigadevday.android.ui.schedule.day.DayScheduleFragment;
@@ -26,7 +27,6 @@ import lv.rigadevday.android.ui.speakers.SpeakersAdapter;
 import lv.rigadevday.android.ui.speakers.SpeakersListFragment;
 import lv.rigadevday.android.ui.speakers.speaker.SpeakerActivity;
 import lv.rigadevday.android.ui.speakers.speaker.SpeakerFragment;
-import lv.rigadevday.android.ui.sponsors.SponsorsFragment;
 import lv.rigadevday.android.ui.talk.TalkActivity;
 import lv.rigadevday.android.ui.talk.TalkFragment;
 import lv.rigadevday.android.ui.venues.VenuesFragment;
@@ -47,6 +47,7 @@ import lv.rigadevday.android.utils.connectivity.DownloadManager;
                 SpeakerActivity.class,
 
                 SpeakersAdapter.class,
+                OrganizersAdapter.class,
 
                 ScheduleFragment.class,
                 DayScheduleFragment.class,
@@ -55,7 +56,6 @@ import lv.rigadevday.android.utils.connectivity.DownloadManager;
                 SpeakersListFragment.class,
                 SpeakerFragment.class,
 
-                SponsorsFragment.class,
                 OrganizersFragment.class,
 
                 VenuesFragment.class,

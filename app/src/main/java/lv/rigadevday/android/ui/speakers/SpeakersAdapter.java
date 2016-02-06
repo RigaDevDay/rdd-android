@@ -53,7 +53,8 @@ public class SpeakersAdapter extends RecyclerView.Adapter<SpeakersAdapter.Speake
         Speaker speaker = speakersList.get(position);
 
         picasso.load(Utils.imagePrefix(speaker.img))
-                .fit()
+                .resize(400, 400)
+                .centerInside()
                 .placeholder(R.drawable.vector_speaker_placeholder)
                 .into(holder.picture);
 

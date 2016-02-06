@@ -72,7 +72,8 @@ public class SpeakerFragment extends BaseFragment {
                 .subscribe(speaker -> {
 
                     picasso.load(Utils.imagePrefix(speaker.img))
-                            .fit()
+                            .resize(600, 600)
+                            .centerCrop()
                             .into(image);
 
                     toolbar.setTitle(speaker.name);

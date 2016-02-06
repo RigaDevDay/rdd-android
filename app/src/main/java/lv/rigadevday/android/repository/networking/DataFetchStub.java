@@ -8,8 +8,11 @@ import com.google.gson.GsonBuilder;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.util.List;
 
 import lv.rigadevday.android.repository.model.DataRoot;
+import lv.rigadevday.android.repository.model.SponsorLogo;
+import lv.rigadevday.android.repository.model.SponsorLogoList;
 import rx.Observable;
 import rx.Subscriber;
 
@@ -37,6 +40,35 @@ public class DataFetchStub {
 
                 if (reader != null) {
                     subscriber.onNext(gson.fromJson(reader, DataRoot.class));
+
+                    try {
+                        reader.close();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
+                subscriber.onCompleted();
+            }
+        }).cache();
+    }
+
+    public static Observable<List<SponsorLogo>> getSponsors(Context ctx) {
+        return Observable.create(new Observable.OnSubscribe<List<SponsorLogo>>() {
+            @Override
+            public void call(Subscriber<? super List<SponsorLogo>> subscriber) {
+                InputStreamReader reader = null;
+                try {
+                    InputStream stream = ctx.getAssets().open("sponsors.json");
+                    reader = new InputStreamReader(stream);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                    subscriber.onError(e);
+                }
+
+                Gson gson = new GsonBuilder().create();
+
+                if (reader != null) {
+                    subscriber.onNext(gson.fromJson(reader, SponsorLogoList.class));
 
                     try {
                         reader.close();

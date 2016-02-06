@@ -2,13 +2,15 @@ package lv.rigadevday.android.repository;
 
 import android.content.Context;
 
+import java.util.List;
+
 import javax.inject.Inject;
 
+import lv.rigadevday.android.repository.model.SponsorLogo;
+import lv.rigadevday.android.utils.BaseApplication;
 import lv.rigadevday.android.repository.model.Day;
 import lv.rigadevday.android.repository.model.Speaker;
 import lv.rigadevday.android.repository.networking.DataFetchStub;
-import lv.rigadevday.android.utils.BaseApplication;
-import lv.rigadevday.android.utils.connectivity.DownloadManager;
 import rx.Observable;
 
 /**
@@ -60,5 +62,10 @@ public class InMemoryStorage implements Repository {
         return DataFetchStub.getData(appContext)
                 .flatMap(dataRoot -> Observable.just(dataRoot.version))
                 .cache();
+    }
+
+    @Override
+    public Observable<List<SponsorLogo>> getSponsors() {
+        return DataFetchStub.getSponsors(appContext);
     }
 }

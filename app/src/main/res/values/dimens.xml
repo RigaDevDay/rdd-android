@@ -19,15 +19,17 @@
     <dimen name="schedule_room_label_width">24dp</dimen>
     <dimen name="schedule_room_label_height">75dp</dimen>
 
-    <dimen name="speaker_item_cover_height">400dp</dimen>
     <dimen name="speaker_item_text_overlay_height">68dp</dimen>
     <dimen name="speaker_item_text_padding">16dp</dimen>
 
-    <dimen name="speaker_image_size">320dp</dimen>
+    <dimen name="speaker_image_size">360dp</dimen>
     <dimen name="speaker_content_padding">16dp</dimen>
     <dimen name="speaker_button_size">56dp</dimen>
 
     <dimen name="venues_block_spacing_bottom">24dp</dimen>
     <dimen name="venues_open_button_size">36dp</dimen>
+
+    <dimen name="organizers_title_margin_top">24dp</dimen>
+    <dimen name="organizers_logo_size">100dp</dimen>
 
 </resources>
