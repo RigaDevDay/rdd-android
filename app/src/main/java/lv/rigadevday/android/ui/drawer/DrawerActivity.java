@@ -9,15 +9,25 @@ import android.support.design.widget.Snackbar;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.Toolbar;
+import android.view.Menu;
+import android.view.MenuItem;
+
+import javax.inject.Inject;
 
 import butterknife.Bind;
+import de.greenrobot.event.EventBus;
 import lv.rigadevday.android.R;
-import lv.rigadevday.android.ui.base.BaseFragment;
 import lv.rigadevday.android.ui.base.BaseActivity;
+import lv.rigadevday.android.ui.base.BaseFragment;
+import lv.rigadevday.android.ui.navigation.OpenLicencesScreen;
+import lv.rigadevday.android.utils.Utils;
 
 /**
  */
 public class DrawerActivity extends BaseActivity implements DrawerActivityPresenter {
+
+    @Inject
+    EventBus bus;
 
     @Nullable
     @Bind(R.id.toolbar)
@@ -86,4 +96,22 @@ public class DrawerActivity extends BaseActivity implements DrawerActivityPresen
         Snackbar.make(drawer, textId, Snackbar.LENGTH_SHORT).show();
     }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.main_menu, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.action_twitter:
+                Utils.goToTwitter(this, getString(R.string.hashtag));
+                break;
+            case R.id.action_licences:
+                bus.post(new OpenLicencesScreen());
+                break;
+        }
+        return super.onOptionsItemSelected(item);
+    }
 }

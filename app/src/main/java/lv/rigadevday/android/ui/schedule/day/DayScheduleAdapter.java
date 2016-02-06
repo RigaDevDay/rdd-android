@@ -18,7 +18,7 @@ import lv.rigadevday.android.R;
 import lv.rigadevday.android.repository.Repository;
 import lv.rigadevday.android.repository.model.Event;
 import lv.rigadevday.android.repository.model.TimeSlot;
-import lv.rigadevday.android.ui.navigation.OpenTalkEvent;
+import lv.rigadevday.android.ui.navigation.OpenTalkScreen;
 import lv.rigadevday.android.utils.BaseApplication;
 import lv.rigadevday.android.utils.Utils;
 
@@ -97,7 +97,7 @@ public class DayScheduleAdapter extends RecyclerView.Adapter {
             setSpeakerNames(title, event.speakers);
             card.setClickable(true);
 
-            card.setOnClickListener(v -> bus.post(new OpenTalkEvent(day, time, index)));
+            card.setOnClickListener(v -> bus.post(new OpenTalkScreen(day, time, index)));
         } else {
             title.setText("");
             card.setClickable(false);
@@ -115,7 +115,7 @@ public class DayScheduleAdapter extends RecyclerView.Adapter {
             setSpeakerNames(holder.speakerLabel, event.speakers);
 
             holder.card.setClickable(true);
-            holder.card.setOnClickListener(v -> bus.post(new OpenTalkEvent(day, item.time, 0)));
+            holder.card.setOnClickListener(v -> bus.post(new OpenTalkScreen(day, item.time, 0)));
         } else {
             holder.titleLabel.setVisibility(View.GONE);
 

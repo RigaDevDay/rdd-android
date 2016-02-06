@@ -29,6 +29,12 @@
             android:name=".ui.speakers.speaker.SpeakerActivity"
             android:label=""
             android:screenOrientation="portrait" />
+
+        <activity
+            android:name=".ui.licences.LicencesActivity"
+            android:label="@string/action_licences"
+            android:screenOrientation="portrait" />
+
     </application>
 
 </manifest>

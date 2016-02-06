@@ -3,6 +3,8 @@
 
     <string name="app_name">RigaDevDay 2016</string>
 
+    <string name="hashtag">#RigaDevDay</string>
+
     <string name="drawer_schedule">Schedule</string>
     <string name="drawer_speakers">Speakers</string>
     <string name="drawer_organizers">Organizers</string>
@@ -23,5 +25,8 @@
     <string name="venue_website">Website:</string>
     <string name="venue_reservation">Reservation:</string>
     <string name="venue_wifi">Wifi pass:</string>
+
+    <string name="action_twitter">Tweet ar us</string>
+    <string name="action_licences">About &amp; Licences</string>
 
 </resources>
