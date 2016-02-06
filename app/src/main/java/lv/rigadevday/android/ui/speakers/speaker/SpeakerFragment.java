@@ -44,7 +44,7 @@ public class SpeakerFragment extends BaseFragment {
     @Bind(R.id.speaker_button_twitter)
     protected View buttonTwitter;
     @Bind(R.id.speaker_button_linkedin)
-    protected View buttonLinkedin;
+    protected View buttonLinkedIn;
 
     public static Fragment newInstance(Bundle extras) {
         SpeakerFragment fragment = new SpeakerFragment();
@@ -65,7 +65,7 @@ public class SpeakerFragment extends BaseFragment {
 
     @Override
     protected void init(Bundle savedInstanceState) {
-        mDataFetch = mRepository.getSpeaker(getArguments().getInt(SPEAKER_ID))
+        dataFetchSubscription = repository.getSpeaker(getArguments().getInt(SPEAKER_ID))
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(speaker -> {
@@ -85,7 +85,7 @@ public class SpeakerFragment extends BaseFragment {
 
                     setupButton(speaker.blog, buttonBlog);
                     setupButton(speaker.twitter, buttonTwitter);
-                    setupButton(speaker.linkedin, buttonLinkedin);
+                    setupButton(speaker.linkedin, buttonLinkedIn);
                 });
     }
 

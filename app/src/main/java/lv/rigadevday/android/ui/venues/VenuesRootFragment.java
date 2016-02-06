@@ -14,9 +14,9 @@ import lv.rigadevday.android.ui.base.ViewPagerAdapter;
 public class VenuesRootFragment extends BaseFragment {
 
     @Bind(R.id.venues_tabs)
-    protected TabLayout mTabs;
+    protected TabLayout tabs;
     @Bind(R.id.venues_pager)
-    protected ViewPager mPager;
+    protected ViewPager pager;
 
     @Override
     protected int contentViewId() {
@@ -37,8 +37,8 @@ public class VenuesRootFragment extends BaseFragment {
         adapter.addFragment(VenueFragment.newInstance(afterparty), afterparty);
         adapter.addFragment(VenueFragment.newInstance(hotel), hotel);
 
-        mPager.setAdapter(adapter);
-        mTabs.setupWithViewPager(mPager);
+        pager.setAdapter(adapter);
+        tabs.setupWithViewPager(pager);
     }
 
 }

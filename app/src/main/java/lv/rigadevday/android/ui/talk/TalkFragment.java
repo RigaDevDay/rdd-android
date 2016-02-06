@@ -80,7 +80,7 @@ public class TalkFragment extends BaseFragment {
         String time = getArguments().getString(EXTRA_TIME);
         int index = getArguments().getInt(EXTRA_INDEX);
 
-        mDataFetch = mRepository.getTimeSlot(day, time)
+        dataFetchSubscription = repository.getTimeSlot(day, time)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(timeSlot -> {
@@ -106,7 +106,7 @@ public class TalkFragment extends BaseFragment {
     }
 
     private void setSpeakers(List<Integer> speakers) {
-        mRepository.getSpeakers(speakers)
+        repository.getSpeakers(speakers)
                 .toList()
                 .subscribe(list -> {
                     speaker1.setText(list.get(0).name);

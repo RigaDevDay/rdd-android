@@ -1,7 +1,6 @@
 package lv.rigadevday.android.ui.venues;
 
 import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.text.Html;
 import android.view.View;
@@ -60,7 +59,7 @@ public class VenueFragment extends BaseFragment {
 
     @Override
     protected void init(Bundle savedInstanceState) {
-        mDataFetch = mRepository.getVenue(getArguments().getString(EXTRA_TITLE))
+        dataFetchSubscription = repository.getVenue(getArguments().getString(EXTRA_TITLE))
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(venue -> {

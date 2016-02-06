@@ -22,11 +22,11 @@ public class InMemoryStorage implements Repository {
     @Inject
     Context appContext;
 
-    private static InMemoryStorage sInstance;
+    private static InMemoryStorage INSTANCE;
 
     public static InMemoryStorage getInstance() {
-        if (sInstance == null) {
-            sInstance = new InMemoryStorage();
+        if (INSTANCE == null) {
+            INSTANCE = new InMemoryStorage();
         }
         return new InMemoryStorage();
     }
