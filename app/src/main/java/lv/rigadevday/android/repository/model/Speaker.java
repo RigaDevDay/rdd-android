@@ -1,5 +1,7 @@
 package lv.rigadevday.android.repository.model;
 
+import java.util.List;
+
 /**
  */
 public class Speaker {
@@ -15,7 +17,7 @@ public class Speaker {
     public String linkedin;
     public String description;
 
-    public int id() {
-        return id;
+    public Boolean isInList(List<Integer> speakersIds) {
+        return speakersIds != null && speakersIds.contains(id);
     }
 }

@@ -53,13 +53,13 @@ public class InMemoryStorage implements Repository {
     }
 
     @Override
-    public Observable<Speaker> getSpeakers(int id) {
+    public Observable<Speaker> getSpeaker(int id) {
         return getAllSpeakers().filter(speaker -> speaker.id == id).first();
     }
 
     @Override
-    public Observable<Speaker> getSpeakers(List<String> speakers) {
-        return null;
+    public Observable<Speaker> getSpeakers(List<Integer> speakersIds) {
+        return getAllSpeakers().filter(speaker -> speaker.isInList(speakersIds));
     }
 
     @Override

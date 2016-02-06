@@ -75,8 +75,9 @@ public class DayScheduleAdapter extends RecyclerView.Adapter {
             Event event = item.events.get(i);
 
             holder.cards.get(i).setVisibility(View.VISIBLE);
-            holder.speakerLabels.get(i).setText(event.speaker());
             holder.subtitleLabels.get(i).setText(event.subtitle);
+
+            setSpeakerNames(holder.speakerLabels.get(i), event.speakers);
         }
     }
 
@@ -88,12 +89,20 @@ public class DayScheduleAdapter extends RecyclerView.Adapter {
             holder.titleLabel.setVisibility(View.VISIBLE);
             holder.titleLabel.setText(event.subtitle);
 
-            holder.speakerLabel.setText(event.speaker());
+            setSpeakerNames(holder.speakerLabel, event.speakers);
         } else {
             holder.titleLabel.setVisibility(View.GONE);
 
             holder.speakerLabel.setText(event.title);
         }
+    }
+
+    private void setSpeakerNames(TextView speakerLabel, List<Integer> speakers) {
+        repository.getSpeakers(speakers)
+                .map(speaker -> speaker.name)
+                .defaultIfEmpty("")
+                .reduce((r, s) -> r.concat(", ").concat(s))
+                .subscribe(speakerLabel::setText);
     }
 
     @Override
