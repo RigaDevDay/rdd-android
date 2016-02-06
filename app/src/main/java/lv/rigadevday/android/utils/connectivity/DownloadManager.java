@@ -1,20 +1,8 @@
 package lv.rigadevday.android.utils.connectivity;
 
 import android.content.Context;
-import android.util.Log;
-
-import com.android.volley.Request;
-import com.android.volley.RequestQueue;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.StringRequest;
-import com.android.volley.toolbox.Volley;
-import com.google.gson.Gson;
 
 import javax.inject.Inject;
-
-import lv.rigadevday.android.repository.model.DataRoot;
-import lv.rigadevday.android.utils.BaseApplication;
 
 /**
  */
@@ -32,7 +20,7 @@ public class DownloadManager {
     }
 
     private static final String REQUEST_URL = "https://raw.githubusercontent.com/RigaDevDay/RigaDevDay.github.io/master/assets/data/main.json";
-
+/*
     private static RequestQueue mDownloadQueue;
 
     public DownloadManager() {
@@ -59,5 +47,5 @@ public class DownloadManager {
         );
         mDownloadQueue.add(stringRequest);
         return stringRequest;
-    }
+    }*/
 }
