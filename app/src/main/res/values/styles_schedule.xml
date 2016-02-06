@@ -28,6 +28,7 @@
         <item name="android:layout_marginTop">@dimen/half_margin</item>
         <item name="android:layout_marginBottom">@dimen/half_margin</item>
         <item name="android:clickable">true</item>
+        <item name="android:background">?android:attr/selectableItemBackground</item>
     </style>
 
     <style name="TimeSlot.Card.Small">

@@ -26,7 +26,7 @@ public class TalkActivity extends BaseActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         getSupportFragmentManager().beginTransaction()
-                .replace(R.id.activity_content_frame, new TalkFragment())
+                .replace(R.id.activity_content_frame, TalkFragment.newInstance(getIntent().getExtras()))
                 .commit();
     }
 

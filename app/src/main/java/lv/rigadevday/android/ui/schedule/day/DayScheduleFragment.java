@@ -63,7 +63,7 @@ public class DayScheduleFragment extends BaseFragment {
 
                     mRecycler.setHasFixedSize(true);
                     mRecycler.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
-                    mRecycler.setAdapter(new DayScheduleAdapter(mSchedule.schedule));
+                    mRecycler.setAdapter(new DayScheduleAdapter(day.title, mSchedule.schedule));
                 });
     }
 

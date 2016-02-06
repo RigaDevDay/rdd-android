@@ -13,10 +13,12 @@ import javax.inject.Inject;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
+import de.greenrobot.event.EventBus;
 import lv.rigadevday.android.R;
 import lv.rigadevday.android.repository.Repository;
 import lv.rigadevday.android.repository.model.Event;
 import lv.rigadevday.android.repository.model.TimeSlot;
+import lv.rigadevday.android.ui.navigation.OpenTalkEvent;
 import lv.rigadevday.android.utils.BaseApplication;
 import lv.rigadevday.android.utils.Utils;
 
@@ -30,11 +32,17 @@ public class DayScheduleAdapter extends RecyclerView.Adapter {
     @Inject
     Repository repository;
 
+    @Inject
+    EventBus bus;
+
+    private final String day;
+
     private List<TimeSlot> mSchedule;
 
-    public DayScheduleAdapter(List<TimeSlot> schedule) {
-        BaseApplication.inject(this);
+    public DayScheduleAdapter(String day, List<TimeSlot> schedule) {
+        this.day = day;
         this.mSchedule = schedule;
+        BaseApplication.inject(this);
     }
 
     @Override
@@ -71,13 +79,28 @@ public class DayScheduleAdapter extends RecyclerView.Adapter {
     private void setCardsList(CardsListViewHolder holder, TimeSlot item) {
         holder.timeLabel.setText(item.time);
 
-        for (int i = 0; i < item.events.size(); i++) {
-            Event event = item.events.get(i);
+        for (int index = 0; index < item.events.size(); index++) {
+            fillCard(holder.cards.get(index),
+                    holder.subtitleLabels.get(index),
+                    holder.speakerLabels.get(index),
+                    item.events.get(index),
+                    item.time,
+                    index);
+        }
+    }
 
-            holder.cards.get(i).setVisibility(View.VISIBLE);
-            holder.subtitleLabels.get(i).setText(event.subtitle);
+    private void fillCard(CardView card, TextView subtitle, TextView title, Event event, final String time, final int index) {
+        card.setVisibility(View.VISIBLE);
+        subtitle.setText(event.subtitle);
 
-            setSpeakerNames(holder.speakerLabels.get(i), event.speakers);
+        if (event.speakers != null) {
+            setSpeakerNames(title, event.speakers);
+            card.setClickable(true);
+
+            card.setOnClickListener(v -> bus.post(new OpenTalkEvent(day, time, index)));
+        } else {
+            subtitle.setText("");
+            card.setClickable(false);
         }
     }
 
@@ -90,10 +113,14 @@ public class DayScheduleAdapter extends RecyclerView.Adapter {
             holder.titleLabel.setText(event.subtitle);
 
             setSpeakerNames(holder.speakerLabel, event.speakers);
+
+            holder.card.setClickable(true);
+            holder.card.setOnClickListener(v -> bus.post(new OpenTalkEvent(day, item.time, 0)));
         } else {
             holder.titleLabel.setVisibility(View.GONE);
 
             holder.speakerLabel.setText(event.title);
+            holder.card.setClickable(false);
         }
     }
 
@@ -153,6 +180,9 @@ public class DayScheduleAdapter extends RecyclerView.Adapter {
 
         @Bind(R.id.timeslot_time_label)
         public TextView timeLabel;
+
+        @Bind(R.id.timeslot_all_rooms)
+        CardView card;
 
         @Bind(R.id.timeslot_all_rooms_speaker)
         public TextView speakerLabel;

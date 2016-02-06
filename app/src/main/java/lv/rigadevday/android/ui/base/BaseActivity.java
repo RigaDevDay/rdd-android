@@ -14,6 +14,7 @@ import lv.rigadevday.android.ui.navigation.OpenSpeakerScreen;
 import lv.rigadevday.android.ui.navigation.OpenWeb;
 import lv.rigadevday.android.ui.speakers.speaker.SpeakerActivity;
 import lv.rigadevday.android.ui.speakers.speaker.SpeakerFragment;
+import lv.rigadevday.android.ui.talk.TalkFragment;
 import lv.rigadevday.android.utils.BaseApplication;
 import lv.rigadevday.android.ui.navigation.OpenTalkEvent;
 import lv.rigadevday.android.ui.talk.TalkActivity;
@@ -53,7 +54,11 @@ public abstract class BaseActivity extends AppCompatActivity {
     }
 
     public void onEvent(final OpenTalkEvent event) {
-        startActivity(new Intent(this, TalkActivity.class));
+        Intent i = new Intent(this, TalkActivity.class);
+        i.putExtra(TalkFragment.EXTRA_DAY, event.day);
+        i.putExtra(TalkFragment.EXTRA_TIME, event.time);
+        i.putExtra(TalkFragment.EXTRA_INDEX, event.index);
+        startActivity(i);
     }
 
     public void onEvent(final OpenSpeakerScreen event) {
