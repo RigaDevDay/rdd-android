@@ -3,7 +3,6 @@ package lv.rigadevday.android.ui.talk;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 
-import butterknife.Bind;
 import lv.rigadevday.android.R;
 import lv.rigadevday.android.ui.base.BaseActivity;
 
@@ -11,23 +10,22 @@ import lv.rigadevday.android.ui.base.BaseActivity;
  */
 public class TalkActivity extends BaseActivity {
 
-    @Bind(R.id.toolbar)
-    protected Toolbar mToolbar;
-
     @Override
     public int getLayoutId() {
-        return R.layout.activity_content_frame;
+        return R.layout.activity_content_frame_no_toolbar;
     }
 
     @Override
     public void initializeScreen() {
-        setSupportActionBar(mToolbar);
-        getSupportActionBar().setHomeButtonEnabled(true);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
         getSupportFragmentManager().beginTransaction()
                 .replace(R.id.activity_content_frame, TalkFragment.newInstance(getIntent().getExtras()))
                 .commit();
+    }
+
+    public void setupToolbar(Toolbar toolbar) {
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setHomeButtonEnabled(true);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
 
     @Override

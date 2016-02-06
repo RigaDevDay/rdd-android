@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<android.support.v4.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    style="@style/Match"
+    android:clipToPadding="false"
+    android:padding="@dimen/talk_content_padding"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:showIn="@layout/fragment_talk">
+
+    <LinearLayout
+        style="@style/Match"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/talk_title"
+            style="@style/Talk.Text.Title"
+            android:layout_marginBottom="@dimen/base_margin"
+            android:layout_marginTop="@dimen/base_margin"
+            tools:text="This is talk &amp; speaker page" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <TextView
+                style="@style/Talk.Text.Speakers"
+                android:layout_marginBottom="@dimen/base_margin"
+                android:layout_marginTop="@dimen/base_margin"
+                android:text="@string/talk_speaker_by" />
+
+            <TextView
+                android:id="@+id/talk_speaker1"
+                style="@style/Talk.Text.Speakers.Link"
+                android:layout_marginBottom="@dimen/base_margin"
+                android:layout_marginTop="@dimen/base_margin"
+                tools:text="Some Guy" />
+
+            <TextView
+                android:id="@+id/talk_speakers_amp"
+                style="@style/Talk.Text.Speakers"
+                android:layout_marginBottom="@dimen/base_margin"
+                android:layout_marginTop="@dimen/base_margin"
+                android:text="@string/talk_speaker_ampersand"
+                android:visibility="gone"
+                tools:visibility="visible" />
+
+            <TextView
+                android:id="@+id/talk_speaker2"
+                style="@style/Talk.Text.Speakers.Link"
+                android:layout_marginBottom="@dimen/base_margin"
+                android:layout_marginTop="@dimen/base_margin"
+                android:visibility="gone"
+                tools:text="Some Guy"
+                tools:visibility="visible" />
+
+        </LinearLayout>
+
+
+        <TextView
+            android:id="@+id/talk_tags"
+            style="@style/Talk.Text.Tags"
+            android:layout_marginTop="@dimen/talk_description_margin"
+            tools:text="Android, iOS, Tests"/>
+
+        <TextView
+            android:id="@+id/talk_description"
+            style="@style/Talk.Text"
+            android:layout_marginTop="@dimen/base_margin"
+            tools:text="Long text\na\na\na\na\na\na\na\na\na\na\na\na" />
+
+    </LinearLayout>
+</android.support.v4.widget.NestedScrollView>

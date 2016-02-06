@@ -32,4 +32,9 @@
     <dimen name="organizers_title_margin_top">24dp</dimen>
     <dimen name="organizers_logo_size">100dp</dimen>
 
+    <dimen name="talk_toolbar_height">160dp</dimen>
+    <dimen name="talk_content_padding">16dp</dimen>
+    <dimen name="talk_tags_height">36dp</dimen>
+    <dimen name="talk_description_margin">24dp</dimen>
+
 </resources>

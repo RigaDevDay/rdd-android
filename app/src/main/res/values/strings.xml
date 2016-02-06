@@ -8,7 +8,9 @@
     <string name="drawer_organizers">Organizers</string>
     <string name="drawer_venues">Venues</string>
 
-    <string name="talks">Talk</string>
+    <string name="talk_time_pattern">%1$s - %2$s</string>
+    <string name="talk_speaker_by">by\u0020</string>
+    <string name="talk_speaker_ampersand">\u0020&amp;\u0020</string>
 
     <string name="speaker_title_company_pattern">%1$s\n at %2$s</string>
 

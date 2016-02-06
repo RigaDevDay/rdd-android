@@ -22,7 +22,7 @@
 
         <activity
             android:name=".ui.talk.TalkActivity"
-            android:label="@string/talks"
+            android:label=""
             android:screenOrientation="portrait" />
 
         <activity

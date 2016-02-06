@@ -9,6 +9,7 @@ import javax.inject.Inject;
 import lv.rigadevday.android.repository.model.Day;
 import lv.rigadevday.android.repository.model.Speaker;
 import lv.rigadevday.android.repository.model.SponsorLogo;
+import lv.rigadevday.android.repository.model.TimeSlot;
 import lv.rigadevday.android.repository.networking.DataFetchStub;
 import lv.rigadevday.android.utils.BaseApplication;
 import rx.Observable;
@@ -72,5 +73,16 @@ public class InMemoryStorage implements Repository {
     @Override
     public Observable<List<SponsorLogo>> getSponsors() {
         return DataFetchStub.getSponsors(appContext);
+    }
+
+    @Override
+    public Observable<TimeSlot> getTimeSlot(String filterDay, String filterTime) {
+        return DataFetchStub.getData(appContext)
+                .flatMap(data -> Observable.from(data.days))
+                .cache()
+                .filter(day -> day.title.equalsIgnoreCase(filterDay))
+                .flatMap(day -> Observable.from(day.schedule.schedule))
+                .filter(timeSlot -> timeSlot.time.equalsIgnoreCase(filterTime))
+                .first();
     }
 }

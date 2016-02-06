@@ -27,4 +27,8 @@ public class Utils {
     public static void goToMail(Context context, String email) {
         goToWeb(context, String.format("mailto:%s", email));
     }
+
+    public static String nullToEmpty(String description) {
+        return description == null ? "" : description;
+    }
 }
