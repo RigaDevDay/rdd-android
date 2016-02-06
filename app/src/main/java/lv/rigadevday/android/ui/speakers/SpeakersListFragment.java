@@ -36,16 +36,6 @@ public class SpeakersListFragment extends BaseFragment {
 
     @Override
     protected void init(Bundle savedInstanceState) {
-    }
-
-    @Override
-    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
-        if (savedInstanceState == null)
-            setupList();
-    }
-
-    private void setupList() {
         RecyclerView.LayoutManager manager = new GridLayoutManager(getContext(), 2, LinearLayoutManager.VERTICAL, false);
         mRecycler.setLayoutManager(manager);
 

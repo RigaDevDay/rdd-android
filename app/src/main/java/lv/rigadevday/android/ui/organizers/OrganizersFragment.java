@@ -44,11 +44,6 @@ public class OrganizersFragment extends BaseFragment {
             }
         });
         recycler.setLayoutManager(manager);
-    }
-
-    @Override
-    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
 
         mDataFetch = mRepository.getSponsors()
                 .subscribeOn(Schedulers.io())
@@ -58,4 +53,5 @@ public class OrganizersFragment extends BaseFragment {
                     recycler.setAdapter(adapter);
                 });
     }
+
 }

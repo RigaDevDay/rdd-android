@@ -38,16 +38,7 @@ public class ScheduleFragment extends BaseFragment {
     @Override
     protected void init(Bundle savedInstanceState) {
         mAdapter = new ViewPagerAdapter(getChildFragmentManager());
-    }
 
-    @Override
-    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
-        if (savedInstanceState == null)
-            setupList();
-    }
-
-    public void setupList() {
         mDataFetch = mRepository.getAllDays()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -69,5 +60,6 @@ public class ScheduleFragment extends BaseFragment {
                     }
                 });
     }
+
 }
 

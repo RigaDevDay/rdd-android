@@ -59,8 +59,7 @@ public class VenueFragment extends BaseFragment {
     }
 
     @Override
-    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
+    protected void init(Bundle savedInstanceState) {
         mDataFetch = mRepository.getVenue(getArguments().getString(EXTRA_TITLE))
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())

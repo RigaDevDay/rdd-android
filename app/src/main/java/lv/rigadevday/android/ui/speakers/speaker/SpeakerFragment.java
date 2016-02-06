@@ -65,7 +65,6 @@ public class SpeakerFragment extends BaseFragment {
 
     @Override
     protected void init(Bundle savedInstanceState) {
-        super.init(savedInstanceState);
         mDataFetch = mRepository.getSpeaker(getArguments().getInt(SPEAKER_ID))
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
