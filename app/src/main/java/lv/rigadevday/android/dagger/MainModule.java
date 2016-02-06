@@ -30,11 +30,8 @@ import lv.rigadevday.android.ui.speakers.speaker.SpeakerActivity;
 import lv.rigadevday.android.ui.speakers.speaker.SpeakerFragment;
 import lv.rigadevday.android.ui.talk.TalkActivity;
 import lv.rigadevday.android.ui.talk.TalkFragment;
-import lv.rigadevday.android.ui.venues.VenuesFragment;
-import lv.rigadevday.android.ui.venues.places.AfterpartyVenueFragment;
-import lv.rigadevday.android.ui.venues.places.ConferenceVenueFragment;
-import lv.rigadevday.android.ui.venues.places.HotelVenueFragment;
-import lv.rigadevday.android.ui.venues.places.WorkshopsVenueFragment;
+import lv.rigadevday.android.ui.venues.VenuesRootFragment;
+import lv.rigadevday.android.ui.venues.VenueFragment;
 import lv.rigadevday.android.utils.BaseApplication;
 import lv.rigadevday.android.utils.connectivity.DownloadManager;
 
@@ -60,11 +57,8 @@ import lv.rigadevday.android.utils.connectivity.DownloadManager;
 
                 OrganizersFragment.class,
 
-                VenuesFragment.class,
-                ConferenceVenueFragment.class,
-                WorkshopsVenueFragment.class,
-                AfterpartyVenueFragment.class,
-                HotelVenueFragment.class,
+                VenuesRootFragment.class,
+                VenueFragment.class,
 
                 InMemoryStorage.class,
                 DownloadManager.class

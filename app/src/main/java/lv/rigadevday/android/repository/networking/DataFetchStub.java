@@ -13,6 +13,8 @@ import java.util.List;
 import lv.rigadevday.android.repository.model.DataRoot;
 import lv.rigadevday.android.repository.model.SponsorLogo;
 import lv.rigadevday.android.repository.model.SponsorLogoList;
+import lv.rigadevday.android.repository.model.venues.Venue;
+import lv.rigadevday.android.repository.model.venues.VenuesList;
 import rx.Observable;
 import rx.Subscriber;
 
@@ -69,6 +71,35 @@ public class DataFetchStub {
 
                 if (reader != null) {
                     subscriber.onNext(gson.fromJson(reader, SponsorLogoList.class));
+
+                    try {
+                        reader.close();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
+                subscriber.onCompleted();
+            }
+        }).cache();
+    }
+
+    public static Observable<List<Venue>> getVenues(Context ctx) {
+        return Observable.create(new Observable.OnSubscribe<List<Venue>>() {
+            @Override
+            public void call(Subscriber<? super List<Venue>> subscriber) {
+                InputStreamReader reader = null;
+                try {
+                    InputStream stream = ctx.getAssets().open("venues.json");
+                    reader = new InputStreamReader(stream);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                    subscriber.onError(e);
+                }
+
+                Gson gson = new GsonBuilder().create();
+
+                if (reader != null) {
+                    subscriber.onNext(gson.fromJson(reader, VenuesList.class));
 
                     try {
                         reader.close();

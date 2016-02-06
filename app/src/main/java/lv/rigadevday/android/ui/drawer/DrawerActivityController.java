@@ -6,7 +6,7 @@ import lv.rigadevday.android.R;
 import lv.rigadevday.android.ui.organizers.OrganizersFragment;
 import lv.rigadevday.android.ui.schedule.ScheduleFragment;
 import lv.rigadevday.android.ui.speakers.SpeakersListFragment;
-import lv.rigadevday.android.ui.venues.VenuesFragment;
+import lv.rigadevday.android.ui.venues.VenuesRootFragment;
 
 /**
  */
@@ -17,7 +17,7 @@ public class DrawerActivityController {
     private ScheduleFragment mScheduleFragment;
     private SpeakersListFragment mSpeakersFragment;
     private OrganizersFragment mOrganizersFragment;
-    private VenuesFragment mVenuesFragment;
+    private VenuesRootFragment mVenuesFragment;
 
     public DrawerActivityController(DrawerActivityPresenter presenter) {
         mPresenter = presenter;
@@ -68,7 +68,7 @@ public class DrawerActivityController {
 
     private void lazyLoadVenues() {
         if (mVenuesFragment == null)
-            mVenuesFragment = new VenuesFragment();
+            mVenuesFragment = new VenuesRootFragment();
         mPresenter.openFragment(R.string.drawer_venues, mVenuesFragment);
     }
 

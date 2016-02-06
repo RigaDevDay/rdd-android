@@ -6,6 +6,7 @@ import lv.rigadevday.android.repository.model.Day;
 import lv.rigadevday.android.repository.model.Speaker;
 import lv.rigadevday.android.repository.model.SponsorLogo;
 import lv.rigadevday.android.repository.model.TimeSlot;
+import lv.rigadevday.android.repository.model.venues.Venue;
 import rx.Observable;
 
 /**
@@ -27,4 +28,6 @@ public interface Repository {
     Observable<List<SponsorLogo>> getSponsors();
 
     Observable<TimeSlot> getTimeSlot(String day, String time);
+
+    Observable<Venue> getVenue(String title);
 }

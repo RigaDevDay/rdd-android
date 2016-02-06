@@ -10,6 +10,7 @@ import lv.rigadevday.android.repository.model.Day;
 import lv.rigadevday.android.repository.model.Speaker;
 import lv.rigadevday.android.repository.model.SponsorLogo;
 import lv.rigadevday.android.repository.model.TimeSlot;
+import lv.rigadevday.android.repository.model.venues.Venue;
 import lv.rigadevday.android.repository.networking.DataFetchStub;
 import lv.rigadevday.android.utils.BaseApplication;
 import rx.Observable;
@@ -83,6 +84,15 @@ public class InMemoryStorage implements Repository {
                 .filter(day -> day.title.equalsIgnoreCase(filterDay))
                 .flatMap(day -> Observable.from(day.schedule.schedule))
                 .filter(timeSlot -> timeSlot.time.equalsIgnoreCase(filterTime))
+                .first();
+    }
+
+    @Override
+    public Observable<Venue> getVenue(String title) {
+        return DataFetchStub.getVenues(appContext)
+                .flatMap(Observable::from)
+                .cache()
+                .filter(venue -> venue.title.equalsIgnoreCase(title))
                 .first();
     }
 }
