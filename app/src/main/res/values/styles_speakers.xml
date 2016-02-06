@@ -26,7 +26,7 @@
     </style>
 
     <style name="Speaker.Button.Social" parent="Match">
-        <item name="android:background">?android:attr/selectableItemBackgroundBorderless</item>
+        <item name="android:background">@drawable/item_selector_borderless</item>
         <item name="android:layout_margin">@dimen/base_margin</item>
         <item name="android:layout_width">@dimen/speaker_button_size</item>
         <item name="android:layout_height">@dimen/speaker_button_size</item>

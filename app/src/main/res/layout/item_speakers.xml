@@ -7,7 +7,7 @@
     android:layout_height="wrap_content"
     android:layout_margin="1dp"
     android:clickable="true"
-    android:foreground="?android:attr/selectableItemBackground"
+    android:foreground="@drawable/item_selector"
     android:orientation="vertical">
 
         <ImageView

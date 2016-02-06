@@ -4,7 +4,7 @@
     android:id="@+id/organizers_item_root"
     style="@style/Match"
     android:clickable="true"
-    android:foreground="?android:attr/selectableItemBackground"
+    android:foreground="@drawable/item_selector_borderless"
     android:padding="@dimen/half_margin">
 
     <ImageView
