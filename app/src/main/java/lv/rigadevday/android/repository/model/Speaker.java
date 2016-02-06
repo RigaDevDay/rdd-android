@@ -4,7 +4,7 @@ package lv.rigadevday.android.repository.model;
  */
 public class Speaker {
 
-    public String id;
+    public int id;
     public String name;
     public String company;
     public String title;
@@ -15,4 +15,7 @@ public class Speaker {
     public String linkedin;
     public String description;
 
+    public int id() {
+        return id;
+    }
 }

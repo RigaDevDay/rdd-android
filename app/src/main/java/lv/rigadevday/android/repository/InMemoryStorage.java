@@ -6,11 +6,11 @@ import java.util.List;
 
 import javax.inject.Inject;
 
-import lv.rigadevday.android.repository.model.SponsorLogo;
-import lv.rigadevday.android.utils.BaseApplication;
 import lv.rigadevday.android.repository.model.Day;
 import lv.rigadevday.android.repository.model.Speaker;
+import lv.rigadevday.android.repository.model.SponsorLogo;
 import lv.rigadevday.android.repository.networking.DataFetchStub;
+import lv.rigadevday.android.utils.BaseApplication;
 import rx.Observable;
 
 /**
@@ -53,8 +53,13 @@ public class InMemoryStorage implements Repository {
     }
 
     @Override
-    public Observable<Speaker> getSpeakers(String id) {
-        return getAllSpeakers().filter(speaker -> speaker.id.equalsIgnoreCase(id)).first();
+    public Observable<Speaker> getSpeakers(int id) {
+        return getAllSpeakers().filter(speaker -> speaker.id == id).first();
+    }
+
+    @Override
+    public Observable<Speaker> getSpeakers(List<String> speakers) {
+        return null;
     }
 
     @Override

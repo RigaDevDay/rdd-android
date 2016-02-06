@@ -22,6 +22,7 @@ import lv.rigadevday.android.ui.drawer.DrawerActivity;
 import lv.rigadevday.android.ui.organizers.OrganizersAdapter;
 import lv.rigadevday.android.ui.organizers.OrganizersFragment;
 import lv.rigadevday.android.ui.schedule.ScheduleFragment;
+import lv.rigadevday.android.ui.schedule.day.DayScheduleAdapter;
 import lv.rigadevday.android.ui.schedule.day.DayScheduleFragment;
 import lv.rigadevday.android.ui.speakers.SpeakersAdapter;
 import lv.rigadevday.android.ui.speakers.SpeakersListFragment;
@@ -46,6 +47,7 @@ import lv.rigadevday.android.utils.connectivity.DownloadManager;
                 TalkActivity.class,
                 SpeakerActivity.class,
 
+                DayScheduleAdapter.class,
                 SpeakersAdapter.class,
                 OrganizersAdapter.class,
 

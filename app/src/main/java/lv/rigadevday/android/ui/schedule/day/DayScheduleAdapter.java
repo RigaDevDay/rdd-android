@@ -9,23 +9,31 @@ import android.widget.TextView;
 
 import java.util.List;
 
+import javax.inject.Inject;
+
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import lv.rigadevday.android.R;
-import lv.rigadevday.android.utils.Utils;
+import lv.rigadevday.android.repository.Repository;
 import lv.rigadevday.android.repository.model.Event;
 import lv.rigadevday.android.repository.model.TimeSlot;
+import lv.rigadevday.android.utils.BaseApplication;
+import lv.rigadevday.android.utils.Utils;
 
 /**
  */
 public class DayScheduleAdapter extends RecyclerView.Adapter {
 
-    private int TYPE_CARDS_LIST = 1;
-    private int TYPE_SINGLE_CARD = 2;
+    private final int TYPE_CARDS_LIST = 1;
+    private final int TYPE_SINGLE_CARD = 2;
+
+    @Inject
+    Repository repository;
 
     private List<TimeSlot> mSchedule;
 
     public DayScheduleAdapter(List<TimeSlot> schedule) {
+        BaseApplication.inject(this);
         this.mSchedule = schedule;
     }
 
