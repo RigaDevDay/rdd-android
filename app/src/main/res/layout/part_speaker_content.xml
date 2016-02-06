@@ -3,14 +3,14 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     style="@style/Match"
-    android:padding="@dimen/speaker_content_padding"
     android:clipToPadding="false"
+    android:padding="@dimen/speaker_content_padding"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:showIn="@layout/fragment_speaker">
 
     <LinearLayout
-        android:orientation="vertical"
-        style="@style/Match">
+        style="@style/Match"
+        android:orientation="vertical">
 
         <TextView
             android:id="@+id/speaker_title_company"
@@ -20,27 +20,30 @@
             tools:text="Code Writer\n at Generic company" />
 
         <LinearLayout
-            android:layout_margin="@dimen/base_margin"
-            android:orientation="horizontal"
             android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/base_margin"
             android:gravity="center"
-            android:layout_height="wrap_content">
+            android:orientation="horizontal">
 
             <ImageButton
                 android:id="@+id/speaker_button_blog"
+                style="@style/Speaker.Button.Social"
                 android:src="@drawable/vector_button_blog"
-                style="@style/Speaker.Button.Social" />
+                tools:visibility="visible" />
 
 
             <ImageButton
                 android:id="@+id/speaker_button_twitter"
+                style="@style/Speaker.Button.Social"
                 android:src="@drawable/vector_button_twitter"
-                style="@style/Speaker.Button.Social" />
+                tools:visibility="visible" />
 
             <ImageButton
                 android:id="@+id/speaker_button_linkedin"
+                style="@style/Speaker.Button.Social"
                 android:src="@drawable/vector_button_linkedin"
-                style="@style/Speaker.Button.Social" />
+                tools:visibility="visible" />
 
         </LinearLayout>
 

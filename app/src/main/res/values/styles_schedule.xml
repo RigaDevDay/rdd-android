@@ -7,7 +7,7 @@
         <item name="android:textColor">@color/text_dark_secondary</item>
         <item name="android:textStyle">normal</item>
         <item name="android:fontFamily">@string/family_light</item>
-        <item name="android:textSize">@dimen/text_size_body</item>
+        <item name="android:textSize">@dimen/text_size_caption</item>
     </style>
 
     <style name="TimeSlot.Speaker" parent="MatchWrap">

@@ -21,8 +21,9 @@
             tools:text="This is talk &amp; speaker page" />
 
         <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
+            android:id="@+id/talk_speaker_layout"
+            android:visibility="invisible"
+            style="@style/Wrap">
 
             <TextView
                 style="@style/Talk.Text.Speakers"

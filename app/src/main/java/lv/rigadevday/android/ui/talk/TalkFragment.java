@@ -6,6 +6,7 @@ import android.support.v4.app.Fragment;
 import android.support.v7.widget.Toolbar;
 import android.text.Html;
 import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import java.util.List;
@@ -40,6 +41,8 @@ public class TalkFragment extends BaseFragment {
     @Bind(R.id.talk_title)
     protected TextView title;
 
+    @Bind(R.id.talk_speaker_layout)
+    protected LinearLayout speakerLayout;
     @Bind(R.id.talk_speaker1)
     protected TextView speaker1;
     @Bind(R.id.talk_speakers_amp)
@@ -116,6 +119,8 @@ public class TalkFragment extends BaseFragment {
                         speaker2.setText(list.get(1).name);
                         speaker2.setOnClickListener(v -> bus.post(new OpenSpeakerScreen(list.get(1).id)));
                     }
+
+                    speakerLayout.setVisibility(View.VISIBLE);
                 });
     }
 }

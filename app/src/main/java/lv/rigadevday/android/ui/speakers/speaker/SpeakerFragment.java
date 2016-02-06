@@ -90,10 +90,9 @@ public class SpeakerFragment extends BaseFragment {
     }
 
     private void setupButton(String url, View button) {
-        if (Utils.isNullOrEmpty(url)) {
-            button.setVisibility(View.GONE);
-        } else {
+        if (!Utils.isNullOrEmpty(url)) {
             button.setOnClickListener(view -> Utils.goToWeb(getContext(), url));
+            button.setVisibility(View.VISIBLE);
         }
     }
 }

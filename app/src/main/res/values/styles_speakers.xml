@@ -30,6 +30,7 @@
         <item name="android:layout_margin">@dimen/base_margin</item>
         <item name="android:layout_width">@dimen/speaker_button_size</item>
         <item name="android:layout_height">@dimen/speaker_button_size</item>
+        <item name="android:visibility">gone</item>
     </style>
 
 </resources>

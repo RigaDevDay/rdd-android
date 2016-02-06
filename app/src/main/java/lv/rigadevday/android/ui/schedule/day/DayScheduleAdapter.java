@@ -99,7 +99,7 @@ public class DayScheduleAdapter extends RecyclerView.Adapter {
 
             card.setOnClickListener(v -> bus.post(new OpenTalkEvent(day, time, index)));
         } else {
-            subtitle.setText("");
+            title.setText("");
             card.setClickable(false);
         }
     }
