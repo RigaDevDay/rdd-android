@@ -22,9 +22,9 @@ public abstract class BaseFragment extends Fragment {
     EventBus bus;
 
     @Inject
-    protected Repository mRepository;
+    protected Repository repository;
 
-    protected Subscription mDataFetch;
+    protected Subscription dataFetchSubscription;
 
 	@Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -50,8 +50,8 @@ public abstract class BaseFragment extends Fragment {
 
     @Override
     public void onDestroy() {
-        if (mDataFetch != null)
-            mDataFetch.unsubscribe();
+        if (dataFetchSubscription != null)
+            dataFetchSubscription.unsubscribe();
         super.onDestroy();
     }
 

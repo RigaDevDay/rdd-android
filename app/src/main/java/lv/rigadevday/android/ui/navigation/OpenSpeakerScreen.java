@@ -3,9 +3,9 @@ package lv.rigadevday.android.ui.navigation;
 /**
  */
 public class OpenSpeakerScreen {
-    public final String id;
+    public final int id;
 
-    public OpenSpeakerScreen(String id) {
+    public OpenSpeakerScreen(int id) {
         this.id = id;
     }
 }

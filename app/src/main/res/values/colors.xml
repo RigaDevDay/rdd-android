@@ -14,4 +14,10 @@
     <color name="speakers_item_overlay">#bb000000</color>
     <color name="speaker_social_button_color">@color/color_accent</color>
 
+    <!-- main color for drawable-v21/my_ripple -->
+    <color name="selector_color">#99f44336</color>
+    <!-- main color for drawable/my_ripple -->
+    <color name="selector_pressed_color">#77f44336</color>
+    <color name="selector_focused_color">#ccf44336</color>
+
 </resources>

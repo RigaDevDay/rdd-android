@@ -9,26 +9,36 @@ import android.support.design.widget.Snackbar;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.Toolbar;
+import android.view.Menu;
+import android.view.MenuItem;
+
+import javax.inject.Inject;
 
 import butterknife.Bind;
+import de.greenrobot.event.EventBus;
 import lv.rigadevday.android.R;
-import lv.rigadevday.android.ui.base.BaseFragment;
 import lv.rigadevday.android.ui.base.BaseActivity;
+import lv.rigadevday.android.ui.base.BaseFragment;
+import lv.rigadevday.android.ui.navigation.OpenLicencesScreen;
+import lv.rigadevday.android.utils.Utils;
 
 /**
  */
 public class DrawerActivity extends BaseActivity implements DrawerActivityPresenter {
 
+    @Inject
+    EventBus bus;
+
     @Nullable
     @Bind(R.id.toolbar)
-    protected Toolbar mToolbar;
+    protected Toolbar toolbar;
     @Bind(R.id.activity_drawer_layout)
-    protected DrawerLayout mDrawer;
+    protected DrawerLayout drawer;
     @Bind(R.id.activity_drawer_navigation_view)
-    protected NavigationView mNavigation;
-    private ActionBarDrawerToggle mDrawerToggle;
+    protected NavigationView navigation;
 
-    private DrawerActivityController mController;
+    private ActionBarDrawerToggle drawerToggle;
+    private DrawerActivityController controller;
 
     @Override
     public int getLayoutId() {
@@ -37,39 +47,39 @@ public class DrawerActivity extends BaseActivity implements DrawerActivityPresen
 
     @Override
     public void initializeScreen() {
-        mController = new DrawerActivityController(this);
-        mController.initScreen();
+        controller = new DrawerActivityController(this);
+        controller.initScreen();
     }
 
     @Override
     protected void onPostCreate(Bundle savedInstanceState) {
         super.onPostCreate(savedInstanceState);
-        mDrawerToggle.syncState();
+        drawerToggle.syncState();
     }
 
     @Override
     public void onConfigurationChanged(Configuration newConfig) {
         super.onConfigurationChanged(newConfig);
-        mDrawerToggle.onConfigurationChanged(newConfig);
+        drawerToggle.onConfigurationChanged(newConfig);
     }
 
     @Override
     public void setupToolbar() {
-        setSupportActionBar(mToolbar);
-        mDrawerToggle = new ActionBarDrawerToggle(this, mDrawer, mToolbar, R.string.app_name, R.string.app_name);
-        mDrawer.setDrawerListener(mDrawerToggle);
+        setSupportActionBar(toolbar);
+        drawerToggle = new ActionBarDrawerToggle(this, drawer, toolbar, R.string.app_name, R.string.app_name);
+        drawer.setDrawerListener(drawerToggle);
     }
 
     @Override
     public void setupNavigationDrawerListener() {
-        mNavigation.setNavigationItemSelectedListener(item -> {
+        navigation.setNavigationItemSelectedListener(item -> {
             if (item.isChecked())
                 item.setChecked(false);
             else
                 item.setChecked(true);
 
-            mDrawer.closeDrawers();
-            return mController.navigationItemClicked(item);
+            drawer.closeDrawers();
+            return controller.navigationItemClicked(item);
         });
     }
 
@@ -83,7 +93,25 @@ public class DrawerActivity extends BaseActivity implements DrawerActivityPresen
 
     @Override
     public void showMessage(@StringRes int textId) {
-        Snackbar.make(mDrawer, textId, Snackbar.LENGTH_SHORT).show();
+        Snackbar.make(drawer, textId, Snackbar.LENGTH_SHORT).show();
     }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.main_menu, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.action_twitter:
+                Utils.goToTwitter(this, getString(R.string.hashtag));
+                break;
+            case R.id.action_licences:
+                bus.post(new OpenLicencesScreen());
+                break;
+        }
+        return super.onOptionsItemSelected(item);
+    }
 }

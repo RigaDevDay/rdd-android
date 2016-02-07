@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     style="@style/Match">
 
     <LinearLayout
@@ -9,9 +10,10 @@
         android:padding="@dimen/base_margin">
 
         <TextView
+            android:id="@+id/venue_name"
             style="@style/Venues.Text.Title"
             android:layout_marginBottom="@dimen/venues_block_spacing_bottom"
-            android:text="@string/venue_workshops_name" />
+            tools:text="Name of venue" />
 
         <LinearLayout style="@style/Venue.Label.Layout">
 
@@ -20,9 +22,10 @@
                 android:text="@string/venue_address" />
 
             <TextView
+                android:id="@+id/venue_address"
                 style="@style/Venues.Text.Label"
                 android:layout_width="wrap_content"
-                android:text="@string/venue_workshops_address" />
+                tools:text="Street name, 12" />
 
             <ImageView
                 android:id="@+id/venue_address_button"
@@ -38,11 +41,13 @@
             <TextView
                 android:id="@+id/venue_web_page_link"
                 style="@style/Venues.Text.Label.Link"
-                android:text="@string/venue_workshops_web" />
+                tools:text="http://webpage.lv" />
 
         </LinearLayout>
 
-        <LinearLayout style="@style/Venue.Label.Layout"
+        <LinearLayout
+            android:id="@+id/venue_email_layout"
+            style="@style/Venue.Label.Layout"
             android:layout_marginBottom="@dimen/venues_block_spacing_bottom">
 
             <TextView
@@ -52,13 +57,32 @@
             <TextView
                 android:id="@+id/venue_email_link"
                 style="@style/Venues.Text.Label.Link"
-                android:text="@string/venue_workshops_email" />
+                tools:text="email@hotel.com" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/venue_wifi_layout"
+            style="@style/Venue.Label.Layout"
+            android:layout_marginBottom="@dimen/venues_block_spacing_bottom"
+            android:gravity="top">
+
+            <TextView
+                style="@style/Venues.Text.Label.Type"
+                android:text="@string/venue_wifi" />
+
+            <TextView
+                android:id="@+id/venue_wifi"
+                style="@style/Venues.Text.Label"
+                android:layout_width="wrap_content"
+                tools:text="Pass" />
 
         </LinearLayout>
 
         <TextView
+            android:id="@+id/venue_description"
             style="@style/Venues.Text"
-            android:text="@string/venue_workshops_description" />
+            tools:text="description \na\na\na\na\na\na\na\na\na\na\na" />
 
     </LinearLayout>
 </ScrollView>

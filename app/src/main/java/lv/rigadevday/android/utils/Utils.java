@@ -4,6 +4,9 @@ import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
+
 /**
  */
 public class Utils {
@@ -26,5 +29,21 @@ public class Utils {
 
     public static void goToMail(Context context, String email) {
         goToWeb(context, String.format("mailto:%s", email));
+    }
+
+    public static String nullToEmpty(String description) {
+        return description == null ? "" : description;
+    }
+
+    public static void goToTwitter(Context context, String hashtag) {
+        goToWeb(context, String.format("https://twitter.com/intent/tweet?text=%s", urlEncode(hashtag)));
+    }
+
+    private static String urlEncode(String s) {
+        try {
+            return URLEncoder.encode(s, "UTF-8");
+        } catch (UnsupportedEncodingException e) {
+            throw new RuntimeException("URLEncoder.encode() failed for " + s);
+        }
     }
 }

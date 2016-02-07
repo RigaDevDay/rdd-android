@@ -1,11 +1,9 @@
 package lv.rigadevday.android.ui.organizers;
 
 import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.view.View;
 
 import butterknife.Bind;
 import lv.rigadevday.android.R;
@@ -44,13 +42,8 @@ public class OrganizersFragment extends BaseFragment {
             }
         });
         recycler.setLayoutManager(manager);
-    }
 
-    @Override
-    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
-
-        mDataFetch = mRepository.getSponsors()
+        dataFetchSubscription = repository.getSponsors()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(list -> {
@@ -58,4 +51,5 @@ public class OrganizersFragment extends BaseFragment {
                     recycler.setAdapter(adapter);
                 });
     }
+
 }

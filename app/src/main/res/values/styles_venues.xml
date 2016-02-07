@@ -22,7 +22,7 @@
     <style name="Venues.Text.Label.Link">
         <item name="android:textColor">@color/color_accent</item>
         <item name="android:clickable">true</item>
-        <item name="android:background">?android:attr/selectableItemBackgroundBorderless</item>
+        <item name="android:background">@drawable/item_selector_borderless</item>
     </style>
 
     <style name="Venues.Text.Label.Type">
@@ -35,7 +35,7 @@
         <item name="android:src">@drawable/vector_button_open</item>
         <item name="android:padding">@dimen/base_margin</item>
         <item name="android:clickable">true</item>
-        <item name="android:background">?android:attr/selectableItemBackgroundBorderless</item>
+        <item name="android:background">@drawable/item_selector_borderless</item>
     </style>
 
     <style name="Venue.Label.Layout" parent="MatchWrap">

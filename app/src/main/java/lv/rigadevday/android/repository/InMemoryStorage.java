@@ -6,11 +6,13 @@ import java.util.List;
 
 import javax.inject.Inject;
 
-import lv.rigadevday.android.repository.model.SponsorLogo;
-import lv.rigadevday.android.utils.BaseApplication;
 import lv.rigadevday.android.repository.model.Day;
 import lv.rigadevday.android.repository.model.Speaker;
+import lv.rigadevday.android.repository.model.SponsorLogo;
+import lv.rigadevday.android.repository.model.TimeSlot;
+import lv.rigadevday.android.repository.model.venues.Venue;
 import lv.rigadevday.android.repository.networking.DataFetchStub;
+import lv.rigadevday.android.utils.BaseApplication;
 import rx.Observable;
 
 /**
@@ -20,11 +22,11 @@ public class InMemoryStorage implements Repository {
     @Inject
     Context appContext;
 
-    private static InMemoryStorage sInstance;
+    private static InMemoryStorage INSTANCE;
 
     public static InMemoryStorage getInstance() {
-        if (sInstance == null) {
-            sInstance = new InMemoryStorage();
+        if (INSTANCE == null) {
+            INSTANCE = new InMemoryStorage();
         }
         return new InMemoryStorage();
     }
@@ -53,8 +55,13 @@ public class InMemoryStorage implements Repository {
     }
 
     @Override
-    public Observable<Speaker> getSpeakers(String id) {
-        return getAllSpeakers().filter(speaker -> speaker.id.equalsIgnoreCase(id)).first();
+    public Observable<Speaker> getSpeaker(int id) {
+        return getAllSpeakers().filter(speaker -> speaker.id == id).first();
+    }
+
+    @Override
+    public Observable<Speaker> getSpeakers(List<Integer> speakersIds) {
+        return getAllSpeakers().filter(speaker -> speaker.isInList(speakersIds));
     }
 
     @Override
@@ -67,5 +74,25 @@ public class InMemoryStorage implements Repository {
     @Override
     public Observable<List<SponsorLogo>> getSponsors() {
         return DataFetchStub.getSponsors(appContext);
+    }
+
+    @Override
+    public Observable<TimeSlot> getTimeSlot(String filterDay, String filterTime) {
+        return DataFetchStub.getData(appContext)
+                .flatMap(data -> Observable.from(data.days))
+                .cache()
+                .filter(day -> day.title.equalsIgnoreCase(filterDay))
+                .flatMap(day -> Observable.from(day.schedule.schedule))
+                .filter(timeSlot -> timeSlot.time.equalsIgnoreCase(filterTime))
+                .first();
+    }
+
+    @Override
+    public Observable<Venue> getVenue(String title) {
+        return DataFetchStub.getVenues(appContext)
+                .flatMap(Observable::from)
+                .cache()
+                .filter(venue -> venue.title.equalsIgnoreCase(title))
+                .first();
     }
 }

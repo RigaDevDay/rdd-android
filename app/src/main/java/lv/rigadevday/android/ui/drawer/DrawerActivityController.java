@@ -6,26 +6,26 @@ import lv.rigadevday.android.R;
 import lv.rigadevday.android.ui.organizers.OrganizersFragment;
 import lv.rigadevday.android.ui.schedule.ScheduleFragment;
 import lv.rigadevday.android.ui.speakers.SpeakersListFragment;
-import lv.rigadevday.android.ui.venues.VenuesFragment;
+import lv.rigadevday.android.ui.venues.VenuesRootFragment;
 
 /**
  */
 public class DrawerActivityController {
 
-    private final DrawerActivityPresenter mPresenter;
+    private final DrawerActivityPresenter presenter;
 
-    private ScheduleFragment mScheduleFragment;
-    private SpeakersListFragment mSpeakersFragment;
-    private OrganizersFragment mOrganizersFragment;
-    private VenuesFragment mVenuesFragment;
+    private ScheduleFragment scheduleFragment;
+    private SpeakersListFragment speakersFragment;
+    private OrganizersFragment organizersFragment;
+    private VenuesRootFragment venuesFragment;
 
     public DrawerActivityController(DrawerActivityPresenter presenter) {
-        mPresenter = presenter;
+        this.presenter = presenter;
     }
 
     public void initScreen() {
-        mPresenter.setupToolbar();
-        mPresenter.setupNavigationDrawerListener();
+        presenter.setupToolbar();
+        presenter.setupNavigationDrawerListener();
 
         lazyLoadSchedule();
     }
@@ -49,27 +49,27 @@ public class DrawerActivityController {
     }
 
     private void lazyLoadSchedule() {
-        if (mScheduleFragment == null)
-            mScheduleFragment = new ScheduleFragment();
-        mPresenter.openFragment(R.string.drawer_schedule, mScheduleFragment);
+        if (scheduleFragment == null)
+            scheduleFragment = new ScheduleFragment();
+        presenter.openFragment(R.string.drawer_schedule, scheduleFragment);
     }
 
     private void lazyLoadSpeakers() {
-        if (mSpeakersFragment == null)
-            mSpeakersFragment = new SpeakersListFragment();
-        mPresenter.openFragment(R.string.drawer_speakers, mSpeakersFragment);
+        if (speakersFragment == null)
+            speakersFragment = new SpeakersListFragment();
+        presenter.openFragment(R.string.drawer_speakers, speakersFragment);
     }
 
     private void lazyLoadOrganizers() {
-        if (mOrganizersFragment == null)
-            mOrganizersFragment = new OrganizersFragment();
-        mPresenter.openFragment(R.string.drawer_organizers, mOrganizersFragment);
+        if (organizersFragment == null)
+            organizersFragment = new OrganizersFragment();
+        presenter.openFragment(R.string.drawer_organizers, organizersFragment);
     }
 
     private void lazyLoadVenues() {
-        if (mVenuesFragment == null)
-            mVenuesFragment = new VenuesFragment();
-        mPresenter.openFragment(R.string.drawer_venues, mVenuesFragment);
+        if (venuesFragment == null)
+            venuesFragment = new VenuesRootFragment();
+        presenter.openFragment(R.string.drawer_venues, venuesFragment);
     }
 
 }

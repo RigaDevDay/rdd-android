@@ -12,12 +12,12 @@ public class Event {
     public String title;
     public String subtitle;
     public String description;
-    public List<String> speakers;
+    public List<Integer> speakers;
     public List<String> tags;
 
     public String speaker() {
         if (speakers != null)
-            return Stream.of(speakers).collect(Collectors.joining(", "));
+            return Stream.of(speakers).map(String::valueOf).collect(Collectors.joining(", "));
         return "";
     }
 }

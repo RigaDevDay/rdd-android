@@ -7,7 +7,7 @@
         <item name="android:textColor">@color/text_dark_secondary</item>
         <item name="android:textStyle">normal</item>
         <item name="android:fontFamily">@string/family_light</item>
-        <item name="android:textSize">@dimen/text_size_body</item>
+        <item name="android:textSize">@dimen/text_size_caption</item>
     </style>
 
     <style name="TimeSlot.Speaker" parent="MatchWrap">
@@ -28,6 +28,7 @@
         <item name="android:layout_marginTop">@dimen/half_margin</item>
         <item name="android:layout_marginBottom">@dimen/half_margin</item>
         <item name="android:clickable">true</item>
+        <item name="android:foreground">@drawable/item_selector</item>
     </style>
 
     <style name="TimeSlot.Card.Small">

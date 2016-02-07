@@ -19,9 +19,11 @@ import lv.rigadevday.android.repository.InMemoryStorage;
 import lv.rigadevday.android.repository.Repository;
 import lv.rigadevday.android.ui.base.BaseActivity;
 import lv.rigadevday.android.ui.drawer.DrawerActivity;
+import lv.rigadevday.android.ui.licences.LicencesActivity;
 import lv.rigadevday.android.ui.organizers.OrganizersAdapter;
 import lv.rigadevday.android.ui.organizers.OrganizersFragment;
 import lv.rigadevday.android.ui.schedule.ScheduleFragment;
+import lv.rigadevday.android.ui.schedule.day.DayScheduleAdapter;
 import lv.rigadevday.android.ui.schedule.day.DayScheduleFragment;
 import lv.rigadevday.android.ui.speakers.SpeakersAdapter;
 import lv.rigadevday.android.ui.speakers.SpeakersListFragment;
@@ -29,11 +31,8 @@ import lv.rigadevday.android.ui.speakers.speaker.SpeakerActivity;
 import lv.rigadevday.android.ui.speakers.speaker.SpeakerFragment;
 import lv.rigadevday.android.ui.talk.TalkActivity;
 import lv.rigadevday.android.ui.talk.TalkFragment;
-import lv.rigadevday.android.ui.venues.VenuesFragment;
-import lv.rigadevday.android.ui.venues.places.AfterpartyVenueFragment;
-import lv.rigadevday.android.ui.venues.places.ConferenceVenueFragment;
-import lv.rigadevday.android.ui.venues.places.HotelVenueFragment;
-import lv.rigadevday.android.ui.venues.places.WorkshopsVenueFragment;
+import lv.rigadevday.android.ui.venues.VenuesRootFragment;
+import lv.rigadevday.android.ui.venues.VenueFragment;
 import lv.rigadevday.android.utils.BaseApplication;
 import lv.rigadevday.android.utils.connectivity.DownloadManager;
 
@@ -45,7 +44,9 @@ import lv.rigadevday.android.utils.connectivity.DownloadManager;
                 DrawerActivity.class,
                 TalkActivity.class,
                 SpeakerActivity.class,
+                LicencesActivity.class,
 
+                DayScheduleAdapter.class,
                 SpeakersAdapter.class,
                 OrganizersAdapter.class,
 
@@ -58,11 +59,8 @@ import lv.rigadevday.android.utils.connectivity.DownloadManager;
 
                 OrganizersFragment.class,
 
-                VenuesFragment.class,
-                ConferenceVenueFragment.class,
-                WorkshopsVenueFragment.class,
-                AfterpartyVenueFragment.class,
-                HotelVenueFragment.class,
+                VenuesRootFragment.class,
+                VenueFragment.class,
 
                 InMemoryStorage.class,
                 DownloadManager.class

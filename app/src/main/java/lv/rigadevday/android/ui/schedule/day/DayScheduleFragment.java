@@ -52,8 +52,7 @@ public class DayScheduleFragment extends BaseFragment {
 
     @Override
     protected void init(Bundle savedInstanceState) {
-        super.init(savedInstanceState);
-        mDataFetch = mRepository.getDay(getArguments().getString(DAY_TITLE))
+        dataFetchSubscription = repository.getDay(getArguments().getString(DAY_TITLE))
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(day -> {
@@ -63,7 +62,7 @@ public class DayScheduleFragment extends BaseFragment {
 
                     mRecycler.setHasFixedSize(true);
                     mRecycler.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
-                    mRecycler.setAdapter(new DayScheduleAdapter(mSchedule.schedule));
+                    mRecycler.setAdapter(new DayScheduleAdapter(day.title, mSchedule.schedule));
                 });
     }
 

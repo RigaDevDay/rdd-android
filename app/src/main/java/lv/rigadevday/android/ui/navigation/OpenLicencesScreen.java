@@ -2,5 +2,5 @@ package lv.rigadevday.android.ui.navigation;
 
 /**
  */
-public class OpenTalkEvent {
+public class OpenLicencesScreen {
 }
