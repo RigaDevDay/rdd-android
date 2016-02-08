@@ -25,6 +25,8 @@ public class RepositoryImpl implements Repository {
 
     private static RepositoryImpl INSTANCE;
 
+    private DataFetchStub dataFetchStub;
+
     public static RepositoryImpl getInstance() {
         if (INSTANCE == null) {
             INSTANCE = new RepositoryImpl();
@@ -34,11 +36,12 @@ public class RepositoryImpl implements Repository {
 
     private RepositoryImpl() {
         BaseApplication.inject(this);
+        dataFetchStub = new DataFetchStub();
     }
 
     @Override
     public Observable<Integer> getVersion() {
-        return DataFetchStub.getData(appContext)
+        return dataFetchStub.getData(appContext)
                 .flatMap(dataRoot -> Observable.just(dataRoot.version))
                 .cache();
     }
@@ -46,7 +49,7 @@ public class RepositoryImpl implements Repository {
 
     @Override
     public Observable<Day> getAllDays() {
-        return DataFetchStub.getData(appContext)
+        return dataFetchStub.getData(appContext)
                 .flatMap(dataRoot -> Observable.from(dataRoot.days))
                 .cache();
     }
@@ -59,7 +62,7 @@ public class RepositoryImpl implements Repository {
 
     @Override
     public Observable<Speaker> getAllSpeakers() {
-        return DataFetchStub.getData(appContext)
+        return dataFetchStub.getData(appContext)
                 .flatMap(dataRoot -> Observable.from(dataRoot.speakers))
                 .cache();
     }
@@ -77,7 +80,7 @@ public class RepositoryImpl implements Repository {
 
     @Override
     public Observable<TimeSlot> getTimeSlot(String filterDay, String filterTime) {
-        return DataFetchStub.getData(appContext)
+        return dataFetchStub.getData(appContext)
                 .flatMap(data -> Observable.from(data.days))
                 .cache()
                 .filter(day -> day.title.equalsIgnoreCase(filterDay))
