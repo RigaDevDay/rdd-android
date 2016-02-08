@@ -556,8 +556,8 @@
             "color": "dark-blue",
             "events": [
               {
-                "subtitle": "Keynote",
-                "description": "",
+                "subtitle": "Open Source and OpenJDK: Do They Deliver?",
+                "description": "The term “open source” has been around for nearly twenty years and its effect has radically changed the way software is developed, marketed and commercialised.  Using the OpenJDK, “open source Java”, project as an example we’ll look at how open source delivers on its goals to foster more innovation and deliver better, more secure products.",
                 "speakers": [
                   41
                 ],
@@ -923,7 +923,14 @@
                 ]
               },
               {
-                "subtitle": "?"
+                "subtitle": "What's new in WildFly",
+                "description": "WildFly (formerly JBoss AS) is an implementation of a Java EE 7 compliant application server. It is an open-source, community driven project with a goal of introducing the latest innovations with frequent releases. In my presentation I would like to give you an overview of the most interesting new features that we have recently implemented. Among others, I plan to tell you about the following topics: creating microservices using WildFly Swarm project, creating a lightweight server distribution using our new build tools, server side JavaScript with easy Java EE integration, Elytron - the new security framework, new ejb client library with simplified configuration and dynamic discovery, http/2 configuration, server graceful shutdown. Apart from that I will give you an overview of the recent changes in server internal implementation and what are their consequences from the user point of view.",
+                "speakers": [
+                  48
+                ],
+                "tags": [
+                  "Java"
+                ]
               },
               {
                 "subtitle": "Faster Java by Adding Structs (Sort Of)",
