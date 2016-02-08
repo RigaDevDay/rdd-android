@@ -8,32 +8,41 @@ import javax.inject.Inject;
 
 import lv.rigadevday.android.repository.model.Day;
 import lv.rigadevday.android.repository.model.Speaker;
-import lv.rigadevday.android.repository.model.SponsorLogo;
+import lv.rigadevday.android.repository.model.SponsorLogoList;
 import lv.rigadevday.android.repository.model.TimeSlot;
 import lv.rigadevday.android.repository.model.venues.Venue;
+import lv.rigadevday.android.repository.model.venues.VenuesList;
 import lv.rigadevday.android.repository.networking.DataFetchStub;
 import lv.rigadevday.android.utils.BaseApplication;
 import rx.Observable;
 
 /**
  */
-public class InMemoryStorage implements Repository {
+public class RepositoryImpl implements Repository {
 
     @Inject
     Context appContext;
 
-    private static InMemoryStorage INSTANCE;
+    private static RepositoryImpl INSTANCE;
 
-    public static InMemoryStorage getInstance() {
+    public static RepositoryImpl getInstance() {
         if (INSTANCE == null) {
-            INSTANCE = new InMemoryStorage();
+            INSTANCE = new RepositoryImpl();
         }
-        return new InMemoryStorage();
+        return new RepositoryImpl();
     }
 
-    private InMemoryStorage() {
+    private RepositoryImpl() {
         BaseApplication.inject(this);
     }
+
+    @Override
+    public Observable<Integer> getVersion() {
+        return DataFetchStub.getData(appContext)
+                .flatMap(dataRoot -> Observable.just(dataRoot.version))
+                .cache();
+    }
+
 
     @Override
     public Observable<Day> getAllDays() {
@@ -46,6 +55,7 @@ public class InMemoryStorage implements Repository {
     public Observable<Day> getDay(String title) {
         return getAllDays().filter(day -> day.title.equalsIgnoreCase(title)).first();
     }
+
 
     @Override
     public Observable<Speaker> getAllSpeakers() {
@@ -64,17 +74,6 @@ public class InMemoryStorage implements Repository {
         return getAllSpeakers().filter(speaker -> speaker.isInList(speakersIds));
     }
 
-    @Override
-    public Observable<Integer> getVersion() {
-        return DataFetchStub.getData(appContext)
-                .flatMap(dataRoot -> Observable.just(dataRoot.version))
-                .cache();
-    }
-
-    @Override
-    public Observable<List<SponsorLogo>> getSponsors() {
-        return DataFetchStub.getSponsors(appContext);
-    }
 
     @Override
     public Observable<TimeSlot> getTimeSlot(String filterDay, String filterTime) {
@@ -87,9 +86,15 @@ public class InMemoryStorage implements Repository {
                 .first();
     }
 
+
+    @Override
+    public Observable<SponsorLogoList> getSponsors() {
+        return AssetFileParser.parseFile(appContext, "sponsors.json", SponsorLogoList.class).cache();
+    }
+
     @Override
     public Observable<Venue> getVenue(String title) {
-        return DataFetchStub.getVenues(appContext)
+        return AssetFileParser.parseFile(appContext, "venues.json", VenuesList.class).cache()
                 .flatMap(Observable::from)
                 .cache()
                 .filter(venue -> venue.title.equalsIgnoreCase(title))

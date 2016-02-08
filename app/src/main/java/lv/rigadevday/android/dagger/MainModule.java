@@ -15,7 +15,7 @@ import javax.inject.Singleton;
 import dagger.Module;
 import dagger.Provides;
 import de.greenrobot.event.EventBus;
-import lv.rigadevday.android.repository.InMemoryStorage;
+import lv.rigadevday.android.repository.RepositoryImpl;
 import lv.rigadevday.android.repository.Repository;
 import lv.rigadevday.android.ui.base.BaseActivity;
 import lv.rigadevday.android.ui.drawer.DrawerActivity;
@@ -62,7 +62,7 @@ import lv.rigadevday.android.utils.connectivity.DownloadManager;
                 VenuesRootFragment.class,
                 VenueFragment.class,
 
-                InMemoryStorage.class,
+                RepositoryImpl.class,
                 DownloadManager.class
         },
         library = true
@@ -90,7 +90,7 @@ public class MainModule implements DaggerModule {
     @Provides
     @Singleton
     Repository provideRepository() {
-        return InMemoryStorage.getInstance();
+        return RepositoryImpl.getInstance();
     }
 
     @Provides
