@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<lv.rigadevday.android.utils.views.SquareRelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/speakers_item_root"
     android:layout_width="match_parent"
@@ -12,7 +13,7 @@
 
         <ImageView
             android:id="@+id/speakers_item_image"
-            style="@style/Wrap"
+            style="@style/Match"
             android:scaleType="fitXY"
             tools:src="@drawable/vector_speaker_placeholder" />
 
@@ -37,4 +38,4 @@
 
         </RelativeLayout>
 
-</RelativeLayout>
+</lv.rigadevday.android.utils.views.SquareRelativeLayout>
