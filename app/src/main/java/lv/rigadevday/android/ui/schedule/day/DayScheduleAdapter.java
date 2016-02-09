@@ -1,5 +1,7 @@
 package lv.rigadevday.android.ui.schedule.day;
 
+import android.content.Context;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -34,6 +36,9 @@ public class DayScheduleAdapter extends RecyclerView.Adapter {
 
     @Inject
     EventBus bus;
+
+    @Inject
+    Context context;
 
     private final String day;
 
@@ -95,12 +100,11 @@ public class DayScheduleAdapter extends RecyclerView.Adapter {
 
         if (event.speakers != null) {
             setSpeakerNames(title, event.speakers);
-            card.setClickable(true);
-
-            card.setOnClickListener(v -> bus.post(new OpenTalkScreen(day, time, index)));
+            makeCardClickable(card, this.day, time, index);
+            checkFavoredStatus(card, this.day, time, index);
         } else {
             title.setText("");
-            card.setClickable(false);
+            resetCard(card);
         }
     }
 
@@ -113,15 +117,28 @@ public class DayScheduleAdapter extends RecyclerView.Adapter {
             holder.titleLabel.setText(event.subtitle);
 
             setSpeakerNames(holder.speakerLabel, event.speakers);
-
-            holder.card.setClickable(true);
-            holder.card.setOnClickListener(v -> bus.post(new OpenTalkScreen(day, item.time, 0)));
+            makeCardClickable(holder.card, this.day, item.time, 0);
+            checkFavoredStatus(holder.card, this.day, item.time, 0);
         } else {
             holder.titleLabel.setVisibility(View.GONE);
-
             holder.speakerLabel.setText(event.title);
-            holder.card.setClickable(false);
+            resetCard(holder.card);
         }
+    }
+
+    private void makeCardClickable(CardView card, String day, String time, int index) {
+        card.setClickable(true);
+        card.setOnClickListener(v -> bus.post(new OpenTalkScreen(day, time, index)));
+        card.setOnLongClickListener(v -> {
+            repository.toggleTimeSlotFavored(day, time, index);
+            notifyDataSetChanged();
+            return true;
+        });
+    }
+
+    private void resetCard(CardView card) {
+        card.setClickable(false);
+        card.setBackgroundColor(ContextCompat.getColor(context, R.color.cardview_light_background));
     }
 
     private void setSpeakerNames(TextView speakerLabel, List<Integer> speakers) {
@@ -132,11 +149,22 @@ public class DayScheduleAdapter extends RecyclerView.Adapter {
                 .subscribe(speakerLabel::setText);
     }
 
+    private void checkFavoredStatus(CardView card, String day, String time, int index) {
+        repository.hasFavoredTimeSlot(day, time, index)
+                .subscribe(isFavored -> {
+                    if (isFavored)
+                        card.setBackgroundColor(ContextCompat.getColor(context, R.color.card_favored));
+                    else
+                        card.setBackgroundColor(ContextCompat.getColor(context, R.color.cardview_light_background));
+                });
+    }
+
     @Override
     public int getItemCount() {
         return mSchedule.size();
     }
 
+    
     public static class CardsListViewHolder extends RecyclerView.ViewHolder {
 
         @Bind(R.id.timeslot_time_label)

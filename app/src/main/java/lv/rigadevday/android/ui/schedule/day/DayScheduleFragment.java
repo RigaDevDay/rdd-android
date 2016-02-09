@@ -21,7 +21,7 @@ public class DayScheduleFragment extends BaseFragment {
 
     public static final String DAY_TITLE = "day_title";
     @Bind(R.id.day_schedule_recycler)
-    protected RecyclerView mRecycler;
+    protected RecyclerView recycler;
 
     // Not sure if this is the best way to do things
     @Bind({
@@ -31,9 +31,10 @@ public class DayScheduleFragment extends BaseFragment {
             R.id.schedule_room_4,
             R.id.schedule_room_5
     })
-    protected List<TextView> mRooms;
+    protected List<TextView> rooms;
 
-    private Schedule mSchedule;
+    private Schedule daySchedule;
+    private DayScheduleAdapter adapter;
 
     public static DayScheduleFragment newInstance(String dayTitle) {
         Bundle b = new Bundle();
@@ -49,6 +50,12 @@ public class DayScheduleFragment extends BaseFragment {
         return R.layout.fragment_day_schedule;
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        if (adapter != null)
+            adapter.notifyDataSetChanged();
+    }
 
     @Override
     protected void init(Bundle savedInstanceState) {
@@ -56,20 +63,21 @@ public class DayScheduleFragment extends BaseFragment {
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(day -> {
-                    mSchedule = day.schedule;
+                    daySchedule = day.schedule;
 
-                    setRooms(mSchedule.roomNames);
+                    setRooms(daySchedule.roomNames);
 
-                    mRecycler.setHasFixedSize(true);
-                    mRecycler.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
-                    mRecycler.setAdapter(new DayScheduleAdapter(day.title, mSchedule.schedule));
+                    recycler.setHasFixedSize(true);
+                    recycler.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
+                    adapter = new DayScheduleAdapter(day.title, daySchedule.schedule);
+                    recycler.setAdapter(adapter);
                 });
     }
 
     public void setRooms(List<String> rooms) {
         for (int i = 0; i < rooms.size(); i++) {
-            mRooms.get(i).setVisibility(View.VISIBLE);
-            mRooms.get(i).setText(rooms.get(i));
+            this.rooms.get(i).setVisibility(View.VISIBLE);
+            this.rooms.get(i).setText(rooms.get(i));
         }
     }
 

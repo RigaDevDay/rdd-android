@@ -5,6 +5,9 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.Toolbar;
 import android.text.Html;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -56,6 +59,9 @@ public class TalkFragment extends BaseFragment {
     @Bind(R.id.talk_tags)
     protected TextView tagsLayout;
 
+    private String day;
+    private String time;
+    private int index;
 
     public static Fragment newInstance(Bundle extras) {
         TalkFragment fragment = new TalkFragment();
@@ -69,6 +75,16 @@ public class TalkFragment extends BaseFragment {
     }
 
     @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setHasOptionsMenu(true);
+
+        day = getArguments().getString(EXTRA_DAY);
+        time = getArguments().getString(EXTRA_TIME);
+        index = getArguments().getInt(EXTRA_INDEX);
+    }
+
+    @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         ((TalkActivity) getActivity()).setupToolbar(toolbar);
@@ -76,10 +92,6 @@ public class TalkFragment extends BaseFragment {
 
     @Override
     protected void init(Bundle savedInstanceState) {
-        String day = getArguments().getString(EXTRA_DAY);
-        String time = getArguments().getString(EXTRA_TIME);
-        int index = getArguments().getInt(EXTRA_INDEX);
-
         dataFetchSubscription = repository.getTimeSlot(day, time)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -122,5 +134,36 @@ public class TalkFragment extends BaseFragment {
 
                     speakerLayout.setVisibility(View.VISIBLE);
                 });
+    }
+
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        super.onCreateOptionsMenu(menu, inflater);
+        inflater.inflate(R.menu.talk_menu, menu);
+
+        repository.hasFavoredTimeSlot(day, time, index)
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(isFavored -> {
+                    setupCorrectImage(menu.findItem(R.id.action_favorite), isFavored);
+                });
+    }
+
+    private void setupCorrectImage(MenuItem item, Boolean favoredNow) {
+        item.setIcon(favoredNow
+                ? R.drawable.vector_action_star_fill
+                : R.drawable.vector_action_star_outline);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == R.id.action_favorite) {
+            repository.toggleTimeSlotFavored(day, time, index)
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .subscribe((favoredNow) -> {
+                        setupCorrectImage(item, favoredNow);
+                    });
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 }

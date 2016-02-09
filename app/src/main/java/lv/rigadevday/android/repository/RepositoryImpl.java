@@ -13,6 +13,7 @@ import lv.rigadevday.android.repository.model.TimeSlot;
 import lv.rigadevday.android.repository.model.venues.Venue;
 import lv.rigadevday.android.repository.model.venues.VenuesList;
 import lv.rigadevday.android.repository.networking.DataFetchStub;
+import lv.rigadevday.android.repository.storage.Storage;
 import lv.rigadevday.android.utils.BaseApplication;
 import rx.Observable;
 
@@ -26,6 +27,7 @@ public class RepositoryImpl implements Repository {
     private static RepositoryImpl INSTANCE;
 
     private DataFetchStub dataFetchStub;
+    private Storage storage;
 
     public static RepositoryImpl getInstance() {
         if (INSTANCE == null) {
@@ -37,6 +39,7 @@ public class RepositoryImpl implements Repository {
     private RepositoryImpl() {
         BaseApplication.inject(this);
         dataFetchStub = new DataFetchStub();
+        storage = new Storage();
     }
 
     @Override
@@ -102,5 +105,16 @@ public class RepositoryImpl implements Repository {
                 .cache()
                 .filter(venue -> venue.title.equalsIgnoreCase(title))
                 .first();
+    }
+
+
+    @Override
+    public Observable<Boolean> hasFavoredTimeSlot(String day, String time, int index) {
+        return storage.hasFavoredTimeSlot(day, time, index);
+    }
+
+    @Override
+    public Observable<Boolean> toggleTimeSlotFavored(String day, String time, int index) {
+        return storage.saveOrDeleteFavoredTimeSlot(day, time, index);
     }
 }

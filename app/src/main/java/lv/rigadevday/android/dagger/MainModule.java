@@ -17,6 +17,7 @@ import dagger.Provides;
 import de.greenrobot.event.EventBus;
 import lv.rigadevday.android.repository.RepositoryImpl;
 import lv.rigadevday.android.repository.Repository;
+import lv.rigadevday.android.repository.storage.Storage;
 import lv.rigadevday.android.ui.base.BaseActivity;
 import lv.rigadevday.android.ui.drawer.DrawerActivity;
 import lv.rigadevday.android.ui.licences.LicencesActivity;
@@ -63,7 +64,8 @@ import lv.rigadevday.android.utils.connectivity.DownloadManager;
                 VenueFragment.class,
 
                 RepositoryImpl.class,
-                DownloadManager.class
+                DownloadManager.class,
+                Storage.class
         },
         library = true
 )

@@ -22,4 +22,6 @@
     <color name="selector_pressed_color">#77f44336</color>
     <color name="selector_focused_color">#ccf44336</color>
 
+    <color name="card_favored">#222196F3</color>
+
 </resources>
