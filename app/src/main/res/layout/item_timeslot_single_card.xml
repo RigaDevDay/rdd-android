@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    style="@style/Match"
     android:orientation="vertical">
 
     <TextView
@@ -36,8 +35,8 @@
             <TextView
                 android:id="@+id/timeslot_all_rooms_title"
                 style="@style/TimeSlot.Title"
-                android:visibility="gone"
                 android:maxLines="5"
+                android:visibility="gone"
                 tools:text="Some long title on talk even with some" />
         </LinearLayout>
 

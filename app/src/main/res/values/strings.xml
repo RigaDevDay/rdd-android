@@ -29,4 +29,6 @@
     <string name="action_twitter">Tweet ar us</string>
     <string name="action_licences">About &amp; Licences</string>
 
+    <string name="action_favorite">Toggle favorite</string>
+
 </resources>

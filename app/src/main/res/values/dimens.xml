@@ -3,6 +3,8 @@
     <dimen name="base_margin">8dp</dimen>
     <dimen name="half_margin">4dp</dimen>
 
+    <dimen name="drawer_header_height">120dp</dimen>
+
     <dimen name="text_size_headline">24sp</dimen>
     <dimen name="text_size_title">20sp</dimen>
     <dimen name="text_size_subheading">16sp</dimen>
@@ -30,7 +32,6 @@
     <dimen name="venues_open_button_size">36dp</dimen>
 
     <dimen name="organizers_title_margin_top">24dp</dimen>
-    <dimen name="organizers_logo_size">100dp</dimen>
 
     <dimen name="talk_toolbar_height">160dp</dimen>
     <dimen name="talk_content_padding">16dp</dimen>

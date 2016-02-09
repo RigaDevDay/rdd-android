@@ -2,30 +2,26 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    style="@style/Match"
     android:orientation="vertical">
 
     <android.support.design.widget.AppBarLayout
         android:id="@+id/venues_app_bar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        style="@style/MatchWrap">
 
         <android.support.design.widget.TabLayout
             android:id="@+id/venues_tabs"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            style="@style/Wrap"
             android:layout_alignParentTop="true"
-            app:tabTextColor="@color/text_light_secondary"
-            app:tabSelectedTextColor="@color/text_light_primary"
             app:tabGravity="fill"
-            app:tabMode="scrollable"/>
+            app:tabMode="scrollable"
+            app:tabSelectedTextColor="@color/text_light_primary"
+            app:tabTextColor="@color/text_light_secondary" />
     </android.support.design.widget.AppBarLayout>
 
     <android.support.v4.view.ViewPager
         android:id="@+id/venues_pager"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        style="@style/Match"
         android:layout_below="@id/venues_app_bar"
         tools:background="#543d" />
 

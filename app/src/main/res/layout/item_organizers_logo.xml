@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<lv.rigadevday.android.utils.views.SquareRelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/organizers_item_root"
     style="@style/Match"
+    android:layout_margin="@dimen/half_margin"
     android:clickable="true"
     android:foreground="@drawable/item_selector_borderless"
     android:padding="@dimen/half_margin">
 
     <ImageView
         android:id="@+id/organizers_logo_item_image"
-        android:layout_width="@dimen/organizers_logo_size"
-        android:layout_height="@dimen/organizers_logo_size"
+        style="@style/Match"
         android:layout_gravity="center"
         tools:background="#4d5" />
 
-</FrameLayout>
+</lv.rigadevday.android.utils.views.SquareRelativeLayout>

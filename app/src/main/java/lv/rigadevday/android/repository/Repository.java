@@ -35,4 +35,9 @@ public interface Repository {
     Observable<SponsorLogoList> getSponsors();
 
     Observable<Venue> getVenue(String title);
+
+
+    Observable<Boolean> hasFavoredTimeSlot(String day, String time, int index);
+
+    Observable<Boolean> toggleTimeSlotFavored(String day, String time, int index);
 }

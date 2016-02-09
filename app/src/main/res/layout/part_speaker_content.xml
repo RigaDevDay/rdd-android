@@ -2,7 +2,7 @@
 <android.support.v4.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    style="@style/Match"
+    style="@style/ScreenBackground"
     android:clipToPadding="false"
     android:padding="@dimen/speaker_content_padding"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
@@ -20,8 +20,7 @@
             tools:text="Code Writer\n at Generic company" />
 
         <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            style="@style/MatchWrap"
             android:layout_margin="@dimen/base_margin"
             android:gravity="center"
             android:orientation="horizontal">

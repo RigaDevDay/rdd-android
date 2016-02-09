@@ -6,6 +6,8 @@
     <color name="color_primary_dark">#1565C0</color>>
     <color name="color_accent">#f44336</color>
 
+    <color name="color_screen_background">#fff</color>
+
     <color name="text_light_primary">#deFFFFFF</color>
     <color name="text_light_secondary">#88FFFFFF</color>
     <color name="text_dark_primary">#de000000</color>
@@ -19,5 +21,7 @@
     <!-- main color for drawable/my_ripple -->
     <color name="selector_pressed_color">#77f44336</color>
     <color name="selector_focused_color">#ccf44336</color>
+
+    <color name="card_favored">#222196F3</color>
 
 </resources>

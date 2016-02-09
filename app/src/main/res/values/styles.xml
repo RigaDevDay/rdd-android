@@ -28,4 +28,8 @@
         <item name="android:layout_height">match_parent</item>
     </style>
 
+    <style name="ScreenBackground" parent="Match">
+        <item name="android:background">@color/color_screen_background</item>
+    </style>
+
 </resources>
