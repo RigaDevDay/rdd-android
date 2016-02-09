@@ -17,8 +17,7 @@
             app:contentScrim="?attr/colorPrimary"
             app:layout_scrollFlags="scroll|exitUntilCollapsed">
 
-            <lv.rigadevday.android.utils.views.SquareRelativeLayout
-                style="@style/Match">
+            <lv.rigadevday.android.utils.views.SquareRelativeLayout style="@style/Match">
 
                 <ImageView
                     android:id="@+id/speaker_image"

@@ -3,7 +3,7 @@
 <android.support.v4.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    style="@style/Match"
+    style="@style/ScreenBackground"
     android:clipToPadding="false"
     android:padding="@dimen/talk_content_padding"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"

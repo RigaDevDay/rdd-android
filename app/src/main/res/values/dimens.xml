@@ -3,6 +3,8 @@
     <dimen name="base_margin">8dp</dimen>
     <dimen name="half_margin">4dp</dimen>
 
+    <dimen name="drawer_header_height">120dp</dimen>
+
     <dimen name="text_size_headline">24sp</dimen>
     <dimen name="text_size_title">20sp</dimen>
     <dimen name="text_size_subheading">16sp</dimen>

@@ -6,6 +6,8 @@
     <color name="color_primary_dark">#1565C0</color>>
     <color name="color_accent">#f44336</color>
 
+    <color name="color_screen_background">#fff</color>
+
     <color name="text_light_primary">#deFFFFFF</color>
     <color name="text_light_secondary">#88FFFFFF</color>
     <color name="text_dark_primary">#de000000</color>

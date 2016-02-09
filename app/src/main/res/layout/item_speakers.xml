@@ -1,41 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<lv.rigadevday.android.utils.views.SquareRelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<lv.rigadevday.android.utils.views.SquareRelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/speakers_item_root"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    style="@style/MatchWrap"
     android:layout_margin="1dp"
     android:clickable="true"
     android:foreground="@drawable/item_selector"
     android:orientation="vertical">
 
-        <ImageView
-            android:id="@+id/speakers_item_image"
-            style="@style/Match"
-            android:scaleType="fitXY"
-            tools:src="@drawable/vector_speaker_placeholder" />
+    <ImageView
+        android:id="@+id/speakers_item_image"
+        style="@style/Match"
+        android:scaleType="fitXY"
+        tools:src="@drawable/vector_speaker_placeholder" />
 
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/speaker_item_text_overlay_height"
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/speaker_item_text_overlay_height"
+        android:layout_alignParentBottom="true"
+        android:background="@color/speakers_item_overlay"
+        android:padding="@dimen/speaker_item_text_padding">
+
+        <TextView
+            android:id="@+id/speakers_item_name"
+            style="@style/Speakers.Item.Text"
+            android:layout_alignParentTop="true"
+            tools:text="Antonio Banderas" />
+
+        <TextView
+            android:id="@+id/speakers_item_company"
+            style="@style/Speakers.Item.Text.Subtitle"
             android:layout_alignParentBottom="true"
-            android:background="@color/speakers_item_overlay"
-            android:padding="@dimen/speaker_item_text_padding">
+            tools:text="Hollywood" />
 
-            <TextView
-                android:id="@+id/speakers_item_name"
-                style="@style/Speakers.Item.Text"
-                android:layout_alignParentTop="true"
-                tools:text="Antonio Banderas" />
-
-            <TextView
-                android:id="@+id/speakers_item_company"
-                style="@style/Speakers.Item.Text.Subtitle"
-                android:layout_alignParentBottom="true"
-                tools:text="Hollywood" />
-
-        </RelativeLayout>
+    </RelativeLayout>
 
 </lv.rigadevday.android.utils.views.SquareRelativeLayout>
