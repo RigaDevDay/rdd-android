@@ -29,7 +29,9 @@
             android:visibility="invisible"
             tools:visibility="visible">
 
-            <LinearLayout style="@style/TimeSlot.Layout">
+            <LinearLayout
+                android:id="@+id/timeslot_bg_room1"
+                style="@style/TimeSlot.Layout">
 
                 <TextView
                     android:id="@+id/timeslot_speaker_1"
@@ -49,7 +51,9 @@
             android:visibility="invisible"
             tools:visibility="visible">
 
-            <LinearLayout style="@style/TimeSlot.Layout">
+            <LinearLayout
+                android:id="@+id/timeslot_bg_room2"
+                style="@style/TimeSlot.Layout">
 
                 <TextView
                     android:id="@+id/timeslot_speaker_2"
@@ -69,7 +73,9 @@
             android:visibility="invisible"
             tools:visibility="visible">
 
-            <LinearLayout style="@style/TimeSlot.Layout">
+            <LinearLayout
+                android:id="@+id/timeslot_bg_room3"
+                style="@style/TimeSlot.Layout">
 
                 <TextView
                     android:id="@+id/timeslot_speaker_3"
@@ -89,7 +95,9 @@
             android:visibility="invisible"
             tools:visibility="visible">
 
-            <LinearLayout style="@style/TimeSlot.Layout">
+            <LinearLayout
+                android:id="@+id/timeslot_bg_room4"
+                style="@style/TimeSlot.Layout">
 
                 <TextView
                     android:id="@+id/timeslot_speaker_4"
@@ -109,7 +117,9 @@
             android:visibility="invisible"
             tools:visibility="visible">
 
-            <LinearLayout style="@style/TimeSlot.Layout">
+            <LinearLayout
+                android:id="@+id/timeslot_bg_room5"
+                style="@style/TimeSlot.Layout">
 
                 <TextView
                     android:id="@+id/timeslot_speaker_5"

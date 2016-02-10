@@ -86,6 +86,7 @@ public class DayScheduleAdapter extends RecyclerView.Adapter {
 
         for (int index = 0; index < item.events.size(); index++) {
             fillCard(holder.cards.get(index),
+                    holder.backgrounds.get(index),
                     holder.subtitleLabels.get(index),
                     holder.speakerLabels.get(index),
                     item.events.get(index),
@@ -94,17 +95,17 @@ public class DayScheduleAdapter extends RecyclerView.Adapter {
         }
     }
 
-    private void fillCard(CardView card, TextView subtitle, TextView title, Event event, final String time, final int index) {
+    private void fillCard(CardView card, View background, TextView subtitle, TextView title, Event event, final String time, final int index) {
         card.setVisibility(View.VISIBLE);
         subtitle.setText(event.subtitle);
 
         if (event.speakers != null) {
             setSpeakerNames(title, event.speakers);
             makeCardClickable(card, this.day, time, index);
-            checkFavoredStatus(card, this.day, time, index);
+            checkFavoredStatus(background, this.day, time, index);
         } else {
             title.setText("");
-            resetCard(card);
+            resetCard(card, background);
         }
     }
 
@@ -118,11 +119,11 @@ public class DayScheduleAdapter extends RecyclerView.Adapter {
 
             setSpeakerNames(holder.speakerLabel, event.speakers);
             makeCardClickable(holder.card, this.day, item.time, 0);
-            checkFavoredStatus(holder.card, this.day, item.time, 0);
+            checkFavoredStatus(holder.background, this.day, item.time, 0);
         } else {
             holder.titleLabel.setVisibility(View.GONE);
             holder.speakerLabel.setText(event.title);
-            resetCard(holder.card);
+            resetCard(holder.card, holder.background);
         }
     }
 
@@ -136,9 +137,9 @@ public class DayScheduleAdapter extends RecyclerView.Adapter {
         });
     }
 
-    private void resetCard(CardView card) {
+    private void resetCard(CardView card, View background) {
         card.setClickable(false);
-        card.setBackgroundColor(ContextCompat.getColor(context, R.color.cardview_light_background));
+        background.setBackgroundColor(ContextCompat.getColor(context, R.color.cardview_light_background));
     }
 
     private void setSpeakerNames(TextView speakerLabel, List<Integer> speakers) {
@@ -149,7 +150,7 @@ public class DayScheduleAdapter extends RecyclerView.Adapter {
                 .subscribe(speakerLabel::setText);
     }
 
-    private void checkFavoredStatus(CardView card, String day, String time, int index) {
+    private void checkFavoredStatus(View card, String day, String time, int index) {
         repository.hasFavoredTimeSlot(day, time, index)
                 .subscribe(isFavored -> {
                     if (isFavored)
@@ -181,6 +182,15 @@ public class DayScheduleAdapter extends RecyclerView.Adapter {
         public List<CardView> cards;
 
         @Bind({
+                R.id.timeslot_bg_room1,
+                R.id.timeslot_bg_room2,
+                R.id.timeslot_bg_room3,
+                R.id.timeslot_bg_room4,
+                R.id.timeslot_bg_room5
+        })
+        public List<View> backgrounds;
+
+        @Bind({
                 R.id.timeslot_speaker_1,
                 R.id.timeslot_speaker_2,
                 R.id.timeslot_speaker_3,
@@ -210,7 +220,10 @@ public class DayScheduleAdapter extends RecyclerView.Adapter {
         public TextView timeLabel;
 
         @Bind(R.id.timeslot_all_rooms)
-        CardView card;
+        public CardView card;
+
+        @Bind(R.id.timeslot_bg_rooms)
+        public View background;
 
         @Bind(R.id.timeslot_all_rooms_speaker)
         public TextView speakerLabel;
