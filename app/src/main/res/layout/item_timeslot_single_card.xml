@@ -23,8 +23,10 @@
 
 
         <LinearLayout
+            android:id="@+id/timeslot_bg_rooms"
             style="@style/TimeSlot.Layout"
-            android:layout_gravity="center_vertical">
+            android:layout_height="match_parent"
+            android:gravity="center_vertical">
 
             <TextView
                 android:id="@+id/timeslot_all_rooms_speaker"
