@@ -21,6 +21,7 @@ import lv.rigadevday.android.repository.Repository;
 import lv.rigadevday.android.repository.model.Event;
 import lv.rigadevday.android.repository.model.TimeSlot;
 import lv.rigadevday.android.ui.navigation.OpenTalkScreen;
+import lv.rigadevday.android.ui.navigation.ShowErrorMessageEvent;
 import lv.rigadevday.android.utils.BaseApplication;
 import lv.rigadevday.android.utils.Utils;
 import rx.android.schedulers.AndroidSchedulers;
@@ -153,7 +154,7 @@ public class DayScheduleAdapter extends RecyclerView.Adapter {
                 .reduce((r, s) -> r.concat(", ").concat(s))
                 .subscribe(
                         speakerLabel::setText,
-                        Throwable::printStackTrace
+                        error -> bus.post(new ShowErrorMessageEvent())
                 );
     }
 

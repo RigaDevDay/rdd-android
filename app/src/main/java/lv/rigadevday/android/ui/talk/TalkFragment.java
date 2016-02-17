@@ -22,6 +22,7 @@ import lv.rigadevday.android.R;
 import lv.rigadevday.android.repository.model.Event;
 import lv.rigadevday.android.ui.base.BaseFragment;
 import lv.rigadevday.android.ui.navigation.OpenSpeakerScreen;
+import lv.rigadevday.android.ui.navigation.ShowErrorMessageEvent;
 import lv.rigadevday.android.utils.Utils;
 import rx.Observable;
 import rx.android.schedulers.AndroidSchedulers;
@@ -91,23 +92,26 @@ public class TalkFragment extends BaseFragment {
     }
 
     @Override
-    protected void init(Bundle savedInstanceState) {
+    protected void init() {
         dataFetchSubscription = repository.getTimeSlot(day, time)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(timeSlot -> {
-                    toolbar.setTitle(String.format(
-                            getString(R.string.talk_time_pattern),
-                            timeSlot.time,
-                            timeSlot.endTime));
+                .subscribe(
+                        timeSlot -> {
+                            toolbar.setTitle(String.format(
+                                    getString(R.string.talk_time_pattern),
+                                    timeSlot.time,
+                                    timeSlot.endTime));
 
-                    Event event = timeSlot.events.get(index);
+                            Event event = timeSlot.events.get(index);
 
-                    title.setText(Utils.nullToEmpty(event.subtitle));
-                    setSpeakers(event.speakers);
-                    setTags(event.tags);
-                    description.setText(Html.fromHtml(Utils.nullToEmpty(event.description)));
-                });
+                            title.setText(Utils.nullToEmpty(event.subtitle));
+                            setSpeakers(event.speakers);
+                            setTags(event.tags);
+                            description.setText(Html.fromHtml(Utils.nullToEmpty(event.description)));
+                        },
+                        error -> bus.post(new ShowErrorMessageEvent())
+                );
     }
 
     private void setTags(List<String> tags) {
@@ -137,7 +141,7 @@ public class TalkFragment extends BaseFragment {
 
                             speakerLayout.setVisibility(View.VISIBLE);
                         },
-                        Throwable::printStackTrace
+                        error -> bus.post(new ShowErrorMessageEvent())
                 );
     }
 

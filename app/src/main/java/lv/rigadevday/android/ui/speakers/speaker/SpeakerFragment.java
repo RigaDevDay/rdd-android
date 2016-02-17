@@ -16,6 +16,7 @@ import javax.inject.Inject;
 import butterknife.Bind;
 import lv.rigadevday.android.R;
 import lv.rigadevday.android.ui.base.BaseFragment;
+import lv.rigadevday.android.ui.navigation.ShowErrorMessageEvent;
 import lv.rigadevday.android.utils.Utils;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
@@ -64,7 +65,7 @@ public class SpeakerFragment extends BaseFragment {
     }
 
     @Override
-    protected void init(Bundle savedInstanceState) {
+    protected void init() {
         dataFetchSubscription = repository.getSpeaker(getArguments().getInt(SPEAKER_ID))
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -87,7 +88,7 @@ public class SpeakerFragment extends BaseFragment {
                             setupButton(speaker.twitter, buttonTwitter);
                             setupButton(speaker.linkedin, buttonLinkedIn);
                         },
-                        Throwable::printStackTrace
+                        error -> bus.post(new ShowErrorMessageEvent())
                 );
     }
 

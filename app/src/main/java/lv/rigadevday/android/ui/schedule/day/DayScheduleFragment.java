@@ -12,6 +12,7 @@ import butterknife.Bind;
 import lv.rigadevday.android.R;
 import lv.rigadevday.android.repository.model.Schedule;
 import lv.rigadevday.android.ui.base.BaseFragment;
+import lv.rigadevday.android.ui.navigation.ShowErrorMessageEvent;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
 
@@ -58,7 +59,7 @@ public class DayScheduleFragment extends BaseFragment {
     }
 
     @Override
-    protected void init(Bundle savedInstanceState) {
+    protected void init() {
         dataFetchSubscription = repository.getDay(getArguments().getString(DAY_TITLE))
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -73,7 +74,7 @@ public class DayScheduleFragment extends BaseFragment {
                             adapter = new DayScheduleAdapter(day.title, daySchedule.schedule);
                             recycler.setAdapter(adapter);
                         },
-                        Throwable::printStackTrace
+                        error -> bus.post(new ShowErrorMessageEvent())
                 );
     }
 
