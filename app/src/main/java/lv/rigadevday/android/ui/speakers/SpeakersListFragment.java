@@ -1,6 +1,5 @@
 package lv.rigadevday.android.ui.speakers;
 
-import android.os.Bundle;
 import android.support.annotation.LayoutRes;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
@@ -9,6 +8,7 @@ import android.support.v7.widget.RecyclerView;
 import butterknife.Bind;
 import lv.rigadevday.android.R;
 import lv.rigadevday.android.ui.base.BaseFragment;
+import lv.rigadevday.android.ui.navigation.ShowErrorMessageEvent;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
 
@@ -28,7 +28,7 @@ public class SpeakersListFragment extends BaseFragment {
     }
 
     @Override
-    protected void init(Bundle savedInstanceState) {
+    protected void init() {
         RecyclerView.LayoutManager manager = new GridLayoutManager(getContext(), 2, LinearLayoutManager.VERTICAL, false);
         recyclerView.setLayoutManager(manager);
 
@@ -36,10 +36,13 @@ public class SpeakersListFragment extends BaseFragment {
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .toList()
-                .subscribe(list -> {
-                    adapter = new SpeakersAdapter(list);
-                    recyclerView.setAdapter(adapter);
-                });
+                .subscribe(
+                        list -> {
+                            adapter = new SpeakersAdapter(list);
+                            recyclerView.setAdapter(adapter);
+                        },
+                        error -> bus.post(new ShowErrorMessageEvent())
+                );
     }
 
 }

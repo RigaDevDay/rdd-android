@@ -1,6 +1,5 @@
 package lv.rigadevday.android.ui.organizers;
 
-import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -8,6 +7,7 @@ import android.support.v7.widget.RecyclerView;
 import butterknife.Bind;
 import lv.rigadevday.android.R;
 import lv.rigadevday.android.ui.base.BaseFragment;
+import lv.rigadevday.android.ui.navigation.ShowErrorMessageEvent;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
 
@@ -26,7 +26,7 @@ public class OrganizersFragment extends BaseFragment {
     }
 
     @Override
-    protected void init(Bundle savedInstanceState) {
+    protected void init() {
         GridLayoutManager manager = new GridLayoutManager(getContext(), 3, LinearLayoutManager.VERTICAL, false);
         manager.setSpanSizeLookup(new GridLayoutManager.SpanSizeLookup() {
             @Override
@@ -46,10 +46,13 @@ public class OrganizersFragment extends BaseFragment {
         dataFetchSubscription = repository.getSponsors()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(list -> {
-                    adapter = new OrganizersAdapter(list);
-                    recycler.setAdapter(adapter);
-                });
+                .subscribe(
+                        list -> {
+                            adapter = new OrganizersAdapter(list);
+                            recycler.setAdapter(adapter);
+                        },
+                        error -> bus.post(new ShowErrorMessageEvent())
+                );
     }
 
 }

@@ -31,4 +31,7 @@
 
     <string name="action_favorite">Toggle favorite</string>
 
+    <string name="error_message">Oops! Check Internet connection and try again</string>
+    <string name="error_retry">Retry</string>
+
 </resources>

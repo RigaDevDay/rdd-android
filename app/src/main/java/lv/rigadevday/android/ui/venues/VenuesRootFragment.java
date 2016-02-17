@@ -1,6 +1,5 @@
 package lv.rigadevday.android.ui.venues;
 
-import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 
@@ -24,7 +23,7 @@ public class VenuesRootFragment extends BaseFragment {
     }
 
     @Override
-    protected void init(Bundle savedInstanceState) {
+    protected void init() {
         ViewPagerAdapter adapter = new ViewPagerAdapter(getChildFragmentManager());
 
         String conference = getString(R.string.venue_conference);

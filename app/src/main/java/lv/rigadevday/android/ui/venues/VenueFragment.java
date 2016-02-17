@@ -10,6 +10,7 @@ import android.widget.TextView;
 import butterknife.Bind;
 import lv.rigadevday.android.R;
 import lv.rigadevday.android.ui.base.BaseFragment;
+import lv.rigadevday.android.ui.navigation.ShowErrorMessageEvent;
 import lv.rigadevday.android.utils.Utils;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
@@ -58,33 +59,36 @@ public class VenueFragment extends BaseFragment {
     }
 
     @Override
-    protected void init(Bundle savedInstanceState) {
+    protected void init() {
         dataFetchSubscription = repository.getVenue(getArguments().getString(EXTRA_TITLE))
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(venue -> {
-                    name.setText(venue.name);
-                    address.setText(venue.address);
-                    addressButton.setOnClickListener(v -> Utils.goToMaps(getContext(), venue.coordinates));
+                .subscribe(
+                        venue -> {
+                            name.setText(venue.name);
+                            address.setText(venue.address);
+                            addressButton.setOnClickListener(v -> Utils.goToMaps(getContext(), venue.coordinates));
 
-                    webLink.setText(venue.web);
-                    webLink.setOnClickListener(v -> Utils.goToWeb(getContext(),venue.web));
+                            webLink.setText(venue.web);
+                            webLink.setOnClickListener(v -> Utils.goToWeb(getContext(), venue.web));
 
-                    if (Utils.isNullOrEmpty(venue.email)) {
-                        emailLayout.setVisibility(View.GONE);
-                    } else {
-                        emailLink.setText(venue.email);
-                        emailLink.setOnClickListener(v -> Utils.goToMail(getContext(), venue.email));
-                    }
+                            if (Utils.isNullOrEmpty(venue.email)) {
+                                emailLayout.setVisibility(View.GONE);
+                            } else {
+                                emailLink.setText(venue.email);
+                                emailLink.setOnClickListener(v -> Utils.goToMail(getContext(), venue.email));
+                            }
 
-                    if (Utils.isNullOrEmpty(venue.wifiPass)) {
-                        wifiPassLayout.setVisibility(View.GONE);
-                    } else {
-                        wifiPass.setText(venue.wifiPass);
-                    }
+                            if (Utils.isNullOrEmpty(venue.wifiPass)) {
+                                wifiPassLayout.setVisibility(View.GONE);
+                            } else {
+                                wifiPass.setText(venue.wifiPass);
+                            }
 
-                    description.setText(Html.fromHtml(venue.description));
-                });
+                            description.setText(Html.fromHtml(venue.description));
+                        },
+                        error -> bus.post(new ShowErrorMessageEvent())
+                );
     }
 
 }

@@ -12,6 +12,7 @@ import butterknife.Bind;
 import lv.rigadevday.android.R;
 import lv.rigadevday.android.repository.model.Schedule;
 import lv.rigadevday.android.ui.base.BaseFragment;
+import lv.rigadevday.android.ui.navigation.ShowErrorMessageEvent;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
 
@@ -58,20 +59,23 @@ public class DayScheduleFragment extends BaseFragment {
     }
 
     @Override
-    protected void init(Bundle savedInstanceState) {
+    protected void init() {
         dataFetchSubscription = repository.getDay(getArguments().getString(DAY_TITLE))
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(day -> {
-                    daySchedule = day.schedule;
+                .subscribe(
+                        day -> {
+                            daySchedule = day.schedule;
 
-                    setRooms(daySchedule.roomNames);
+                            setRooms(daySchedule.roomNames);
 
-                    recycler.setHasFixedSize(true);
-                    recycler.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
-                    adapter = new DayScheduleAdapter(day.title, daySchedule.schedule);
-                    recycler.setAdapter(adapter);
-                });
+                            recycler.setHasFixedSize(true);
+                            recycler.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
+                            adapter = new DayScheduleAdapter(day.title, daySchedule.schedule);
+                            recycler.setAdapter(adapter);
+                        },
+                        error -> bus.post(new ShowErrorMessageEvent())
+                );
     }
 
     public void setRooms(List<String> rooms) {

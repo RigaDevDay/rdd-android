@@ -16,6 +16,7 @@ import javax.inject.Inject;
 import butterknife.Bind;
 import lv.rigadevday.android.R;
 import lv.rigadevday.android.ui.base.BaseFragment;
+import lv.rigadevday.android.ui.navigation.ShowErrorMessageEvent;
 import lv.rigadevday.android.utils.Utils;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
@@ -64,29 +65,31 @@ public class SpeakerFragment extends BaseFragment {
     }
 
     @Override
-    protected void init(Bundle savedInstanceState) {
+    protected void init() {
         dataFetchSubscription = repository.getSpeaker(getArguments().getInt(SPEAKER_ID))
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(speaker -> {
+                .subscribe(
+                        speaker -> {
+                            picasso.load(Utils.imagePrefix(speaker.img))
+                                    .resize(600, 600)
+                                    .centerCrop()
+                                    .into(image);
 
-                    picasso.load(Utils.imagePrefix(speaker.img))
-                            .resize(600, 600)
-                            .centerCrop()
-                            .into(image);
+                            toolbar.setTitle(speaker.name);
+                            toolbar.setSubtitle(speaker.title);
 
-                    toolbar.setTitle(speaker.name);
-                    toolbar.setSubtitle(speaker.title);
+                            titleCompany.setText(String.format(getString(R.string.speaker_title_company_pattern),
+                                    speaker.title.trim(), speaker.company.trim()));
 
-                    titleCompany.setText(String.format(getString(R.string.speaker_title_company_pattern),
-                            speaker.title.trim(), speaker.company.trim()));
+                            bio.setText(Html.fromHtml(speaker.description));
 
-                    bio.setText(Html.fromHtml(speaker.description));
-
-                    setupButton(speaker.blog, buttonBlog);
-                    setupButton(speaker.twitter, buttonTwitter);
-                    setupButton(speaker.linkedin, buttonLinkedIn);
-                });
+                            setupButton(speaker.blog, buttonBlog);
+                            setupButton(speaker.twitter, buttonTwitter);
+                            setupButton(speaker.linkedin, buttonLinkedIn);
+                        },
+                        error -> bus.post(new ShowErrorMessageEvent())
+                );
     }
 
     private void setupButton(String url, View button) {

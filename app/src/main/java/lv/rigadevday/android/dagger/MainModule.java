@@ -15,8 +15,10 @@ import javax.inject.Singleton;
 import dagger.Module;
 import dagger.Provides;
 import de.greenrobot.event.EventBus;
-import lv.rigadevday.android.repository.RepositoryImpl;
 import lv.rigadevday.android.repository.Repository;
+import lv.rigadevday.android.repository.RepositoryImpl;
+import lv.rigadevday.android.repository.networking.DataFetchService;
+import lv.rigadevday.android.repository.networking.HttpClientConfig;
 import lv.rigadevday.android.repository.storage.Storage;
 import lv.rigadevday.android.ui.base.BaseActivity;
 import lv.rigadevday.android.ui.drawer.DrawerActivity;
@@ -32,10 +34,12 @@ import lv.rigadevday.android.ui.speakers.speaker.SpeakerActivity;
 import lv.rigadevday.android.ui.speakers.speaker.SpeakerFragment;
 import lv.rigadevday.android.ui.talk.TalkActivity;
 import lv.rigadevday.android.ui.talk.TalkFragment;
-import lv.rigadevday.android.ui.venues.VenuesRootFragment;
 import lv.rigadevday.android.ui.venues.VenueFragment;
+import lv.rigadevday.android.ui.venues.VenuesRootFragment;
 import lv.rigadevday.android.utils.BaseApplication;
-import lv.rigadevday.android.utils.connectivity.DownloadManager;
+import retrofit.GsonConverterFactory;
+import retrofit.Retrofit;
+import retrofit.RxJavaCallAdapterFactory;
 
 @Module(
         injects = {
@@ -64,7 +68,6 @@ import lv.rigadevday.android.utils.connectivity.DownloadManager;
                 VenueFragment.class,
 
                 RepositoryImpl.class,
-                DownloadManager.class,
                 Storage.class
         },
         library = true
@@ -81,12 +84,6 @@ public class MainModule implements DaggerModule {
     @Singleton
     EventBus provideBus() {
         return new EventBus();
-    }
-
-    @Provides
-    @Singleton
-    DownloadManager provideDownloadManager() {
-        return DownloadManager.getInstance();
     }
 
     @Provides
@@ -115,5 +112,30 @@ public class MainModule implements DaggerModule {
     @Singleton
     LayoutInflater provideLayoutInflater() {
         return LayoutInflater.from(appContext);
+    }
+
+    @Provides
+    OkHttpClient provideOkHttpClient(Context context) {
+        OkHttpClient httpClient = new OkHttpClient();
+        HttpClientConfig.setCacheInterceptor(httpClient);
+        HttpClientConfig.setCache(context, httpClient);
+        return httpClient;
+    }
+
+    @Provides
+    @Singleton
+    Retrofit provideRetrofit(OkHttpClient client) {
+        return new Retrofit.Builder()
+                .baseUrl("https://raw.githubusercontent.com")
+                .client(client)
+                .addConverterFactory(GsonConverterFactory.create())
+                .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
+                .build();
+    }
+
+    @Provides
+    @Singleton
+    DataFetchService provideService(Retrofit retrofit) {
+        return retrofit.create(DataFetchService.class);
     }
 }

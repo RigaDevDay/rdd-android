@@ -12,7 +12,7 @@ import lv.rigadevday.android.repository.model.SponsorLogoList;
 import lv.rigadevday.android.repository.model.TimeSlot;
 import lv.rigadevday.android.repository.model.venues.Venue;
 import lv.rigadevday.android.repository.model.venues.VenuesList;
-import lv.rigadevday.android.repository.networking.DataFetchStub;
+import lv.rigadevday.android.repository.networking.DataFetchService;
 import lv.rigadevday.android.repository.storage.Storage;
 import lv.rigadevday.android.utils.BaseApplication;
 import rx.Observable;
@@ -24,9 +24,11 @@ public class RepositoryImpl implements Repository {
     @Inject
     Context appContext;
 
+    @Inject
+    DataFetchService dataFetchService;
+
     private static RepositoryImpl INSTANCE;
 
-    private DataFetchStub dataFetchStub;
     private Storage storage;
 
     public static RepositoryImpl getInstance() {
@@ -38,21 +40,12 @@ public class RepositoryImpl implements Repository {
 
     private RepositoryImpl() {
         BaseApplication.inject(this);
-        dataFetchStub = new DataFetchStub();
         storage = new Storage();
     }
 
     @Override
-    public Observable<Integer> getVersion() {
-        return dataFetchStub.getData(appContext)
-                .flatMap(dataRoot -> Observable.just(dataRoot.version))
-                .cache();
-    }
-
-
-    @Override
     public Observable<Day> getAllDays() {
-        return dataFetchStub.getData(appContext)
+        return dataFetchService.getData()
                 .flatMap(dataRoot -> Observable.from(dataRoot.days))
                 .cache();
     }
@@ -65,7 +58,7 @@ public class RepositoryImpl implements Repository {
 
     @Override
     public Observable<Speaker> getAllSpeakers() {
-        return dataFetchStub.getData(appContext)
+        return dataFetchService.getData()
                 .flatMap(dataRoot -> Observable.from(dataRoot.speakers))
                 .cache();
     }
@@ -83,7 +76,7 @@ public class RepositoryImpl implements Repository {
 
     @Override
     public Observable<TimeSlot> getTimeSlot(String filterDay, String filterTime) {
-        return dataFetchStub.getData(appContext)
+        return dataFetchService.getData()
                 .flatMap(data -> Observable.from(data.days))
                 .cache()
                 .filter(day -> day.title.equalsIgnoreCase(filterDay))
