@@ -7,6 +7,8 @@ import android.net.Uri;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 
+import lv.rigadevday.android.repository.networking.DataUrls;
+
 /**
  */
 public class Utils {
@@ -15,7 +17,7 @@ public class Utils {
     }
 
     public static String imagePrefix(String img) {
-        return "https://raw.githubusercontent.com/RigaDevDay/RigaDevDay.github.io/source/src/" + img;
+        return DataUrls.IMAGE_PREFIX + img;
     }
 
     public static void goToWeb(Context context, String url) {

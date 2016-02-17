@@ -13,13 +13,13 @@ import de.greenrobot.event.EventBus;
 import lv.rigadevday.android.ui.licences.LicencesActivity;
 import lv.rigadevday.android.ui.navigation.OpenLicencesScreen;
 import lv.rigadevday.android.ui.navigation.OpenSpeakerScreen;
+import lv.rigadevday.android.ui.navigation.OpenTalkScreen;
 import lv.rigadevday.android.ui.navigation.OpenWeb;
 import lv.rigadevday.android.ui.speakers.speaker.SpeakerActivity;
 import lv.rigadevday.android.ui.speakers.speaker.SpeakerFragment;
+import lv.rigadevday.android.ui.talk.TalkActivity;
 import lv.rigadevday.android.ui.talk.TalkFragment;
 import lv.rigadevday.android.utils.BaseApplication;
-import lv.rigadevday.android.ui.navigation.OpenTalkScreen;
-import lv.rigadevday.android.ui.talk.TalkActivity;
 import lv.rigadevday.android.utils.Utils;
 
 /**

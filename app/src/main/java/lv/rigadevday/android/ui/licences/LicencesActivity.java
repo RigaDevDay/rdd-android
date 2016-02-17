@@ -28,8 +28,11 @@ public class LicencesActivity extends BaseActivity {
     @Override
     public void initializeScreen() {
         setSupportActionBar(toolbar);
-        getSupportActionBar().setHomeButtonEnabled(true);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        if (getSupportActionBar() != null) {
+            getSupportActionBar().setHomeButtonEnabled(true);
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        }
 
         webview.loadUrl("file:///android_asset/licenses.html");
     }

@@ -5,11 +5,8 @@ import android.content.Context;
 import com.squareup.okhttp.Cache;
 import com.squareup.okhttp.OkHttpClient;
 import com.squareup.okhttp.Response;
-import com.squareup.okhttp.logging.HttpLoggingInterceptor;
 
 import java.io.File;
-
-import lv.rigadevday.android.BuildConfig;
 
 /**
  */

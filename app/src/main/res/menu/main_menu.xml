@@ -5,7 +5,7 @@
         android:id="@+id/action_twitter"
         android:icon="@drawable/vector_action_twitter"
         android:title="@string/action_twitter"
-        app:showAsAction="always"
+        app:showAsAction="ifRoom"
         />
     <item
         android:id="@+id/action_licences"

@@ -4,8 +4,6 @@
     <string name="family_regular">sans-serif</string>
     <string name="family_light">sans-serif-light</string>
     <string name="family_condensed">sans-serif-condensed</string>
-    <string name="family_thin">sans-serif-thin</string>
-    <string name="family_medium">sans-serif-medium</string>
 
 
     <style name="Match">

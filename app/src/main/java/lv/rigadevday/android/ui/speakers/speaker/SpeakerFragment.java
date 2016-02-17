@@ -25,27 +25,23 @@ import rx.schedulers.Schedulers;
  */
 public class SpeakerFragment extends BaseFragment {
 
-    @Inject
-    Picasso picasso;
-
     public static final String SPEAKER_ID = "speaker_id";
-
     @Bind(R.id.toolbar)
     protected Toolbar toolbar;
-
     @Bind(R.id.speaker_image)
     protected ImageView image;
     @Bind(R.id.speaker_title_company)
     protected TextView titleCompany;
     @Bind(R.id.speaker_bio)
     protected TextView bio;
-
     @Bind(R.id.speaker_button_blog)
     protected View buttonBlog;
     @Bind(R.id.speaker_button_twitter)
     protected View buttonTwitter;
     @Bind(R.id.speaker_button_linkedin)
     protected View buttonLinkedIn;
+    @Inject
+    Picasso picasso;
 
     public static Fragment newInstance(Bundle extras) {
         SpeakerFragment fragment = new SpeakerFragment();

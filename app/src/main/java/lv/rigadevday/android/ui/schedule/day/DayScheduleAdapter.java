@@ -33,18 +33,13 @@ public class DayScheduleAdapter extends RecyclerView.Adapter {
 
     private final int TYPE_CARDS_LIST = 1;
     private final int TYPE_SINGLE_CARD = 2;
-
+    private final String day;
     @Inject
     Repository repository;
-
     @Inject
     EventBus bus;
-
     @Inject
     Context context;
-
-    private final String day;
-
     private List<TimeSlot> mSchedule;
 
     public DayScheduleAdapter(String day, List<TimeSlot> schedule) {
@@ -173,7 +168,7 @@ public class DayScheduleAdapter extends RecyclerView.Adapter {
         return mSchedule.size();
     }
 
-    
+
     public static class CardsListViewHolder extends RecyclerView.ViewHolder {
 
         @Bind(R.id.timeslot_time_label)

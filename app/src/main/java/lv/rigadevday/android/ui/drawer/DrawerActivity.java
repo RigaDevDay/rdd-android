@@ -26,9 +26,6 @@ import lv.rigadevday.android.utils.Utils;
  */
 public class DrawerActivity extends BaseActivity implements DrawerActivityPresenter {
 
-    @Inject
-    EventBus bus;
-
     @Nullable
     @Bind(R.id.toolbar)
     protected Toolbar toolbar;
@@ -36,7 +33,8 @@ public class DrawerActivity extends BaseActivity implements DrawerActivityPresen
     protected DrawerLayout drawer;
     @Bind(R.id.activity_drawer_navigation_view)
     protected NavigationView navigation;
-
+    @Inject
+    EventBus bus;
     private ActionBarDrawerToggle drawerToggle;
     private DrawerActivityController controller;
 
@@ -85,7 +83,8 @@ public class DrawerActivity extends BaseActivity implements DrawerActivityPresen
 
     @Override
     public void openFragment(@StringRes int titleId, BaseFragment fragment) {
-        getSupportActionBar().setTitle(titleId);
+        if (getSupportActionBar() != null)
+            getSupportActionBar().setTitle(titleId);
         getSupportFragmentManager().beginTransaction()
                 .replace(R.id.activity_drawer_content_frame, fragment)
                 .commit();

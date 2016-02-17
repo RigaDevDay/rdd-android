@@ -4,7 +4,6 @@ import java.util.List;
 
 import lv.rigadevday.android.repository.model.Day;
 import lv.rigadevday.android.repository.model.Speaker;
-import lv.rigadevday.android.repository.model.SponsorLogo;
 import lv.rigadevday.android.repository.model.SponsorLogoList;
 import lv.rigadevday.android.repository.model.TimeSlot;
 import lv.rigadevday.android.repository.model.venues.Venue;

@@ -19,6 +19,7 @@ public class VerticalTextView extends TextView {
     public final static int ORIENTATION_RIGHT_TO_LEFT = 3;
 
     Rect text_bounds = new Rect();
+    Path path = new Path();
     private int direction;
 
     public VerticalTextView(Context context) {
@@ -38,13 +39,6 @@ public class VerticalTextView extends TextView {
 
     }
 
-    public void setDirection(int direction) {
-        this.direction = direction;
-
-        requestLayout();
-        invalidate();
-    }
-
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
         getPaint().getTextBounds(getText().toString(), 0, getText().length(),
@@ -62,7 +56,7 @@ public class VerticalTextView extends TextView {
     }
 
     private int measureWidth(int measureSpec) {
-        int result = 0;
+        int result;
         int specMode = MeasureSpec.getMode(measureSpec);
         int specSize = MeasureSpec.getSize(measureSpec);
 
@@ -71,7 +65,6 @@ public class VerticalTextView extends TextView {
         } else {
             result = text_bounds.height() + getPaddingTop()
                     + getPaddingBottom();
-            // result = text_bounds.height();
             if (specMode == MeasureSpec.AT_MOST) {
                 result = Math.min(result, specSize);
             }
@@ -80,7 +73,7 @@ public class VerticalTextView extends TextView {
     }
 
     private int measureHeight(int measureSpec) {
-        int result = 0;
+        int result;
         int specMode = MeasureSpec.getMode(measureSpec);
         int specSize = MeasureSpec.getSize(measureSpec);
 
@@ -88,7 +81,6 @@ public class VerticalTextView extends TextView {
             result = specSize;
         } else {
             result = text_bounds.width() + getPaddingLeft() + getPaddingRight();
-            // result = text_bounds.width();
             if (specMode == MeasureSpec.AT_MOST) {
                 result = Math.min(result, specSize);
             }
@@ -98,15 +90,12 @@ public class VerticalTextView extends TextView {
 
     @Override
     protected void onDraw(Canvas canvas) {
-//		 super.onDraw(canvas);
-
         canvas.save();
 
-        int startX = 0;
-        int startY = 0;
-        int stopX = 0;
-        int stopY = 0;
-        Path path = new Path();
+        int startX;
+        int startY;
+        int stopX;
+        int stopY;
         if (direction == ORIENTATION_UP_TO_DOWN) {
             startX = (getWidth() - text_bounds.height() >> 1);
             startY = (getHeight() - text_bounds.width() >> 1);
@@ -138,9 +127,7 @@ public class VerticalTextView extends TextView {
         }
 
         this.getPaint().setColor(this.getCurrentTextColor());
-//		canvas.drawLine(startX, startY, stopX, stopY, this.getPaint());
         canvas.drawTextOnPath(getText().toString(), path, 0, 0, this.getPaint());
-
         canvas.restore();
     }
 }
