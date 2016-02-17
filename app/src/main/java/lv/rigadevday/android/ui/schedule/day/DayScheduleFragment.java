@@ -62,16 +62,19 @@ public class DayScheduleFragment extends BaseFragment {
         dataFetchSubscription = repository.getDay(getArguments().getString(DAY_TITLE))
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(day -> {
-                    daySchedule = day.schedule;
+                .subscribe(
+                        day -> {
+                            daySchedule = day.schedule;
 
-                    setRooms(daySchedule.roomNames);
+                            setRooms(daySchedule.roomNames);
 
-                    recycler.setHasFixedSize(true);
-                    recycler.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
-                    adapter = new DayScheduleAdapter(day.title, daySchedule.schedule);
-                    recycler.setAdapter(adapter);
-                });
+                            recycler.setHasFixedSize(true);
+                            recycler.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
+                            adapter = new DayScheduleAdapter(day.title, daySchedule.schedule);
+                            recycler.setAdapter(adapter);
+                        },
+                        Throwable::printStackTrace
+                );
     }
 
     public void setRooms(List<String> rooms) {

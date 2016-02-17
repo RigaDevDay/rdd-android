@@ -23,6 +23,8 @@ import lv.rigadevday.android.repository.model.TimeSlot;
 import lv.rigadevday.android.ui.navigation.OpenTalkScreen;
 import lv.rigadevday.android.utils.BaseApplication;
 import lv.rigadevday.android.utils.Utils;
+import rx.android.schedulers.AndroidSchedulers;
+import rx.schedulers.Schedulers;
 
 /**
  */
@@ -144,10 +146,15 @@ public class DayScheduleAdapter extends RecyclerView.Adapter {
 
     private void setSpeakerNames(TextView speakerLabel, List<Integer> speakers) {
         repository.getSpeakers(speakers)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
                 .map(speaker -> speaker.name)
                 .defaultIfEmpty("")
                 .reduce((r, s) -> r.concat(", ").concat(s))
-                .subscribe(speakerLabel::setText);
+                .subscribe(
+                        speakerLabel::setText,
+                        Throwable::printStackTrace
+                );
     }
 
     private void checkFavoredStatus(View card, String day, String time, int index) {

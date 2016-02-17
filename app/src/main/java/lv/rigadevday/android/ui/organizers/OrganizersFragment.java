@@ -46,10 +46,13 @@ public class OrganizersFragment extends BaseFragment {
         dataFetchSubscription = repository.getSponsors()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(list -> {
-                    adapter = new OrganizersAdapter(list);
-                    recycler.setAdapter(adapter);
-                });
+                .subscribe(
+                        list -> {
+                            adapter = new OrganizersAdapter(list);
+                            recycler.setAdapter(adapter);
+                        },
+                        Throwable::printStackTrace
+                );
     }
 
 }

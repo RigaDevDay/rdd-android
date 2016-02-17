@@ -14,9 +14,6 @@ import rx.Observable;
  */
 public interface Repository {
 
-    Observable<Integer> getVersion();
-
-
     Observable<Day> getAllDays();
 
     Observable<Day> getDay(String title);

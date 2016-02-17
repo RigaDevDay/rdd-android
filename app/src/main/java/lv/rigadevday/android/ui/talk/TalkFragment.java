@@ -119,21 +119,26 @@ public class TalkFragment extends BaseFragment {
 
     private void setSpeakers(List<Integer> speakers) {
         repository.getSpeakers(speakers)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
                 .toList()
-                .subscribe(list -> {
-                    speaker1.setText(list.get(0).name);
-                    speaker1.setOnClickListener(v -> bus.post(new OpenSpeakerScreen(list.get(0).id)));
+                .subscribe(
+                        list -> {
+                            speaker1.setText(list.get(0).name);
+                            speaker1.setOnClickListener(v -> bus.post(new OpenSpeakerScreen(list.get(0).id)));
 
-                    if (list.size() > 1) {
-                        speakersAmp.setVisibility(View.VISIBLE);
-                        speaker2.setVisibility(View.VISIBLE);
+                            if (list.size() > 1) {
+                                speakersAmp.setVisibility(View.VISIBLE);
+                                speaker2.setVisibility(View.VISIBLE);
 
-                        speaker2.setText(list.get(1).name);
-                        speaker2.setOnClickListener(v -> bus.post(new OpenSpeakerScreen(list.get(1).id)));
-                    }
+                                speaker2.setText(list.get(1).name);
+                                speaker2.setOnClickListener(v -> bus.post(new OpenSpeakerScreen(list.get(1).id)));
+                            }
 
-                    speakerLayout.setVisibility(View.VISIBLE);
-                });
+                            speakerLayout.setVisibility(View.VISIBLE);
+                        },
+                        Throwable::printStackTrace
+                );
     }
 
     @Override

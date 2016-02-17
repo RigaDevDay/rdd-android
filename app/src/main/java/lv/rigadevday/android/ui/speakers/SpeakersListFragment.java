@@ -36,10 +36,13 @@ public class SpeakersListFragment extends BaseFragment {
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .toList()
-                .subscribe(list -> {
-                    adapter = new SpeakersAdapter(list);
-                    recyclerView.setAdapter(adapter);
-                });
+                .subscribe(
+                        list -> {
+                            adapter = new SpeakersAdapter(list);
+                            recyclerView.setAdapter(adapter);
+                        },
+                        Throwable::printStackTrace
+                );
     }
 
 }

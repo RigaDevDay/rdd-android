@@ -9,6 +9,6 @@ import rx.Observable;
  */
 public interface DataFetchService {
 
-    @GET("/assets/data/main.json")
+    @GET("/RigaDevDay/RigaDevDay.github.io/master/assets/data/main.json")
     Observable<DataRoot> getData();
 }
