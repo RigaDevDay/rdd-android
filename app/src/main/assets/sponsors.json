@@ -19,6 +19,8 @@
     "url": "http://lvoug.lv/"
   },
 
+
+
   {
     "isHeader": true,
     "title": "Our dear Sponsors"
@@ -84,14 +86,31 @@
     "url": "http://neueda.lv/"
   },
 
+
+
   {
     "isHeader": true,
     "title": "Supported by"
   },
   {
     "isHeader": false,
-    "image": "assets/img/partners/friends/relayr.png",
-    "url": "https://www.relayr.io/"
+    "image": "assets/img/partners/friends/rigas-dome.png",
+    "url": "https://www.riga.lv/LV/Channels/"
+  },
+  {
+    "isHeader": false,
+    "image": "assets/img/partners/friends/delfi.png",
+    "url": "http://www.delfi.lv/"
+  },
+  {
+    "isHeader": false,
+    "image": "assets/img/partners/friends/kursors.png",
+    "url": "http://kursors.lv/"
+  },
+  {
+    "isHeader": false,
+    "image": "assets/img/partners/friends/BdaLogo.png",
+    "url": "http://www.bda.lv/bda4/"
   },
   {
     "isHeader": false,
@@ -115,19 +134,16 @@
   },
   {
     "isHeader": false,
-    "image": "assets/img/partners/friends/rigas-dome.png",
-    "url": "https://www.riga.lv/LV/Channels/"
+    "image": "assets/img/partners/friends/relayr.png",
+    "url": "https://www.relayr.io/"
   },
   {
     "isHeader": false,
     "image": "assets/img/partners/friends/oracle_press.jpg",
     "url": "http://community.oraclepressbooks.com/"
   },
-  {
-    "isHeader": false,
-    "image": "assets/img/partners/friends/BdaLogo.png",
-    "url": "http://www.bda.lv/bda4/"
-  },
+
+
 
   {
     "isHeader": true,
@@ -157,5 +173,15 @@
     "isHeader": false,
     "image": "assets/img/partners/friends/ldn.png",
     "url": "http://www.meetup.com/Latvian-Developers-Network/?https=off"
+  },
+  {
+    "isHeader": false,
+    "image": "assets/img/partners/friends/gdg_minsk.jpg",
+    "url": "https://plus.google.com/113201184286137496581/posts"
+  },
+  {
+    "isHeader": false,
+    "image": "assets/img/partners/friends/jetconf.png",
+    "url": "http://jetconf.by/#/"
   }
 ]
