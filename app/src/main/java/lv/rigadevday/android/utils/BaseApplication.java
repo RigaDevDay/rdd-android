@@ -5,7 +5,7 @@ import android.app.Application;
 import com.bettervectordrawable.Convention;
 import com.bettervectordrawable.VectorDrawableCompat;
 
-import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 import dagger.ObjectGraph;
@@ -17,6 +17,10 @@ public class BaseApplication extends Application {
 
     private static ObjectGraph objectGraph;
 
+    public static <T> void inject(T instance) {
+        if (objectGraph != null) objectGraph.inject(instance);
+    }
+
     @Override
     public void onCreate() {
         super.onCreate();
@@ -26,12 +30,8 @@ public class BaseApplication extends Application {
         objectGraph = ObjectGraph.create(modules);
     }
 
-    public static <T> void inject(T instance) {
-        if (objectGraph != null) objectGraph.inject(instance);
-    }
-
     public DaggerModule[] getModules() {
-        List<DaggerModule> modules = Arrays.<DaggerModule>asList(
+        List<DaggerModule> modules = Collections.<DaggerModule>singletonList(
                 new MainModule(this)
         );
         return modules.toArray(new DaggerModule[modules.size()]);

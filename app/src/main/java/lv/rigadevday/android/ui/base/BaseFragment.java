@@ -70,6 +70,7 @@ public abstract class BaseFragment extends Fragment {
     protected abstract int contentViewId();
 
     public void onEvent(final ShowErrorMessageEvent event) {
+        if (getView() == null) return;
         snackbar = Snackbar.make(getView(), R.string.error_message, Snackbar.LENGTH_INDEFINITE)
                 .setAction(R.string.error_retry, v -> bus.post(new RefreshDataEvent()))
                 .setActionTextColor(ContextCompat.getColor(getContext(), R.color.color_accent));

@@ -21,26 +21,23 @@ import rx.Observable;
  */
 public class RepositoryImpl implements Repository {
 
+    private static RepositoryImpl INSTANCE;
     @Inject
     Context appContext;
-
     @Inject
     DataFetchService dataFetchService;
-
-    private static RepositoryImpl INSTANCE;
-
     private Storage storage;
+
+    private RepositoryImpl() {
+        BaseApplication.inject(this);
+        storage = new Storage();
+    }
 
     public static RepositoryImpl getInstance() {
         if (INSTANCE == null) {
             INSTANCE = new RepositoryImpl();
         }
         return new RepositoryImpl();
-    }
-
-    private RepositoryImpl() {
-        BaseApplication.inject(this);
-        storage = new Storage();
     }
 
     @Override

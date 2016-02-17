@@ -19,6 +19,7 @@ import lv.rigadevday.android.repository.Repository;
 import lv.rigadevday.android.repository.RepositoryImpl;
 import lv.rigadevday.android.repository.networking.DataFetchService;
 import lv.rigadevday.android.repository.networking.HttpClientConfig;
+import lv.rigadevday.android.repository.networking.DataUrls;
 import lv.rigadevday.android.repository.storage.Storage;
 import lv.rigadevday.android.ui.base.BaseActivity;
 import lv.rigadevday.android.ui.drawer.DrawerActivity;
@@ -126,7 +127,7 @@ public class MainModule implements DaggerModule {
     @Singleton
     Retrofit provideRetrofit(OkHttpClient client) {
         return new Retrofit.Builder()
-                .baseUrl("https://raw.githubusercontent.com")
+                .baseUrl(DataUrls.BASE_URL)
                 .client(client)
                 .addConverterFactory(GsonConverterFactory.create())
                 .addCallAdapterFactory(RxJavaCallAdapterFactory.create())

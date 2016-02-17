@@ -35,16 +35,10 @@ public class TalkFragment extends BaseFragment {
     public static final String EXTRA_DAY = "talk_day";
     public static final String EXTRA_TIME = "talk_time";
     public static final String EXTRA_INDEX = "talk_index_in_day";
-
-    @Inject
-    EventBus bus;
-
     @Bind(R.id.toolbar)
     protected Toolbar toolbar;
-
     @Bind(R.id.talk_title)
     protected TextView title;
-
     @Bind(R.id.talk_speaker_layout)
     protected LinearLayout speakerLayout;
     @Bind(R.id.talk_speaker1)
@@ -53,13 +47,12 @@ public class TalkFragment extends BaseFragment {
     protected TextView speakersAmp;
     @Bind(R.id.talk_speaker2)
     protected TextView speaker2;
-
     @Bind(R.id.talk_description)
     protected TextView description;
-
     @Bind(R.id.talk_tags)
     protected TextView tagsLayout;
-
+    @Inject
+    EventBus bus;
     private String day;
     private String time;
     private int index;
