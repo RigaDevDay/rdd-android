@@ -38,7 +38,7 @@ public class Utils {
     }
 
     public static void goToTwitter(Context context, String hashtag) {
-        goToWeb(context, String.format("https://twitter.com/intent/tweet?text=%s", urlEncode(hashtag)));
+        goToWeb(context, String.format("https://twitter.com/search?q=%s", urlEncode(hashtag)));
     }
 
     private static String urlEncode(String s) {

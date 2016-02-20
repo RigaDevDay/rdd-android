@@ -16,7 +16,7 @@ android {
         applicationId "lv.rigadevday.android"
         minSdkVersion 16
         targetSdkVersion 23
-        versionCode 4
+        versionCode 5
         versionName "2.0.0"
 
         generatedDensities = []
