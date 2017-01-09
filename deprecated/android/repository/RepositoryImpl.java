@@ -29,7 +29,7 @@ public class RepositoryImpl implements Repository {
     private Storage storage;
 
     private RepositoryImpl() {
-        BaseApplication.inject(this);
+        BaseApplication.Companion.inject(this);
         storage = new Storage();
     }
 

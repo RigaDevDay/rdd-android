@@ -40,7 +40,7 @@ public class OrganizersAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
     List<SponsorLogo> logosList;
 
     public OrganizersAdapter(List<SponsorLogo> logosList) {
-        BaseApplication.inject(this);
+        BaseApplication.Companion.inject(this);
         this.logosList = logosList;
     }
 

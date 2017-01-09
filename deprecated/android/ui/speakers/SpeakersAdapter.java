@@ -39,7 +39,7 @@ public class SpeakersAdapter extends RecyclerView.Adapter<SpeakersAdapter.Speake
     List<Speaker> speakersList;
 
     public SpeakersAdapter(List<Speaker> list) {
-        BaseApplication.inject(this);
+        BaseApplication.Companion.inject(this);
         this.speakersList = list;
     }
 

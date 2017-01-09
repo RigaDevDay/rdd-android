@@ -45,7 +45,7 @@ public class DayScheduleAdapter extends RecyclerView.Adapter {
     public DayScheduleAdapter(String day, List<TimeSlot> schedule) {
         this.day = day;
         this.mSchedule = schedule;
-        BaseApplication.inject(this);
+        BaseApplication.Companion.inject(this);
     }
 
     @Override

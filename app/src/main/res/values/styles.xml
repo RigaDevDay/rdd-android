@@ -5,7 +5,6 @@
     <string name="family_light">sans-serif-light</string>
     <string name="family_condensed">sans-serif-condensed</string>
 
-
     <style name="Match">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">match_parent</item>

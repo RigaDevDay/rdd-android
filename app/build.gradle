@@ -1,28 +1,17 @@
 apply plugin: 'com.android.application'
-apply plugin: 'me.tatarka.retrolambda'
-
-repositories {
-    maven { url "https://oss.sonatype.org/content/repositories/snapshots/" }
-
-    mavenCentral()
-    jcenter()
-}
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
 
 android {
     compileSdkVersion 25
     buildToolsVersion '25.0.2'
 
     defaultConfig {
-        applicationId "lv.rigadevday.android"
-        minSdkVersion 16
+        applicationId "lv.rigadevday.android.v2"
+        minSdkVersion 19
         targetSdkVersion 25
-        versionCode 5
-        versionName "2.0.0"
-    }
-
-    compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
+        versionCode 6
+        versionName "3.0.0"
     }
 
     signingConfigs {
@@ -40,36 +29,18 @@ android {
             signingConfig signingConfigs.release
         }
     }
+    sourceSets {
+        main.java.srcDirs += 'src/main/kotlin'
+    }
 }
 
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
 
-    compile 'com.android.support:appcompat-v7:25.1.0'
-    compile 'com.android.support:design:25.1.0'
-    compile 'com.android.support:support-v4:25.1.0'
-    compile 'com.android.support:recyclerview-v7:25.1.0'
-    compile 'com.android.support:cardview-v7:25.1.0'
+    compile "com.android.support:appcompat-v7:${versions.support}"
+    compile "com.android.support:design:${versions.support}"
+    compile "com.android.support:recyclerview-v7:${versions.support}"
+    compile "com.android.support:cardview-v7:${versions.support}"
 
-    compile 'com.jakewharton:butterknife:7.0.1'
-    compile 'com.squareup.dagger:dagger:1.2.2'
-
-    compile 'com.squareup.retrofit:retrofit:2.0.0-beta2'
-    compile 'com.squareup.retrofit:converter-gson:2.0.0-beta2'
-    compile 'com.squareup.retrofit:adapter-rxjava:2.0.0-beta2'
-    compile 'com.squareup.okhttp:logging-interceptor:2.6.0'
-
-    compile 'com.squareup.picasso:picasso:2.5.2'
-    compile 'com.squareup.okhttp3:okhttp:3.0.1'
-
-    compile 'io.reactivex:rxjava:1.1.0'
-    compile 'io.reactivex:rxandroid:1.1.0'
-
-    compile 'de.greenrobot:eventbus:2.4.0'
-    compile 'com.bettervectordrawable:lib:0.7'
-
-    compile 'com.snappydb:snappydb-lib:0.5.2'
-    compile 'com.esotericsoftware.kryo:kryo:2.24.0'
-
-    provided 'com.squareup.dagger:dagger-compiler:1.2.2'
+    compile "org.jetbrains.kotlin:kotlin-stdlib:${versions.kotlin}"
 }

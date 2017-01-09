@@ -28,7 +28,7 @@ public class Storage {
     private DB snappy;
 
     public Storage() {
-        BaseApplication.inject(this);
+        BaseApplication.Companion.inject(this);
 
         try {
             snappy = DBFactory.open(context);

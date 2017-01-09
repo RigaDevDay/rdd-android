@@ -2,6 +2,9 @@
 
 <resources>
 
+
+
+    <!-- DEPRECATED -->
     <declare-styleable name="verticaltextview">
         <attr name="direction">
             <enum name="uptodown" value="0" />
