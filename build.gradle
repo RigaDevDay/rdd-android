@@ -1,7 +1,8 @@
 buildscript {
     ext.versions = [
-            'support': '25.1.0',
-            'kotlin' : '1.0.5'
+            'support' : '25.1.0',
+            'kotlin'  : '1.0.5',
+            'firebase': '10.0.1'
     ]
 
     repositories {
@@ -9,6 +10,7 @@ buildscript {
     }
     dependencies {
         classpath 'com.android.tools.build:gradle:2.3.0-beta1'
+        classpath 'com.google.gms:google-services:3.0.0'
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:${versions.kotlin}"
     }
 }
