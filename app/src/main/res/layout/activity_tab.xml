@@ -1,10 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout
-    android:id="@+id/activity_tab"
+<LinearLayout
+    style="@style/Match"
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context="lv.rigadevday.android.ui.TabActivity">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical">
 
-</FrameLayout>
+    <FrameLayout
+        android:id="@+id/tabs_content_container"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        />
+
+    <android.support.design.widget.BottomNavigationView
+        android:id="@+id/tabs_buttons"
+        style="@style/MatchWrap"
+        app:itemBackground="@color/tab_bar_background"
+        app:itemIconTint="@color/tab_text_selector"
+        app:itemTextColor="@color/tab_text_selector"
+        app:menu="@menu/bottom_navigation_main"
+        />
+
+</LinearLayout>

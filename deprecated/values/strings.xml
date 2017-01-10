@@ -12,10 +12,6 @@
 
 
     <!-- DEPRECATED -->
-    <string name="drawer_schedule">Schedule</string>
-    <string name="drawer_speakers">Speakers</string>
-    <string name="drawer_organizers">Organizers</string>
-    <string name="drawer_venues">Venues</string>
 
     <string name="talk_time_pattern">%1$s - %2$s</string>
     <string name="talk_speaker_by">by\u0020</string>

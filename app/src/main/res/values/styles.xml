@@ -26,7 +26,7 @@
     </style>
 
     <style name="ScreenBackground" parent="Match">
-        <item name="android:background">@color/color_screen_background</item>
+        <item name="android:background">@color/screen_background</item>
     </style>
 
 </resources>

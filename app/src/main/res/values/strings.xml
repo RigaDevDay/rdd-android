@@ -1,8 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">RigaDevDay 2016</string>
-
+    <string name="app_name">RigaDevDay 2017</string>
     <string name="hashtag">#RigaDevDay</string>
+
+
+    <string name="tab_schedule">Schedule</string>
+    <string name="tab_speakers">Speakers</string>
+    <string name="tab_venues">Venues</string>
+    <string name="tab_organizers">Organizers</string>
 
 </resources>
