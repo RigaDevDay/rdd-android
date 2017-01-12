@@ -1,6 +1,11 @@
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
+
+kapt {
+    generateStubs = true
+}
 
 android {
     compileSdkVersion 25
@@ -42,6 +47,10 @@ android {
     }
 }
 
+repositories {
+    jcenter()
+}
+
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
 
@@ -54,6 +63,13 @@ dependencies {
     compile "com.google.firebase:firebase-database:${versions.firebase}"
 
     compile "org.jetbrains.kotlin:kotlin-stdlib:${versions.kotlin}"
+
+    // dagger 2 stuff
+    kapt "com.google.dagger:dagger-compiler:${versions.dagger}"
+    compile "com.google.dagger:dagger:${versions.dagger}"
+    provided 'javax.annotation:jsr250-api:1.0'
+
+    compile "io.reactivex.rxjava2:rxjava:2.0.4"
 }
 
 apply plugin: 'com.google.gms.google-services'

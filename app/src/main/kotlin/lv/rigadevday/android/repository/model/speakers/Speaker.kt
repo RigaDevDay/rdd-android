@@ -1,6 +1,7 @@
-package lv.rigadevday.android.repository.model
+package lv.rigadevday.android.repository.model.speakers
 
 import com.google.firebase.database.IgnoreExtraProperties
+import lv.rigadevday.android.repository.model.other.SocialAccount
 
 @IgnoreExtraProperties
 data class Speaker(
@@ -19,18 +20,4 @@ data class Speaker(
     var badges: List<Badge> = emptyList(),
     var socials: List<SocialAccount> = emptyList(),
     var tags: List<String> = emptyList()
-)
-
-@IgnoreExtraProperties
-data class Badge(
-    var name: String = "",
-    var description: String = "",
-    var link: String = ""
-)
-
-@IgnoreExtraProperties
-data class SocialAccount(
-    var name: String = "",
-    var icon: String = "",
-    var link: String = ""
 )
