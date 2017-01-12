@@ -27,6 +27,7 @@ gen-external-apklibs/
 .classpath
 .settings/
 gradle.properties
+google-services.json
 
 # Misc
 .DS_Store

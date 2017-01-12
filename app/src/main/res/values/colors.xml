@@ -1,17 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <!-- Theme colors -->
-    <color name="color_primary">#2196F3</color>
-    <color name="color_primary_dark">#1565C0</color>>
-    <color name="color_accent">#f44336</color>
-
-    <color name="color_screen_background">#fff</color>
+    <color name="screen_background">#fff</color>
 
     <color name="text_light_primary">#deFFFFFF</color>
     <color name="text_light_secondary">#88FFFFFF</color>
     <color name="text_dark_primary">#de000000</color>
     <color name="text_dark_secondary">#88000000</color>
+
+    <color name="tab_bar_background">@color/color_primary</color>
+    <color name="tab_bar_icons">#ffffff</color>
+    <color name="tab_bar_icons_disabled">#88ffffff</color>
+
+    <!-- DEPRECATED -->
+    <!-- Theme colors -->
+    <color name="color_primary">#2196F3</color>
+    <color name="color_primary_dark">#1565C0</color>>
+    <color name="color_accent">#f44336</color>
+
 
     <color name="speakers_item_overlay">#bb000000</color>
     <color name="speaker_social_button_color">@color/color_accent</color>
