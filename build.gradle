@@ -1,8 +1,9 @@
 buildscript {
     ext.versions = [
             'support' : '25.1.0',
-            'kotlin'  : '1.0.5',
-            'firebase': '10.0.1'
+            'kotlin'  : '1.0.6',
+            'firebase': '10.0.1',
+            'dagger'  : '2.8'
     ]
 
     repositories {

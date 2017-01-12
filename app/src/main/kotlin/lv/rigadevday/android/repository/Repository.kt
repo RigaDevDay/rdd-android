@@ -14,7 +14,7 @@ import lv.rigadevday.android.repository.model.team.Team
  */
 class Repository {
 
-    val database: DatabaseReference by lazy { FirebaseDatabase.getInstance().reference }
+    private val database: DatabaseReference by lazy { FirebaseDatabase.getInstance().reference }
 
     fun speakers(): Observable<List<Speaker>> = getListObservable("speakers", Speaker::class.java)
 
