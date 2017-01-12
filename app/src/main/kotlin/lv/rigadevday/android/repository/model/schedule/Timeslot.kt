@@ -6,5 +6,8 @@ import com.google.firebase.database.IgnoreExtraProperties
 data class Timeslot(
     val startTime: String = "",
     val endTime: String = "",
-    val sessions: List<Int> = emptyList()
-)
+    val sessions: List<List<Int>> = emptyList()
+) {
+    val sessionIds: List<Int>
+        get() = sessions.flatMap { it }
+}
