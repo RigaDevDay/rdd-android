@@ -42,6 +42,10 @@ android {
     }
 }
 
+repositories {
+    jcenter()
+}
+
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
 
@@ -54,6 +58,8 @@ dependencies {
     compile "com.google.firebase:firebase-database:${versions.firebase}"
 
     compile "org.jetbrains.kotlin:kotlin-stdlib:${versions.kotlin}"
+
+    compile "io.reactivex.rxjava2:rxjava:2.0.4"
 }
 
 apply plugin: 'com.google.gms.google-services'
