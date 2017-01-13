@@ -8,8 +8,6 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import com.bumptech.glide.Glide
 
-fun String.toExtraKey() = "lv.rigadevday.android.extra.$this"
-
 fun ViewGroup.inflate(@LayoutRes id: Int): View
     = LayoutInflater.from(this.context).inflate(id, this, false)
 
@@ -22,6 +20,10 @@ fun ImageView.loadImage(url: String, @DrawableRes placeholder: Int) {
         .into(this)
 }
 
-fun String.prependDomain(): String {
-    return "http://rigadevdays.lv$this"
+fun View.unhide() {
+    this.visibility = View.VISIBLE
+}
+
+fun View.hide() {
+    this.visibility = View.GONE
 }

@@ -2,14 +2,14 @@ package lv.rigadevday.android.utils.view
 
 import android.content.Context
 import android.util.AttributeSet
-import android.widget.RelativeLayout
+import android.widget.FrameLayout
 
-class SquareRelativeLayout @JvmOverloads constructor(
+class SquareFrameLayout @JvmOverloads constructor(
     context: Context,
     attrs: AttributeSet? = null,
     defStyleAttr: Int = -1,
     defStyleRes: Int = -1
-) : RelativeLayout(context, attrs, defStyleAttr, defStyleRes) {
+) : FrameLayout(context, attrs, defStyleAttr, defStyleRes) {
 
     override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
         // Set a square layout.

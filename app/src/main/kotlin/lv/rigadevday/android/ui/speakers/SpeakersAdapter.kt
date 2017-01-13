@@ -6,8 +6,10 @@ import android.view.ViewGroup
 import kotlinx.android.synthetic.main.item_speaker.view.*
 import lv.rigadevday.android.R
 import lv.rigadevday.android.repository.model.speakers.Speaker
+import lv.rigadevday.android.utils.hide
 import lv.rigadevday.android.utils.inflate
 import lv.rigadevday.android.utils.loadImage
+import lv.rigadevday.android.utils.unhide
 
 class SpeakersAdapter : RecyclerView.Adapter<SpeakerViewHolder>() {
 
@@ -39,6 +41,14 @@ class SpeakerViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         itemView.speakers_item_company.text = speaker.company
 
         itemView.speakers_item_image.loadImage(speaker.photoUrl, R.drawable.vector_speaker_placeholder)
+
+        itemView.speakers_item_bagde.apply {
+            if (speaker.badges.isEmpty()) hide()
+            else {
+                unhide()
+                text = speaker.badges[0].name
+            }
+        }
     }
 
 }
