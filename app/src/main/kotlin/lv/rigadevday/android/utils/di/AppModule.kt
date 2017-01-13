@@ -12,14 +12,10 @@ class AppModule(private val application: BaseApp) {
 
     @Provides
     @Singleton
-    fun provideApplicationContext(): Context {
-        return application
-    }
+    fun provideApplicationContext(): Context = application
 
     @Provides
     @Singleton
-    fun provideRepository(): Repository {
-        return Repository()
-    }
+    fun provideRepository(): Repository = Repository()
 
 }
