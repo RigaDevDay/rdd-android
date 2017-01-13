@@ -3,4 +3,17 @@
     <dimen name="base_margin">8dp</dimen>
     <dimen name="half_margin">4dp</dimen>
 
+    <dimen name="text_size_headline">24sp</dimen>
+    <dimen name="text_size_title">20sp</dimen>
+    <dimen name="text_size_subheading">16sp</dimen>
+    <dimen name="text_size_body">14sp</dimen>
+    <dimen name="text_size_caption">12sp</dimen>
+
+
+    <dimen name="speaker_item_text_overlay_height">120dp</dimen>
+    <dimen name="speaker_item_text_padding">16dp</dimen>
+
+    <dimen name="speaker_content_padding">16dp</dimen>
+    <dimen name="speaker_button_size">56dp</dimen>
+
 </resources>

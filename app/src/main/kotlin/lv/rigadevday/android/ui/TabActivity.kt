@@ -6,12 +6,13 @@ import android.support.v4.app.Fragment
 import android.support.v7.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_tab.*
 import lv.rigadevday.android.R
+import lv.rigadevday.android.ui.speakers.SpeakerListFragment
 
 
 class TabActivity : AppCompatActivity() {
 
     private val scheduleFragment: Fragment by lazy { BasicFragment.newInstance("schedule") }
-    private val speakersFragment: Fragment by lazy { BasicFragment.newInstance("speakers") }
+    private val speakersFragment: Fragment by lazy { SpeakerListFragment() }
     private val venuesFragment: Fragment by lazy { BasicFragment.newInstance("venues") }
     private val organizersFragment: Fragment by lazy { BasicFragment.newInstance("organizers") }
 
