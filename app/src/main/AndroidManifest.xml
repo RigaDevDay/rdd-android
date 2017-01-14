@@ -23,7 +23,7 @@
         </activity>
 
         <activity
-            android:name=".ui.speakers.speaker.SpeakerActivity"
+            android:name=".ui.speakers.SpeakerDialogActivity"
             android:theme="@style/ThemeTranslucent"
             />
 

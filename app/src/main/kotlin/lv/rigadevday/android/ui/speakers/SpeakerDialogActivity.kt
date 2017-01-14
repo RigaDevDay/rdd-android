@@ -1,4 +1,4 @@
-package lv.rigadevday.android.ui.speakers.speaker
+package lv.rigadevday.android.ui.speakers
 
 import android.widget.ImageView
 import kotlinx.android.synthetic.main.activity_speaker.*
@@ -12,7 +12,7 @@ import lv.rigadevday.android.ui.openWeb
 import lv.rigadevday.android.utils.*
 import javax.inject.Inject
 
-class SpeakerActivity : BaseActivity() {
+class SpeakerDialogActivity : BaseActivity() {
 
     @Inject lateinit var repo: Repository
 

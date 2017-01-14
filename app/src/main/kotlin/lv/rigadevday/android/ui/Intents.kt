@@ -3,7 +3,7 @@ package lv.rigadevday.android.ui
 import android.content.Context
 import android.content.Intent
 import android.net.Uri
-import lv.rigadevday.android.ui.speakers.speaker.SpeakerActivity
+import lv.rigadevday.android.ui.speakers.SpeakerDialogActivity
 import lv.rigadevday.android.utils.toExtraKey
 
 val EXTRA_SPEAKER_ID = "speaker_id".toExtraKey()
@@ -13,7 +13,7 @@ fun Intent.start(from: Context) {
 }
 
 fun Context.openSpeakerActivity(id: Int) {
-    Intent(this, SpeakerActivity::class.java).apply {
+    Intent(this, SpeakerDialogActivity::class.java).apply {
         putExtra(EXTRA_SPEAKER_ID, id)
     }.start(from = this)
 }
