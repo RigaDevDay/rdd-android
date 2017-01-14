@@ -10,6 +10,7 @@
     <string name="tab_venues">Venues</string>
     <string name="tab_organizers">Organizers</string>
 
+    <string name="speaker_close_dialog">Hide</string>
 
     <string name="error_message">Oops, something went wrong</string>
 

@@ -22,7 +22,10 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".ui.speakers.speaker.SpeakerActivity"/>
+        <activity
+            android:name=".ui.speakers.speaker.SpeakerActivity"
+            android:theme="@style/ThemeTranslucent"
+            />
 
     </application>
 

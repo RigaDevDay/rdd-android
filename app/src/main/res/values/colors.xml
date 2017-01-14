@@ -2,6 +2,7 @@
 <resources>
 
     <color name="screen_background">#fff</color>
+    <color name="dialog_background">#b000</color>
 
     <color name="text_light_primary">#deFFFFFF</color>
     <color name="text_light_secondary">#88FFFFFF</color>
@@ -13,6 +14,7 @@
     <color name="tab_bar_icons_disabled">#88ffffff</color>
 
     <color name="speakers_item_badge">@color/color_primary</color>
+    <color name="speaker_header">@color/color_primary</color>
 
     <!-- DEPRECATED -->
     <!-- Theme colors -->
