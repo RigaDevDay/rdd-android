@@ -18,6 +18,8 @@ class TabActivity : BaseActivity() {
     private val venuesFragment: Fragment by lazy { BasicFragment.newInstance("venues") }
     private val organizersFragment: Fragment by lazy { BasicFragment.newInstance("organizers") }
 
+    override fun inject() {}
+
     override fun viewReady() {
         tabs_buttons.setOnNavigationItemSelectedListener(tabClickListener)
         tabs_buttons.menu.findItem(R.id.action_tab_speakers).isChecked = true

@@ -9,10 +9,14 @@ abstract class BaseActivity : AppCompatActivity() {
     abstract val layoutId: Int
     abstract val contentFrameId: Int
 
+    abstract fun inject()
+
     abstract fun viewReady()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        inject()
+
         setContentView(layoutId)
 
         viewReady()
