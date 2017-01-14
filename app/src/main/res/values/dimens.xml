@@ -13,6 +13,6 @@
     <dimen name="speaker_item_padding">8dp</dimen>
     <dimen name="speaker_content_padding">16dp</dimen>
     <dimen name="speaker_photo_size">128dp</dimen>
-    <dimen name="speaker_social_button_size">32dp</dimen>
+    <dimen name="speaker_social_button_size">40dp</dimen>
 
 </resources>
