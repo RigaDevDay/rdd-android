@@ -42,7 +42,6 @@
             android:id="@+id/speakers_item_bagde"
             style="@style/Wrap"
             android:layout_alignParentEnd="true"
-            android:layout_alignParentRight="true"
             android:layout_alignParentTop="true"
             android:background="@color/speakers_item_badge"
             android:padding="@dimen/half_margin"
