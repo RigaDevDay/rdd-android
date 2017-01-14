@@ -2,10 +2,12 @@ package lv.rigadevday.android.utils
 
 import android.support.annotation.DrawableRes
 import android.support.annotation.LayoutRes
+import android.support.annotation.StringRes
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import android.widget.Toast
 import com.bumptech.glide.Glide
 
 fun ViewGroup.inflate(@LayoutRes id: Int): View
@@ -26,4 +28,8 @@ fun View.unhide() {
 
 fun View.hide() {
     this.visibility = View.GONE
+}
+
+fun View.showMessage(@StringRes stringId: Int) {
+    Toast.makeText(this.context, stringId, Toast.LENGTH_SHORT).show()
 }

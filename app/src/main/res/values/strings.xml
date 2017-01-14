@@ -10,4 +10,7 @@
     <string name="tab_venues">Venues</string>
     <string name="tab_organizers">Organizers</string>
 
+
+    <string name="error_message">Oops, something went wrong</string>
+
 </resources>
