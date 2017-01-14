@@ -14,7 +14,7 @@
         android:theme="@style/RddMaterialTheme">
 
         <activity
-            android:name=".ui.TabActivity">
+            android:name=".ui.tabs.TabActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 

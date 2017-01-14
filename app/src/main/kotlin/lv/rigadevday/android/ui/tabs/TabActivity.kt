@@ -1,4 +1,4 @@
-package lv.rigadevday.android.ui
+package lv.rigadevday.android.ui.tabs
 
 import android.support.design.widget.BottomNavigationView
 import android.support.v4.app.Fragment
@@ -13,10 +13,10 @@ class TabActivity : BaseActivity() {
     override val layoutId = R.layout.activity_tab
     override val contentFrameId = R.id.tabs_content_container
 
-    private val scheduleFragment: Fragment by lazy { BasicFragment.newInstance("schedule") }
+    private val scheduleFragment: Fragment by lazy { PlaceholderFragment.newInstance("schedule") }
     private val speakersFragment: Fragment by lazy { SpeakerListFragment() }
-    private val venuesFragment: Fragment by lazy { BasicFragment.newInstance("venues") }
-    private val organizersFragment: Fragment by lazy { BasicFragment.newInstance("organizers") }
+    private val venuesFragment: Fragment by lazy { PlaceholderFragment.newInstance("venues") }
+    private val organizersFragment: Fragment by lazy { PlaceholderFragment.newInstance("organizers") }
 
     override fun inject() {}
 
