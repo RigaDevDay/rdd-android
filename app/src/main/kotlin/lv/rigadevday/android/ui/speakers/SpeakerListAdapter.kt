@@ -40,7 +40,7 @@ class SpeakerViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         itemView.speakers_item_name.text = speaker.name
         itemView.speakers_item_company.text = speaker.company
 
-        itemView.speakers_item_image.loadImage(speaker.photoUrl, R.drawable.vector_speaker_placeholder)
+        itemView.speakers_item_image.loadImage(speaker.photoUrl)
 
         itemView.speakers_item_bagde.apply {
             if (speaker.badges.isEmpty()) hide()

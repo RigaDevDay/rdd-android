@@ -14,13 +14,18 @@
         android:theme="@style/RddMaterialTheme">
 
         <activity
-            android:name=".ui.TabActivity">
+            android:name=".ui.tabs.TabActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
+
+        <activity
+            android:name=".ui.speakers.SpeakerDialogActivity"
+            android:theme="@style/ThemeTranslucent"
+            />
 
     </application>
 

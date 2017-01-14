@@ -6,8 +6,8 @@ import kotlinx.android.synthetic.main.fragment_list.*
 import lv.rigadevday.android.R
 import lv.rigadevday.android.repository.Repository
 import lv.rigadevday.android.ui.base.BaseFragment
+import lv.rigadevday.android.ui.openSpeakerActivity
 import lv.rigadevday.android.utils.BaseApp
-import lv.rigadevday.android.utils.logE
 import javax.inject.Inject
 
 class SpeakerListFragment : BaseFragment() {
@@ -28,8 +28,8 @@ class SpeakerListFragment : BaseFragment() {
         list_fragment_recycler.layoutManager = GridLayoutManager(view.context, 2)
         list_fragment_recycler.adapter = adapter
 
-        adapter.onItemClick = { id ->
-            id.logE()
+        adapter.onItemClick = {
+            context.openSpeakerActivity(it)
         }
 
         repo.speakers().subscribe { list -> adapter.data = list }

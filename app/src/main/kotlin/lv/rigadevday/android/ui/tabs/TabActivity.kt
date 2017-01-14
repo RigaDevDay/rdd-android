@@ -1,28 +1,28 @@
-package lv.rigadevday.android.ui
+package lv.rigadevday.android.ui.tabs
 
-import android.os.Bundle
 import android.support.design.widget.BottomNavigationView
 import android.support.v4.app.Fragment
-import android.support.v7.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_tab.*
 import lv.rigadevday.android.R
+import lv.rigadevday.android.ui.base.BaseActivity
 import lv.rigadevday.android.ui.speakers.SpeakerListFragment
 
 
-class TabActivity : AppCompatActivity() {
+class TabActivity : BaseActivity() {
 
-    private val scheduleFragment: Fragment by lazy { BasicFragment.newInstance("schedule") }
+    override val layoutId = R.layout.activity_tab
+    override val contentFrameId = R.id.tabs_content_container
+
+    private val scheduleFragment: Fragment by lazy { PlaceholderFragment.newInstance("schedule") }
     private val speakersFragment: Fragment by lazy { SpeakerListFragment() }
-    private val venuesFragment: Fragment by lazy { BasicFragment.newInstance("venues") }
-    private val organizersFragment: Fragment by lazy { BasicFragment.newInstance("organizers") }
+    private val venuesFragment: Fragment by lazy { PlaceholderFragment.newInstance("venues") }
+    private val organizersFragment: Fragment by lazy { PlaceholderFragment.newInstance("organizers") }
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_tab)
+    override fun inject() {}
 
+    override fun viewReady() {
         tabs_buttons.setOnNavigationItemSelectedListener(tabClickListener)
         tabs_buttons.menu.findItem(R.id.action_tab_speakers).isChecked = true
-
         setFragment(speakersFragment)
     }
 
@@ -35,11 +35,5 @@ class TabActivity : AppCompatActivity() {
         }
         setFragment(nextFragment)
         true
-    }
-
-    private fun setFragment(nextFragment: Fragment) {
-        supportFragmentManager.beginTransaction()
-            .replace(R.id.tabs_content_container, nextFragment, nextFragment.tag)
-            .commit()
     }
 }

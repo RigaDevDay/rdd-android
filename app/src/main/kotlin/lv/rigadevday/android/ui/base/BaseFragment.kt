@@ -7,7 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import kotlinx.android.synthetic.main.part_toolbar.*
-import lv.rigadevday.android.ui.TabActivity
+import lv.rigadevday.android.ui.tabs.TabActivity
 
 abstract class BaseFragment : Fragment() {
 
