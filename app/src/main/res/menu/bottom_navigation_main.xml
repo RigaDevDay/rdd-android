@@ -2,19 +2,19 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
         android:id="@+id/action_tab_schedule"
-        android:icon="@drawable/vector_schedule"
+        android:icon="@drawable/vector_tab_schedule"
         android:title="@string/tab_schedule"/>
     <item
         android:id="@+id/action_tab_speakers"
         android:checked="true"
-        android:icon="@drawable/vector_speakers"
+        android:icon="@drawable/vector_tab_speakers"
         android:title="@string/tab_speakers"/>
     <item
         android:id="@+id/action_tab_venues"
-        android:icon="@drawable/vector_venues"
+        android:icon="@drawable/vector_tab_venues"
         android:title="@string/tab_venues"/>
     <item
         android:id="@+id/action_tab_organizers"
-        android:icon="@drawable/vector_organizers"
+        android:icon="@drawable/vector_tab_organizers"
         android:title="@string/tab_organizers"/>
 </menu>
