@@ -19,5 +19,7 @@ fun Context.openSpeakerActivity(id: Int) {
 }
 
 fun Context.openWeb(link: String) {
-    Intent(Intent.ACTION_VIEW, Uri.parse(link)).start(this)
+    Intent(Intent.ACTION_VIEW, Uri.parse(link)).apply {
+        flags = Intent.FLAG_ACTIVITY_NEW_TASK
+    }.start(this)
 }

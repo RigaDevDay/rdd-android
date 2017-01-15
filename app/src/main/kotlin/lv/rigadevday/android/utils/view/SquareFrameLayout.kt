@@ -7,9 +7,8 @@ import android.widget.FrameLayout
 class SquareFrameLayout @JvmOverloads constructor(
     context: Context,
     attrs: AttributeSet? = null,
-    defStyleAttr: Int = -1,
-    defStyleRes: Int = -1
-) : FrameLayout(context, attrs, defStyleAttr, defStyleRes) {
+    defStyleAttr: Int = -1
+) : FrameLayout(context, attrs, defStyleAttr) {
 
     override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
         // Set a square layout.
