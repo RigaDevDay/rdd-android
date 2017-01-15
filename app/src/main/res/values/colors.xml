@@ -5,7 +5,7 @@
     <color name="screen_background">#fff</color>
     <color name="dialog_background">#b000</color>
 
-    <color name="text_light_primary">#deFFFFFF</color>
+    <color name="text_light_primary">#eeFFFFFF</color>
     <color name="text_light_secondary">#88FFFFFF</color>
     <color name="text_dark_primary">#de000000</color>
     <color name="text_dark_secondary">#88000000</color>

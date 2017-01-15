@@ -41,7 +41,7 @@
         <item name="android:padding">@dimen/half_margin</item>
         <item name="android:tint">@color/text_light_primary</item>
         <item name="android:clickable">true</item>
-        <item name="android:background">@drawable/item_selector_borderless</item>
+        <item name="android:background">@drawable/item_selector</item>
         <item name="android:visibility">gone</item>
     </style>
 
