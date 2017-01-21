@@ -5,6 +5,7 @@ import android.support.v4.app.Fragment
 import kotlinx.android.synthetic.main.activity_tab.*
 import lv.rigadevday.android.R
 import lv.rigadevday.android.ui.base.BaseActivity
+import lv.rigadevday.android.ui.schedule.MyScheduleFragment
 import lv.rigadevday.android.ui.speakers.SpeakerListFragment
 
 
@@ -13,7 +14,7 @@ class TabActivity : BaseActivity() {
     override val layoutId = R.layout.activity_tab
     override val contentFrameId = R.id.tabs_content_container
 
-    private val scheduleFragment: Fragment by lazy { PlaceholderFragment.newInstance("schedule") }
+    private val scheduleFragment: Fragment by lazy { MyScheduleFragment() }
     private val speakersFragment: Fragment by lazy { SpeakerListFragment() }
     private val venuesFragment: Fragment by lazy { PlaceholderFragment.newInstance("venues") }
     private val organizersFragment: Fragment by lazy { PlaceholderFragment.newInstance("organizers") }

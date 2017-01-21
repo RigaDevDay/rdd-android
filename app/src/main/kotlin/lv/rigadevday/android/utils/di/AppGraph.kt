@@ -1,8 +1,9 @@
 package lv.rigadevday.android.utils.di
 
 import dagger.Component
-import lv.rigadevday.android.ui.speakers.SpeakerListFragment
+import lv.rigadevday.android.ui.schedule.MyScheduleFragment
 import lv.rigadevday.android.ui.speakers.SpeakerDialogActivity
+import lv.rigadevday.android.ui.speakers.SpeakerListFragment
 import lv.rigadevday.android.utils.BaseApp
 import javax.inject.Singleton
 
@@ -18,5 +19,6 @@ interface AppGraph {
 
     // Fragments
     fun inject(fragment: SpeakerListFragment)
+    fun inject(fragment: MyScheduleFragment)
 
 }

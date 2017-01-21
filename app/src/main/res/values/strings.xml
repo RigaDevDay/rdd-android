@@ -13,6 +13,8 @@
     <string name="speaker_company">at %s</string>
     <string name="speaker_close_dialog">Hide</string>
 
+    <string name="title_schedule">My schedule</string>
+
     <string name="error_message">Oops, something went wrong</string>
 
 </resources>
