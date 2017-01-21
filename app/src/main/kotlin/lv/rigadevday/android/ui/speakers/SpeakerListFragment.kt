@@ -8,6 +8,7 @@ import lv.rigadevday.android.repository.Repository
 import lv.rigadevday.android.ui.base.BaseFragment
 import lv.rigadevday.android.ui.openSpeakerActivity
 import lv.rigadevday.android.utils.BaseApp
+import lv.rigadevday.android.utils.showMessage
 import javax.inject.Inject
 
 class SpeakerListFragment : BaseFragment() {
@@ -32,7 +33,10 @@ class SpeakerListFragment : BaseFragment() {
             context.openSpeakerActivity(it)
         }
 
-        repo.speakers().subscribe { list -> adapter.data = list }
+        repo.speakers().toList().subscribe(
+            { list -> adapter.data = list },
+            { view.showMessage(R.string.error_message) }
+        )
     }
 
 }

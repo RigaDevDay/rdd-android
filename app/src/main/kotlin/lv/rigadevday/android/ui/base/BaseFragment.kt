@@ -6,6 +6,7 @@ import android.support.v4.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import io.reactivex.disposables.Disposable
 import kotlinx.android.synthetic.main.part_toolbar.*
 import lv.rigadevday.android.ui.tabs.TabActivity
 
@@ -17,6 +18,8 @@ abstract class BaseFragment : Fragment() {
 
     abstract fun viewReady(view: View)
 
+    protected var dataFetchSubscription: Disposable? = null
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View
         = inflater.inflate(layoutId, container, false)
 
@@ -24,6 +27,11 @@ abstract class BaseFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         inject()
         viewReady(view)
+    }
+
+    override fun onStop() {
+        dataFetchSubscription?.dispose()
+        super.onStop()
     }
 
     fun setupActionBar(@StringRes title: Int) {

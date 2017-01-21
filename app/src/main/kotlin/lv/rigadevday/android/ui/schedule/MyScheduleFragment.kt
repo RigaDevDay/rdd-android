@@ -8,6 +8,7 @@ import lv.rigadevday.android.ui.base.BaseFragment
 import lv.rigadevday.android.ui.base.ViewPagerAdapter
 import lv.rigadevday.android.ui.tabs.PlaceholderFragment
 import lv.rigadevday.android.utils.BaseApp
+import lv.rigadevday.android.utils.showMessage
 import javax.inject.Inject
 
 class MyScheduleFragment : BaseFragment() {
@@ -26,13 +27,14 @@ class MyScheduleFragment : BaseFragment() {
         setupActionBar(R.string.title_schedule)
         adapter = ViewPagerAdapter(childFragmentManager)
 
-        repo.schedule().subscribe { schedule ->
-            schedule.map { it.date to it.dateReadable }.map { date ->
-                adapter?.addFragment(PlaceholderFragment.newInstance(date.first), date.second)
+        dataFetchSubscription = repo.schedule().subscribe(
+            { adapter?.addFragment(PlaceholderFragment.newInstance(it.date), it.dateReadable) },
+            { view.showMessage(R.string.error_message) },
+            {
+                view.schedule_pager.adapter = adapter
+                view.schedule_tabs.setupWithViewPager(view.schedule_pager)
             }
-            view.schedule_pager.adapter = adapter
-            view.schedule_tabs.setupWithViewPager(view.schedule_pager)
-        }
+        )
     }
 
 }
