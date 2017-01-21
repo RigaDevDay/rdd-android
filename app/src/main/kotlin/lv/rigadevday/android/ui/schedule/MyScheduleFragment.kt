@@ -5,7 +5,7 @@ import kotlinx.android.synthetic.main.fragment_my_schedule.view.*
 import lv.rigadevday.android.R
 import lv.rigadevday.android.ui.base.BaseFragment
 import lv.rigadevday.android.ui.base.ViewPagerAdapter
-import lv.rigadevday.android.ui.tabs.PlaceholderFragment
+import lv.rigadevday.android.ui.schedule.day.DayScheduleFragment
 import lv.rigadevday.android.utils.BaseApp
 import lv.rigadevday.android.utils.showMessage
 
@@ -24,7 +24,7 @@ class MyScheduleFragment : BaseFragment() {
         adapter = ViewPagerAdapter(childFragmentManager)
 
         dataFetchSubscription = repo.schedule().subscribe(
-            { adapter?.addFragment(PlaceholderFragment.newInstance(it.date), it.dateReadable) },
+            { adapter?.addFragment(DayScheduleFragment.newInstance(it.date), it.dateReadable) },
             { view.showMessage(R.string.error_message) },
             {
                 view.schedule_pager.adapter = adapter
