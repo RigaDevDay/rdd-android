@@ -3,6 +3,7 @@ package lv.rigadevday.android.utils.di
 import dagger.Component
 import lv.rigadevday.android.ui.schedule.MyScheduleFragment
 import lv.rigadevday.android.ui.schedule.day.DayScheduleFragment
+import lv.rigadevday.android.ui.schedule.day.adapter.ScheduleAdapter
 import lv.rigadevday.android.ui.speakers.SpeakerDialogActivity
 import lv.rigadevday.android.ui.speakers.SpeakerListFragment
 import lv.rigadevday.android.utils.BaseApp
@@ -22,5 +23,8 @@ interface AppGraph {
     fun inject(fragment: SpeakerListFragment)
     fun inject(fragment: MyScheduleFragment)
     fun inject(fragment: DayScheduleFragment)
+
+    // Adapters
+    fun inject(adapter: ScheduleAdapter)
 
 }
