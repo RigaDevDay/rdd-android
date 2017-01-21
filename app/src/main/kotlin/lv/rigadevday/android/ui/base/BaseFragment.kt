@@ -8,9 +8,13 @@ import android.view.View
 import android.view.ViewGroup
 import io.reactivex.disposables.Disposable
 import kotlinx.android.synthetic.main.part_toolbar.*
+import lv.rigadevday.android.repository.Repository
 import lv.rigadevday.android.ui.tabs.TabActivity
+import javax.inject.Inject
 
 abstract class BaseFragment : Fragment() {
+
+    @Inject lateinit var repo : Repository
 
     abstract val layoutId: Int
 

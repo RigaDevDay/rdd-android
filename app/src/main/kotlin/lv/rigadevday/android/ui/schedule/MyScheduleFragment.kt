@@ -3,17 +3,13 @@ package lv.rigadevday.android.ui.schedule
 import android.view.View
 import kotlinx.android.synthetic.main.fragment_my_schedule.view.*
 import lv.rigadevday.android.R
-import lv.rigadevday.android.repository.Repository
 import lv.rigadevday.android.ui.base.BaseFragment
 import lv.rigadevday.android.ui.base.ViewPagerAdapter
 import lv.rigadevday.android.ui.tabs.PlaceholderFragment
 import lv.rigadevday.android.utils.BaseApp
 import lv.rigadevday.android.utils.showMessage
-import javax.inject.Inject
 
 class MyScheduleFragment : BaseFragment() {
-
-    @Inject lateinit var repo: Repository
 
     override val layoutId = R.layout.fragment_my_schedule
 
