@@ -27,6 +27,7 @@ class MyScheduleFragment : BaseFragment() {
             { adapter?.addFragment(DayScheduleFragment.newInstance(it.date), it.dateReadable) },
             { view.showMessage(R.string.error_message) },
             {
+                view.schedule_pager.offscreenPageLimit = 2
                 view.schedule_pager.adapter = adapter
                 view.schedule_tabs.setupWithViewPager(view.schedule_pager)
             }

@@ -1,6 +1,7 @@
 package lv.rigadevday.android.repository.model.schedule
 
 import com.google.firebase.database.IgnoreExtraProperties
+import lv.rigadevday.android.repository.model.speakers.Speaker
 
 @IgnoreExtraProperties
 data class Session(
@@ -13,4 +14,7 @@ data class Session(
 
     val image: String = "",
     val complexity: String = ""
-)
+) {
+    var speakerObjects: MutableList<Speaker> = mutableListOf()
+    var room: String = ""
+}

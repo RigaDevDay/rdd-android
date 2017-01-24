@@ -4,9 +4,11 @@ import com.google.firebase.database.*
 import io.reactivex.Observable
 import io.reactivex.Single
 import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.functions.BiFunction
 import lv.rigadevday.android.repository.model.partners.Partners
 import lv.rigadevday.android.repository.model.schedule.Schedule
 import lv.rigadevday.android.repository.model.schedule.Session
+import lv.rigadevday.android.repository.model.schedule.Timeslot
 import lv.rigadevday.android.repository.model.speakers.Speaker
 import lv.rigadevday.android.repository.model.team.Team
 
@@ -24,8 +26,6 @@ class Repository {
     fun speaker(id: Int): Single<Speaker> = getSingleObservable("speakers", id, Speaker::class.java).bindSchedulers()
 
     fun schedule(): Observable<Schedule> = getObservable("schedule", Schedule::class.java).bindSchedulers()
-
-    fun session(id: Int): Single<Session> = getSingleObservable("sessions", id, Session::class.java).bindSchedulers()
 
     fun team(): Observable<Team> = getObservable("team", Team::class.java).bindSchedulers()
 
@@ -45,6 +45,32 @@ class Repository {
             })
         }.bindSchedulers()
     }
+
+    fun scheduleDayTimeslots(dateCode: String): Observable<Timeslot> {
+        return scheduleDay(dateCode)
+            .flatMapObservable { Observable.fromIterable(it.timeslots) }
+            .concatMap { timeslot ->
+                Observable.fromIterable(timeslot.sessionIds)
+                    .concatMap { session(it).toObservable() }
+                    .zipWith(scheduleDayRooms(dateCode), BiFunction<Session, String, Session> { session, title ->
+                        session.apply { room = title }
+                    })
+                    .toList()
+                    .map { timeslot.apply { sessionObjects = it } }.toObservable()
+            }
+    }
+
+    fun scheduleDayRooms(dateCode: String): Observable<String> = scheduleDay(dateCode)
+        .flatMapObservable { Observable.fromIterable(it.tracks.map { it.title }) }
+
+    fun session(id: Int): Single<Session> = getSingleObservable("sessions", id, Session::class.java)
+        .flatMap { session ->
+            Observable.fromIterable(session.speakers)
+                .concatMap { speaker(it).toObservable() }.toList()
+                .map { session.apply { speakerObjects = it } }
+        }
+        .bindSchedulers()
+
 
     // Helper functions
     private fun <T> getObservable(table: String, klass: Class<T>): Observable<T> = Observable.create<T> { emitter ->

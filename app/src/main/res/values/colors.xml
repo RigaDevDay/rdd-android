@@ -30,4 +30,5 @@
     <color name="speakers_item_badge">@color/color_primary</color>
     <color name="speaker_header">@color/color_primary</color>
 
+    <color name="schedule_card_background">#0900a6ec</color>
 </resources>

@@ -3,6 +3,7 @@ package lv.rigadevday.android.ui.schedule.day
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
 import android.view.View
+import io.reactivex.Observable
 import kotlinx.android.synthetic.main.fragment_day_schedule.view.*
 import lv.rigadevday.android.R
 import lv.rigadevday.android.ui.base.BaseFragment
@@ -37,12 +38,12 @@ class DayScheduleFragment : BaseFragment() {
         view.schedule_recycler.layoutManager = LinearLayoutManager(context)
         view.schedule_recycler.adapter = adapter
 
-        dataFetchSubscription = repo.scheduleDay(dateCode)
-            .flattenAsObservable { it.timeslots }
+        dataFetchSubscription = repo.scheduleDayTimeslots(dateCode)
             .map {
                 when {
-                    it.sessionIds.size == 1 -> ScheduleItem.SingleSessionItem(it)
-                    else -> ScheduleItem.MultipleSessionItem(it)
+                    it.sessionObjects.size > 1 -> ScheduleItem.MultiSessionTimeslot(it)
+                    it.sessionObjects.first().speakers.isNotEmpty() -> ScheduleItem.SingleSessionTimeslot(it)
+                    else -> ScheduleItem.NonSessionTimeslot(it)
                 }
             }
             .toList()

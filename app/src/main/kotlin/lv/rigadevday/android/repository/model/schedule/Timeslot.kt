@@ -10,4 +10,9 @@ data class Timeslot(
 ) {
     val sessionIds: List<Int>
         get() = sessions.flatMap { it }
+
+    val formattedStartTime: String
+        get() = if (startTime.length < 5) "0$startTime" else startTime
+
+    var sessionObjects = mutableListOf<Session>()
 }

@@ -4,8 +4,9 @@ import lv.rigadevday.android.repository.model.schedule.Timeslot
 
 sealed class ScheduleItem(val timeslot: Timeslot) {
 
-    class SingleSessionItem(timeslot: Timeslot) : ScheduleItem(timeslot)
+    class NonSessionTimeslot(timeslot: Timeslot) : ScheduleItem(timeslot)
 
-    class MultipleSessionItem(timeslot: Timeslot) : ScheduleItem(timeslot)
+    class MultiSessionTimeslot(timeslot: Timeslot) : ScheduleItem(timeslot)
 
+    class SingleSessionTimeslot(timeslot: Timeslot) : ScheduleItem(timeslot)
 }
