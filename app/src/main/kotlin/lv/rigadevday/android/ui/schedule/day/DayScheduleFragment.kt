@@ -3,7 +3,6 @@ package lv.rigadevday.android.ui.schedule.day
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
 import android.view.View
-import io.reactivex.Observable
 import kotlinx.android.synthetic.main.fragment_day_schedule.view.*
 import lv.rigadevday.android.R
 import lv.rigadevday.android.ui.base.BaseFragment
@@ -34,7 +33,7 @@ class DayScheduleFragment : BaseFragment() {
 
     override fun viewReady(view: View) {
         dateCode = arguments.getString(EXTRA_DATE_CODE)
-        adapter = ScheduleAdapter()
+        adapter = ScheduleAdapter(dateCode)
         view.schedule_recycler.layoutManager = LinearLayoutManager(context)
         view.schedule_recycler.adapter = adapter
 
