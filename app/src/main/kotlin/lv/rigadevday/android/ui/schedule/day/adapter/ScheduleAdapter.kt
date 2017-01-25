@@ -57,7 +57,7 @@ class ScheduleViewHolder(itemView: View) : ViewHolder(itemView) {
 
     fun bind(item: MultiSessionTimeslot, savedSessionId: Int?) {
         itemView.schedule_multiple_time.text = item.timeslot.startTime
-        itemView.schedule_multiple_title.text = item.timeslot.sessionIds.toString()
+        itemView.schedule_multiple_title.text = item.timeslot.sessionObjects.map { it.speakerObjects.map { it.name } }.toString()
     }
 
     fun bind(item: SingleSessionTimeslot) {

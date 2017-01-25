@@ -31,7 +31,26 @@ class Repository {
 
     fun partners(): Observable<Partners> = getObservable("partners", Partners::class.java).bindSchedulers()
 
+
     // More complicated requests
+    fun sessions(): Observable<Session> = getObservable("sessions", Session::class.java)
+        .map { session ->
+            Observable.fromIterable(session.speakers)
+                .concatMap { speaker(it).toObservable() }.toList()
+                .map { session.apply { speakerObjects = it } }
+        }
+        .flatMap { it.toObservable() }
+        .bindSchedulers()
+
+    fun session(id: Int): Single<Session> = getSingleObservable("sessions", id, Session::class.java)
+        .flatMap { session ->
+            Observable.fromIterable(session.speakers)
+                .concatMap { speaker(it).toObservable() }.toList()
+                .map { session.apply { speakerObjects = it } }
+        }
+        .bindSchedulers()
+
+
     fun scheduleDay(dateCode: String): Single<Schedule> {
         return Single.create<Schedule> { emitter ->
             database.child("schedule").orderByChild("date").equalTo(dateCode).limitToFirst(1).addValueEventListener(object : ValueEventListener {
@@ -47,29 +66,23 @@ class Repository {
     }
 
     fun scheduleDayTimeslots(dateCode: String): Observable<Timeslot> {
-        return scheduleDay(dateCode)
-            .flatMapObservable { Observable.fromIterable(it.timeslots) }
-            .concatMap { timeslot ->
-                Observable.fromIterable(timeslot.sessionIds)
-                    .concatMap { session(it).toObservable() }
-                    .zipWith(scheduleDayRooms(dateCode), BiFunction<Session, String, Session> { session, title ->
-                        session.apply { room = title }
-                    })
-                    .toList()
-                    .map { timeslot.apply { sessionObjects = it } }.toObservable()
-            }
+        return scheduleDay(dateCode).map {
+            val roomNames = Observable.fromIterable(it.tracks.map { it.title })
+            val allSessions = sessions()
+
+            Observable.fromIterable(it.timeslots)
+                .concatMap { timeslot ->
+                    Observable.fromIterable(timeslot.sessionIds)
+                        .concatMap { id -> allSessions.filter { it.id == id }.firstOrError().toObservable() }
+                        .zipWith(roomNames, BiFunction<Session, String, Session> { session, title ->
+                            session.apply { room = title }
+                        })
+                        .toList()
+                        .map { timeslot.apply { sessionObjects = it } }
+                        .toObservable()
+                }
+        }.flatMapObservable { it }
     }
-
-    fun scheduleDayRooms(dateCode: String): Observable<String> = scheduleDay(dateCode)
-        .flatMapObservable { Observable.fromIterable(it.tracks.map { it.title }) }
-
-    fun session(id: Int): Single<Session> = getSingleObservable("sessions", id, Session::class.java)
-        .flatMap { session ->
-            Observable.fromIterable(session.speakers)
-                .concatMap { speaker(it).toObservable() }.toList()
-                .map { session.apply { speakerObjects = it } }
-        }
-        .bindSchedulers()
 
 
     // Helper functions
