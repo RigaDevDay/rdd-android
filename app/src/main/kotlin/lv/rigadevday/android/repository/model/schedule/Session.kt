@@ -17,4 +17,12 @@ data class Session(
 ) {
     var speakerObjects: MutableList<Speaker> = mutableListOf()
     var room: String = ""
+
+    companion object {
+        val TBD = Session(
+            title = "TBD",
+            description = "TBD"
+        )
+    }
 }
+

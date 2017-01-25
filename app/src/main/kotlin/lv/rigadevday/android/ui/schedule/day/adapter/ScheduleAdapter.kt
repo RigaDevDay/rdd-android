@@ -8,9 +8,11 @@ import kotlinx.android.synthetic.main.item_multiple_session.view.*
 import kotlinx.android.synthetic.main.item_non_session.view.*
 import lv.rigadevday.android.R
 import lv.rigadevday.android.repository.SessionStorage
+import lv.rigadevday.android.repository.model.schedule.Session.Companion.TBD
 import lv.rigadevday.android.ui.schedule.day.adapter.ScheduleItem.*
 import lv.rigadevday.android.utils.BaseApp
 import lv.rigadevday.android.utils.inflate
+import lv.rigadevday.android.utils.loadImage
 import javax.inject.Inject
 
 class ScheduleAdapter(val dateCode: String) : RecyclerView.Adapter<ScheduleViewHolder>() {
@@ -56,8 +58,16 @@ class ScheduleViewHolder(itemView: View) : ViewHolder(itemView) {
     }
 
     fun bind(item: MultiSessionTimeslot, savedSessionId: Int?) {
-        itemView.schedule_multiple_time.text = item.timeslot.startTime
-        itemView.schedule_multiple_title.text = item.timeslot.sessionObjects.map { it.speakerObjects.map { it.name } }.toString()
+        itemView.schedule_multiple_time.text = item.timeslot.formattedStartTime
+
+        val session = item.timeslot.sessionObjects.firstOrNull { it.speakers.isNotEmpty() } ?: TBD
+
+        itemView.schedule_multiple_title.text = session.title
+        itemView.schedule_multiple_room.text = session.room
+
+        val speaker = session.speakerObjects.first()
+        itemView.schedule_multiple_speaker.text = speaker.name
+        itemView.schedule_multiple_speaker_photo.loadImage(speaker.photoUrl)
     }
 
     fun bind(item: SingleSessionTimeslot) {

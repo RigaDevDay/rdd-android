@@ -33,4 +33,14 @@
         <item name="android:textStyle">italic</item>
     </style>
 
+    <style name="Schedule.Item.Text.Speaker">
+        <item name="android:fontFamily">@string/family_light</item>
+        <item name="android:ellipsize">end</item>
+    </style>
+
+    <style name="Schedule.Item.Text.Room">
+        <item name="android:fontFamily">@string/family_light</item>
+        <item name="android:textColor">@color/text_dark_secondary</item>
+    </style>
+
 </resources>
