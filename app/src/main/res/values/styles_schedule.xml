@@ -43,4 +43,14 @@
         <item name="android:textColor">@color/text_dark_secondary</item>
     </style>
 
+    <style name="Schedule.Item.Text.Placeholder">
+        <item name="android:textSize">@dimen/text_size_subheading</item>
+    </style>
+
+    <style name="Schedule.Item.Text.Placeholder.Subtitle">
+        <item name="android:fontFamily">@string/family_light</item>
+        <item name="android:textColor">@color/text_dark_secondary</item>
+        <item name="android:textSize">@dimen/text_size_caption</item>
+    </style>
+
 </resources>

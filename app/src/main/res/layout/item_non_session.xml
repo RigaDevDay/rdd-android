@@ -18,6 +18,7 @@
         style="@style/MatchWrap"
         android:layout_marginEnd="@dimen/base_margin"
         android:layout_marginStart="@dimen/base_margin"
+        android:clickable="false"
         >
 
         <FrameLayout

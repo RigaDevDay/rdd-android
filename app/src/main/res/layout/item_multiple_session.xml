@@ -18,11 +18,55 @@
         style="@style/MatchWrap"
         android:layout_marginEnd="@dimen/base_margin"
         android:layout_marginStart="@dimen/base_margin"
+        android:clickable="true"
+        android:foreground="@drawable/item_selector"
         >
+
+        <LinearLayout
+            android:id="@+id/schedule_multiple_placeholder"
+            style="@style/Schedule.Card"
+            android:visibility="visible"
+            >
+
+            <LinearLayout
+                style="@style/MatchWrap"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                >
+
+                <ImageView
+                    android:layout_width="@dimen/schedule_add_icon_size"
+                    android:layout_height="@dimen/schedule_add_icon_size"
+                    android:layout_marginEnd="@dimen/base_margin"
+                    android:padding="@dimen/half_margin"
+                    android:src="@drawable/vector_add_bookmark"
+                    android:tint="@color/color_accent"
+                    />
+
+                <LinearLayout
+                    style="@style/MatchWrap"
+                    android:orientation="vertical"
+                    >
+
+                    <TextView
+                        style="@style/Schedule.Item.Text.Placeholder"
+                        android:text="@string/schedule_add"
+                        />
+
+                    <TextView
+                        style="@style/Schedule.Item.Text.Placeholder.Subtitle"
+                        android:layout_marginTop="@dimen/base_margin"
+                        android:text="@string/schedule_change"
+                        />
+                </LinearLayout>
+            </LinearLayout>
+
+        </LinearLayout>
 
         <LinearLayout
             android:id="@+id/schedule_multiple_content"
             style="@style/Schedule.Card"
+            android:visibility="gone"
             >
 
             <TextView
@@ -60,7 +104,7 @@
                         />
 
                 </LinearLayout>
-                
+
                 <com.mikhaellopez.circularimageview.CircularImageView
                     android:id="@+id/schedule_multiple_speaker_photo"
                     android:layout_width="@dimen/schedule_avatar_size"

@@ -13,7 +13,9 @@
     <string name="speaker_company">at %s</string>
     <string name="speaker_close_dialog">Hide</string>
 
-    <string name="title_schedule">My schedule</string>
+    <string name="schedule_title">My schedule</string>
+    <string name="schedule_add">Tap to choose session</string>
+    <string name="schedule_change">Long tap to change it later</string>
 
     <string name="error_message">Oops, something went wrong</string>
 

@@ -65,9 +65,11 @@ class ScheduleViewHolder(itemView: View) : ViewHolder(itemView) {
         itemView.schedule_multiple_title.text = session.title
         itemView.schedule_multiple_room.text = session.room
 
-        val speaker = session.speakerObjects.first()
-        itemView.schedule_multiple_speaker.text = speaker.name
-        itemView.schedule_multiple_speaker_photo.loadImage(speaker.photoUrl)
+        session.speakerObjects.firstOrNull()?.let { speaker ->
+            itemView.schedule_multiple_speaker.text = speaker.name
+            itemView.schedule_multiple_speaker_photo.loadImage(speaker.photoUrl)
+        }
+
     }
 
     fun bind(item: SingleSessionTimeslot) {

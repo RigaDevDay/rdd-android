@@ -20,7 +20,7 @@ class MyScheduleFragment : BaseFragment() {
     }
 
     override fun viewReady(view: View) {
-        setupActionBar(R.string.title_schedule)
+        setupActionBar(R.string.schedule_title)
         adapter = ViewPagerAdapter(childFragmentManager)
 
         dataFetchSubscription = repo.schedule().subscribe(
