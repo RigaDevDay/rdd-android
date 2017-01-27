@@ -6,8 +6,7 @@
         <item name="android:orientation">horizontal</item>
     </style>
 
-    <style name="Schedule.Card" parent="Match">
-        <item name="android:background">@color/schedule_card_background</item>
+    <style name="Schedule.Card" parent="MatchWrap">
         <item name="android:padding">@dimen/schedule_card_padding</item>
         <item name="android:orientation">vertical</item>
     </style>
