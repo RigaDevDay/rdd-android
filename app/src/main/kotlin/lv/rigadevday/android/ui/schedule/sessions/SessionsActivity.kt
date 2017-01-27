@@ -4,7 +4,6 @@ import android.support.v7.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.fragment_list.*
 import lv.rigadevday.android.R
 import lv.rigadevday.android.repository.Repository
-import lv.rigadevday.android.repository.SessionStorage
 import lv.rigadevday.android.ui.EXTRA_SESSION_DATA
 import lv.rigadevday.android.ui.base.BaseActivity
 import lv.rigadevday.android.ui.schedule.TimeslotData
@@ -16,7 +15,6 @@ import javax.inject.Inject
 class SessionsActivity : BaseActivity(), SessionsContract {
 
     @Inject lateinit var repo: Repository
-    @Inject lateinit var savedSessions: SessionStorage
 
     override val layoutId = R.layout.fragment_list
 
@@ -31,9 +29,10 @@ class SessionsActivity : BaseActivity(), SessionsContract {
     }
 
     override fun viewReady() {
-        intentData = intent.extras.getBundle(EXTRA_SESSION_DATA)?.toIntentData()
+        intentData = intent.extras?.getBundle(EXTRA_SESSION_DATA)?.toIntentData()
 
-        setupActionBar(intentData?.readableDate ?: getString(R.string.sessions_title))
+        setupActionBar(intentData?.formattedTitle() ?: getString(R.string.sessions_title))
+        supportActionBar?.setHomeButtonEnabled(true)
 
         sessionsAdapter = SessionsAdapter(this)
 
@@ -54,15 +53,12 @@ class SessionsActivity : BaseActivity(), SessionsContract {
             )
     }
 
-    override fun isSelectedSession(id: Int): Boolean = intentData?.run {
-        savedSessions.getSessionId(time, dateCode) != null
-    } ?: false
-
-    override fun sessionBookmarkClicked(sessionId: Int) {
+    override fun sessionClicked(sessionId: Int) {
     }
 }
 
+private fun TimeslotData.formattedTitle() = "$readableDate - $time"
+
 interface SessionsContract {
-    fun isSelectedSession(id: Int): Boolean
-    fun sessionBookmarkClicked(sessionId: Int)
+    fun sessionClicked(sessionId: Int)
 }

@@ -1,10 +1,15 @@
 package lv.rigadevday.android.ui.schedule
 
+import android.os.Bundle
+import android.view.Menu
+import android.view.MenuInflater
+import android.view.MenuItem
 import android.view.View
 import kotlinx.android.synthetic.main.fragment_my_schedule.view.*
 import lv.rigadevday.android.R
 import lv.rigadevday.android.ui.base.BaseFragment
 import lv.rigadevday.android.ui.base.ViewPagerAdapter
+import lv.rigadevday.android.ui.openSessionsActivity
 import lv.rigadevday.android.ui.schedule.day.DayScheduleFragment
 import lv.rigadevday.android.utils.BaseApp
 import lv.rigadevday.android.utils.showMessage
@@ -17,6 +22,11 @@ class MyScheduleFragment : BaseFragment() {
 
     override fun inject() {
         BaseApp.graph.inject(this)
+    }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setHasOptionsMenu(true)
     }
 
     override fun viewReady(view: View) {
@@ -34,4 +44,18 @@ class MyScheduleFragment : BaseFragment() {
         )
     }
 
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        inflater.inflate(R.menu.menu_my_schedule, menu)
+        super.onCreateOptionsMenu(menu, inflater)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when (item.itemId) {
+            R.id.action_all_sessions -> {
+                context.openSessionsActivity()
+                true
+            }
+            else -> super.onOptionsItemSelected(item)
+        }
+    }
 }
