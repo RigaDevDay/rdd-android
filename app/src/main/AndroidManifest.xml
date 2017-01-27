@@ -27,6 +27,10 @@
             android:theme="@style/ThemeTranslucent"
             />
 
+        <activity
+            android:name=".ui.schedule.sessions.SessionsActivity"
+            />
+
     </application>
 
 </manifest>

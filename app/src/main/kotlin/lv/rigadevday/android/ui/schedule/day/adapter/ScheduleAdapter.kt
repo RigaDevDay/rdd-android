@@ -9,6 +9,7 @@ import kotlinx.android.synthetic.main.item_non_session.view.*
 import lv.rigadevday.android.R
 import lv.rigadevday.android.repository.SessionStorage
 import lv.rigadevday.android.repository.model.schedule.Session.Companion.TBD
+import lv.rigadevday.android.ui.openSessionsActivity
 import lv.rigadevday.android.ui.schedule.day.adapter.ScheduleItem.*
 import lv.rigadevday.android.utils.*
 import javax.inject.Inject
@@ -105,7 +106,7 @@ class ScheduleViewHolder(itemView: View) : ViewHolder(itemView) {
             return@setOnLongClickListener true
         }
         schedule_multiple_card.setOnClickListener {
-            openSessionDetails(session.id)
+            openSessionChooser(item.timeslot.sessionIds)
         }
     }
 
@@ -117,12 +118,7 @@ class ScheduleViewHolder(itemView: View) : ViewHolder(itemView) {
     }
 
     private fun openSessionChooser(sessionIds: List<Int>) {
-        "clicked on item : $sessionIds".logE()
+        itemView.context.openSessionsActivity()
     }
-
-    private fun openSessionDetails(id: Int) {
-        "clicked on item : $id".logE()
-    }
-
 
 }

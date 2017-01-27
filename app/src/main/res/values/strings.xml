@@ -17,6 +17,8 @@
     <string name="schedule_add">Tap to choose session</string>
     <string name="schedule_change">Long tap to change it later</string>
 
+    <string name="sessions_title">All sessions</string>
+
     <string name="error_message">Oops, something went wrong</string>
 
 </resources>
