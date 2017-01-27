@@ -24,7 +24,7 @@ class MyScheduleFragment : BaseFragment() {
         adapter = ViewPagerAdapter(childFragmentManager)
 
         dataFetchSubscription = repo.schedule().subscribe(
-            { adapter?.addFragment(DayScheduleFragment.newInstance(it.date), it.dateReadable) },
+            { adapter?.addFragment(DayScheduleFragment.newInstance(it.date, it.dateReadable), it.dateReadable) },
             { view.showMessage(R.string.error_message) },
             {
                 view.schedule_pager.offscreenPageLimit = 2

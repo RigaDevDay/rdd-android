@@ -7,16 +7,12 @@ import android.view.ViewGroup
 import kotlinx.android.synthetic.main.item_multiple_session.view.*
 import kotlinx.android.synthetic.main.item_non_session.view.*
 import lv.rigadevday.android.R
-import lv.rigadevday.android.repository.SessionStorage
 import lv.rigadevday.android.repository.model.schedule.Session.Companion.TBD
-import lv.rigadevday.android.ui.openSessionsActivity
+import lv.rigadevday.android.ui.schedule.day.DayScheduleContract
 import lv.rigadevday.android.ui.schedule.day.adapter.ScheduleItem.*
 import lv.rigadevday.android.utils.*
-import javax.inject.Inject
 
-class ScheduleAdapter(val dateCode: String) : RecyclerView.Adapter<ScheduleViewHolder>() {
-
-    @Inject lateinit var storage: SessionStorage
+class ScheduleAdapter(val contract: DayScheduleContract) : RecyclerView.Adapter<ScheduleViewHolder>() {
 
     var data: List<ScheduleItem> = emptyList()
         set(value) {
@@ -43,11 +39,10 @@ class ScheduleAdapter(val dateCode: String) : RecyclerView.Adapter<ScheduleViewH
         val item = data[position]
         when (item) {
             is NonSessionTimeslot -> holder.bind(item)
-            is MultiSessionTimeslot -> holder.bind(item, storage.getSessionId(item.timeslot.startTime, dateCode))
+            is MultiSessionTimeslot -> holder.bind(item, contract)
             is SingleSessionTimeslot -> holder.bind(item)
         }
     }
-
 }
 
 class ScheduleViewHolder(itemView: View) : ViewHolder(itemView) {
@@ -72,9 +67,11 @@ class ScheduleViewHolder(itemView: View) : ViewHolder(itemView) {
         }
     }
 
-    fun bind(item: MultiSessionTimeslot, savedSessionId: Int?) {
+    fun bind(item: MultiSessionTimeslot, contract: DayScheduleContract) {
         with(itemView) {
             itemView.schedule_multiple_time.text = item.timeslot.formattedStartTime
+
+            val savedSessionId = contract.getSavedSessionId(item.timeslot)
 
             if (savedSessionId != null) {
                 schedule_multiple_placeholder.hide()
@@ -83,14 +80,15 @@ class ScheduleViewHolder(itemView: View) : ViewHolder(itemView) {
             } else {
                 schedule_multiple_placeholder.unhide()
                 schedule_multiple_content.hide()
-                showPlaceholder(item.timeslot.sessionIds)
             }
 
+            schedule_multiple_card.setOnClickListener {
+                contract.timeslotClicked(item.timeslot)
+            }
         }
     }
 
-    private fun View.showSession(item: MultiSessionTimeslot) {
-
+    private fun showSession(item: MultiSessionTimeslot) {
         val session = item.timeslot.sessionObjects.firstOrNull { it.speakers.isNotEmpty() } ?: TBD
 
         itemView.schedule_multiple_title.text = session.title
@@ -100,25 +98,6 @@ class ScheduleViewHolder(itemView: View) : ViewHolder(itemView) {
             itemView.schedule_multiple_speaker.text = speaker.name
             itemView.schedule_multiple_speaker_photo.loadImage(speaker.photoUrl)
         }
-
-        schedule_multiple_card.setOnLongClickListener {
-            openSessionChooser(item.timeslot.sessionIds)
-            return@setOnLongClickListener true
-        }
-        schedule_multiple_card.setOnClickListener {
-            openSessionChooser(item.timeslot.sessionIds)
-        }
-    }
-
-    private fun View.showPlaceholder(sessionIds: List<Int>) {
-        schedule_multiple_card.setOnLongClickListener(null)
-        schedule_multiple_card.setOnClickListener {
-            openSessionChooser(sessionIds)
-        }
-    }
-
-    private fun openSessionChooser(sessionIds: List<Int>) {
-        itemView.context.openSessionsActivity()
     }
 
 }
