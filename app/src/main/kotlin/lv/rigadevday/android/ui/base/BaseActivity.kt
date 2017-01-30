@@ -10,7 +10,7 @@ import kotlinx.android.synthetic.main.part_toolbar.*
 abstract class BaseActivity : AppCompatActivity() {
 
     abstract val layoutId: Int
-    abstract val contentFrameId: Int
+    open val contentFrameId: Int = -1
 
     abstract fun inject()
 

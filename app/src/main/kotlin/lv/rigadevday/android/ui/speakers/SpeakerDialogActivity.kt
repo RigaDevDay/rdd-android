@@ -17,7 +17,6 @@ class SpeakerDialogActivity : BaseActivity() {
     @Inject lateinit var repo: Repository
 
     override val layoutId = R.layout.activity_speaker
-    override val contentFrameId = -1
 
     override fun inject() {
         BaseApp.graph.inject(this)

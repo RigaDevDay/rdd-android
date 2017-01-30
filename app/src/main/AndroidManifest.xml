@@ -31,6 +31,10 @@
             android:name=".ui.schedule.sessions.SessionsActivity"
             />
 
+        <activity
+            android:name=".ui.schedule.SessionDetailsActivity"
+            />
+
     </application>
 
 </manifest>

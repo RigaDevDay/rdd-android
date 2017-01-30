@@ -2,6 +2,7 @@ package lv.rigadevday.android.utils.di
 
 import dagger.Component
 import lv.rigadevday.android.ui.schedule.MyScheduleFragment
+import lv.rigadevday.android.ui.schedule.SessionDetailsActivity
 import lv.rigadevday.android.ui.schedule.day.DayScheduleFragment
 import lv.rigadevday.android.ui.schedule.day.adapter.ScheduleAdapter
 import lv.rigadevday.android.ui.schedule.sessions.SessionsActivity
@@ -20,6 +21,7 @@ interface AppGraph {
     // Activity
     fun inject(activity: SpeakerDialogActivity)
     fun inject(activity: SessionsActivity)
+    fun inject(activity: SessionDetailsActivity)
 
     // Fragments
     fun inject(fragment: SpeakerListFragment)

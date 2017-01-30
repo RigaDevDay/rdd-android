@@ -6,6 +6,7 @@ import lv.rigadevday.android.R
 import lv.rigadevday.android.repository.Repository
 import lv.rigadevday.android.ui.EXTRA_SESSION_DATA
 import lv.rigadevday.android.ui.base.BaseActivity
+import lv.rigadevday.android.ui.openSessionDetailsActivity
 import lv.rigadevday.android.ui.schedule.TimeslotData
 import lv.rigadevday.android.ui.schedule.toIntentData
 import lv.rigadevday.android.utils.BaseApp
@@ -17,8 +18,6 @@ class SessionsActivity : BaseActivity(), SessionsContract {
     @Inject lateinit var repo: Repository
 
     override val layoutId = R.layout.fragment_list
-
-    override val contentFrameId = -1
 
     private var sessionsAdapter: SessionsAdapter? = null
 
@@ -54,6 +53,7 @@ class SessionsActivity : BaseActivity(), SessionsContract {
     }
 
     override fun sessionClicked(sessionId: Int) {
+        openSessionDetailsActivity(sessionId)
     }
 }
 
