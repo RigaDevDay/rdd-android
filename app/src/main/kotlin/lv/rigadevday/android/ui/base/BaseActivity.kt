@@ -1,5 +1,6 @@
 package lv.rigadevday.android.ui.base
 
+import android.content.Intent
 import android.os.Bundle
 import android.support.annotation.StringRes
 import android.support.v4.app.Fragment
@@ -30,6 +31,10 @@ abstract class BaseActivity : AppCompatActivity() {
     override fun onStop() {
         dataFetchSubscription?.dispose()
         super.onStop()
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
     }
 
     protected fun setupActionBar(@StringRes title: Int) {

@@ -3,6 +3,7 @@ package lv.rigadevday.android.ui
 import android.content.Context
 import android.content.Intent
 import android.net.Uri
+import android.support.v4.app.Fragment
 import lv.rigadevday.android.ui.schedule.SessionDetailsActivity
 import lv.rigadevday.android.ui.schedule.TimeslotData
 import lv.rigadevday.android.ui.schedule.sessions.SessionsActivity
@@ -14,6 +15,8 @@ val EXTRA_SPEAKER_ID = "speaker_id".toExtraKey()
 val EXTRA_SESSION_DATA = "session_data".toExtraKey()
 val EXTRA_SESSION_ID = "session_id".toExtraKey()
 
+val REQUEST_CODE_SESSIONS = 47
+
 fun Intent.start(from: Context) {
     from.startActivity(this)
 }
@@ -24,10 +27,10 @@ fun Context.openSpeakerActivity(id: Int) {
     }.start(from = this)
 }
 
-fun Context.openSessionsActivity(data: TimeslotData? = null) {
-    Intent(this, SessionsActivity::class.java).apply {
+fun Fragment.openSessionsActivity(data: TimeslotData? = null) {
+    this.startActivityForResult(Intent(this.context, SessionsActivity::class.java).apply {
         data?.run { putExtra(EXTRA_SESSION_DATA, toBundle()) }
-    }.start(from = this)
+    }, REQUEST_CODE_SESSIONS)
 }
 
 fun Context.openSessionDetailsActivity(sessionId: Int) {

@@ -1,5 +1,6 @@
 package lv.rigadevday.android.ui.schedule.day
 
+import android.content.Intent
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
 import android.view.View
@@ -8,6 +9,7 @@ import lv.rigadevday.android.R
 import lv.rigadevday.android.repository.SessionStorage
 import lv.rigadevday.android.repository.model.schedule.Timeslot
 import lv.rigadevday.android.ui.EXTRA_SESSION_DATA
+import lv.rigadevday.android.ui.REQUEST_CODE_SESSIONS
 import lv.rigadevday.android.ui.base.BaseFragment
 import lv.rigadevday.android.ui.openSessionsActivity
 import lv.rigadevday.android.ui.schedule.TimeslotData
@@ -67,9 +69,20 @@ class DayScheduleFragment : BaseFragment(), DayScheduleContract {
     }
 
     override fun timeslotClicked(timeslot: Timeslot) {
-        context.openSessionsActivity(
+        openSessionsActivity(
             timeslotData.copy(time = timeslot.startTime, ids = timeslot.sessionIds)
         )
+    }
+
+    override fun onResume() {
+        super.onResume()
+        adapter.notifyDataSetChanged()
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        if (requestCode == REQUEST_CODE_SESSIONS) {
+            adapter.notifyDataSetChanged()
+        }
     }
 }
 
