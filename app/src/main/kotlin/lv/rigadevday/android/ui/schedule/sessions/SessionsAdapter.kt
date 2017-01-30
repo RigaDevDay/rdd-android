@@ -32,7 +32,7 @@ class SessionsHolder(view: View) : RecyclerView.ViewHolder(view) {
     fun bind(session: Session, contract: SessionsContract) {
         itemView.run {
             session_item_title.text = session.title
-            session_item_tags.text = formatTags(session)
+            session_item_tags.text = session.complexityAndTags
 
             session.speakerObjects.firstOrNull()?.let {
                 session_item_speaker.text = it.name
@@ -42,7 +42,4 @@ class SessionsHolder(view: View) : RecyclerView.ViewHolder(view) {
             session_item_card.setOnClickListener { contract.sessionClicked(session.id) }
         }
     }
-
-    private fun formatTags(session: Session)
-        = "${session.complexity} / ${session.tags.joinToString()}"
 }

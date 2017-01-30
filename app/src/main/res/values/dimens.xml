@@ -21,5 +21,9 @@
 
     <dimen name="session_card_padding">16dp</dimen>
     <dimen name="session_avatar_size">64dp</dimen>
+    <dimen name="session_content_padding">16dp</dimen>
+    <dimen name="session_details_header_padding">64dp</dimen>
+    <dimen name="session_details_fab_size">48dp</dimen>
+    <dimen name="session_details_fab_top_margin">-24dp</dimen>
 
 </resources>

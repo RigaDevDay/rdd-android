@@ -33,6 +33,7 @@
 
         <activity
             android:name=".ui.schedule.SessionDetailsActivity"
+            android:theme="@style/ThemeTranslucent"
             />
 
     </application>

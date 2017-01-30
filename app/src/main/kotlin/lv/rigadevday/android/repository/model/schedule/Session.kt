@@ -18,6 +18,9 @@ data class Session(
     var speakerObjects: MutableList<Speaker> = mutableListOf()
     var room: String = ""
 
+    val complexityAndTags: String
+        get() = "$complexity / ${tags.joinToString()}"
+
     companion object {
         val TBD = Session(
             title = "TBD",

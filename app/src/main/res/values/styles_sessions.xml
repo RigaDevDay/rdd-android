@@ -28,6 +28,23 @@
         <item name="android:textColor">@color/text_dark_secondary</item>
     </style>
 
+    <style name="Sessions.Text.Details">
+    </style>
+
+    <style name="Sessions.Text.Details.Header">
+        <item name="android:textColor">@color/text_light_primary</item>
+        <item name="android:textSize">@dimen/text_size_caption</item>
+    </style>
+
+    <style name="Sessions.Text.Details.Header.Title">
+        <item name="android:textSize">@dimen/text_size_subheading</item>
+    </style>
+
+    <style name="Sessions.Text.Details.Tags">
+        <item name="android:textColor">@color/text_light_secondary</item>
+        <item name="android:textSize">@dimen/text_size_caption</item>
+    </style>
+
     <style name="Sessions.Text.Button" parent="Wrap">
         <item name="android:background">@drawable/item_selector_borderless</item>
         <item name="android:clickable">true</item>
