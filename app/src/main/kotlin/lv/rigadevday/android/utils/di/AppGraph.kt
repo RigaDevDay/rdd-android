@@ -2,13 +2,14 @@ package lv.rigadevday.android.utils.di
 
 import dagger.Component
 import lv.rigadevday.android.ui.schedule.MyScheduleFragment
-import lv.rigadevday.android.ui.schedule.details.SessionDetailsActivity
 import lv.rigadevday.android.ui.schedule.day.DayScheduleFragment
 import lv.rigadevday.android.ui.schedule.day.adapter.ScheduleAdapter
+import lv.rigadevday.android.ui.schedule.details.SessionDetailsActivity
 import lv.rigadevday.android.ui.schedule.sessions.SessionsActivity
 import lv.rigadevday.android.ui.speakers.SpeakerDialogActivity
 import lv.rigadevday.android.ui.speakers.SpeakerListFragment
 import lv.rigadevday.android.utils.BaseApp
+import lv.rigadevday.android.utils.push.CustomMessagingService
 import javax.inject.Singleton
 
 @Singleton
@@ -30,5 +31,8 @@ interface AppGraph {
 
     // Adapters
     fun inject(adapter: ScheduleAdapter)
+
+    // Services
+    fun inject(service: CustomMessagingService)
 
 }

@@ -1,5 +1,6 @@
 package lv.rigadevday.android.utils.di
 
+import android.app.NotificationManager
 import android.content.Context
 import dagger.Module
 import dagger.Provides
@@ -22,5 +23,10 @@ class AppModule(private val application: BaseApp) {
     @Provides
     @Singleton
     fun provideSessionStorage(): SessionStorage = SessionStorage(application)
+
+    @Provides
+    @Singleton
+    fun provideNotificationManager(): NotificationManager
+        = application.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
 
 }
