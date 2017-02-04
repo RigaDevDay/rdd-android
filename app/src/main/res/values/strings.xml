@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">RigaDevDay 2017</string>
-    <string name="hashtag">#RigaDevDay</string>
+    <string name="app_name">RigaDevDays 2017</string>
+    <string name="hashtag">#RigaDevDays</string>
 
+    <string name="action_twitter">Tweet ar us</string>
+    <string name="action_licences">About &amp; Licences</string>
 
     <string name="tab_schedule">Schedule</string>
     <string name="tab_speakers">Speakers</string>
@@ -25,5 +27,6 @@
     <string name="session_bookmark_saved">Bookmark saved</string>
 
     <string name="error_message">Oops, something went wrong</string>
+    <string name="title_licenses">Licenses</string>
 
 </resources>

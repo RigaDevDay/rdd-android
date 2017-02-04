@@ -54,7 +54,11 @@ class SessionsActivity : BaseActivity(), SessionsContract {
         intentData = intent.extras?.getBundle(EXTRA_SESSION_DATA)?.toIntentData()
 
         setupActionBar(intentData?.formattedTitle() ?: getString(R.string.sessions_title))
-        supportActionBar?.setHomeButtonEnabled(true)
+
+        supportActionBar?.run {
+            setHomeButtonEnabled(true)
+            setDisplayHomeAsUpEnabled(true)
+        }
 
         sessionsAdapter = SessionsAdapter(this)
 
@@ -85,10 +89,17 @@ class SessionsActivity : BaseActivity(), SessionsContract {
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        return if (item.itemId == R.id.action_filter) {
-            filterDialog.show()
-            true
-        } else super.onOptionsItemSelected(item)
+        return when (item.itemId) {
+            R.id.action_filter -> {
+                filterDialog.show()
+                true
+            }
+            android.R.id.home -> {
+                finish()
+                true
+            }
+            else -> super.onOptionsItemSelected(item)
+        }
     }
 
     override fun sessionClicked(sessionId: Int) {

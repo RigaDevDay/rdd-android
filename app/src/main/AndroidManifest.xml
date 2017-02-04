@@ -37,6 +37,8 @@
             android:name=".ui.schedule.details.SessionDetailsActivity"
             android:theme="@style/ThemeTranslucent"/>
 
+        <activity android:name=".ui.licences.LicencesActivity"/>
+
         <service android:name=".utils.push.CustomMessagingService">
             <intent-filter>
                 <action android:name="com.google.firebase.MESSAGING_EVENT"/>
