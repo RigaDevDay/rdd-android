@@ -18,6 +18,9 @@ data class Session(
     var speakerObjects: MutableList<Speaker> = mutableListOf()
     var room: String = ""
 
+    var time: String = ""
+    var date: String = ""
+
     val complexityAndTags: String
         get() = "$complexity / ${tags.joinToString()}"
 

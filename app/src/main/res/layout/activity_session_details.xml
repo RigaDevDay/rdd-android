@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout
-    android:id="@+id/speaker_background"
+    android:id="@+id/session_background"
     style="@style/Match"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
@@ -58,7 +58,6 @@
             android:layout_marginTop="@dimen/session_details_fab_top_margin"
             android:background="@drawable/button_circle"
             android:elevation="8dp"
-            android:foreground="@drawable/item_selector_borderless"
             android:padding="@dimen/half_margin"
             android:src="@drawable/vector_add_bookmark"
             android:tint="@color/text_light_primary"

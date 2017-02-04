@@ -46,7 +46,7 @@ class SessionsActivity : BaseActivity(), SessionsContract {
             .toList()
             .subscribe(
                 { sessions ->
-                    sessionsAdapter?.data = sessions
+                    sessionsAdapter?.data = sessions.sortedBy { it.tags.first() }
                 },
                 { error -> list_fragment_recycler.showMessage(R.string.error_message) }
             )

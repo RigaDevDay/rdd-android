@@ -76,7 +76,7 @@ class ScheduleViewHolder(itemView: View) : ViewHolder(itemView) {
             if (savedSessionId != null) {
                 schedule_multiple_placeholder.hide()
                 schedule_multiple_content.unhide()
-                showSession(item)
+                showSession(item, savedSessionId)
             } else {
                 schedule_multiple_placeholder.unhide()
                 schedule_multiple_content.hide()
@@ -88,8 +88,8 @@ class ScheduleViewHolder(itemView: View) : ViewHolder(itemView) {
         }
     }
 
-    private fun showSession(item: MultiSessionTimeslot) {
-        val session = item.timeslot.sessionObjects.firstOrNull { it.speakers.isNotEmpty() } ?: TBD
+    private fun showSession(item: MultiSessionTimeslot, sessionId: Int) {
+        val session = item.timeslot.sessionObjects.firstOrNull { it.id == sessionId } ?: TBD
 
         itemView.schedule_multiple_title.text = session.title
         itemView.schedule_multiple_room.text = session.room

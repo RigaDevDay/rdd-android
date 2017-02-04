@@ -13,14 +13,17 @@ class SessionStorage(context: Context) {
     private val preference: SharedPreferences = context.getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE)
 
     fun saveSession(time: String, date: String, sessionId: Int) {
-        val key = KEY.format(time, date)
-        preference.edit().putInt(key, sessionId).apply()
+        preference.edit().putInt(KEY.format(time, date), sessionId).apply()
     }
 
     fun getSessionId(time: String, date: String): Int? {
         val key = KEY.format(time, date)
         val id = preference.getInt(key, -1)
         return if (id >= 0) id else null
+    }
+
+    fun removeSession(time: String, date: String) {
+        preference.edit().remove(KEY.format(time, date)).apply()
     }
 
 }
