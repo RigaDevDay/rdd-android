@@ -61,6 +61,7 @@ dependencies {
 
     compile "com.google.firebase:firebase-core:${versions.firebase}"
     compile "com.google.firebase:firebase-database:${versions.firebase}"
+    compile "com.google.firebase:firebase-crash:${versions.firebase}"
 
     compile "org.jetbrains.kotlin:kotlin-stdlib:${versions.kotlin}"
 
