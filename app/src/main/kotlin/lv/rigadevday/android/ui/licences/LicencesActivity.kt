@@ -14,7 +14,7 @@ class LicencesActivity : BaseActivity() {
     override fun inject() {}
 
     override fun viewReady() {
-        setupActionBar(R.string.title_licenses)
+        setupActionBar(R.string.licenses_title)
 
         supportActionBar?.run {
             setHomeButtonEnabled(true)

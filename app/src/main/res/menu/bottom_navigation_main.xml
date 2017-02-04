@@ -14,7 +14,7 @@
         android:icon="@drawable/vector_tab_venues"
         android:title="@string/tab_venues"/>
     <item
-        android:id="@+id/action_tab_organizers"
-        android:icon="@drawable/vector_tab_organizers"
-        android:title="@string/tab_organizers"/>
+        android:id="@+id/action_tab_partners"
+        android:icon="@drawable/vector_tab_partners"
+        android:title="@string/tab_partners"/>
 </menu>

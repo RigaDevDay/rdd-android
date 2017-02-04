@@ -23,6 +23,14 @@ fun ImageView.loadImage(url: String, @DrawableRes placeholder: Int = R.drawable.
         .into(this)
 }
 
+fun ImageView.loadLogo(url: String) {
+    Picasso.with(this.context)
+        .load(url.prependDomain())
+        .resize(120, 120)
+        .centerInside()
+        .into(this)
+}
+
 fun View.unhide() {
     this.visibility = View.VISIBLE
 }
