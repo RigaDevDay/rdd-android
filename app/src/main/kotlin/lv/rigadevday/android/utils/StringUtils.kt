@@ -4,6 +4,8 @@ import android.text.Html
 import android.text.Spanned
 import java.io.UnsupportedEncodingException
 import java.net.URLEncoder
+import java.text.SimpleDateFormat
+import java.util.*
 
 fun String.toExtraKey() = "lv.rigadevday.android.extra.$this"
 
@@ -19,3 +21,5 @@ fun String.urlEncoded(): String {
         throw RuntimeException("URLEncoder.encode() failed for " + this)
     }
 }
+
+val DATE_FORMAT = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())

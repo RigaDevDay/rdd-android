@@ -13,13 +13,15 @@ import lv.rigadevday.android.ui.base.ViewPagerAdapter
 import lv.rigadevday.android.ui.openSessionsActivity
 import lv.rigadevday.android.ui.schedule.day.DayScheduleFragment
 import lv.rigadevday.android.utils.BaseApp
+import lv.rigadevday.android.utils.DATE_FORMAT
 import lv.rigadevday.android.utils.showMessage
+import java.util.*
 
 class MyScheduleFragment : BaseFragment() {
 
     override val layoutId = R.layout.fragment_my_schedule
 
-    private var adapter: ViewPagerAdapter? = null
+    private lateinit var pageAdapter: ViewPagerAdapter
 
     override fun inject() {
         BaseApp.graph.inject(this)
@@ -32,16 +34,24 @@ class MyScheduleFragment : BaseFragment() {
 
     override fun viewReady(view: View) {
         setupActionBar(R.string.schedule_title)
-        adapter = ViewPagerAdapter(childFragmentManager)
 
-        dataFetchSubscription = repo.schedule().subscribe(
-            { adapter?.addFragment(DayScheduleFragment.newInstance(it.date, it.dateReadable), it.dateReadable) },
-            { view.showMessage(R.string.error_message) },
-            {
-                view.schedule_pager.offscreenPageLimit = 2
-                view.schedule_pager.adapter = adapter
-                view.schedule_tabs.setupWithViewPager(view.schedule_pager)
-            }
+        val currentDate = DATE_FORMAT.format(Date())
+        pageAdapter = ViewPagerAdapter(childFragmentManager)
+
+        dataFetchSubscription = repo.schedule().toList().subscribe(
+            { days ->
+                days.forEach {
+                    pageAdapter.addFragment(DayScheduleFragment.newInstance(it.date, it.dateReadable), it.dateReadable)
+                }
+
+                with(view.schedule_pager) {
+                    offscreenPageLimit = 2
+                    adapter = pageAdapter
+                    currentItem = days.map { it.date }.indexOf(currentDate)
+                    view.schedule_tabs.setupWithViewPager(this)
+                }
+            },
+            { view.showMessage(R.string.error_message) }
         )
     }
 
