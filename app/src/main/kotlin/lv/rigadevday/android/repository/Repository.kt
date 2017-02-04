@@ -5,6 +5,7 @@ import io.reactivex.Observable
 import io.reactivex.Single
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.functions.BiFunction
+import lv.rigadevday.android.repository.model.other.Venue
 import lv.rigadevday.android.repository.model.partners.Partners
 import lv.rigadevday.android.repository.model.schedule.Schedule
 import lv.rigadevday.android.repository.model.schedule.Session
@@ -31,6 +32,7 @@ class Repository {
 
     fun partners(): Observable<Partners> = getObservable("partners", Partners::class.java).bindSchedulers()
 
+    fun venues(): Observable<Venue> = getObservable("venues", Venue::class.java).bindSchedulers()
 
     // More complicated requests
     fun sessions(): Observable<Session> = getObservable("sessions", Session::class.java)
