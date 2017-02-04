@@ -11,6 +11,7 @@ import lv.rigadevday.android.repository.model.schedule.Timeslot
 import lv.rigadevday.android.ui.EXTRA_SESSION_DATA
 import lv.rigadevday.android.ui.REQUEST_CODE_SESSIONS
 import lv.rigadevday.android.ui.base.BaseFragment
+import lv.rigadevday.android.ui.openSessionDetailsActivity
 import lv.rigadevday.android.ui.openSessionsActivity
 import lv.rigadevday.android.ui.schedule.TimeslotData
 import lv.rigadevday.android.ui.schedule.day.adapter.ScheduleAdapter
@@ -69,9 +70,13 @@ class DayScheduleFragment : BaseFragment(), DayScheduleContract {
     }
 
     override fun timeslotClicked(timeslot: Timeslot) {
-        openSessionsActivity(
+        context.openSessionsActivity(
             timeslotData.copy(time = timeslot.startTime, ids = timeslot.sessionIds)
         )
+    }
+
+    override fun sessionClicked(sessionId: Int) {
+        context.openSessionDetailsActivity(sessionId)
     }
 
     override fun onResume() {
@@ -89,4 +94,5 @@ class DayScheduleFragment : BaseFragment(), DayScheduleContract {
 interface DayScheduleContract {
     fun getSavedSessionId(timeslot: Timeslot): Int?
     fun timeslotClicked(timeslot: Timeslot)
+    fun sessionClicked(sessionId: Int)
 }

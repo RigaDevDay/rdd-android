@@ -53,7 +53,7 @@ class MyScheduleFragment : BaseFragment() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
             R.id.action_all_sessions -> {
-                openSessionsActivity()
+                context.openSessionsActivity()
                 true
             }
             else -> super.onOptionsItemSelected(item)

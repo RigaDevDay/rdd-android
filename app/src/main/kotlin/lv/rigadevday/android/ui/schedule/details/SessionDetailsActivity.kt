@@ -1,4 +1,4 @@
-package lv.rigadevday.android.ui.schedule
+package lv.rigadevday.android.ui.schedule.details
 
 import io.reactivex.Maybe
 import io.reactivex.functions.BiFunction
@@ -52,7 +52,7 @@ class SessionDetailsActivity : BaseActivity() {
 
     private fun updateBookmarkIcon(session: Session, sessionId: Int) {
         val savedSessionId = storage.getSessionId(session.time, session.date)
-        if (savedSessionId != null) {
+        if (savedSessionId != null && savedSessionId == sessionId) {
             session_details_bookmark.setImageResource(R.drawable.vector_remove_bookmark)
             session_details_bookmark.setOnClickListener {
                 storage.removeSession(session.time, session.date)

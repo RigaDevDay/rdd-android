@@ -77,13 +77,22 @@ class ScheduleViewHolder(itemView: View) : ViewHolder(itemView) {
                 schedule_multiple_placeholder.hide()
                 schedule_multiple_content.unhide()
                 showSession(item, savedSessionId)
+
+                schedule_multiple_card.setOnLongClickListener {
+                    contract.timeslotClicked(item.timeslot)
+                    true
+                }
+                schedule_multiple_card.setOnClickListener {
+                    contract.sessionClicked(savedSessionId)
+                }
             } else {
                 schedule_multiple_placeholder.unhide()
                 schedule_multiple_content.hide()
-            }
 
-            schedule_multiple_card.setOnClickListener {
-                contract.timeslotClicked(item.timeslot)
+                schedule_multiple_card.setOnLongClickListener(null)
+                schedule_multiple_card.setOnClickListener {
+                    contract.timeslotClicked(item.timeslot)
+                }
             }
         }
     }

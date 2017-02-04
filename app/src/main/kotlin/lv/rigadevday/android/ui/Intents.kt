@@ -3,8 +3,7 @@ package lv.rigadevday.android.ui
 import android.content.Context
 import android.content.Intent
 import android.net.Uri
-import android.support.v4.app.Fragment
-import lv.rigadevday.android.ui.schedule.SessionDetailsActivity
+import lv.rigadevday.android.ui.schedule.details.SessionDetailsActivity
 import lv.rigadevday.android.ui.schedule.TimeslotData
 import lv.rigadevday.android.ui.schedule.sessions.SessionsActivity
 import lv.rigadevday.android.ui.schedule.toBundle
@@ -27,10 +26,10 @@ fun Context.openSpeakerActivity(id: Int) {
     }.start(from = this)
 }
 
-fun Fragment.openSessionsActivity(data: TimeslotData? = null) {
-    this.startActivityForResult(Intent(this.context, SessionsActivity::class.java).apply {
+fun Context.openSessionsActivity(data: TimeslotData? = null) {
+    Intent(this, SessionsActivity::class.java).apply {
         data?.run { putExtra(EXTRA_SESSION_DATA, toBundle()) }
-    }, REQUEST_CODE_SESSIONS)
+    }.start(from = this)
 }
 
 fun Context.openSessionDetailsActivity(sessionId: Int) {
