@@ -76,7 +76,6 @@ dependencies {
     
     // UI
     compile 'com.squareup.picasso:picasso:2.5.2'
-    compile 'com.mikhaellopez:circularimageview:3.0.2'
 }
 
 apply plugin: 'com.google.gms.google-services'

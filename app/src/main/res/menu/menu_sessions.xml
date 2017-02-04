@@ -6,6 +6,7 @@
         android:id="@+id/action_filter"
         android:icon="@drawable/vector_filter"
         android:title="@string/sessions_title"
+        android:orderInCategory="5"
         app:showAsAction="ifRoom"
         />
 

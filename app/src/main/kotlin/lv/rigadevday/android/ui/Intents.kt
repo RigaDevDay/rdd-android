@@ -3,12 +3,15 @@ package lv.rigadevday.android.ui
 import android.content.Context
 import android.content.Intent
 import android.net.Uri
-import lv.rigadevday.android.ui.schedule.details.SessionDetailsActivity
+import lv.rigadevday.android.R
+import lv.rigadevday.android.ui.licences.LicencesActivity
 import lv.rigadevday.android.ui.schedule.TimeslotData
+import lv.rigadevday.android.ui.schedule.details.SessionDetailsActivity
 import lv.rigadevday.android.ui.schedule.sessions.SessionsActivity
 import lv.rigadevday.android.ui.schedule.toBundle
 import lv.rigadevday.android.ui.speakers.SpeakerDialogActivity
 import lv.rigadevday.android.utils.toExtraKey
+import lv.rigadevday.android.utils.urlEncoded
 
 val EXTRA_SPEAKER_ID = "speaker_id".toExtraKey()
 val EXTRA_SESSION_DATA = "session_data".toExtraKey()
@@ -38,8 +41,16 @@ fun Context.openSessionDetailsActivity(sessionId: Int) {
     }.start(from = this)
 }
 
+fun Context.openLicencesActivity() {
+    Intent(this, LicencesActivity::class.java).start(from = this)
+}
+
 fun Context.openWeb(link: String) {
     Intent(Intent.ACTION_VIEW, Uri.parse(link)).apply {
         flags = Intent.FLAG_ACTIVITY_NEW_TASK
-    }.start(this)
+    }.start(from = this)
+}
+
+fun Context.openTwitter() {
+    openWeb(String.format("https://twitter.com/search?q=%s", getString(R.string.hashtag).urlEncoded()))
 }
