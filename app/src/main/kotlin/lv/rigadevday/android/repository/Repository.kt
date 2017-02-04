@@ -21,13 +21,13 @@ class Repository {
     private val database: DatabaseReference by lazy { FirebaseDatabase.getInstance().reference }
 
     // Basic requests
-    fun speakers(): Observable<Speaker> = getObservable("speakers", Speaker::class.java).bindSchedulers()
+    fun speakers(): Observable<Speaker> = getObservable("speakers", Speaker::class.java).cache().bindSchedulers()
 
-    fun speaker(id: Int): Single<Speaker> = getSingleObservable("speakers", id, Speaker::class.java).bindSchedulers()
+    fun speaker(id: Int): Single<Speaker> = getSingleObservable("speakers", id, Speaker::class.java).cache().bindSchedulers()
 
-    fun schedule(): Observable<Schedule> = getObservable("schedule", Schedule::class.java).bindSchedulers()
+    fun schedule(): Observable<Schedule> = getObservable("schedule", Schedule::class.java).cache().bindSchedulers()
 
-    fun team(): Observable<Team> = getObservable("team", Team::class.java).bindSchedulers()
+    fun team(): Observable<Team> = getObservable("team", Team::class.java).cache().bindSchedulers()
 
     fun partners(): Observable<Partners> = getObservable("partners", Partners::class.java).bindSchedulers()
 
@@ -40,6 +40,7 @@ class Repository {
                 .map { session.apply { speakerObjects = it } }
         }
         .flatMap { it.toObservable() }
+        .cache()
         .bindSchedulers()
 
     fun session(id: Int): Single<Session> = getSingleObservable("sessions", id, Session::class.java)
@@ -48,6 +49,7 @@ class Repository {
                 .concatMap { speaker(it).toObservable() }.toList()
                 .map { session.apply { speakerObjects = it } }
         }
+        .cache()
         .bindSchedulers()
 
 
@@ -62,7 +64,7 @@ class Repository {
                     emitter.onSuccess(p0?.children?.first()?.getValue(Schedule::class.java))
                 }
             })
-        }.bindSchedulers()
+        }.cache().bindSchedulers()
     }
 
     fun scheduleDayTimeslots(dateCode: String): Observable<Timeslot> {
@@ -81,7 +83,7 @@ class Repository {
                         .map { timeslot.apply { sessionObjects = it } }
                         .toObservable()
                 }
-        }.flatMapObservable { it }
+        }.flatMapObservable { it }.cache()
     }
 
 

@@ -8,6 +8,7 @@ import lv.rigadevday.android.ui.schedule.details.SessionDetailsActivity
 import lv.rigadevday.android.ui.schedule.sessions.SessionsActivity
 import lv.rigadevday.android.ui.speakers.SpeakerDialogActivity
 import lv.rigadevday.android.ui.speakers.SpeakerListFragment
+import lv.rigadevday.android.ui.splash.SplashActivity
 import lv.rigadevday.android.utils.BaseApp
 import lv.rigadevday.android.utils.push.CustomMessagingService
 import javax.inject.Singleton
@@ -20,6 +21,7 @@ interface AppGraph {
     fun inject(app: BaseApp)
 
     // Activity
+    fun inject(activity: SplashActivity)
     fun inject(activity: SpeakerDialogActivity)
     fun inject(activity: SessionsActivity)
     fun inject(activity: SessionDetailsActivity)

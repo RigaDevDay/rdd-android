@@ -13,8 +13,11 @@
         android:screenOrientation="portrait"
         android:theme="@style/RddMaterialTheme">
 
+
         <activity
-            android:name=".ui.tabs.TabActivity">
+            android:name=".ui.splash.SplashActivity"
+            android:theme="@style/SplashTheme"
+            >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 
@@ -22,23 +25,19 @@
             </intent-filter>
         </activity>
 
-        <activity
-            android:name=".ui.speakers.SpeakerDialogActivity"
-            android:theme="@style/ThemeTranslucent"
-            />
+        <activity android:name=".ui.tabs.TabActivity"/>
 
         <activity
-            android:name=".ui.schedule.sessions.SessionsActivity"
-            />
+            android:name=".ui.speakers.SpeakerDialogActivity"
+            android:theme="@style/ThemeTranslucent"/>
+
+        <activity android:name=".ui.schedule.sessions.SessionsActivity"/>
 
         <activity
             android:name=".ui.schedule.details.SessionDetailsActivity"
-            android:theme="@style/ThemeTranslucent"
-            />
+            android:theme="@style/ThemeTranslucent"/>
 
-
-        <service
-            android:name=".utils.push.CustomMessagingService">
+        <service android:name=".utils.push.CustomMessagingService">
             <intent-filter>
                 <action android:name="com.google.firebase.MESSAGING_EVENT"/>
             </intent-filter>
@@ -46,11 +45,10 @@
 
         <meta-data
             android:name="com.google.firebase.messaging.default_notification_icon"
-            android:resource="@drawable/ic_launcher" />
+            android:resource="@drawable/ic_launcher"/>
         <meta-data
             android:name="com.google.firebase.messaging.default_notification_color"
-            android:resource="@color/color_accent" />
-
+            android:resource="@color/color_accent"/>
 
     </application>
 
