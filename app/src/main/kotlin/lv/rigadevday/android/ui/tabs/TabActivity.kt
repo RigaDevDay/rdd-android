@@ -23,8 +23,8 @@ class TabActivity : BaseActivity() {
 
     override fun viewReady() {
         tabs_buttons.setOnNavigationItemSelectedListener(tabClickListener)
-        tabs_buttons.menu.findItem(R.id.action_tab_speakers).isChecked = true
-        setFragment(speakersFragment)
+        tabs_buttons.menu.findItem(R.id.action_tab_schedule).isChecked = true
+        setFragment(scheduleFragment)
     }
 
     val tabClickListener = BottomNavigationView.OnNavigationItemSelectedListener { item ->

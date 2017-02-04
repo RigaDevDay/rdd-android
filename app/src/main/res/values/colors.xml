@@ -30,4 +30,6 @@
     <color name="speakers_item_badge">@color/color_primary</color>
     <color name="speaker_header">@color/color_primary</color>
 
+    <color name="session_header">@color/color_primary</color>
+
 </resources>

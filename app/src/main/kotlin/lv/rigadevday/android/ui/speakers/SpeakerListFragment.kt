@@ -4,18 +4,14 @@ import android.support.v7.widget.GridLayoutManager
 import android.view.View
 import kotlinx.android.synthetic.main.fragment_list.*
 import lv.rigadevday.android.R
-import lv.rigadevday.android.repository.Repository
 import lv.rigadevday.android.ui.base.BaseFragment
 import lv.rigadevday.android.ui.openSpeakerActivity
 import lv.rigadevday.android.utils.BaseApp
 import lv.rigadevday.android.utils.showMessage
-import javax.inject.Inject
 
 class SpeakerListFragment : BaseFragment() {
 
     override val layoutId = R.layout.fragment_list
-
-    @Inject lateinit var repo: Repository
 
     private var adapter: SpeakersAdapter = SpeakersAdapter()
 

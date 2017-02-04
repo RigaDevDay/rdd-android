@@ -109,7 +109,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="end"
-            android:text="@string/speaker_close_dialog"
+            android:text="@string/close_dialog"
             android:background="@drawable/item_selector_borderless"
             android:textColor="@color/color_accent"
             />
