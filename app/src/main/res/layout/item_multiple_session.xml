@@ -107,12 +107,10 @@
 
                 </LinearLayout>
 
-                <com.mikhaellopez.circularimageview.CircularImageView
+                <lv.rigadevday.android.utils.view.CircularImageView
                     android:id="@+id/schedule_multiple_speaker_photo"
                     android:layout_width="@dimen/schedule_avatar_size"
                     android:layout_height="@dimen/schedule_avatar_size"
-                    app:civ_border_width="0dp"
-                    app:civ_shadow="false"
                     tools:src="@drawable/vector_speaker_placeholder"
                     />
 
