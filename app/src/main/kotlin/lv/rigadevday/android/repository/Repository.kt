@@ -34,6 +34,8 @@ class Repository {
 
     fun venues(): Observable<Venue> = getObservable("venues", Venue::class.java).bindSchedulers()
 
+    fun venue(id: Int): Single<Venue> = getSingleObservable("venues", id, Venue::class.java).cache().bindSchedulers()
+
     // More complicated requests
     fun sessions(): Observable<Session> = getObservable("sessions", Session::class.java)
         .map { session ->
@@ -87,7 +89,6 @@ class Repository {
                 }
         }.flatMapObservable { it }.cache()
     }
-
 
     // Helper functions
     private fun <T> getObservable(table: String, klass: Class<T>): Observable<T> = Observable.create<T> { emitter ->

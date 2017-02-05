@@ -54,3 +54,11 @@ fun Context.openWeb(link: String) {
 fun Context.openTwitter() {
     openWeb(String.format("https://twitter.com/search?q=%s", getString(R.string.hashtag).urlEncoded()))
 }
+
+fun Context.openEmail(email: String) {
+    openWeb(String.format("mailto:%s", email))
+}
+
+fun Context.openMap(coord: String) {
+    openWeb(String.format("http://maps.google.com/maps?daddr=%s", coord))
+}

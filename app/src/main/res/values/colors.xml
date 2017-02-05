@@ -32,4 +32,5 @@
 
     <color name="session_header">@color/color_primary</color>
 
+    <color name="venues_map_button">@color/color_primary</color>
 </resources>

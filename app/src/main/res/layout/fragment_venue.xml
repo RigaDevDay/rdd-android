@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    style="@style/ScreenBackground">
+
+    <LinearLayout
+        style="@style/Match"
+        android:orientation="vertical"
+        android:padding="@dimen/base_margin">
+
+        <TextView
+            android:id="@+id/venue_name"
+            style="@style/Venues.Text.Title"
+            android:layout_marginBottom="@dimen/venues_block_spacing_bottom"
+            tools:text="Name of venue" />
+
+        <LinearLayout style="@style/Venue.Label.Layout">
+
+            <TextView
+                style="@style/Venues.Text.Label.Type"
+                android:text="@string/venues_address" />
+
+            <TextView
+                android:id="@+id/venue_address"
+                style="@style/Venues.Text.Label"
+                android:layout_width="wrap_content"
+                tools:text="Street name, 12" />
+
+            <ImageView
+                android:id="@+id/venue_address_button"
+                style="@style/Venues.Label.Button" />
+        </LinearLayout>
+
+        <LinearLayout style="@style/Venue.Label.Layout">
+
+            <TextView
+                style="@style/Venues.Text.Label.Type"
+                android:text="@string/venues_website" />
+
+            <TextView
+                android:id="@+id/venue_web_page_link"
+                style="@style/Venues.Text.Label.Link"
+                tools:text="http://webpage.lv" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/venue_email_layout"
+            style="@style/Venue.Label.Layout"
+            android:layout_marginBottom="@dimen/venues_block_spacing_bottom">
+
+            <TextView
+                style="@style/Venues.Text.Label.Type"
+                android:text="@string/venues_reservation" />
+
+            <TextView
+                android:id="@+id/venue_email_link"
+                style="@style/Venues.Text.Label.Link"
+                tools:text="email@hotel.com" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/venue_wifi_layout"
+            style="@style/Venue.Label.Layout"
+            android:layout_marginBottom="@dimen/venues_block_spacing_bottom"
+            android:gravity="top">
+
+            <TextView
+                style="@style/Venues.Text.Label.Type"
+                android:text="@string/venues_wifi" />
+
+            <TextView
+                android:id="@+id/venue_wifi"
+                style="@style/Venues.Text.Label"
+                android:layout_width="wrap_content"
+                tools:text="Pass" />
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/venue_description"
+            style="@style/Venues.Text"
+            tools:text="description \na\na\na\na\na\na\na\na\na\na\na" />
+
+    </LinearLayout>
+</ScrollView>
