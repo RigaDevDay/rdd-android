@@ -1,6 +1,7 @@
 package lv.rigadevday.android.repository
 
 import com.google.firebase.database.*
+
 import io.reactivex.Observable
 import io.reactivex.Single
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -19,7 +20,11 @@ import lv.rigadevday.android.repository.model.team.Team
  */
 class Repository {
 
-    private val database: DatabaseReference by lazy { FirebaseDatabase.getInstance().reference }
+    private val database: DatabaseReference by lazy {
+        val ref = FirebaseDatabase.getInstance().reference
+        ref.keepSynced(true)
+        return@lazy ref
+    }
 
     // Basic requests
     fun speakers(): Observable<Speaker> = getObservable("speakers", Speaker::class.java).cache().bindSchedulers()
