@@ -10,8 +10,8 @@ import lv.rigadevday.android.ui.schedule.sessions.SessionsActivity
 import lv.rigadevday.android.ui.speakers.SpeakerDialogActivity
 import lv.rigadevday.android.ui.speakers.SpeakerListFragment
 import lv.rigadevday.android.ui.splash.SplashActivity
-import lv.rigadevday.android.ui.venues.VenueFragment
-import lv.rigadevday.android.ui.venues.VenuesRootFragment
+import lv.rigadevday.android.ui.venues.VenueDetailsFragment
+import lv.rigadevday.android.ui.venues.VenuesFragment
 import lv.rigadevday.android.utils.BaseApp
 import lv.rigadevday.android.utils.push.CustomMessagingService
 import javax.inject.Singleton
@@ -34,8 +34,8 @@ interface AppGraph {
     fun inject(fragment: MyScheduleFragment)
     fun inject(fragment: DayScheduleFragment)
     fun inject(fragment: PartnersFragment)
-    fun inject(fragment: VenuesRootFragment)
-    fun inject(fragment: VenueFragment)
+    fun inject(fragment: VenuesFragment)
+    fun inject(fragment: VenueDetailsFragment)
 
     // Adapters
     fun inject(adapter: ScheduleAdapter)

@@ -8,7 +8,7 @@ import lv.rigadevday.android.ui.base.ViewPagerAdapter
 import lv.rigadevday.android.utils.BaseApp
 import lv.rigadevday.android.utils.showMessage
 
-class VenuesRootFragment : BaseFragment() {
+class VenuesFragment : BaseFragment() {
 
     override val layoutId = R.layout.fragment_venues_root
 
@@ -27,7 +27,7 @@ class VenuesRootFragment : BaseFragment() {
 
         dataFetchSubscription = repo.venues().subscribe(
                 {
-                    adapter?.addFragment(VenueFragment.newInstance(index), it.name)
+                    adapter?.addFragment(VenueDetailsFragment.newInstance(index), it.name)
                     index++
                 },
                 { view.showMessage(R.string.error_message) },
