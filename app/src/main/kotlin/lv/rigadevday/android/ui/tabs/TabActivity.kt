@@ -12,6 +12,7 @@ import lv.rigadevday.android.ui.openTwitter
 import lv.rigadevday.android.ui.orginizers.PartnersFragment
 import lv.rigadevday.android.ui.schedule.MyScheduleFragment
 import lv.rigadevday.android.ui.speakers.SpeakerListFragment
+import lv.rigadevday.android.ui.venues.VenuesFragment
 
 
 class TabActivity : BaseActivity() {
@@ -21,7 +22,7 @@ class TabActivity : BaseActivity() {
 
     private val scheduleFragment: Fragment by lazy { MyScheduleFragment() }
     private val speakersFragment: Fragment by lazy { SpeakerListFragment() }
-    private val venuesFragment: Fragment by lazy { PlaceholderFragment.newInstance("venues") }
+    private val venuesFragment: Fragment by lazy { VenuesFragment() }
     private val partnersFragment: Fragment by lazy { PartnersFragment() }
 
     override fun inject() {}
