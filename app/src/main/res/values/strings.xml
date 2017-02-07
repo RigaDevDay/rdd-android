@@ -4,7 +4,7 @@
     <string name="app_name">RigaDevDays 2017</string>
     <string name="hashtag">#RigaDevDays</string>
 
-    <string name="action_twitter">Tweet ar us</string>
+    <string name="action_twitter">Tweet at us</string>
     <string name="action_licences">About &amp; Licences</string>
 
     <string name="tab_schedule">Schedule</string>
@@ -30,7 +30,6 @@
     <string name="venues_address">Address:</string>
     <string name="venues_website">Website:</string>
     <string name="venues_reservation">Reservation:</string>
-    <string name="venues_wifi">Wifi pass:</string>
 
     <string name="licenses_title">Licenses</string>
 

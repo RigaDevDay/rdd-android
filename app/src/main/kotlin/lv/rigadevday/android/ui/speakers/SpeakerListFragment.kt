@@ -13,7 +13,9 @@ class SpeakerListFragment : BaseFragment() {
 
     override val layoutId = R.layout.fragment_list
 
-    private var adapter: SpeakersAdapter = SpeakersAdapter()
+    private val listAdapter: SpeakersAdapter = SpeakersAdapter {
+        context.openSpeakerActivity(it)
+    }
 
     override fun inject() {
         BaseApp.graph.inject(this)
@@ -22,15 +24,13 @@ class SpeakerListFragment : BaseFragment() {
     override fun viewReady(view: View) {
         setupActionBar(R.string.tab_speakers)
 
-        list_fragment_recycler.layoutManager = GridLayoutManager(view.context, 2)
-        list_fragment_recycler.adapter = adapter
-
-        adapter.onItemClick = {
-            context.openSpeakerActivity(it)
+        with(list_fragment_recycler) {
+            layoutManager = GridLayoutManager(view.context, 2)
+            adapter = listAdapter
         }
 
         repo.speakers().toList().subscribe(
-            { list -> adapter.data = list },
+            { list -> listAdapter.data = list },
             { view.showMessage(R.string.error_message) }
         )
     }

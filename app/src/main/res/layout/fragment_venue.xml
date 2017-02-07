@@ -60,24 +60,6 @@
 
         </LinearLayout>
 
-        <LinearLayout
-            android:id="@+id/venue_wifi_layout"
-            style="@style/Venue.Label.Layout"
-            android:layout_marginBottom="@dimen/venues_block_spacing_bottom"
-            android:gravity="top">
-
-            <TextView
-                style="@style/Venues.Text.Label.Type"
-                android:text="@string/venues_wifi" />
-
-            <TextView
-                android:id="@+id/venue_wifi"
-                style="@style/Venues.Text.Label"
-                android:layout_width="wrap_content"
-                tools:text="Pass" />
-
-        </LinearLayout>
-
         <TextView
             android:id="@+id/venue_description"
             style="@style/Venues.Text"

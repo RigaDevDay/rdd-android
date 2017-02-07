@@ -12,7 +12,7 @@ class VenuesFragment : BaseFragment() {
 
     override val layoutId = R.layout.fragment_venues_root
 
-    private var adapter: ViewPagerAdapter? = null
+    private lateinit var pageAdapter: ViewPagerAdapter
 
     override fun inject() {
         BaseApp.graph.inject(this)
@@ -21,21 +21,21 @@ class VenuesFragment : BaseFragment() {
     override fun viewReady(view: View) {
         setupActionBar(R.string.venues_title)
 
-        adapter = ViewPagerAdapter(childFragmentManager)
+        pageAdapter = ViewPagerAdapter(childFragmentManager)
 
-        var index = 0
-
-        dataFetchSubscription = repo.venues().subscribe(
-                {
-                    adapter?.addFragment(VenueDetailsFragment.newInstance(index), it.name)
-                    index++
-                },
-                { view.showMessage(R.string.error_message) },
-                {
-                    view.venues_pager.offscreenPageLimit = 2
-                    view.venues_pager.adapter = adapter
-                    view.venues_tabs.setupWithViewPager(view.venues_pager)
+        dataFetchSubscription = repo.venues().toList().subscribe(
+            {
+                it.forEachIndexed { i, venue ->
+                    pageAdapter.addFragment(VenueDetailsFragment.newInstance(i), venue.name)
                 }
+
+                with(view.venues_pager) {
+                    offscreenPageLimit = 2
+                    adapter = pageAdapter
+                    view.venues_tabs.setupWithViewPager(this)
+                }
+            },
+            { view.showMessage(R.string.error_message) }
         )
     }
 }

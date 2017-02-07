@@ -9,7 +9,6 @@
     <dimen name="text_size_body">14sp</dimen>
     <dimen name="text_size_caption">12sp</dimen>
 
-
     <dimen name="speaker_item_padding">8dp</dimen>
     <dimen name="speaker_content_padding">16dp</dimen>
     <dimen name="speaker_photo_size">128dp</dimen>
@@ -29,6 +28,5 @@
     <dimen name="venues_block_spacing_bottom">24dp</dimen>
     <dimen name="venues_open_button_size">36dp</dimen>
 
-
-    <dimen name="organizers_title_margin_top">24dp</dimen>
+    <dimen name="partners_title_margin_top">24dp</dimen>
 </resources>

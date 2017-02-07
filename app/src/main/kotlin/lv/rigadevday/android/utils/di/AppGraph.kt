@@ -1,7 +1,7 @@
 package lv.rigadevday.android.utils.di
 
 import dagger.Component
-import lv.rigadevday.android.ui.orginizers.PartnersFragment
+import lv.rigadevday.android.ui.partners.PartnersFragment
 import lv.rigadevday.android.ui.schedule.MyScheduleFragment
 import lv.rigadevday.android.ui.schedule.day.DayScheduleFragment
 import lv.rigadevday.android.ui.schedule.day.adapter.ScheduleAdapter

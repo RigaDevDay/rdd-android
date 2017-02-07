@@ -45,6 +45,7 @@ fun Context.openLicencesActivity() {
     Intent(this, LicencesActivity::class.java).start(from = this)
 }
 
+
 fun Context.openWeb(link: String) {
     Intent(Intent.ACTION_VIEW, Uri.parse(link)).apply {
         flags = Intent.FLAG_ACTIVITY_NEW_TASK

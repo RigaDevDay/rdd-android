@@ -1,4 +1,4 @@
-package lv.rigadevday.android.ui.orginizers.adapter
+package lv.rigadevday.android.ui.partners.adapter
 
 import lv.rigadevday.android.repository.model.partners.Logo
 

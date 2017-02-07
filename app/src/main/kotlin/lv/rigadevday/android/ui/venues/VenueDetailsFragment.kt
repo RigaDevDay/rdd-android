@@ -13,9 +13,9 @@ import lv.rigadevday.android.utils.*
 
 class VenueDetailsFragment : BaseFragment() {
 
-    val EXTRA_VENUE_INDEX = "venue_index".toExtraKey()
-
     companion object {
+        val EXTRA_VENUE_INDEX = "venue_index".toExtraKey()
+
         fun newInstance(index: Int) = VenueDetailsFragment().apply {
             arguments = Bundle().apply {
                 putInt(EXTRA_VENUE_INDEX, index)

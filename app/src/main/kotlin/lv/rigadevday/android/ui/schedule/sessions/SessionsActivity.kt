@@ -17,13 +17,15 @@ import lv.rigadevday.android.utils.BaseApp
 import lv.rigadevday.android.utils.showMessage
 import javax.inject.Inject
 
-class SessionsActivity : BaseActivity(), SessionsContract {
+class SessionsActivity : BaseActivity() {
 
     @Inject lateinit var repo: Repository
 
     override val layoutId = R.layout.fragment_list
 
-    private var sessionsAdapter: SessionsAdapter? = null
+    private val listAdapter: SessionsAdapter = SessionsAdapter {
+        openSessionDetailsActivity(it)
+    }
 
     private var intentData: TimeslotData? = null
     private var tags: Array<String>? = null
@@ -35,12 +37,12 @@ class SessionsActivity : BaseActivity(), SessionsContract {
             .setItems(tags) { di, index ->
                 if (cachedSessions != null && tags != null) {
                     val tag = tags!![index]
-                    sessionsAdapter?.data = cachedSessions!!.filter { it.tags.contains(tag) }
+                    listAdapter.data = cachedSessions!!.filter { it.tags.contains(tag) }
                     supportActionBar?.title = tag
                 }
             }
             .setPositiveButton(R.string.sessions_filter_clear) { di, index ->
-                cachedSessions?.let { sessionsAdapter?.data = it }
+                cachedSessions?.let { listAdapter.data = it }
                 supportActionBar?.setTitle(R.string.sessions_title)
             }
             .create()
@@ -54,17 +56,11 @@ class SessionsActivity : BaseActivity(), SessionsContract {
         intentData = intent.extras?.getBundle(EXTRA_SESSION_DATA)?.toIntentData()
 
         setupActionBar(intentData?.formattedTitle() ?: getString(R.string.sessions_title))
-
-        supportActionBar?.run {
-            setHomeButtonEnabled(true)
-            setDisplayHomeAsUpEnabled(true)
-        }
-
-        sessionsAdapter = SessionsAdapter(this)
+        homeAsUp()
 
         list_fragment_recycler.run {
             layoutManager = LinearLayoutManager(context)
-            adapter = sessionsAdapter
+            adapter = listAdapter
         }
 
         dataFetchSubscription = repo.sessions()
@@ -75,7 +71,7 @@ class SessionsActivity : BaseActivity(), SessionsContract {
                 { sessions ->
                     tags = sessions.flatMap { it.tags }.distinct().toTypedArray()
                     cachedSessions = sessions
-                    sessionsAdapter?.data = sessions
+                    listAdapter.data = sessions
                 },
                 { error -> list_fragment_recycler.showMessage(R.string.error_message) }
             )
@@ -89,26 +85,13 @@ class SessionsActivity : BaseActivity(), SessionsContract {
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        return when (item.itemId) {
-            R.id.action_filter -> {
-                filterDialog.show()
-                true
-            }
-            android.R.id.home -> {
-                finish()
-                true
-            }
-            else -> super.onOptionsItemSelected(item)
+        when (item.itemId) {
+            R.id.action_filter -> filterDialog.show()
+            else -> return super.onOptionsItemSelected(item)
         }
+        return true
     }
 
-    override fun sessionClicked(sessionId: Int) {
-        openSessionDetailsActivity(sessionId)
-    }
 }
 
 private fun TimeslotData.formattedTitle() = "$readableDate - $time"
-
-interface SessionsContract {
-    fun sessionClicked(sessionId: Int)
-}

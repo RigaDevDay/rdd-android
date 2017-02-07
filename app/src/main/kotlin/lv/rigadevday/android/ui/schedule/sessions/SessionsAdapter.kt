@@ -9,7 +9,7 @@ import lv.rigadevday.android.repository.model.schedule.Session
 import lv.rigadevday.android.utils.inflate
 import lv.rigadevday.android.utils.loadImage
 
-class SessionsAdapter(val contract: SessionsContract) : RecyclerView.Adapter<SessionsHolder>() {
+class SessionsAdapter(val onSessionClick: (Int) -> Unit) : RecyclerView.Adapter<SessionsHolder>() {
 
     var data: List<Session> = emptyList()
         set(value) {
@@ -24,12 +24,12 @@ class SessionsAdapter(val contract: SessionsContract) : RecyclerView.Adapter<Ses
     }
 
     override fun onBindViewHolder(holder: SessionsHolder, position: Int) {
-        holder.bind(data[position], contract)
+        holder.bind(data[position], onSessionClick)
     }
 }
 
 class SessionsHolder(view: View) : RecyclerView.ViewHolder(view) {
-    fun bind(session: Session, contract: SessionsContract) {
+    fun bind(session: Session, onSessionClick: (Int) -> Unit) {
         itemView.run {
             session_item_title.text = session.title
             session_item_tags.text = session.complexityAndTags
@@ -39,7 +39,7 @@ class SessionsHolder(view: View) : RecyclerView.ViewHolder(view) {
                 session_item_photo.loadImage(it.photoUrl)
             }
 
-            session_item_card.setOnClickListener { contract.sessionClicked(session.id) }
+            session_item_card.setOnClickListener { onSessionClick(session.id) }
         }
     }
 }

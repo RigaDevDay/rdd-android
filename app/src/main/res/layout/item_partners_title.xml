@@ -10,7 +10,7 @@
         android:layout_marginBottom="@dimen/base_margin"
         android:layout_marginEnd="@dimen/base_margin"
         android:layout_marginStart="@dimen/base_margin"
-        android:layout_marginTop="@dimen/organizers_title_margin_top"
+        android:layout_marginTop="@dimen/partners_title_margin_top"
         android:fontFamily="@string/family_regular"
         android:padding="@dimen/base_margin"
         android:textColor="@color/text_dark_primary"

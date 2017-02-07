@@ -9,17 +9,15 @@ import lv.rigadevday.android.repository.model.speakers.Speaker
 import lv.rigadevday.android.utils.hide
 import lv.rigadevday.android.utils.inflate
 import lv.rigadevday.android.utils.loadImage
-import lv.rigadevday.android.utils.unhide
+import lv.rigadevday.android.utils.show
 
-class SpeakersAdapter : RecyclerView.Adapter<SpeakerViewHolder>() {
+class SpeakersAdapter(val onItemClick: (Int) -> Unit) : RecyclerView.Adapter<SpeakerViewHolder>() {
 
     var data: List<Speaker> = emptyList()
         set(value) {
             field = value
             notifyDataSetChanged()
         }
-
-    var onItemClick: ((Int) -> Unit)? = null
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int)
         = SpeakerViewHolder(parent.inflate(R.layout.item_speaker))
@@ -34,18 +32,18 @@ class SpeakersAdapter : RecyclerView.Adapter<SpeakerViewHolder>() {
 
 class SpeakerViewHolder(view: View) : RecyclerView.ViewHolder(view) {
 
-    fun bind(speaker: Speaker, onClick: ((Int) -> Unit)?) {
-        itemView.setOnClickListener { onClick?.invoke(speaker.id) }
+    fun bind(speaker: Speaker, onClick: (Int) -> Unit) = with(itemView) {
+        setOnClickListener { onClick(speaker.id) }
 
-        itemView.speakers_item_name.text = speaker.name
-        itemView.speakers_item_company.text = speaker.company
+        speakers_item_name.text = speaker.name
+        speakers_item_company.text = speaker.company
 
-        itemView.speakers_item_image.loadImage(speaker.photoUrl)
+        speakers_item_image.loadImage(speaker.photoUrl)
 
-        itemView.speakers_item_bagde.apply {
+        speakers_item_bagde.apply {
             if (speaker.badges.isEmpty()) hide()
             else {
-                unhide()
+                show()
                 text = speaker.badges[0].name
             }
         }

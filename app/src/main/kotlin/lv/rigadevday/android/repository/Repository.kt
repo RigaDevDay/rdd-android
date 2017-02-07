@@ -1,7 +1,6 @@
 package lv.rigadevday.android.repository
 
 import com.google.firebase.database.*
-
 import io.reactivex.Observable
 import io.reactivex.Single
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -12,7 +11,6 @@ import lv.rigadevday.android.repository.model.schedule.Schedule
 import lv.rigadevday.android.repository.model.schedule.Session
 import lv.rigadevday.android.repository.model.schedule.Timeslot
 import lv.rigadevday.android.repository.model.speakers.Speaker
-import lv.rigadevday.android.repository.model.team.Team
 
 /**
  * All of the observables provided by repository are non-closable so it is mandatory
@@ -32,8 +30,6 @@ class Repository {
     fun speaker(id: Int): Single<Speaker> = getSingleObservable("speakers", id, Speaker::class.java).cache().bindSchedulers()
 
     fun schedule(): Observable<Schedule> = getObservable("schedule", Schedule::class.java).cache().bindSchedulers()
-
-    fun team(): Observable<Team> = getObservable("team", Team::class.java).cache().bindSchedulers()
 
     fun partners(): Observable<Partners> = getObservable("partners", Partners::class.java).bindSchedulers()
 

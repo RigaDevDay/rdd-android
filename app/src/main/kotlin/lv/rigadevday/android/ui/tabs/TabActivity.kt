@@ -9,7 +9,7 @@ import lv.rigadevday.android.R
 import lv.rigadevday.android.ui.base.BaseActivity
 import lv.rigadevday.android.ui.openLicencesActivity
 import lv.rigadevday.android.ui.openTwitter
-import lv.rigadevday.android.ui.orginizers.PartnersFragment
+import lv.rigadevday.android.ui.partners.PartnersFragment
 import lv.rigadevday.android.ui.schedule.MyScheduleFragment
 import lv.rigadevday.android.ui.speakers.SpeakerListFragment
 import lv.rigadevday.android.ui.venues.VenuesFragment

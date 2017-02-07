@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import kotlinx.android.synthetic.main.item_multiple_session.view.*
 import kotlinx.android.synthetic.main.item_non_session.view.*
 import lv.rigadevday.android.R
+import lv.rigadevday.android.repository.model.schedule.Session
 import lv.rigadevday.android.repository.model.schedule.Session.Companion.TBD
 import lv.rigadevday.android.ui.schedule.day.DayScheduleContract
 import lv.rigadevday.android.ui.schedule.day.adapter.ScheduleItem.*
@@ -46,66 +47,56 @@ class ScheduleAdapter(val contract: DayScheduleContract) : RecyclerView.Adapter<
 }
 
 class ScheduleViewHolder(itemView: View) : ViewHolder(itemView) {
-    fun bind(item: NonSessionTimeslot) {
-        with(itemView) {
-            schedule_single_time.text = item.timeslot.formattedStartTime
-            schedule_single_title.text = item.timeslot.sessionObjects.first().title
-        }
+    fun bind(item: NonSessionTimeslot) = with(itemView) {
+        schedule_single_time.text = item.timeslot.formattedStartTime
+        schedule_single_title.text = item.timeslot.sessionObjects.first().title
     }
 
-    fun bind(item: SingleSessionTimeslot) {
+
+    fun bind(item: SingleSessionTimeslot) = with(itemView) {
         val session = item.timeslot.sessionObjects.firstOrNull { it.speakers.isNotEmpty() } ?: TBD
-
-        with(itemView) {
-            schedule_multiple_title.text = session.title
-            schedule_multiple_room.text = session.room
-
-            session.speakerObjects.firstOrNull()?.let { speaker ->
-                schedule_multiple_speaker.text = speaker.name
-                schedule_multiple_speaker_photo.loadImage(speaker.photoUrl)
-            }
-        }
+        populateSessionContent(session)
     }
 
-    fun bind(item: MultiSessionTimeslot, contract: DayScheduleContract) {
-        with(itemView) {
-            itemView.schedule_multiple_time.text = item.timeslot.formattedStartTime
 
-            val savedSessionId = contract.getSavedSessionId(item.timeslot)
+    fun bind(item: MultiSessionTimeslot, contract: DayScheduleContract) = with(itemView) {
+        itemView.schedule_multiple_time.text = item.timeslot.formattedStartTime
 
-            if (savedSessionId != null) {
-                schedule_multiple_placeholder.hide()
-                schedule_multiple_content.unhide()
-                showSession(item, savedSessionId)
+        val savedSessionId = contract.getSavedSessionId(item.timeslot)
 
-                schedule_multiple_card.setOnLongClickListener {
-                    contract.timeslotClicked(item.timeslot)
-                    true
-                }
-                schedule_multiple_card.setOnClickListener {
-                    contract.sessionClicked(savedSessionId)
-                }
-            } else {
-                schedule_multiple_placeholder.unhide()
-                schedule_multiple_content.hide()
+        if (savedSessionId != null) {
+            val session = item.timeslot.sessionObjects.firstOrNull { savedSessionId == it.id } ?: TBD
+            populateSessionContent(session)
 
-                schedule_multiple_card.setOnLongClickListener(null)
-                schedule_multiple_card.setOnClickListener {
-                    contract.timeslotClicked(item.timeslot)
-                }
+            schedule_multiple_card.setOnLongClickListener {
+                contract.timeslotClicked(item.timeslot)
+                true
+            }
+            schedule_multiple_card.setOnClickListener {
+                contract.sessionClicked(savedSessionId)
+            }
+        } else {
+            schedule_multiple_placeholder.show()
+            schedule_multiple_content.hide()
+
+            schedule_multiple_card.setOnLongClickListener(null)
+            schedule_multiple_card.setOnClickListener {
+                contract.timeslotClicked(item.timeslot)
             }
         }
+
     }
 
-    private fun showSession(item: MultiSessionTimeslot, sessionId: Int) {
-        val session = item.timeslot.sessionObjects.firstOrNull { it.id == sessionId } ?: TBD
+    private fun View.populateSessionContent(session: Session) {
+        schedule_multiple_placeholder.hide()
+        schedule_multiple_content.show()
 
-        itemView.schedule_multiple_title.text = session.title
-        itemView.schedule_multiple_room.text = session.room
+        schedule_multiple_title.text = session.title
+        schedule_multiple_room.text = session.room
 
         session.speakerObjects.firstOrNull()?.let { speaker ->
-            itemView.schedule_multiple_speaker.text = speaker.name
-            itemView.schedule_multiple_speaker_photo.loadImage(speaker.photoUrl)
+            schedule_multiple_speaker.text = speaker.name
+            schedule_multiple_speaker_photo.loadImage(speaker.photoUrl)
         }
     }
 

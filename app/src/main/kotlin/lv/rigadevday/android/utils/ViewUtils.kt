@@ -31,7 +31,7 @@ fun ImageView.loadLogo(url: String) {
         .into(this)
 }
 
-fun View.unhide() {
+fun View.show() {
     this.visibility = View.VISIBLE
 }
 

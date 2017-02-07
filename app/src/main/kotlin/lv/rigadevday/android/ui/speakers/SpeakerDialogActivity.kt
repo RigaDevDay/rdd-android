@@ -58,7 +58,7 @@ class SpeakerDialogActivity : BaseActivity() {
     }
 
     private fun showSocialIcon(button: ImageView, social: SocialAccount) {
-        button.unhide()
+        button.show()
         button.setOnClickListener { baseContext.openWeb(social.link) }
     }
 

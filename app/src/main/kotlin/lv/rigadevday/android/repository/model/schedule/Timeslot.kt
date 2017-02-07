@@ -15,4 +15,5 @@ data class Timeslot(
         get() = if (startTime.length < 5) "0$startTime" else startTime
 
     var sessionObjects = mutableListOf<Session>()
+
 }
