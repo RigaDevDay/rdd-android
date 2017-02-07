@@ -8,9 +8,9 @@ import kotlinx.android.synthetic.main.item_partners_logo.view.*
 import kotlinx.android.synthetic.main.item_partners_title.view.*
 import lv.rigadevday.android.R
 import lv.rigadevday.android.repository.model.partners.Logo
-import lv.rigadevday.android.ui.openWeb
 import lv.rigadevday.android.ui.partners.adapter.PartnersItem.PartnerLogo
 import lv.rigadevday.android.ui.partners.adapter.PartnersItem.PartnerTitle
+import lv.rigadevday.android.utils.hide
 import lv.rigadevday.android.utils.loadLogo
 
 class PartnersAdapter(val openOnClick: (String) -> Unit) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
@@ -47,14 +47,15 @@ class PartnersAdapter(val openOnClick: (String) -> Unit) : RecyclerView.Adapter<
 
     private class LogoHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         fun bind(logo: Logo, openOnClick: (String) -> Unit) = with(itemView) {
-            organizers_logo_item_image.loadLogo(logo.logoUrl)
+            partners_logo_item_image.loadLogo(logo.logoUrl) { partners_logo_item_name.hide() }
+            partners_logo_item_name.text = logo.name
             setOnClickListener { openOnClick(logo.url) }
         }
     }
 
     private class TitleHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         fun bind(title: String) = with(itemView) {
-            organizers_logo_item_title.text = title
+            partners_logo_item_title.text = title
         }
     }
 

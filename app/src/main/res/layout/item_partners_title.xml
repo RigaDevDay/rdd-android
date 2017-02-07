@@ -5,7 +5,7 @@
               android:orientation="vertical">
 
     <TextView
-        android:id="@+id/organizers_logo_item_title"
+        android:id="@+id/partners_logo_item_title"
         style="@style/MatchWrap"
         android:layout_marginBottom="@dimen/base_margin"
         android:layout_marginEnd="@dimen/base_margin"
