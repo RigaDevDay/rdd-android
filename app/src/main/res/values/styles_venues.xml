@@ -35,6 +35,7 @@
         <item name="android:src">@drawable/vector_button_open</item>
         <item name="android:padding">@dimen/base_margin</item>
         <item name="android:clickable">true</item>
+        <item name="android:tint">@color/color_accent</item>
         <item name="android:background">@drawable/item_selector_borderless</item>
     </style>
 
@@ -42,5 +43,4 @@
         <item name="android:gravity">center_vertical</item>
         <item name="android:orientation">horizontal</item>
     </style>
-
 </resources>

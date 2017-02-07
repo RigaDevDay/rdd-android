@@ -1,5 +1,4 @@
-Application for Riga Dev Day 2016 confecence.
+Application for Riga Dev Days 2017 conference.
 
-Now in DEMO mode. 
 
-Available in [Play Store](https://play.google.com/store/apps/details?id=lv.luhmirin.rigadevday2016)
+To compile correctly add `google-services.json` form your Firebase project to `/app` folder.
