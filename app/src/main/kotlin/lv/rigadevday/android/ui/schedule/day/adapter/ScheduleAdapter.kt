@@ -9,6 +9,8 @@ import kotlinx.android.synthetic.main.item_non_session.view.*
 import lv.rigadevday.android.R
 import lv.rigadevday.android.repository.model.schedule.Session
 import lv.rigadevday.android.repository.model.schedule.Session.Companion.TBD
+import lv.rigadevday.android.repository.model.speakers.Speaker
+import lv.rigadevday.android.ui.openSpeakerActivity
 import lv.rigadevday.android.ui.schedule.day.DayScheduleContract
 import lv.rigadevday.android.ui.schedule.day.adapter.ScheduleItem.*
 import lv.rigadevday.android.utils.*
@@ -96,8 +98,15 @@ class ScheduleViewHolder(itemView: View) : ViewHolder(itemView) {
 
         session.speakerObjects.firstOrNull()?.let { speaker ->
             schedule_multiple_speaker.text = speaker.name
+            schedule_multiple_speaker.setOnClickListener { openSpeaker(it, speaker) }
+
             schedule_multiple_speaker_photo.loadImage(speaker.photoUrl)
+            schedule_multiple_speaker_photo.setOnClickListener { openSpeaker(it, speaker) }
         }
+    }
+
+    private fun openSpeaker(it: View, speaker: Speaker) {
+        it.context.openSpeakerActivity(speaker.id)
     }
 
 }
