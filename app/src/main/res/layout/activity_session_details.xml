@@ -34,6 +34,7 @@
             <TextView
                 android:id="@+id/session_details_speaker"
                 style="@style/Sessions.Text.Details.Header"
+                android:clickable="true"
                 android:layout_marginEnd="@dimen/session_details_header_padding"
                 android:layout_marginTop="@dimen/half_margin"
                 tools:text="Speaker Name"

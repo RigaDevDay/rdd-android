@@ -9,6 +9,7 @@ import lv.rigadevday.android.repository.SessionStorage
 import lv.rigadevday.android.repository.model.schedule.Session
 import lv.rigadevday.android.ui.EXTRA_SESSION_ID
 import lv.rigadevday.android.ui.base.BaseActivity
+import lv.rigadevday.android.ui.openSpeakerActivity
 import lv.rigadevday.android.utils.BaseApp
 import lv.rigadevday.android.utils.fromHtml
 import lv.rigadevday.android.utils.showMessage
@@ -40,7 +41,11 @@ class SessionDetailsActivity : BaseActivity() {
             .subscribe(
                 { session ->
                     session_details_title.text = session.title
-                    session_details_speaker.text = session.speakerObjects.first().name
+
+                    val speaker = session.speakerObjects.first()
+                    session_details_speaker.text = speaker.name
+                    session_details_speaker.setOnClickListener { it.context.openSpeakerActivity(speaker.id) }
+
                     session_details_tags.text = session.complexityAndTags
                     session_details_description.text = session.description.fromHtml()
 

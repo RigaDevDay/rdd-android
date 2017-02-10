@@ -16,6 +16,7 @@
 
         <activity
             android:name=".ui.splash.SplashActivity"
+            android:screenOrientation="portrait"
             android:theme="@style/SplashTheme"
             >
             <intent-filter>
@@ -25,19 +26,31 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".ui.tabs.TabActivity"/>
+        <activity
+            android:name=".ui.tabs.TabActivity"
+            android:screenOrientation="portrait"
+            />
 
         <activity
             android:name=".ui.speakers.SpeakerDialogActivity"
+            android:screenOrientation="portrait"
             android:theme="@style/ThemeTranslucent"/>
 
-        <activity android:name=".ui.schedule.sessions.SessionsActivity"/>
+        <activity
+            android:name=".ui.schedule.sessions.SessionsActivity"
+            android:screenOrientation="portrait"
+            />
 
         <activity
             android:name=".ui.schedule.details.SessionDetailsActivity"
-            android:theme="@style/ThemeTranslucent"/>
+            android:screenOrientation="portrait"
+            android:theme="@style/ThemeTranslucent"
+            />
 
-        <activity android:name=".ui.licences.LicencesActivity"/>
+        <activity
+            android:name=".ui.licences.LicencesActivity"
+            android:screenOrientation="portrait"
+            />
 
         <service android:name=".utils.push.CustomMessagingService">
             <intent-filter>

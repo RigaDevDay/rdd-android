@@ -6,6 +6,8 @@ import android.view.ViewGroup
 import kotlinx.android.synthetic.main.item_session.view.*
 import lv.rigadevday.android.R
 import lv.rigadevday.android.repository.model.schedule.Session
+import lv.rigadevday.android.repository.model.speakers.Speaker
+import lv.rigadevday.android.ui.openSpeakerActivity
 import lv.rigadevday.android.utils.inflate
 import lv.rigadevday.android.utils.loadImage
 
@@ -36,10 +38,17 @@ class SessionsHolder(view: View) : RecyclerView.ViewHolder(view) {
 
             session.speakerObjects.firstOrNull()?.let {
                 session_item_speaker.text = it.name
+                session_item_speaker.setOnClickListener { view -> openSpeaker(view, it) }
+
                 session_item_photo.loadImage(it.photoUrl)
+                session_item_photo.setOnClickListener { view -> openSpeaker(view, it) }
             }
 
             session_item_card.setOnClickListener { onSessionClick(session.id) }
         }
+    }
+
+    private fun openSpeaker(it: View, speaker: Speaker) {
+        it.context.openSpeakerActivity(speaker.id)
     }
 }
