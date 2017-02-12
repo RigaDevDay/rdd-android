@@ -7,6 +7,7 @@ import dagger.Provides
 import lv.rigadevday.android.repository.Repository
 import lv.rigadevday.android.repository.SessionStorage
 import lv.rigadevday.android.utils.BaseApp
+import lv.rigadevday.android.utils.analytics.Analytics
 import javax.inject.Singleton
 
 @Module
@@ -22,7 +23,11 @@ class AppModule(private val application: BaseApp) {
 
     @Provides
     @Singleton
-    fun provideSessionStorage(): SessionStorage = SessionStorage(application)
+    fun provideAnalytics() = Analytics(application)
+
+    @Provides
+    @Singleton
+    fun provideSessionStorage(analytics: Analytics): SessionStorage = SessionStorage(application, analytics)
 
     @Provides
     @Singleton
