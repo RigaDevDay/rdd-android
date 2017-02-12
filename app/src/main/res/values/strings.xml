@@ -32,8 +32,9 @@
     <string name="venues_reservation">Reservation:</string>
 
     <string name="licenses_title">Licenses</string>
-
+ķ
     <string name="partners_title">Partners</string>
 
     <string name="error_message">Oops, something went wrong</string>
+    <string name="error_connection_message">Please connect to network to download data</string>
 </resources>
