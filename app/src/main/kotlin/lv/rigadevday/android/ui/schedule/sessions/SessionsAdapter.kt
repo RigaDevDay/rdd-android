@@ -37,6 +37,8 @@ class SessionsHolder(view: View) : RecyclerView.ViewHolder(view) {
             session_item_tags.text = session.complexityAndTags
 
             session.speakerObjects.firstOrNull()?.let {
+                session_item_strip.setBackgroundColor(session.color)
+
                 session_item_speaker.text = it.name
                 session_item_speaker.setOnClickListener { view -> openSpeaker(view, it) }
 

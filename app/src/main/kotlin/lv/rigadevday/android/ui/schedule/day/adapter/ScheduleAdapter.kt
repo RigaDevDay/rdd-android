@@ -49,6 +49,7 @@ class ScheduleAdapter(val contract: DayScheduleContract) : RecyclerView.Adapter<
 }
 
 class ScheduleViewHolder(itemView: View) : ViewHolder(itemView) {
+
     fun bind(item: NonSessionTimeslot) = with(itemView) {
         schedule_single_time.text = item.timeslot.formattedStartTime
         schedule_single_title.text = item.timeslot.sessionObjects.first().title
@@ -97,6 +98,8 @@ class ScheduleViewHolder(itemView: View) : ViewHolder(itemView) {
         schedule_multiple_room.text = session.room
 
         session.speakerObjects.firstOrNull()?.let { speaker ->
+            schedule_multiple_strip.setBackgroundColor(session.color)
+
             schedule_multiple_speaker.text = speaker.name
             schedule_multiple_speaker.setOnClickListener { openSpeaker(it, speaker) }
 

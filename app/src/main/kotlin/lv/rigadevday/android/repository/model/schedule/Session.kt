@@ -1,6 +1,7 @@
 package lv.rigadevday.android.repository.model.schedule
 
 import com.google.firebase.database.IgnoreExtraProperties
+import lv.rigadevday.android.repository.ColorStorage
 import lv.rigadevday.android.repository.model.speakers.Speaker
 
 @IgnoreExtraProperties
@@ -23,6 +24,9 @@ data class Session(
 
     val complexityAndTags: String
         get() = "$complexity / ${tags.joinToString()}"
+
+    val color: Int
+        get() = ColorStorage.get(tags.firstOrNull() ?: "")
 
     companion object {
         val TBD = Session(

@@ -3,7 +3,6 @@
     android:id="@+id/session_item_card"
     style="@style/MatchWrap"
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_marginBottom="@dimen/half_margin"
     android:layout_marginEnd="@dimen/base_margin"
@@ -13,12 +12,22 @@
 
     <LinearLayout
         style="@style/MatchWrap"
-        android:orientation="vertical"
-        android:padding="@dimen/session_card_padding">
+        android:orientation="horizontal">
+
+        <View
+            android:id="@+id/session_item_strip"
+            android:layout_width="@dimen/base_margin"
+            android:layout_height="match_parent"
+            android:background="@color/color_accent"
+            />
 
         <LinearLayout
             style="@style/MatchWrap"
             android:orientation="horizontal"
+            android:paddingBottom="@dimen/session_card_padding"
+            android:paddingEnd="@dimen/session_card_padding"
+            android:paddingStart="@dimen/base_margin"
+            android:paddingTop="@dimen/session_card_padding"
             >
 
 
@@ -40,6 +49,7 @@
                 <TextView
                     android:id="@+id/session_item_speaker"
                     style="@style/Sessions.Text.Speaker"
+                    android:layout_width="wrap_content"
                     android:layout_marginTop="@dimen/base_margin"
                     android:gravity="center_vertical"
                     tools:text="John Doe"
