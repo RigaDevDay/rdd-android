@@ -2,7 +2,6 @@
 <LinearLayout
     style="@style/Schedule.Item"
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
     <TextView
@@ -28,6 +27,7 @@
             android:id="@+id/schedule_multiple_placeholder"
             style="@style/Schedule.Card"
             android:visibility="visible"
+            tools:visibility="gone"
             >
 
             <LinearLayout
@@ -67,52 +67,74 @@
 
         <LinearLayout
             android:id="@+id/schedule_multiple_content"
-            style="@style/Schedule.Card"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
             android:visibility="gone"
+            tools:visibility="visible"
             >
 
-            <TextView
-                android:id="@+id/schedule_multiple_title"
-                style="@style/Schedule.Item.Text.Title"
-                tools:text="Some title"
+            <View
+                android:id="@+id/schedule_multiple_strip"
+                android:layout_width="@dimen/base_margin"
+                android:layout_height="match_parent"
+                android:background="@color/color_accent"
                 />
 
             <LinearLayout
                 style="@style/MatchWrap"
-                android:layout_marginTop="@dimen/base_margin"
-                android:orientation="horizontal"
+                android:orientation="vertical"
+                android:paddingBottom="@dimen/schedule_card_padding"
+                android:paddingEnd="@dimen/schedule_card_padding"
+                android:paddingStart="@dimen/base_margin"
+                android:paddingTop="@dimen/schedule_card_padding"
                 >
 
+                <TextView
+                    android:id="@+id/schedule_multiple_title"
+                    style="@style/Schedule.Item.Text.Title"
+                    tools:text="Some title"
+                    />
+
                 <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:gravity="center_vertical"
-                    android:orientation="vertical"
+                    style="@style/MatchWrap"
+                    android:layout_marginTop="@dimen/base_margin"
+                    android:orientation="horizontal"
                     >
 
-                    <TextView
-                        android:id="@+id/schedule_multiple_room"
-                        style="@style/Schedule.Item.Text.Room"
-                        tools:text="Room 3"
-                        />
-
-                    <TextView
-                        android:id="@+id/schedule_multiple_speaker"
-                        style="@style/Schedule.Item.Text.Speaker"
-                        android:layout_marginTop="@dimen/base_margin"
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
                         android:gravity="center_vertical"
-                        tools:text="John Doe"
+                        android:orientation="vertical"
+                        >
+
+                        <TextView
+                            android:id="@+id/schedule_multiple_room"
+                            style="@style/Schedule.Item.Text.Room"
+                            tools:text="Room 3"
+                            />
+
+                        <TextView
+                            android:id="@+id/schedule_multiple_speaker"
+                            style="@style/Schedule.Item.Text.Speaker"
+                            android:layout_width="wrap_content"
+                            android:layout_marginTop="@dimen/base_margin"
+                            android:gravity="center_vertical"
+                            tools:text="John Doe"
+                            />
+
+                    </LinearLayout>
+
+                    <lv.rigadevday.android.utils.view.CircularImageView
+                        android:id="@+id/schedule_multiple_speaker_photo"
+                        android:layout_width="@dimen/schedule_avatar_size"
+                        android:layout_height="@dimen/schedule_avatar_size"
+                        tools:src="@drawable/vector_speaker_placeholder"
                         />
 
                 </LinearLayout>
-
-                <lv.rigadevday.android.utils.view.CircularImageView
-                    android:id="@+id/schedule_multiple_speaker_photo"
-                    android:layout_width="@dimen/schedule_avatar_size"
-                    android:layout_height="@dimen/schedule_avatar_size"
-                    tools:src="@drawable/vector_speaker_placeholder"
-                    />
 
             </LinearLayout>
 

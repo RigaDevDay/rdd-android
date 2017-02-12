@@ -40,6 +40,7 @@ class SessionDetailsActivity : BaseActivity() {
             })
             .subscribe(
                 { session ->
+                    session_details_header.setBackgroundColor(session.color)
                     session_details_title.text = session.title
 
                     val speaker = session.speakerObjects.first()
