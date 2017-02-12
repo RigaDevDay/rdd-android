@@ -36,4 +36,5 @@
     <string name="partners_title">Partners</string>
 
     <string name="error_message">Oops, something went wrong</string>
+    <string name="error_connection_message">Please connect to network to download data</string>
 </resources>

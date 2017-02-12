@@ -1,5 +1,6 @@
 package lv.rigadevday.android.utils
 
+import android.content.Context
 import android.support.annotation.DrawableRes
 import android.support.annotation.LayoutRes
 import android.support.annotation.StringRes
@@ -46,6 +47,8 @@ fun View.hide() {
     this.visibility = View.GONE
 }
 
-fun View.showMessage(@StringRes stringId: Int) {
-    Toast.makeText(this.context, stringId, Toast.LENGTH_SHORT).show()
+fun View.showMessage(@StringRes stringId: Int) = this.context.showMessage(stringId)
+
+fun Context.showMessage(@StringRes stringId: Int) {
+    Toast.makeText(this, stringId, Toast.LENGTH_SHORT).show()
 }
