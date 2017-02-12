@@ -24,6 +24,8 @@ class SessionStorage @Inject constructor(
         analytics.logSessionBookmarked(time, date, sessionId)
     }
 
+    fun isBookmarked(id: Int) = preference.all.values.map { it as? Int }.filterNotNull().contains(id)
+
     fun getSessionId(time: String, date: String): Int? {
         val key = KEY.format(time, date)
         val id = preference.getInt(key, -1)
@@ -39,6 +41,5 @@ class SessionStorage @Inject constructor(
     private fun logIfSessionExisted(date: String, time: String) = getSessionId(time, date)?.let {
         analytics.logSessionBookmarkRemoved(time, date, it)
     }
-
 
 }

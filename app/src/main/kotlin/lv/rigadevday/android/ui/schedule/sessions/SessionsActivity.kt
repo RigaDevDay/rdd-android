@@ -7,10 +7,12 @@ import android.view.MenuItem
 import kotlinx.android.synthetic.main.fragment_list.*
 import lv.rigadevday.android.R
 import lv.rigadevday.android.repository.Repository
+import lv.rigadevday.android.repository.SessionStorage
 import lv.rigadevday.android.repository.model.schedule.Session
 import lv.rigadevday.android.ui.EXTRA_SESSION_DATA
 import lv.rigadevday.android.ui.base.BaseActivity
 import lv.rigadevday.android.ui.openSessionDetailsActivity
+import lv.rigadevday.android.ui.openSpeakerActivity
 import lv.rigadevday.android.ui.schedule.TimeslotData
 import lv.rigadevday.android.ui.schedule.toIntentData
 import lv.rigadevday.android.utils.BaseApp
@@ -20,12 +22,22 @@ import javax.inject.Inject
 class SessionsActivity : BaseActivity() {
 
     @Inject lateinit var repo: Repository
+    @Inject lateinit var sessions: SessionStorage
 
     override val layoutId = R.layout.fragment_list
 
-    private val listAdapter: SessionsAdapter = SessionsAdapter {
-        openSessionDetailsActivity(it)
-    }
+    private val listAdapter: SessionsAdapter = SessionsAdapter(object : SessionContract {
+        override fun openSession(id: Int) {
+            openSessionDetailsActivity(id)
+        }
+
+        override fun isSessionBookmarked(id: Int) = sessions.isBookmarked(id)
+
+        override fun openSpeaker(id: Int) {
+            openSpeakerActivity(id)
+        }
+
+    })
 
     private var intentData: TimeslotData? = null
     private var tags: Array<String>? = null
@@ -77,6 +89,11 @@ class SessionsActivity : BaseActivity() {
             )
     }
 
+    override fun onResume() {
+        super.onResume()
+        listAdapter.notifyDataSetChanged()
+    }
+
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         if (intentData == null) {
             menuInflater.inflate(R.menu.menu_sessions, menu)
@@ -92,6 +109,12 @@ class SessionsActivity : BaseActivity() {
         return true
     }
 
+}
+
+interface SessionContract {
+    fun openSession(id: Int)
+    fun isSessionBookmarked(id: Int): Boolean
+    fun openSpeaker(id: Int)
 }
 
 private fun TimeslotData.formattedTitle() = "$readableDate - $time"

@@ -12,7 +12,7 @@
 
     <!-- Theme colors -->
     <color name="color_primary">#00a6ec</color>
-    <color name="color_primary_dark">#006590</color>>
+    <color name="color_primary_dark">#006590</color>
     <color name="color_accent">#3f51b5</color>
 
     <!-- main color for drawable-v21/my_ripple -->
@@ -30,6 +30,7 @@
     <color name="speakers_item_badge">@color/color_primary</color>
     <color name="speaker_header">@color/color_primary</color>
 
+    <color name="session_bookmarked">#1e5a73ff</color>
     <color name="session_header">@color/color_primary</color>
 
     <color name="venues_map_button">@color/color_primary</color>
