@@ -1,27 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <!-- Theme colors -->
-    <color name="color_primary">#2196F3</color>
-    <color name="color_primary_dark">#1565C0</color>>
-    <color name="color_accent">#f44336</color>
+    <!-- Basic colors -->
+    <color name="screen_background">#fff</color>
+    <color name="dialog_background">#b000</color>
 
-    <color name="color_screen_background">#fff</color>
-
-    <color name="text_light_primary">#deFFFFFF</color>
+    <color name="text_light_primary">#eeFFFFFF</color>
     <color name="text_light_secondary">#88FFFFFF</color>
     <color name="text_dark_primary">#de000000</color>
     <color name="text_dark_secondary">#88000000</color>
 
-    <color name="speakers_item_overlay">#bb000000</color>
-    <color name="speaker_social_button_color">@color/color_accent</color>
+    <!-- Theme colors -->
+    <color name="color_primary">#00a6ec</color>
+    <color name="color_primary_dark">#006590</color>
+    <color name="color_accent">#3f51b5</color>
 
     <!-- main color for drawable-v21/my_ripple -->
-    <color name="selector_color">#99f44336</color>
+    <color name="selector_color">#993f51b5</color>
     <!-- main color for drawable/my_ripple -->
-    <color name="selector_pressed_color">#77f44336</color>
-    <color name="selector_focused_color">#ccf44336</color>
+    <color name="selector_pressed_color">#773f51b5</color>
+    <color name="selector_focused_color">#cc3f51b5</color>
 
-    <color name="card_favored">#222196F3</color>
+    <!-- Specific colors -->
+    <color name="tab_bar_background">@color/color_primary</color>
+    <color name="tab_bar_icons">#ffffff</color>
+    <color name="tab_bar_icons_disabled">#88ffffff</color>
 
+    <color name="speakers_item_overlay">#bb000000</color>
+    <color name="speakers_item_badge">@color/color_primary</color>
+    <color name="speaker_header">@color/color_primary</color>
+
+    <color name="session_bookmarked">#1e5a73ff</color>
+    <color name="session_header">@color/color_primary</color>
+
+    <color name="venues_map_button">@color/color_primary</color>
 </resources>

@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView
+    android:id="@+id/session_item_card"
+    style="@style/MatchWrap"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_marginBottom="@dimen/half_margin"
+    android:layout_marginEnd="@dimen/base_margin"
+    android:layout_marginStart="@dimen/base_margin"
+    android:layout_marginTop="@dimen/half_margin"
+    android:foreground="@drawable/item_selector">
+
+    <LinearLayout
+        style="@style/MatchWrap"
+        android:orientation="horizontal">
+
+        <View
+            android:id="@+id/session_item_strip"
+            android:layout_width="@dimen/base_margin"
+            android:layout_height="match_parent"
+            android:background="@color/color_accent"
+            />
+
+        <LinearLayout
+            style="@style/MatchWrap"
+            android:orientation="horizontal"
+            android:paddingBottom="@dimen/session_card_padding"
+            android:paddingEnd="@dimen/session_card_padding"
+            android:paddingStart="@dimen/base_margin"
+            android:paddingTop="@dimen/session_card_padding"
+            >
+
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/base_margin"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:orientation="vertical"
+                >
+
+                <TextView
+                    android:id="@+id/session_item_title"
+                    style="@style/Sessions.Text.Title"
+                    tools:text="Session Title"
+                    />
+
+                <TextView
+                    android:id="@+id/session_item_speaker"
+                    style="@style/Sessions.Text.Speaker"
+                    android:layout_width="wrap_content"
+                    android:layout_marginTop="@dimen/base_margin"
+                    android:gravity="center_vertical"
+                    tools:text="John Doe"
+                    />
+
+                <TextView
+                    android:id="@+id/session_item_tags"
+                    style="@style/Sessions.Text.Tags"
+                    android:layout_marginTop="@dimen/base_margin"
+                    tools:text="Intermediate / Java, Iot, Android"
+                    />
+            </LinearLayout>
+
+            <lv.rigadevday.android.utils.view.CircularImageView
+                android:id="@+id/session_item_photo"
+                android:layout_width="@dimen/session_avatar_size"
+                android:layout_height="@dimen/session_avatar_size"
+                tools:src="@drawable/vector_speaker_placeholder"
+                />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</android.support.v7.widget.CardView>

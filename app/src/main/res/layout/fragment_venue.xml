@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
-
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     style="@style/ScreenBackground">
@@ -19,7 +18,7 @@
 
             <TextView
                 style="@style/Venues.Text.Label.Type"
-                android:text="@string/venue_address" />
+                android:text="@string/venues_address" />
 
             <TextView
                 android:id="@+id/venue_address"
@@ -36,7 +35,7 @@
 
             <TextView
                 style="@style/Venues.Text.Label.Type"
-                android:text="@string/venue_website" />
+                android:text="@string/venues_website" />
 
             <TextView
                 android:id="@+id/venue_web_page_link"
@@ -52,30 +51,12 @@
 
             <TextView
                 style="@style/Venues.Text.Label.Type"
-                android:text="@string/venue_reservation" />
+                android:text="@string/venues_reservation" />
 
             <TextView
                 android:id="@+id/venue_email_link"
                 style="@style/Venues.Text.Label.Link"
                 tools:text="email@hotel.com" />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/venue_wifi_layout"
-            style="@style/Venue.Label.Layout"
-            android:layout_marginBottom="@dimen/venues_block_spacing_bottom"
-            android:gravity="top">
-
-            <TextView
-                style="@style/Venues.Text.Label.Type"
-                android:text="@string/venue_wifi" />
-
-            <TextView
-                android:id="@+id/venue_wifi"
-                style="@style/Venues.Text.Label"
-                android:layout_width="wrap_content"
-                tools:text="Pass" />
 
         </LinearLayout>
 
