@@ -9,8 +9,6 @@ import kotlinx.android.synthetic.main.item_non_session.view.*
 import lv.rigadevday.android.R
 import lv.rigadevday.android.repository.model.schedule.Session
 import lv.rigadevday.android.repository.model.schedule.Session.Companion.TBD
-import lv.rigadevday.android.repository.model.speakers.Speaker
-import lv.rigadevday.android.ui.openSpeakerActivity
 import lv.rigadevday.android.ui.schedule.day.DayScheduleContract
 import lv.rigadevday.android.ui.schedule.day.adapter.ScheduleItem.*
 import lv.rigadevday.android.utils.*
@@ -43,7 +41,7 @@ class ScheduleAdapter(val contract: DayScheduleContract) : RecyclerView.Adapter<
         when (item) {
             is NonSessionTimeslot -> holder.bind(item)
             is MultiSessionTimeslot -> holder.bind(item, contract)
-            is SingleSessionTimeslot -> holder.bind(item)
+            is SingleSessionTimeslot -> holder.bind(item, contract)
         }
     }
 }
@@ -56,9 +54,9 @@ class ScheduleViewHolder(itemView: View) : ViewHolder(itemView) {
     }
 
 
-    fun bind(item: SingleSessionTimeslot) = with(itemView) {
+    fun bind(item: SingleSessionTimeslot, contract: DayScheduleContract) = with(itemView) {
         val session = item.timeslot.sessionObjects.firstOrNull { it.speakers.isNotEmpty() } ?: TBD
-        populateSessionContent(session)
+        populateSessionContent(session, contract)
     }
 
 
@@ -69,14 +67,14 @@ class ScheduleViewHolder(itemView: View) : ViewHolder(itemView) {
 
         if (savedSessionId != null) {
             val session = item.timeslot.sessionObjects.firstOrNull { savedSessionId == it.id } ?: TBD
-            populateSessionContent(session)
+            populateSessionContent(session, contract)
 
             schedule_multiple_card.setOnLongClickListener {
-                contract.timeslotClicked(item.timeslot)
+                contract.openTimeslot(item.timeslot)
                 true
             }
             schedule_multiple_card.setOnClickListener {
-                contract.sessionClicked(savedSessionId)
+                contract.openSession(savedSessionId)
             }
         } else {
             schedule_multiple_placeholder.show()
@@ -84,13 +82,13 @@ class ScheduleViewHolder(itemView: View) : ViewHolder(itemView) {
 
             schedule_multiple_card.setOnLongClickListener(null)
             schedule_multiple_card.setOnClickListener {
-                contract.timeslotClicked(item.timeslot)
+                contract.openTimeslot(item.timeslot)
             }
         }
 
     }
 
-    private fun View.populateSessionContent(session: Session) {
+    private fun View.populateSessionContent(session: Session, contract: DayScheduleContract) {
         schedule_multiple_placeholder.hide()
         schedule_multiple_content.show()
 
@@ -101,15 +99,11 @@ class ScheduleViewHolder(itemView: View) : ViewHolder(itemView) {
             schedule_multiple_strip.setBackgroundColor(session.color)
 
             schedule_multiple_speaker.text = speaker.name
-            schedule_multiple_speaker.setOnClickListener { openSpeaker(it, speaker) }
+            schedule_multiple_speaker.setOnClickListener { contract.openSpeaker(speaker.id) }
 
             schedule_multiple_speaker_photo.loadImage(speaker.photoUrl)
-            schedule_multiple_speaker_photo.setOnClickListener { openSpeaker(it, speaker) }
+            schedule_multiple_speaker_photo.setOnClickListener { contract.openSpeaker(speaker.id) }
         }
-    }
-
-    private fun openSpeaker(it: View, speaker: Speaker) {
-        it.context.openSpeakerActivity(speaker.id)
     }
 
 }

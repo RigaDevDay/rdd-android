@@ -11,6 +11,7 @@ import lv.rigadevday.android.ui.EXTRA_SESSION_DATA
 import lv.rigadevday.android.ui.base.BaseFragment
 import lv.rigadevday.android.ui.openSessionDetailsActivity
 import lv.rigadevday.android.ui.openSessionsActivity
+import lv.rigadevday.android.ui.openSpeakerActivity
 import lv.rigadevday.android.ui.schedule.TimeslotData
 import lv.rigadevday.android.ui.schedule.day.adapter.ScheduleAdapter
 import lv.rigadevday.android.ui.schedule.day.adapter.ScheduleItem.*
@@ -67,14 +68,18 @@ class DayScheduleFragment : BaseFragment(), DayScheduleContract {
 
     override fun getSavedSessionId(timeslot: Timeslot) = storage.getSessionId(timeslot.startTime, timeslotData.dateCode)
 
-    override fun timeslotClicked(timeslot: Timeslot) {
+    override fun openTimeslot(timeslot: Timeslot) {
         context.openSessionsActivity(
             timeslotData.copy(time = timeslot.startTime, ids = timeslot.sessionIds)
         )
     }
 
-    override fun sessionClicked(sessionId: Int) {
+    override fun openSession(sessionId: Int) {
         context.openSessionDetailsActivity(sessionId)
+    }
+
+    override fun openSpeaker(speakerId: Int) {
+        context.openSpeakerActivity(speakerId)
     }
 
     override fun onResume() {
@@ -86,6 +91,7 @@ class DayScheduleFragment : BaseFragment(), DayScheduleContract {
 
 interface DayScheduleContract {
     fun getSavedSessionId(timeslot: Timeslot): Int?
-    fun timeslotClicked(timeslot: Timeslot)
-    fun sessionClicked(sessionId: Int)
+    fun openTimeslot(timeslot: Timeslot)
+    fun openSession(sessionId: Int)
+    fun openSpeaker(speakerId: Int)
 }
