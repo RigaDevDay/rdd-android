@@ -15,7 +15,7 @@
     <android.support.design.widget.BottomNavigationView
         android:id="@+id/tabs_buttons"
         style="@style/MatchWrap"
-        app:itemBackground="@color/tab_bar_background"
+        android:background="@color/tab_bar_background"
         app:itemIconTint="@color/tab_text_selector"
         app:itemTextColor="@color/tab_text_selector"
         app:menu="@menu/bottom_navigation_main"
