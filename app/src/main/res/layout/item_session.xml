@@ -3,14 +3,20 @@
     android:id="@+id/session_item_card"
     style="@style/MatchWrap"
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_marginBottom="@dimen/half_margin"
     android:layout_marginEnd="@dimen/base_margin"
     android:layout_marginStart="@dimen/base_margin"
     android:layout_marginTop="@dimen/half_margin"
-    android:foreground="@drawable/item_selector">
+    android:clickable="true"
+    android:foreground="@drawable/item_selector"
+    app:cardElevation="@dimen/card_elevation"
+    app:cardPreventCornerOverlap="true"
+    >
 
     <LinearLayout
+        android:id="@+id/session_item_card_content"
         style="@style/MatchWrap"
         android:orientation="horizontal">
 

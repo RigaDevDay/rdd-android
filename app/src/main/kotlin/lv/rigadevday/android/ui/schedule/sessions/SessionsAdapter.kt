@@ -35,7 +35,7 @@ class SessionsHolder(view: View) : RecyclerView.ViewHolder(view) {
             val bgColor =
                 if (contract.isSessionBookmarked(session.id)) R.color.session_bookmarked
                 else R.color.screen_background
-            session_item_card.setBackgroundColor(ContextCompat.getColor(itemView.context, bgColor))
+            session_item_card_content.setBackgroundColor(ContextCompat.getColor(itemView.context, bgColor))
 
             session_item_title.text = session.title
             session_item_tags.text = session.complexityAndTags

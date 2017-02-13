@@ -2,6 +2,7 @@
 <LinearLayout
     style="@style/Schedule.Item"
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
     <TextView
@@ -21,6 +22,8 @@
         android:layout_marginStart="@dimen/base_margin"
         android:clickable="true"
         android:foreground="@drawable/item_selector"
+        app:cardElevation="@dimen/card_elevation"
+        app:cardPreventCornerOverlap="true"
         >
 
         <LinearLayout

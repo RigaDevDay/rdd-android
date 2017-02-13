@@ -9,6 +9,8 @@
     <dimen name="text_size_body">14sp</dimen>
     <dimen name="text_size_caption">12sp</dimen>
 
+    <dimen name="card_elevation">2dp</dimen>
+
     <dimen name="speaker_item_padding">8dp</dimen>
     <dimen name="speaker_content_padding">16dp</dimen>
     <dimen name="speaker_photo_size">128dp</dimen>
