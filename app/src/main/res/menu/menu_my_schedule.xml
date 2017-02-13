@@ -4,7 +4,7 @@
 
     <item
         android:id="@+id/action_all_sessions"
-        android:icon="@drawable/vector_all_sessions"
+        android:icon="@drawable/vector_action_all_sessions"
         android:title="@string/sessions_filter"
         android:orderInCategory="5"
         app:showAsAction="ifRoom"
