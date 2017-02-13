@@ -54,14 +54,18 @@
                     >
 
                     <TextView
-                        style="@style/Schedule.Item.Text.Placeholder"
+                        style="@style/Schedule.Item.Text"
                         android:text="@string/schedule_add"
+                        android:textSize="@dimen/text_size_subheading"
                         />
 
                     <TextView
-                        style="@style/Schedule.Item.Text.Placeholder.Subtitle"
+                        style="@style/Schedule.Item.Text"
                         android:layout_marginTop="@dimen/base_margin"
+                        android:fontFamily="@string/family_light"
                         android:text="@string/schedule_change"
+                        android:textColor="@color/text_dark_secondary"
+                        android:textSize="@dimen/text_size_caption"
                         />
                 </LinearLayout>
             </LinearLayout>
@@ -95,7 +99,7 @@
 
                 <TextView
                     android:id="@+id/schedule_multiple_title"
-                    style="@style/Schedule.Item.Text.Title"
+                    style="@style/Schedule.Item.Text"
                     tools:text="Some title"
                     />
 
@@ -115,15 +119,18 @@
 
                         <TextView
                             android:id="@+id/schedule_multiple_room"
-                            style="@style/Schedule.Item.Text.Room"
+                            style="@style/Schedule.Item.Text"
+                            android:fontFamily="@string/family_light"
+                            android:textColor="@color/text_dark_secondary"
                             tools:text="Room 3"
                             />
 
                         <TextView
                             android:id="@+id/schedule_multiple_speaker"
-                            style="@style/Schedule.Item.Text.Speaker"
+                            style="@style/Schedule.Item.Text"
                             android:layout_width="wrap_content"
                             android:layout_marginTop="@dimen/base_margin"
+                            android:fontFamily="@string/family_light"
                             android:gravity="center_vertical"
                             tools:text="John Doe"
                             />

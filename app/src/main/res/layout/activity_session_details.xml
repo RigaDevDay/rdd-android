@@ -27,23 +27,29 @@
 
             <TextView
                 android:id="@+id/session_details_title"
-                style="@style/Sessions.Text.Details.Header.Title"
+                style="@style/Sessions.Text"
+                android:textColor="@color/text_light_primary"
+                android:textSize="@dimen/text_size_subheading"
                 tools:text="Long long title that spans several lines "
                 />
 
             <TextView
                 android:id="@+id/session_details_speaker"
-                style="@style/Sessions.Text.Details.Header"
-                android:clickable="true"
+                style="@style/Sessions.Text"
                 android:layout_marginEnd="@dimen/session_details_header_padding"
-                android:layout_marginTop="@dimen/half_margin"
+                android:layout_marginTop="@dimen/base_margin"
+                android:clickable="true"
+                android:textColor="@color/text_light_primary"
+                android:textSize="@dimen/text_size_caption"
                 tools:text="Speaker Name"
                 />
 
             <TextView
                 android:id="@+id/session_details_tags"
-                style="@style/Sessions.Text.Details.Tags"
+                style="@style/Sessions.Text"
                 android:layout_marginEnd="@dimen/session_details_header_padding"
+                android:textColor="@color/text_light_secondary"
+                android:textSize="@dimen/text_size_caption"
                 tools:text="All / Android, IoT"
                 />
 

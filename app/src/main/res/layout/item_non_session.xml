@@ -33,7 +33,8 @@
 
             <TextView
                 android:id="@+id/schedule_single_title"
-                style="@style/Schedule.Item.Text.Title.Single"
+                style="@style/Schedule.Item.Text"
+                android:textStyle="italic"
                 tools:text="Some title"
                 />
 

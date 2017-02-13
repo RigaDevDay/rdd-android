@@ -48,23 +48,28 @@
 
                 <TextView
                     android:id="@+id/session_item_title"
-                    style="@style/Sessions.Text.Title"
+                    style="@style/Sessions.Text"
+                    android:textSize="@dimen/text_size_title"
                     tools:text="Session Title"
                     />
 
                 <TextView
                     android:id="@+id/session_item_speaker"
-                    style="@style/Sessions.Text.Speaker"
+                    style="@style/Sessions.Text"
                     android:layout_width="wrap_content"
                     android:layout_marginTop="@dimen/base_margin"
                     android:gravity="center_vertical"
+                    android:textColor="@color/text_dark_secondary"
+                    android:textSize="@dimen/text_size_body"
                     tools:text="John Doe"
                     />
 
                 <TextView
                     android:id="@+id/session_item_tags"
-                    style="@style/Sessions.Text.Tags"
+                    style="@style/Sessions.Text"
                     android:layout_marginTop="@dimen/base_margin"
+                    android:textColor="@color/text_dark_secondary"
+                    android:textSize="@dimen/text_size_caption"
                     tools:text="Intermediate / Java, Iot, Android"
                     />
             </LinearLayout>

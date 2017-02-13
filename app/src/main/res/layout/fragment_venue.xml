@@ -26,7 +26,8 @@
                 tools:text="Name of venue"/>
 
             <LinearLayout
-                style="@style/Venue.Label.Layout"
+                style="@style/MatchWrap"
+                android:orientation="horizontal"
                 >
 
                 <TextView
@@ -37,7 +38,14 @@
 
                 <ImageView
                     android:id="@+id/venue_address_button"
-                    style="@style/Venues.Label.Button"/>
+                    android:layout_width="@dimen/venues_open_button_size"
+                    android:layout_height="@dimen/venues_open_button_size"
+                    android:background="@drawable/item_selector_borderless"
+                    android:clickable="true"
+                    android:padding="@dimen/base_margin"
+                    android:src="@drawable/vector_map_pointer"
+                    android:tint="@color/color_accent"
+                    />
             </LinearLayout>
 
             <TextView
