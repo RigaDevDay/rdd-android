@@ -7,6 +7,7 @@ data class Venue(
     val title: String = "",
     val name: String = "",
     val address: String = "",
+    val imageUrl: String = "",
     val web: String = "",
     val email: String = "",
     val description: String = "",

@@ -27,6 +27,7 @@
     <dimen name="session_details_fab_size">48dp</dimen>
     <dimen name="session_details_fab_top_margin">-24dp</dimen>
 
+    <dimen name="venues_image_height">160dp</dimen>
     <dimen name="venues_block_spacing_bottom">24dp</dimen>
     <dimen name="venues_open_button_size">36dp</dimen>
 

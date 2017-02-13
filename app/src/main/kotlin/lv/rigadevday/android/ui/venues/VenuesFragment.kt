@@ -26,7 +26,7 @@ class VenuesFragment : BaseFragment() {
         dataFetchSubscription = repo.venues().toList().subscribe(
             {
                 it.forEachIndexed { i, venue ->
-                    pageAdapter.addFragment(VenueDetailsFragment.newInstance(i), venue.name)
+                    pageAdapter.addFragment(VenueDetailsFragment.newInstance(i), venue.title)
                 }
 
                 with(view.venues_pager) {
