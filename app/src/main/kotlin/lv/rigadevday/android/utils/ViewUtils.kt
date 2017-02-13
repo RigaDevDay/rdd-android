@@ -18,7 +18,7 @@ fun ViewGroup.inflate(@LayoutRes id: Int): View
 
 fun ImageView.loadImage(url: String, @DrawableRes placeholder: Int = R.drawable.vector_speaker_placeholder) {
     Picasso.with(this.context)
-        .load(url.prependDomain())
+        .load(url.toImageUrl())
         .placeholder(placeholder)
         .fit()
         .centerCrop()
@@ -27,8 +27,8 @@ fun ImageView.loadImage(url: String, @DrawableRes placeholder: Int = R.drawable.
 
 fun ImageView.loadLogo(url: String, onDone: () -> Unit) {
     Picasso.with(this.context)
-        .load(url.prependDomain())
-        .resize(120, 120)
+        .load(url.toImageUrl())
+        .fit()
         .centerInside()
         .into(this, object : Callback {
             override fun onSuccess() {
