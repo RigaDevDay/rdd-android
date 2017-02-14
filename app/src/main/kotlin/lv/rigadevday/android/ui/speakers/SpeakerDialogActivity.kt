@@ -38,7 +38,7 @@ class SpeakerDialogActivity : BaseActivity() {
     }
 
     private fun renderSpeaker(speaker: Speaker) {
-        speaker_photo.loadImage(speaker.photoUrl)
+        speaker_photo.loadCircleAvatar(speaker.photoUrl)
 
         speaker_name.text = speaker.name
         speaker_title.text = speaker.title

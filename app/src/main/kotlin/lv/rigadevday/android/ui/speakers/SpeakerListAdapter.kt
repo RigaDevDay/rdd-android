@@ -8,7 +8,7 @@ import lv.rigadevday.android.R
 import lv.rigadevday.android.repository.model.speakers.Speaker
 import lv.rigadevday.android.utils.hide
 import lv.rigadevday.android.utils.inflate
-import lv.rigadevday.android.utils.loadImage
+import lv.rigadevday.android.utils.loadSquareAvatar
 import lv.rigadevday.android.utils.show
 
 class SpeakersAdapter(val onItemClick: (Int) -> Unit) : RecyclerView.Adapter<SpeakerViewHolder>() {
@@ -38,7 +38,7 @@ class SpeakerViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         speakers_item_name.text = speaker.name
         speakers_item_company.text = speaker.company
 
-        speakers_item_image.loadImage(speaker.photoUrl)
+        speakers_item_image.loadSquareAvatar(speaker.photoUrl)
 
         speakers_item_bagde.apply {
             if (speaker.badges.isEmpty()) hide()

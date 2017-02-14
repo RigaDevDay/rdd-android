@@ -137,7 +137,7 @@
 
                     </LinearLayout>
 
-                    <lv.rigadevday.android.utils.view.CircularImageView
+                    <ImageView
                         android:id="@+id/schedule_multiple_speaker_photo"
                         android:layout_width="@dimen/schedule_avatar_size"
                         android:layout_height="@dimen/schedule_avatar_size"

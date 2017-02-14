@@ -101,7 +101,7 @@ class ScheduleViewHolder(itemView: View) : ViewHolder(itemView) {
             schedule_multiple_speaker.text = speaker.name
             schedule_multiple_speaker.setOnClickListener { contract.openSpeaker(speaker.id) }
 
-            schedule_multiple_speaker_photo.loadImage(speaker.photoUrl)
+            schedule_multiple_speaker_photo.loadCircleAvatar(speaker.photoUrl)
             schedule_multiple_speaker_photo.setOnClickListener { contract.openSpeaker(speaker.id) }
         }
     }

@@ -8,7 +8,7 @@ import kotlinx.android.synthetic.main.item_session.view.*
 import lv.rigadevday.android.R
 import lv.rigadevday.android.repository.model.schedule.Session
 import lv.rigadevday.android.utils.inflate
-import lv.rigadevday.android.utils.loadImage
+import lv.rigadevday.android.utils.loadCircleAvatar
 
 class SessionsAdapter(val contract: SessionContract) : RecyclerView.Adapter<SessionsHolder>() {
 
@@ -46,7 +46,7 @@ class SessionsHolder(view: View) : RecyclerView.ViewHolder(view) {
                 session_item_speaker.text = speaker.name
                 session_item_speaker.setOnClickListener { contract.openSpeaker(speaker.id) }
 
-                session_item_photo.loadImage(speaker.photoUrl)
+                session_item_photo.loadCircleAvatar(speaker.photoUrl)
                 session_item_photo.setOnClickListener { contract.openSpeaker(speaker.id) }
             }
 

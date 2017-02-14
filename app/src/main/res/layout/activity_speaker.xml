@@ -3,18 +3,18 @@
     android:id="@+id/speaker_background"
     style="@style/Match"
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:clickable="true"
     xmlns:tools="http://schemas.android.com/tools"
     android:background="@color/dialog_background"
+    android:clickable="true"
     android:orientation="vertical"
     >
 
     <LinearLayout
         style="@style/MatchWrap"
-        android:clickable="true"
         android:layout_gravity="center"
         android:layout_margin="@dimen/speaker_content_padding"
         android:background="@color/screen_background"
+        android:clickable="true"
         android:orientation="vertical"
         >
 
@@ -24,7 +24,7 @@
             android:padding="@dimen/speaker_content_padding"
             >
 
-            <lv.rigadevday.android.utils.view.CircularImageView
+            <ImageView
                 android:id="@+id/speaker_photo"
                 android:layout_width="@dimen/speaker_photo_size"
                 android:layout_height="@dimen/speaker_photo_size"
@@ -107,8 +107,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="end"
-            android:text="@string/close_dialog"
             android:background="@drawable/item_selector_borderless"
+            android:text="@string/close_dialog"
             android:textColor="@color/color_accent"
             />
 

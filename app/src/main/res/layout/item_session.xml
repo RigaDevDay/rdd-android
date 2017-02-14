@@ -74,7 +74,7 @@
                     />
             </LinearLayout>
 
-            <lv.rigadevday.android.utils.view.CircularImageView
+            <ImageView
                 android:id="@+id/session_item_photo"
                 android:layout_width="@dimen/session_avatar_size"
                 android:layout_height="@dimen/session_avatar_size"

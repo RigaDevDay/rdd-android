@@ -16,7 +16,6 @@ class BaseApp : Application() {
     override fun onCreate() {
         super.onCreate()
         FirebaseDatabase.getInstance().setPersistenceEnabled(true)
-        setupImageLoading()
 
         graph = DaggerAppGraph.builder()
             .appModule(AppModule(this))
