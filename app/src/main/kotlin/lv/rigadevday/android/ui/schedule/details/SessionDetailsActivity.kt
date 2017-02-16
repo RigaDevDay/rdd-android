@@ -77,7 +77,7 @@ class SessionDetailsActivity : BaseActivity() {
         day.timeslots.firstOrNull { it.sessionIds.contains(sessionId) }
             ?.let { Maybe.just(TimeDataPair(it.startTime, day.date)) }
             ?: Maybe.empty()
-    }.first(TimeDataPair("", ""))
+    }.firstElement()
 
     private data class TimeDataPair(
         val time: String,

@@ -3,7 +3,6 @@ package lv.rigadevday.android.ui.partners
 import android.support.v7.widget.GridLayoutManager
 import android.support.v7.widget.LinearLayoutManager
 import android.view.View
-import io.reactivex.Observable
 import kotlinx.android.synthetic.main.fragment_list.*
 import lv.rigadevday.android.R
 import lv.rigadevday.android.ui.base.BaseFragment
@@ -13,6 +12,7 @@ import lv.rigadevday.android.ui.partners.adapter.PartnersItem
 import lv.rigadevday.android.ui.partners.adapter.PartnersItem.PartnerLogo
 import lv.rigadevday.android.ui.partners.adapter.PartnersItem.PartnerTitle
 import lv.rigadevday.android.utils.BaseApp
+import lv.rigadevday.android.utils.asFlowable
 import lv.rigadevday.android.utils.showMessage
 
 class PartnersFragment : BaseFragment() {
@@ -39,8 +39,9 @@ class PartnersFragment : BaseFragment() {
 
         dataFetchSubscription = repo.partners()
             .flatMap {
-                Observable.just<PartnersItem>(PartnerTitle(it.title))
-                    .concatWith(Observable.fromIterable(it.logos.map(::PartnerLogo)))
+                PartnerTitle(it.title)
+                    .asFlowable<PartnersItem>()
+                    .concatWith(it.logos.map(::PartnerLogo).asFlowable())
             }
             .toList()
             .subscribe(
