@@ -7,6 +7,7 @@
         <item name="android:textSize">@dimen/text_size_title</item>
         <item name="android:textStyle">normal</item>
         <item name="android:lines">1</item>
+        <item name="android:ellipsize">end</item>
     </style>
 
     <style name="Speakers.Item.Text.Subtitle">
