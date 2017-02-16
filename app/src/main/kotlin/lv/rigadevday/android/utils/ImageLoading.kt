@@ -5,8 +5,8 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.bumptech.glide.load.resource.drawable.GlideDrawable
 import com.bumptech.glide.request.animation.GlideAnimation
-import com.bumptech.glide.request.target.SimpleTarget
 import com.bumptech.glide.request.target.Target
+import com.bumptech.glide.request.target.ViewTarget
 import jp.wasabeef.glide.transformations.CropCircleTransformation
 import lv.rigadevday.android.R
 
@@ -28,11 +28,12 @@ fun ImageView.loadSquareAvatar(url: String): Target<GlideDrawable> = getFetcherI
 
 fun ImageView.loadLogo(url: String, onDone: () -> Unit): Target<GlideDrawable> = getFetcherInstance(url)
     .fitCenter()
-    .into(object : SimpleTarget<GlideDrawable>() {
-        override fun onResourceReady(bitmap: GlideDrawable, a: GlideAnimation<in GlideDrawable>) {
-            this@loadLogo.setImageDrawable(bitmap)
+    .into(object : ViewTarget<ImageView, GlideDrawable>(this) {
+        override fun onResourceReady(resource: GlideDrawable, a: GlideAnimation<in GlideDrawable>) {
+            view.setImageDrawable(resource)
             onDone()
         }
+
     })
 
 fun ImageView.loadVenueImage(url: String): Target<GlideDrawable> = getFetcherInstance(url)
