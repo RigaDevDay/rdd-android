@@ -1,5 +1,7 @@
 package lv.rigadevday.android.ui.schedule.sessions
 
+import android.app.Activity
+import android.content.Intent
 import android.support.v7.app.AlertDialog
 import android.support.v7.widget.LinearLayoutManager
 import android.view.Menu
@@ -12,6 +14,7 @@ import lv.rigadevday.android.repository.model.schedule.Session
 import lv.rigadevday.android.ui.EXTRA_SESSION_DATA
 import lv.rigadevday.android.ui.base.BaseActivity
 import lv.rigadevday.android.ui.openSessionDetailsActivity
+import lv.rigadevday.android.ui.openSessionDetailsActivityForResult
 import lv.rigadevday.android.ui.openSpeakerActivity
 import lv.rigadevday.android.ui.schedule.TimeslotData
 import lv.rigadevday.android.ui.schedule.toIntentData
@@ -28,7 +31,8 @@ class SessionsActivity : BaseActivity() {
 
     private val listAdapter: SessionsAdapter = SessionsAdapter(object : SessionContract {
         override fun openSession(id: Int) {
-            openSessionDetailsActivity(id)
+            if (intentData == null) openSessionDetailsActivity(id)
+            else openSessionDetailsActivityForResult(id)
         }
 
         override fun isSessionBookmarked(id: Int) = sessions.isBookmarked(id)
@@ -87,6 +91,11 @@ class SessionsActivity : BaseActivity() {
                 },
                 { error -> list_fragment_recycler.showMessage(R.string.error_message) }
             )
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        if (resultCode == Activity.RESULT_FIRST_USER) finish()
+        super.onActivityResult(requestCode, resultCode, data)
     }
 
     override fun onResume() {

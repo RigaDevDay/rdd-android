@@ -1,5 +1,6 @@
 package lv.rigadevday.android.ui.schedule.details
 
+import android.app.Activity
 import io.reactivex.Maybe
 import io.reactivex.functions.BiFunction
 import kotlinx.android.synthetic.main.activity_session_details.*
@@ -8,10 +9,12 @@ import lv.rigadevday.android.repository.Repository
 import lv.rigadevday.android.repository.SessionStorage
 import lv.rigadevday.android.repository.model.schedule.Session
 import lv.rigadevday.android.ui.EXTRA_SESSION_ID
+import lv.rigadevday.android.ui.EXTRA_SESSION_SKIPPABLE
 import lv.rigadevday.android.ui.base.BaseActivity
 import lv.rigadevday.android.ui.openSpeakerActivity
 import lv.rigadevday.android.utils.BaseApp
 import lv.rigadevday.android.utils.fromHtml
+import lv.rigadevday.android.utils.show
 import lv.rigadevday.android.utils.showMessage
 import javax.inject.Inject
 
@@ -28,9 +31,19 @@ class SessionDetailsActivity : BaseActivity() {
 
     override fun viewReady() {
         val sessionId = intent.extras.getInt(EXTRA_SESSION_ID)
+        val skippable = intent.extras.getBoolean(EXTRA_SESSION_SKIPPABLE, false)
 
         session_close.setOnClickListener { finish() }
         session_background.setOnClickListener { finish() }
+
+        if (skippable) with(session_to_schedule) {
+            show()
+            setOnClickListener {
+                setResult(Activity.RESULT_FIRST_USER)
+                finish()
+            }
+        }
+
 
         dataFetchSubscription = repo.session(sessionId)
             .zipWith(getTimeslot(sessionId), BiFunction { session: Session, timeslot: TimeDataPair ->

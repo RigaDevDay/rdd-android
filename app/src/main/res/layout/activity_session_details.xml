@@ -87,6 +87,21 @@
         </ScrollView>
 
         <Button
+            android:id="@+id/session_to_schedule"
+            style="@style/Widget.AppCompat.Button.Borderless.Colored"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_below="@id/session_details_content"
+            android:background="@drawable/item_selector_borderless"
+            android:paddingEnd="@dimen/session_content_padding"
+            android:paddingStart="@dimen/session_content_padding"
+            android:text="@string/sessions_to_schedule"
+            android:textColor="@color/color_accent"
+            android:visibility="gone"
+            />
+
+        <Button
             android:id="@+id/session_close"
             style="@style/Widget.AppCompat.Button.Borderless.Colored"
             android:layout_width="wrap_content"

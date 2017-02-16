@@ -25,6 +25,7 @@
     <string name="sessions_filter_title">Filter by tag</string>
     <string name="sessions_filter_clear">Clear filter</string>
     <string name="sessions_bookmark_saved">Bookmark saved</string>
+    <string name="sessions_to_schedule">To schedule</string>
 
     <string name="venues_title">Venues</string>
     <string name="venues_address">Address:</string>
