@@ -13,12 +13,14 @@ import lv.rigadevday.android.ui.EXTRA_SESSION_SKIPPABLE
 import lv.rigadevday.android.ui.base.BaseActivity
 import lv.rigadevday.android.ui.openSpeakerActivity
 import lv.rigadevday.android.utils.*
+import lv.rigadevday.android.utils.auth.AuthStorage
 import javax.inject.Inject
 
 class SessionDetailsActivity : BaseActivity() {
 
     @Inject lateinit var repo: Repository
     @Inject lateinit var storage: SessionStorage
+    @Inject lateinit var authStorage: AuthStorage
 
     override val layoutId = R.layout.activity_session_details
 
@@ -66,7 +68,7 @@ class SessionDetailsActivity : BaseActivity() {
     }
 
     private fun updateLoginButton() {
-        if (!loginWrapper.hasLogin) {
+        if (!authStorage.hasLogin) {
             session_login.setOnClickListener {
                 loginWrapper.logIn(this)
             }

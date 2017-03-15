@@ -14,9 +14,13 @@ import lv.rigadevday.android.ui.schedule.MyScheduleFragment
 import lv.rigadevday.android.ui.speakers.SpeakerListFragment
 import lv.rigadevday.android.ui.venues.VenuesFragment
 import lv.rigadevday.android.utils.BaseApp
+import lv.rigadevday.android.utils.auth.AuthStorage
+import javax.inject.Inject
 
 
 class TabActivity : BaseActivity() {
+
+    @Inject lateinit var authStorage: AuthStorage
 
     override val layoutId = R.layout.activity_tab
     override val contentFrameId = R.id.tabs_content_container
@@ -49,7 +53,7 @@ class TabActivity : BaseActivity() {
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         val menuFile =
-            if (loginWrapper.hasLogin) R.menu.menu_main_logout
+            if (authStorage.hasLogin) R.menu.menu_main_logout
             else R.menu.menu_main_login
 
         menuInflater.inflate(menuFile, menu)
