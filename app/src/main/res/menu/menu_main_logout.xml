@@ -8,6 +8,14 @@
         android:orderInCategory="10"
         app:showAsAction="ifRoom"
         />
+
+    <item
+        android:id="@+id/action_logout"
+        android:icon="@drawable/vector_action_about"
+        android:title="@string/action_logout"
+        android:orderInCategory="20"
+        app:showAsAction="never"/>
+
     <item
         android:id="@+id/action_licences"
         android:icon="@drawable/vector_action_about"

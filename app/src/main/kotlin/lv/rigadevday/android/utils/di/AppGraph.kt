@@ -10,6 +10,7 @@ import lv.rigadevday.android.ui.schedule.sessions.SessionsActivity
 import lv.rigadevday.android.ui.speakers.SpeakerDialogActivity
 import lv.rigadevday.android.ui.speakers.SpeakerListFragment
 import lv.rigadevday.android.ui.splash.SplashActivity
+import lv.rigadevday.android.ui.tabs.TabActivity
 import lv.rigadevday.android.ui.venues.VenueDetailsFragment
 import lv.rigadevday.android.ui.venues.VenuesFragment
 import lv.rigadevday.android.utils.BaseApp
@@ -24,7 +25,8 @@ interface AppGraph {
     // App
     fun inject(app: BaseApp)
 
-    // Activity
+    // TabActivity
+    fun inject(activity: TabActivity)
     fun inject(activity: SplashActivity)
     fun inject(activity: SpeakerDialogActivity)
     fun inject(activity: SessionsActivity)

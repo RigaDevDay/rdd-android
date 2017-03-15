@@ -5,6 +5,8 @@
     <string name="hashtag">#RigaDevDays</string>
 
     <string name="action_twitter">Tweet at us</string>
+    <string name="action_login">Log In</string>
+    <string name="action_logout">Log Out</string>
     <string name="action_licences">About &amp; Licences</string>
 
     <string name="tab_schedule">Schedule</string>
@@ -26,6 +28,7 @@
     <string name="sessions_filter_clear">Clear filter</string>
     <string name="sessions_bookmark_saved">Bookmark saved</string>
     <string name="sessions_to_schedule">To schedule</string>
+    <string name="session_login_to_save">Login to save and rate</string>
 
     <string name="venues_title">Venues</string>
     <string name="venues_address">Address:</string>
@@ -35,6 +38,10 @@
     <string name="licenses_title">Licenses</string>
 
     <string name="partners_title">Partners</string>
+
+    <string name="auth_login_success">Login successful</string>
+    <string name="auth_login_failed">Login failed</string>
+    <string name="auth_logout_happened">Logged out</string>
 
     <string name="error_message">Oops, something went wrong</string>
     <string name="error_connection_message">Please connect to network to download data</string>

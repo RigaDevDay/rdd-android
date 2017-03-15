@@ -2,14 +2,25 @@ package lv.rigadevday.android.ui.base
 
 import android.content.Intent
 import android.os.Bundle
+import android.support.annotation.CallSuper
 import android.support.annotation.StringRes
 import android.support.v4.app.Fragment
 import android.support.v7.app.AppCompatActivity
 import android.view.MenuItem
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.GoogleAuthProvider
 import io.reactivex.disposables.Disposable
 import kotlinx.android.synthetic.main.part_toolbar.*
+import lv.rigadevday.android.R
+import lv.rigadevday.android.utils.auth.AuthWrapper
+import lv.rigadevday.android.utils.auth.LoginContract
+import lv.rigadevday.android.utils.showMessage
+import javax.inject.Inject
 
-abstract class BaseActivity : AppCompatActivity() {
+abstract class BaseActivity : AppCompatActivity(), LoginContract {
+
+    @Inject lateinit var loginWrapper: AuthWrapper
 
     abstract val layoutId: Int
     open val contentFrameId: Int = -1
@@ -27,6 +38,13 @@ abstract class BaseActivity : AppCompatActivity() {
         setContentView(layoutId)
 
         viewReady()
+        loginWrapper.bind(this, this)
+    }
+
+    override fun onResume() {
+        super.onResume()
+        loginWrapper.contract = this
+        refreshLoginState()
     }
 
     override fun onStop() {
@@ -34,8 +52,9 @@ abstract class BaseActivity : AppCompatActivity() {
         super.onStop()
     }
 
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+    public override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
+        loginWrapper.handleLoginResponse(requestCode, data)
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
@@ -66,4 +85,37 @@ abstract class BaseActivity : AppCompatActivity() {
             .replace(contentFrameId, nextFragment, nextFragment.tag)
             .commit()
     }
+
+    open fun refreshLoginState() {}
+
+    override fun loginSuccess() {
+        showMessage(R.string.auth_login_success)
+        refreshLoginState()
+    }
+
+    @CallSuper
+    override fun loginFailed() {
+        showMessage(R.string.auth_login_failed)
+        refreshLoginState()
+    }
+
+    @CallSuper
+    override fun logoutSuccess() {
+        showMessage(R.string.auth_logout_happened)
+        refreshLoginState()
+    }
+
+    override fun firebaseAuthWithGoogle(acc: GoogleSignInAccount) {
+        val credential = GoogleAuthProvider.getCredential(acc.idToken, null)
+
+        FirebaseAuth.getInstance().signInWithCredential(credential)
+            .addOnCompleteListener(this) { task ->
+                if (!task.isSuccessful) {
+                    loginFailed()
+                } else {
+                    loginSuccess()
+                }
+            }
+    }
+
 }

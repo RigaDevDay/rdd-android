@@ -99,17 +99,21 @@
             android:text="@string/sessions_to_schedule"
             android:textColor="@color/color_accent"
             android:visibility="gone"
+            tools:visibility="visible"
             />
 
         <Button
-            android:id="@+id/session_close"
+            android:id="@+id/session_login"
             style="@style/Widget.AppCompat.Button.Borderless.Colored"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
             android:layout_below="@id/session_details_content"
+            android:layout_marginEnd="@dimen/base_margin"
             android:background="@drawable/item_selector_borderless"
-            android:text="@string/close_dialog"
+            android:paddingEnd="@dimen/base_margin"
+            android:paddingStart="@dimen/base_margin"
+            android:text="@string/session_login_to_save"
             android:textColor="@color/color_accent"
             />
 

@@ -12,10 +12,7 @@ import lv.rigadevday.android.ui.EXTRA_SESSION_ID
 import lv.rigadevday.android.ui.EXTRA_SESSION_SKIPPABLE
 import lv.rigadevday.android.ui.base.BaseActivity
 import lv.rigadevday.android.ui.openSpeakerActivity
-import lv.rigadevday.android.utils.BaseApp
-import lv.rigadevday.android.utils.fromHtml
-import lv.rigadevday.android.utils.show
-import lv.rigadevday.android.utils.showMessage
+import lv.rigadevday.android.utils.*
 import javax.inject.Inject
 
 class SessionDetailsActivity : BaseActivity() {
@@ -33,7 +30,7 @@ class SessionDetailsActivity : BaseActivity() {
         val sessionId = intent.extras.getInt(EXTRA_SESSION_ID)
         val skippable = intent.extras.getBoolean(EXTRA_SESSION_SKIPPABLE, false)
 
-        session_close.setOnClickListener { finish() }
+        updateLoginButton()
         session_background.setOnClickListener { finish() }
 
         if (skippable) with(session_to_schedule) {
@@ -43,7 +40,6 @@ class SessionDetailsActivity : BaseActivity() {
                 finish()
             }
         }
-
 
         dataFetchSubscription = repo.session(sessionId)
             .zipWith(getTimeslot(sessionId), BiFunction { session: Session, timeslot: TimeDataPair ->
@@ -67,6 +63,22 @@ class SessionDetailsActivity : BaseActivity() {
                 },
                 { session_details_description.showMessage(R.string.error_message) }
             )
+    }
+
+    private fun updateLoginButton() {
+        if (!loginWrapper.hasLogin) {
+            session_login.setOnClickListener {
+                loginWrapper.logIn(this)
+            }
+            session_details_bookmark.hide()
+        } else {
+            session_login.hide()
+            session_details_bookmark.show()
+        }
+    }
+
+    override fun refreshLoginState() {
+        updateLoginButton()
     }
 
     private fun updateBookmarkIcon(session: Session, sessionId: Int) {
