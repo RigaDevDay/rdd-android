@@ -27,8 +27,8 @@ fun <T, R> biFunction(function: (T, R) -> T): BiFunction<T, R, T> = BiFunction(f
 fun findSessionsMismatches(repo: Repository) = repo.schedule()
     .flatMap { Flowable.fromIterable(it.timeslots) }
     .flatMap { Flowable.fromIterable(it.sessionIds) }
+    .distinct()
     .toList()
-    .map { it.distinct() }
     .zipWith(repo.sessions().map { it.id }.toList(), biFunction { idsInSchedule, idsInSessions ->
         "ids in sessions and not in schedule: ".logE()
         idsInSessions.subtract(idsInSchedule).logD()
@@ -40,3 +40,13 @@ fun findSessionsMismatches(repo: Repository) = repo.schedule()
     })
     .toCompletable()
 
+fun findAllTags(repo: Repository) = repo.sessions()
+    .flatMap { Flowable.fromIterable(it.tags) }
+    .distinct()
+    .sorted()
+    .toList()
+    .doOnSuccess {
+        "all available tags:".logE()
+        it.logE()
+    }
+    .toCompletable()

@@ -9,6 +9,7 @@ object ColorStorage {
     private val DEFAULT = "#006590".asColor()
 
     private val COLORS = mapOf(
+        "general" to "#bdbdbd".asColor(),
         "blockchain" to "#9E9E9E".asColor(),
         "android" to "#78c257".asColor(),
         "internet-of-things" to "#00e065".asColor(),
@@ -18,6 +19,7 @@ object ColorStorage {
         "community" to "#e91e63".asColor(),
         "it" to "#9E9E9E".asColor(),
         "best-practices" to "#9E9E9E".asColor(),
+        "angular-js" to "#e0343d".asColor(),
         "protractor" to "#e0343d".asColor(),
         "java" to "#ff9800".asColor(),
         "performance" to "#0d47a1".asColor(),
@@ -36,8 +38,6 @@ object ColorStorage {
         "react-native" to "#00b4aa".asColor()
     )
 
-
     fun get(tag: String) = COLORS[tag.toLowerCase().replace(' ', '-')] ?: DEFAULT
-
 
 }
