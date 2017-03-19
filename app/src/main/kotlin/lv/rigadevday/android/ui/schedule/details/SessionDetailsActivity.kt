@@ -15,6 +15,7 @@ import lv.rigadevday.android.ui.openRateSessionActivity
 import lv.rigadevday.android.ui.openSpeakerActivity
 import lv.rigadevday.android.utils.*
 import lv.rigadevday.android.utils.auth.AuthStorage
+import java.util.*
 import javax.inject.Inject
 
 class SessionDetailsActivity : BaseActivity() {
@@ -73,8 +74,8 @@ class SessionDetailsActivity : BaseActivity() {
 
                     updateBookmarkIcon(session, sessionId)
                 },
-                { e ->
-                    if (e is NoSuchElementException) {
+                {
+                    if (it is NoSuchElementException) {
                         session_details_description.showMessage(R.string.session_cancelled)
                     } else {
                         session_details_description.showMessage(R.string.error_message)
@@ -122,11 +123,11 @@ class SessionDetailsActivity : BaseActivity() {
         }
     }
 
-    private fun getTimeslot(sessionId: Int) = repo.schedule().flatMapMaybe { (date, _, timeslots) ->
+    private fun getTimeslot(sessionId: Int) = repo.schedule().flatMapMaybe { (date, _, timeslots, _) ->
         timeslots.firstOrNull { it.sessionIds.contains(sessionId) }
             ?.let { Maybe.just(TimeDataPair(it.startTime, date)) }
-            ?: Maybe.error(NoSuchElementException())
-    }.firstElement()
+            ?: Maybe.empty()
+    }.firstOrError().toMaybe()
 
     private data class TimeDataPair(
         val time: String,
