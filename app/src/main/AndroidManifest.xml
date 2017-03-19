@@ -51,6 +51,12 @@
             />
 
         <activity
+            android:name=".ui.schedule.rate.RateActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/ThemeTranslucent"
+            />
+
+        <activity
             android:name=".ui.licences.LicencesActivity"
             android:screenOrientation="portrait"
             />

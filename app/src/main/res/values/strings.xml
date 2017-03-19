@@ -28,7 +28,13 @@
     <string name="sessions_filter_clear">Clear filter</string>
     <string name="sessions_bookmark_saved">Bookmark saved</string>
     <string name="sessions_to_schedule">To schedule</string>
-    <string name="session_login_to_save">Login to save and rate</string>
+    <string name="session_login_to_rate">Login to rate</string>
+    <string name="session_rate">Rate session</string>
+
+    <string name="rate_quality_of_content">Quality of content</string>
+    <string name="rate_speaker_performance">Speaker performance:</string>
+    <string name="rate_your_comment">Your comment</string>
+    <string name="rate_submit">Submit</string>
 
     <string name="venues_title">Venues</string>
     <string name="venues_address">Address:</string>

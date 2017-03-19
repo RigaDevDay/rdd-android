@@ -11,9 +11,13 @@ import lv.rigadevday.android.repository.model.schedule.Session
 import lv.rigadevday.android.ui.EXTRA_SESSION_ID
 import lv.rigadevday.android.ui.EXTRA_SESSION_SKIPPABLE
 import lv.rigadevday.android.ui.base.BaseActivity
+import lv.rigadevday.android.ui.openRateSessionActivity
 import lv.rigadevday.android.ui.openSpeakerActivity
-import lv.rigadevday.android.utils.*
+import lv.rigadevday.android.utils.BaseApp
 import lv.rigadevday.android.utils.auth.AuthStorage
+import lv.rigadevday.android.utils.fromHtml
+import lv.rigadevday.android.utils.show
+import lv.rigadevday.android.utils.showMessage
 import javax.inject.Inject
 
 class SessionDetailsActivity : BaseActivity() {
@@ -24,15 +28,21 @@ class SessionDetailsActivity : BaseActivity() {
 
     override val layoutId = R.layout.activity_session_details
 
+    private var sessionId : Int = 0
+
     override fun inject() {
         BaseApp.graph.inject(this)
     }
 
+    override fun refreshLoginState() {
+        updateLoginRateButton()
+    }
+
     override fun viewReady() {
-        val sessionId = intent.extras.getInt(EXTRA_SESSION_ID)
+        sessionId = intent.extras.getInt(EXTRA_SESSION_ID)
         val skippable = intent.extras.getBoolean(EXTRA_SESSION_SKIPPABLE, false)
 
-        updateLoginButton()
+        updateLoginRateButton()
         session_background.setOnClickListener { finish() }
 
         if (skippable) with(session_to_schedule) {
@@ -69,20 +79,18 @@ class SessionDetailsActivity : BaseActivity() {
 
     private fun <T, R> biFunction(function: (T, R) -> T): BiFunction<T, R, T> = BiFunction(function)
 
-    private fun updateLoginButton() {
+    private fun updateLoginRateButton() {
         if (!authStorage.hasLogin) {
-            session_login.setOnClickListener {
+            session_login_rate.setText(R.string.session_login_to_rate)
+            session_login_rate.setOnClickListener {
                 loginWrapper.logIn(this)
             }
-            session_details_bookmark.hide()
         } else {
-            session_login.hide()
-            session_details_bookmark.show()
+            session_login_rate.setText(R.string.session_rate)
+            session_login_rate.setOnClickListener {
+                openRateSessionActivity(sessionId)
+            }
         }
-    }
-
-    override fun refreshLoginState() {
-        updateLoginButton()
     }
 
     private fun updateBookmarkIcon(session: Session, sessionId: Int) {

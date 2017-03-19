@@ -8,6 +8,7 @@ import lv.rigadevday.android.R
 import lv.rigadevday.android.ui.licences.LicencesActivity
 import lv.rigadevday.android.ui.schedule.TimeslotData
 import lv.rigadevday.android.ui.schedule.details.SessionDetailsActivity
+import lv.rigadevday.android.ui.schedule.rate.RateActivity
 import lv.rigadevday.android.ui.schedule.sessions.SessionsActivity
 import lv.rigadevday.android.ui.schedule.toBundle
 import lv.rigadevday.android.ui.speakers.SpeakerDialogActivity
@@ -53,11 +54,15 @@ private fun Context.sessionDetailsIntent(sessionId: Int, skippable: Boolean = fa
         putExtra(EXTRA_SESSION_SKIPPABLE, skippable)
     }
 
+fun Context.openRateSessionActivity(sessionId: Int) {
+    Intent(this, RateActivity::class.java).apply {
+        putExtra(EXTRA_SESSION_ID, sessionId)
+    }.start(this)
+}
 
 fun Context.openLicencesActivity() {
     Intent(this, LicencesActivity::class.java).start(from = this)
 }
-
 
 fun Context.openWeb(link: String) {
     BaseApp.graph.analytics().linkOpened(link)

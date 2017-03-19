@@ -103,7 +103,7 @@
             />
 
         <Button
-            android:id="@+id/session_login"
+            android:id="@+id/session_login_rate"
             style="@style/Widget.AppCompat.Button.Borderless.Colored"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -113,7 +113,7 @@
             android:background="@drawable/item_selector_borderless"
             android:paddingEnd="@dimen/base_margin"
             android:paddingStart="@dimen/base_margin"
-            android:text="@string/session_login_to_save"
+            android:text="@string/session_login_to_rate"
             android:textColor="@color/color_accent"
             />
 

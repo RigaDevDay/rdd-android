@@ -6,6 +6,7 @@ import lv.rigadevday.android.ui.schedule.MyScheduleFragment
 import lv.rigadevday.android.ui.schedule.day.DayScheduleFragment
 import lv.rigadevday.android.ui.schedule.day.adapter.ScheduleAdapter
 import lv.rigadevday.android.ui.schedule.details.SessionDetailsActivity
+import lv.rigadevday.android.ui.schedule.rate.RateActivity
 import lv.rigadevday.android.ui.schedule.sessions.SessionsActivity
 import lv.rigadevday.android.ui.speakers.SpeakerDialogActivity
 import lv.rigadevday.android.ui.speakers.SpeakerListFragment
@@ -31,6 +32,7 @@ interface AppGraph {
     fun inject(activity: SpeakerDialogActivity)
     fun inject(activity: SessionsActivity)
     fun inject(activity: SessionDetailsActivity)
+    fun inject(activity: RateActivity)
 
     // Fragments
     fun inject(fragment: SpeakerListFragment)
