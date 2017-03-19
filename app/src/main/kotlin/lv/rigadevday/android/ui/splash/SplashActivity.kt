@@ -4,7 +4,6 @@ import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
 import android.support.v7.app.AppCompatActivity
-import io.reactivex.Completable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import lv.rigadevday.android.R
 import lv.rigadevday.android.repository.Repository
@@ -26,15 +25,9 @@ class SplashActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         BaseApp.graph.inject(this)
 
-        // Small warmup for Firebase and Rx caches
-        // If there is no internet or persistent data, call timeout
-        Completable
-            .concat(listOf(
-                repo.speakers().toList().toCompletable(),
-                repo.sessions().toList().toCompletable(),
-                repo.schedule().toList().toCompletable(),
-                repo.cacheResources()
-            ))
+        // Cache and enrich data into memory
+        repo.updateCache()
+            .toCompletable()
             .timeout(TIME_OUT, TimeUnit.SECONDS, AndroidSchedulers.mainThread())
             .subscribe(
                 {

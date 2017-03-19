@@ -4,9 +4,9 @@ import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import durdinapps.rxfirebase2.DataSnapshotMapper
 import durdinapps.rxfirebase2.RxFirebaseDatabase
-import io.reactivex.Completable
 import io.reactivex.Flowable
-import io.reactivex.Maybe
+import io.reactivex.Single
+import lv.rigadevday.android.repository.model.Root
 import lv.rigadevday.android.repository.model.other.Venue
 import lv.rigadevday.android.repository.model.partners.Partners
 import lv.rigadevday.android.repository.model.schedule.Rating
@@ -14,17 +14,14 @@ import lv.rigadevday.android.repository.model.schedule.Schedule
 import lv.rigadevday.android.repository.model.schedule.Session
 import lv.rigadevday.android.repository.model.schedule.Timeslot
 import lv.rigadevday.android.repository.model.speakers.Speaker
-import lv.rigadevday.android.utils.asFlowable
 import lv.rigadevday.android.utils.auth.AuthStorage
-import lv.rigadevday.android.utils.biFunction
 import lv.rigadevday.android.utils.bindSchedulers
-
 
 /**
  * All of the observables provided by repository are non-closable so it is mandatory
  * to unsubscribe any subscription when closing screen to prevent memory leak.
  */
-class Repository(val authStorage: AuthStorage) {
+class Repository(val authStorage: AuthStorage, val dataCache: DataCache) {
 
     private val database: DatabaseReference by lazy {
         val ref = FirebaseDatabase.getInstance().reference
@@ -32,91 +29,67 @@ class Repository(val authStorage: AuthStorage) {
         return@lazy ref
     }
 
+    private fun getCache(predicate: () -> Boolean): Single<DataCache> =
+        if (predicate()) Single.just(dataCache)
+        else updateCache()
+
     // Basic requests
-    fun speakers(): Flowable<Speaker> = getFlowable("speakers", Speaker::class.java).bindSchedulers()
+    fun updateCache(): Single<DataCache> = RxFirebaseDatabase.observeSingleValueEvent(
+        database,
+        DataSnapshotMapper.of(Root::class.java)
+    ).firstElement().map {
+        dataCache.update(it)
+    }.toSingle()
 
-    fun speaker(id: Int): Maybe<Speaker> = getSingle("speakers", id, Speaker::class.java).bindSchedulers()
-
-    fun schedule(): Flowable<Schedule> = getFlowable("schedule", Schedule::class.java).bindSchedulers()
-
-    fun partners(): Flowable<Partners> = getFlowable("partners", Partners::class.java).bindSchedulers()
-
-    fun venues(): Flowable<Venue> = getFlowable("venues", Venue::class.java).bindSchedulers()
-
-    fun venue(id: Int): Maybe<Venue> = getSingle("venues", id, Venue::class.java).bindSchedulers()
-
-    fun cacheResources(): Completable = RxFirebaseDatabase.observeSingleValueEvent(
-        database.child("resources"),
-        DataSnapshotMapper.mapOf(String::class.java)
-    ).flatMapCompletable {
-        ResourceCache.update(it)
-        Completable.complete()
-    }
-
-    // More complicated requests
-    fun sessions(): Flowable<Session> = getFlowable("sessions", Session::class.java)
-        .map { session ->
-            session.speakers.asFlowable()
-                .concatMap { speaker(it).toFlowable() }
-                .toList()
-                .map { session.apply { speakerObjects = it } }
-        }
-        .flatMap { it.toFlowable() }
+    fun speakers(): Flowable<Speaker> = getCache { dataCache.speakers.isNotEmpty() }
+        .flattenAsFlowable { it.speakers.values }
         .bindSchedulers()
 
-    fun session(id: Int): Maybe<Session> = getSingle("sessions", id, Session::class.java)
-        .flatMap { session ->
-            session.speakers.asFlowable()
-                .concatMap { speaker(it).toFlowable() }.toList()
-                .map { session.apply { speakerObjects = it } }
-                .toMaybe()
-        }
+    fun speaker(id: Int): Single<Speaker> = getCache { dataCache.speakers.isNotEmpty() }
+        .map { it.speakers.getValue(id) }
         .bindSchedulers()
 
-    fun scheduleDayTimeslots(dateCode: String): Flowable<Timeslot> = schedule()
-        .filter { it.date == dateCode }
-        .firstElement()
-        .map {
-            val roomNames = it.tracks.map { it.title }.asFlowable()
-            val allSessions = sessions()
-
-            it.timeslots.asFlowable().concatMap { timeslot ->
-                timeslot.sessionIds.asFlowable()
-                    .concatMap { id -> allSessions.filter { it.id == id }.firstElement().toFlowable() }
-                    .zipWith(roomNames, biFunction { session, title -> session.apply { room = title } })
-                    .toList()
-                    .map { timeslot.apply { sessionObjects = it } }
-                    .toFlowable()
-            }
-        }
-        .flatMapPublisher { it }
+    fun schedule(): Flowable<Schedule> = getCache { dataCache.schedule.isNotEmpty() }
+        .flattenAsFlowable { it.schedule.values }
         .bindSchedulers()
 
-    // Helper functions
-    private fun <T> getFlowable(table: String, klass: Class<T>) = RxFirebaseDatabase
-        .observeSingleValueEvent(
-            database.child(table),
-            DataSnapshotMapper.listOf(klass)
-        )
-        .flatMap { it.asFlowable() }
+    fun partners(): Flowable<Partners> = getCache { dataCache.partners.isNotEmpty() }
+        .flattenAsFlowable { it.partners }
+        .bindSchedulers()
 
-    private fun <T> getSingle(table: String, id: Int, klass: Class<T>) = RxFirebaseDatabase
-        .observeSingleValueEvent(database.child(table).child("$id"), klass)
-        .firstElement()
+    fun venues(): Flowable<Venue> = getCache { dataCache.venues.isNotEmpty() }
+        .flattenAsFlowable { it.venues }
+        .bindSchedulers()
+
+    fun venue(id: Int): Single<Venue> = getCache { dataCache.venues.isNotEmpty() }
+        .map { it.venues[id] }
+        .bindSchedulers()
+
+    fun sessions(): Flowable<Session> = getCache { dataCache.sessions.isNotEmpty() }
+        .flattenAsFlowable { it.sessions.values }
+        .bindSchedulers()
+
+    fun session(id: Int): Single<Session> = getCache { dataCache.sessions.isNotEmpty() }
+        .map { it.sessions.getValue(id) }
+        .bindSchedulers()
+
+    fun scheduleDayTimeslots(dateCode: String): Flowable<Timeslot> = getCache { dataCache.schedule.isNotEmpty() }
+        .flattenAsFlowable { it.schedule.getValue(dateCode).timeslots }
+        .bindSchedulers()
 
     // Read-Write stuff
-    private val sessionRating = database.child("userFeedbacks").child(authStorage.uId)
+    private fun sessionRating() = database.child("userFeedbacks").child(authStorage.uId)
 
-    fun rating(sessionId: Int): Maybe<Rating> = if (authStorage.hasLogin) {
+    fun rating(sessionId: Int): Single<Rating> = if (authStorage.hasLogin) {
         RxFirebaseDatabase.observeSingleValueEvent(
-            sessionRating.child(sessionId.toString()),
+            sessionRating().child(sessionId.toString()),
             Rating::class.java
-        ).firstElement().onErrorReturn { Rating() }
-    } else Maybe.just(Rating())
+        ).onErrorReturnItem(Rating()).firstOrError()
+    } else Single.just(Rating())
 
     fun saveRating(sessionId: Int, rating: Rating) {
         if (authStorage.hasLogin) {
-            sessionRating.child(sessionId.toString()).setValue(rating)
+            sessionRating().child(sessionId.toString()).setValue(rating)
         }
     }
 }

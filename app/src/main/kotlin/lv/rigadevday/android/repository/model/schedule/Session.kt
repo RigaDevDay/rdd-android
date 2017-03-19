@@ -18,7 +18,7 @@ data class Session(
     val image: String = "",
     val complexity: String = ""
 ) {
-    var speakerObjects: MutableList<Speaker> = mutableListOf()
+    var speakerObjects: List<Speaker> = listOf()
     var room: String = ""
 
     var time: String = ""

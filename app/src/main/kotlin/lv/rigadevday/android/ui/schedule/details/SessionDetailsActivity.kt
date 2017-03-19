@@ -2,7 +2,6 @@ package lv.rigadevday.android.ui.schedule.details
 
 import android.app.Activity
 import android.os.Build
-import io.reactivex.Maybe
 import kotlinx.android.synthetic.main.activity_session_details.*
 import lv.rigadevday.android.R
 import lv.rigadevday.android.repository.Repository
@@ -54,12 +53,6 @@ class SessionDetailsActivity : BaseActivity() {
         }
 
         dataFetchSubscription = repo.session(sessionId)
-            .zipWith(getTimeslot(sessionId), biFunction { session, (time, date) ->
-                session.also {
-                    it.time = time
-                    it.date = date
-                }
-            })
             .subscribe(
                 { session ->
                     setToolbarColor(session.color)
@@ -122,16 +115,5 @@ class SessionDetailsActivity : BaseActivity() {
             }
         }
     }
-
-    private fun getTimeslot(sessionId: Int) = repo.schedule().flatMapMaybe { (date, _, timeslots, _) ->
-        timeslots.firstOrNull { it.sessionIds.contains(sessionId) }
-            ?.let { Maybe.just(TimeDataPair(it.startTime, date)) }
-            ?: Maybe.empty()
-    }.firstOrError().toMaybe()
-
-    private data class TimeDataPair(
-        val time: String,
-        val date: String
-    )
 
 }

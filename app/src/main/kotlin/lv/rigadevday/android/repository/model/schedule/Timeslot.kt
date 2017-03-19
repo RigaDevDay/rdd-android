@@ -8,12 +8,10 @@ data class Timeslot(
     val endTime: String = "",
     val sessions: List<List<Int>> = emptyList()
 ) {
-    val sessionIds: List<Int>
-        get() = sessions.flatMap { it }
+    val sessionIds: List<Int> get() = sessions.flatMap { it }
 
-    val formattedStartTime: String
-        get() = if (startTime.length < 5) "0$startTime" else startTime
+    val formattedStartTime: String get() = if (startTime.length < 5) "0$startTime" else startTime
 
-    var sessionObjects = mutableListOf<Session>()
+    var sessionObjects = listOf<Session>()
 
 }

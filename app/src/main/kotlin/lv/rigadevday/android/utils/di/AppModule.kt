@@ -4,6 +4,7 @@ import android.app.NotificationManager
 import android.content.Context
 import dagger.Module
 import dagger.Provides
+import lv.rigadevday.android.repository.DataCache
 import lv.rigadevday.android.repository.Repository
 import lv.rigadevday.android.repository.SessionStorage
 import lv.rigadevday.android.utils.BaseApp
@@ -20,7 +21,7 @@ class AppModule(private val application: BaseApp) {
 
     @Provides
     @Singleton
-    fun provideRepository(authStorage: AuthStorage): Repository = Repository(authStorage)
+    fun provideRepository(authStorage: AuthStorage, data: DataCache): Repository = Repository(authStorage, data)
 
     @Provides
     @Singleton

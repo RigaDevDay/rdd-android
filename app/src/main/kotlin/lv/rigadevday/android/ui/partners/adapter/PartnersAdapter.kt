@@ -7,7 +7,6 @@ import android.view.ViewGroup
 import kotlinx.android.synthetic.main.item_partners_logo.view.*
 import kotlinx.android.synthetic.main.item_partners_title.view.*
 import lv.rigadevday.android.R
-import lv.rigadevday.android.repository.ResourceCache
 import lv.rigadevday.android.repository.model.partners.Logo
 import lv.rigadevday.android.ui.partners.adapter.PartnersItem.PartnerLogo
 import lv.rigadevday.android.ui.partners.adapter.PartnersItem.PartnerTitle
@@ -56,7 +55,7 @@ class PartnersAdapter(val openOnClick: (String) -> Unit) : RecyclerView.Adapter<
 
     private class TitleHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         fun bind(title: String) = with(itemView) {
-            partners_logo_item_title.text = ResourceCache.get(title)
+            partners_logo_item_title.text = title
         }
     }
 

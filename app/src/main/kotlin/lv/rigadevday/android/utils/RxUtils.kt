@@ -1,7 +1,7 @@
 package lv.rigadevday.android.utils
 
 import io.reactivex.Flowable
-import io.reactivex.Maybe
+import io.reactivex.Single
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.functions.BiFunction
 import lv.rigadevday.android.repository.Repository
@@ -11,7 +11,7 @@ fun <T> Iterable<T>.asFlowable(): Flowable<T> = Flowable.fromIterable<T>(this)
 
 fun <T> T.asFlowable(): Flowable<T> = Flowable.just<T>(this)
 
-fun <T> Maybe<T>.bindSchedulers(): Maybe<T> = this
+fun <T> Single<T>.bindSchedulers(): Single<T> = this
     .cache()
     .subscribeOn(io.reactivex.schedulers.Schedulers.io())
     .observeOn(AndroidSchedulers.mainThread())
