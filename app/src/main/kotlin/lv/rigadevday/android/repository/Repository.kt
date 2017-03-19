@@ -14,6 +14,7 @@ import lv.rigadevday.android.repository.model.schedule.Session
 import lv.rigadevday.android.repository.model.schedule.Timeslot
 import lv.rigadevday.android.repository.model.speakers.Speaker
 import lv.rigadevday.android.utils.asFlowable
+import lv.rigadevday.android.utils.auth.AuthStorage
 import lv.rigadevday.android.utils.bindSchedulers
 
 
@@ -21,7 +22,7 @@ import lv.rigadevday.android.utils.bindSchedulers
  * All of the observables provided by repository are non-closable so it is mandatory
  * to unsubscribe any subscription when closing screen to prevent memory leak.
  */
-class Repository {
+class Repository(val authStorage: AuthStorage) {
 
     private val database: DatabaseReference by lazy {
         val ref = FirebaseDatabase.getInstance().reference

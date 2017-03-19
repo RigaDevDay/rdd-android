@@ -8,6 +8,7 @@ import lv.rigadevday.android.repository.Repository
 import lv.rigadevday.android.repository.SessionStorage
 import lv.rigadevday.android.utils.BaseApp
 import lv.rigadevday.android.utils.analytics.Analytics
+import lv.rigadevday.android.utils.auth.AuthStorage
 import javax.inject.Singleton
 
 @Module
@@ -19,7 +20,7 @@ class AppModule(private val application: BaseApp) {
 
     @Provides
     @Singleton
-    fun provideRepository(): Repository = Repository()
+    fun provideRepository(authStorage: AuthStorage): Repository = Repository(authStorage)
 
     @Provides
     @Singleton
