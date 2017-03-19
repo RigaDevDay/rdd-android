@@ -2,7 +2,6 @@ package lv.rigadevday.android.ui.schedule.details
 
 import android.app.Activity
 import io.reactivex.Maybe
-import io.reactivex.functions.BiFunction
 import kotlinx.android.synthetic.main.activity_session_details.*
 import lv.rigadevday.android.R
 import lv.rigadevday.android.repository.Repository
@@ -13,11 +12,8 @@ import lv.rigadevday.android.ui.EXTRA_SESSION_SKIPPABLE
 import lv.rigadevday.android.ui.base.BaseActivity
 import lv.rigadevday.android.ui.openRateSessionActivity
 import lv.rigadevday.android.ui.openSpeakerActivity
-import lv.rigadevday.android.utils.BaseApp
+import lv.rigadevday.android.utils.*
 import lv.rigadevday.android.utils.auth.AuthStorage
-import lv.rigadevday.android.utils.fromHtml
-import lv.rigadevday.android.utils.show
-import lv.rigadevday.android.utils.showMessage
 import javax.inject.Inject
 
 class SessionDetailsActivity : BaseActivity() {
@@ -28,7 +24,7 @@ class SessionDetailsActivity : BaseActivity() {
 
     override val layoutId = R.layout.activity_session_details
 
-    private var sessionId : Int = 0
+    private var sessionId: Int = 0
 
     override fun inject() {
         BaseApp.graph.inject(this)
@@ -55,9 +51,10 @@ class SessionDetailsActivity : BaseActivity() {
 
         dataFetchSubscription = repo.session(sessionId)
             .zipWith(getTimeslot(sessionId), biFunction { session, (time, date) ->
-                session.time = time
-                session.date = date
-                return@biFunction session
+                session.also {
+                    it.time = time
+                    it.date = date
+                }
             })
             .subscribe(
                 { session ->
@@ -76,8 +73,6 @@ class SessionDetailsActivity : BaseActivity() {
                 { session_details_description.showMessage(R.string.error_message) }
             )
     }
-
-    private fun <T, R> biFunction(function: (T, R) -> T): BiFunction<T, R, T> = BiFunction(function)
 
     private fun updateLoginRateButton() {
         if (!authStorage.hasLogin) {

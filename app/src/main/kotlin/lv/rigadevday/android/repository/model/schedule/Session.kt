@@ -22,6 +22,8 @@ data class Session(
     var time: String = ""
     var date: String = ""
 
+    var rating: Rating = Rating()
+
     val complexityAndTags: String
         get() = "$complexity / ${tags.joinToString()}"
 

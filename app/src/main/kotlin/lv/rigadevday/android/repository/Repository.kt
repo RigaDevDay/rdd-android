@@ -6,15 +6,16 @@ import durdinapps.rxfirebase2.DataSnapshotMapper
 import durdinapps.rxfirebase2.RxFirebaseDatabase
 import io.reactivex.Flowable
 import io.reactivex.Maybe
-import io.reactivex.functions.BiFunction
 import lv.rigadevday.android.repository.model.other.Venue
 import lv.rigadevday.android.repository.model.partners.Partners
+import lv.rigadevday.android.repository.model.schedule.Rating
 import lv.rigadevday.android.repository.model.schedule.Schedule
 import lv.rigadevday.android.repository.model.schedule.Session
 import lv.rigadevday.android.repository.model.schedule.Timeslot
 import lv.rigadevday.android.repository.model.speakers.Speaker
 import lv.rigadevday.android.utils.asFlowable
 import lv.rigadevday.android.utils.auth.AuthStorage
+import lv.rigadevday.android.utils.biFunction
 import lv.rigadevday.android.utils.bindSchedulers
 
 
@@ -83,10 +84,6 @@ class Repository(val authStorage: AuthStorage) {
         .flatMapPublisher { it }
         .bindSchedulers()
 
-    private fun biFunction(block: (Session, String) -> Session)
-        = BiFunction<Session, String, Session> { session, title -> block(session, title) }
-
-
     // Helper functions
     private fun <T> getFlowable(table: String, klass: Class<T>) = RxFirebaseDatabase
         .observeSingleValueEvent(
@@ -98,4 +95,20 @@ class Repository(val authStorage: AuthStorage) {
     private fun <T> getSingle(table: String, id: Int, klass: Class<T>) = RxFirebaseDatabase
         .observeSingleValueEvent(database.child(table).child("$id"), klass)
         .firstElement()
+
+    // Read-Write stuff
+    private val sessionRating = database.child("userFeedbacks").child(authStorage.uId)
+
+    fun rating(sessionId: Int): Maybe<Rating> = if (authStorage.hasLogin) {
+        RxFirebaseDatabase.observeSingleValueEvent(
+            sessionRating.child(sessionId.toString()),
+            Rating::class.java
+        ).firstElement().onErrorReturn { Rating() }
+    } else Maybe.just(Rating())
+
+    fun saveRating(sessionId: Int, rating: Rating) {
+        if (authStorage.hasLogin) {
+            sessionRating.child(sessionId.toString()).setValue(rating)
+        }
+    }
 }
