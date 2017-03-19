@@ -95,14 +95,14 @@ class ScheduleViewHolder(itemView: View) : ViewHolder(itemView) {
         schedule_multiple_title.text = session.title
         schedule_multiple_room.text = session.room
 
-        session.speakerObjects.firstOrNull()?.let { speaker ->
+        session.speakerObjects.firstOrNull()?.let { (id, _, name, _, _, photoUrl) ->
             schedule_multiple_strip.setBackgroundColor(session.color)
 
-            schedule_multiple_speaker.text = speaker.name
-            schedule_multiple_speaker.setOnClickListener { contract.openSpeaker(speaker.id) }
+            schedule_multiple_speaker.text = name
+            schedule_multiple_speaker.setOnClickListener { contract.openSpeaker(id) }
 
-            schedule_multiple_speaker_photo.loadCircleAvatar(speaker.photoUrl)
-            schedule_multiple_speaker_photo.setOnClickListener { contract.openSpeaker(speaker.id) }
+            schedule_multiple_speaker_photo.loadCircleAvatar(photoUrl)
+            schedule_multiple_speaker_photo.setOnClickListener { contract.openSpeaker(id) }
         }
     }
 

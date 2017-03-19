@@ -49,7 +49,7 @@ class SplashActivity : AppCompatActivity() {
     }
 
     fun exitApp() = Handler().postDelayed(
-        Runnable { finish() },
+        { finish() },
         TIME_TO_EXIT
     )
 }

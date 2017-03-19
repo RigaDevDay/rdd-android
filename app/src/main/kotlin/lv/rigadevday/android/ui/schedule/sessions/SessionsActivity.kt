@@ -50,14 +50,14 @@ class SessionsActivity : BaseActivity() {
     private val filterDialog: AlertDialog by lazy {
         AlertDialog.Builder(this@SessionsActivity)
             .setTitle(R.string.sessions_filter_title)
-            .setItems(tags) { di, index ->
+            .setItems(tags) { _, index ->
                 if (cachedSessions != null && tags != null) {
                     val tag = tags!![index]
                     listAdapter.data = cachedSessions!!.filter { it.tags.contains(tag) }
                     supportActionBar?.title = tag
                 }
             }
-            .setPositiveButton(R.string.sessions_filter_clear) { di, index ->
+            .setPositiveButton(R.string.sessions_filter_clear) { _, _ ->
                 cachedSessions?.let { listAdapter.data = it }
                 supportActionBar?.setTitle(R.string.sessions_title)
             }
@@ -89,7 +89,7 @@ class SessionsActivity : BaseActivity() {
                     cachedSessions = sessions
                     listAdapter.data = sessions
                 },
-                { error -> list_fragment_recycler.showMessage(R.string.error_message) }
+                { _ -> list_fragment_recycler.showMessage(R.string.error_message) }
             )
     }
 

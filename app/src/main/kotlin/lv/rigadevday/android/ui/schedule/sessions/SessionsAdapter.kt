@@ -40,14 +40,14 @@ class SessionsHolder(view: View) : RecyclerView.ViewHolder(view) {
             session_item_title.text = session.title
             session_item_tags.text = session.complexityAndTags
 
-            session.speakerObjects.firstOrNull()?.let { speaker ->
+            session.speakerObjects.firstOrNull()?.let { (id, _, name, _, _, photoUrl) ->
                 session_item_strip.setBackgroundColor(session.color)
 
-                session_item_speaker.text = speaker.name
-                session_item_speaker.setOnClickListener { contract.openSpeaker(speaker.id) }
+                session_item_speaker.text = name
+                session_item_speaker.setOnClickListener { contract.openSpeaker(id) }
 
-                session_item_photo.loadCircleAvatar(speaker.photoUrl)
-                session_item_photo.setOnClickListener { contract.openSpeaker(speaker.id) }
+                session_item_photo.loadCircleAvatar(photoUrl)
+                session_item_photo.setOnClickListener { contract.openSpeaker(id) }
             }
 
             session_item_card.setOnClickListener { contract.openSession(session.id) }

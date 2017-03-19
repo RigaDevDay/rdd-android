@@ -44,10 +44,10 @@ class SessionDetailsActivity : BaseActivity() {
         }
 
         dataFetchSubscription = repo.session(sessionId)
-            .zipWith(getTimeslot(sessionId), BiFunction { session: Session, timeslot: TimeDataPair ->
-                session.time = timeslot.time
-                session.date = timeslot.date
-                return@BiFunction session
+            .zipWith(getTimeslot(sessionId), biFunction { session, (time, date) ->
+                session.time = time
+                session.date = date
+                return@biFunction session
             })
             .subscribe(
                 { session ->
@@ -66,6 +66,8 @@ class SessionDetailsActivity : BaseActivity() {
                 { session_details_description.showMessage(R.string.error_message) }
             )
     }
+
+    private fun <T, R> biFunction(function: (T, R) -> T): BiFunction<T, R, T> = BiFunction(function)
 
     private fun updateLoginButton() {
         if (!authStorage.hasLogin) {
@@ -100,9 +102,9 @@ class SessionDetailsActivity : BaseActivity() {
         }
     }
 
-    private fun getTimeslot(sessionId: Int) = repo.schedule().flatMapMaybe { day ->
-        day.timeslots.firstOrNull { it.sessionIds.contains(sessionId) }
-            ?.let { Maybe.just(TimeDataPair(it.startTime, day.date)) }
+    private fun getTimeslot(sessionId: Int) = repo.schedule().flatMapMaybe { (date, _, timeslots) ->
+        timeslots.firstOrNull { it.sessionIds.contains(sessionId) }
+            ?.let { Maybe.just(TimeDataPair(it.startTime, date)) }
             ?: Maybe.empty()
     }.firstElement()
 

@@ -32,7 +32,7 @@ class SpeakersAdapter(val onItemClick: (Int) -> Unit) : RecyclerView.Adapter<Spe
 
 class SpeakerViewHolder(view: View) : RecyclerView.ViewHolder(view) {
 
-    fun bind(speaker: Speaker, onClick: (Int) -> Unit) = with(itemView) {
+    fun bind(speaker: Speaker, onClick: (Int) -> Unit): Unit = with(itemView) {
         setOnClickListener { onClick(speaker.id) }
 
         speakers_item_name.text = speaker.name

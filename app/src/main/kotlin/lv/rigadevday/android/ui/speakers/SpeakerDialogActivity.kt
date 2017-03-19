@@ -30,7 +30,7 @@ class SpeakerDialogActivity : BaseActivity() {
 
         repo.speaker(speakerId).subscribe(
             { renderSpeaker(it) },
-            { error ->
+            { _ ->
                 speaker_name.showMessage(R.string.error_message)
                 finish()
             }

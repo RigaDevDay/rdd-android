@@ -13,8 +13,10 @@ import lv.rigadevday.android.ui.openSessionDetailsActivity
 import lv.rigadevday.android.ui.openSessionsActivity
 import lv.rigadevday.android.ui.openSpeakerActivity
 import lv.rigadevday.android.ui.schedule.TimeslotData
+import lv.rigadevday.android.ui.schedule.day.adapter.MultiSessionTimeslot
+import lv.rigadevday.android.ui.schedule.day.adapter.NonSessionTimeslot
 import lv.rigadevday.android.ui.schedule.day.adapter.ScheduleAdapter
-import lv.rigadevday.android.ui.schedule.day.adapter.ScheduleItem.*
+import lv.rigadevday.android.ui.schedule.day.adapter.SingleSessionTimeslot
 import lv.rigadevday.android.ui.schedule.toBundle
 import lv.rigadevday.android.ui.schedule.toIntentData
 import lv.rigadevday.android.utils.BaseApp
