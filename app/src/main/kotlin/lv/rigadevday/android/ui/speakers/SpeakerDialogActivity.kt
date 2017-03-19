@@ -3,18 +3,14 @@ package lv.rigadevday.android.ui.speakers
 import android.widget.ImageView
 import kotlinx.android.synthetic.main.activity_speaker.*
 import lv.rigadevday.android.R
-import lv.rigadevday.android.repository.Repository
 import lv.rigadevday.android.repository.model.other.SocialAccount
 import lv.rigadevday.android.repository.model.speakers.Speaker
 import lv.rigadevday.android.ui.EXTRA_SPEAKER_ID
 import lv.rigadevday.android.ui.base.BaseActivity
 import lv.rigadevday.android.ui.openWeb
 import lv.rigadevday.android.utils.*
-import javax.inject.Inject
 
 class SpeakerDialogActivity : BaseActivity() {
-
-    @Inject lateinit var repo: Repository
 
     override val layoutId = R.layout.activity_speaker
 

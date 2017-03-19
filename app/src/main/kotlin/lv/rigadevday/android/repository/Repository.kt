@@ -2,7 +2,6 @@ package lv.rigadevday.android.repository
 
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
-import durdinapps.rxfirebase2.DataSnapshotMapper
 import durdinapps.rxfirebase2.RxFirebaseDatabase
 import io.reactivex.Flowable
 import io.reactivex.Single
@@ -24,9 +23,7 @@ import lv.rigadevday.android.utils.bindSchedulers
 class Repository(val authStorage: AuthStorage, val dataCache: DataCache) {
 
     private val database: DatabaseReference by lazy {
-        val ref = FirebaseDatabase.getInstance().reference
-        ref.keepSynced(true)
-        return@lazy ref
+        FirebaseDatabase.getInstance().reference.apply { keepSynced(true) }
     }
 
     private fun getCache(predicate: () -> Boolean): Single<DataCache> =
@@ -34,12 +31,11 @@ class Repository(val authStorage: AuthStorage, val dataCache: DataCache) {
         else updateCache()
 
     // Basic requests
-    fun updateCache(): Single<DataCache> = RxFirebaseDatabase.observeSingleValueEvent(
-        database,
-        DataSnapshotMapper.of(Root::class.java)
-    ).firstElement().map {
-        dataCache.update(it)
-    }.toSingle()
+    fun updateCache(): Single<DataCache> = RxFirebaseDatabase
+        .observeValueEvent(database, Root::class.java)
+        .firstElement()
+        .map { dataCache.update(it) }
+        .toSingle()
 
     fun speakers(): Flowable<Speaker> = getCache { dataCache.speakers.isNotEmpty() }
         .flattenAsFlowable { it.speakers.values }

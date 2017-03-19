@@ -2,7 +2,6 @@ package lv.rigadevday.android.ui.schedule.rate
 
 import kotlinx.android.synthetic.main.activity_rate.*
 import lv.rigadevday.android.R
-import lv.rigadevday.android.repository.Repository
 import lv.rigadevday.android.repository.model.schedule.Rating
 import lv.rigadevday.android.ui.EXTRA_SESSION_ID
 import lv.rigadevday.android.ui.base.BaseActivity
@@ -10,11 +9,8 @@ import lv.rigadevday.android.ui.openSpeakerActivity
 import lv.rigadevday.android.utils.BaseApp
 import lv.rigadevday.android.utils.biFunction
 import lv.rigadevday.android.utils.showMessage
-import javax.inject.Inject
 
 class RateActivity : BaseActivity() {
-
-    @Inject lateinit var repo: Repository
 
     override val layoutId = R.layout.activity_rate
 

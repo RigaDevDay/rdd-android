@@ -14,7 +14,7 @@ import javax.inject.Inject
 
 abstract class BaseFragment : Fragment() {
 
-    @Inject lateinit var repo : Repository
+    @Inject lateinit var repo: Repository
 
     abstract val layoutId: Int
 

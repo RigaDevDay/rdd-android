@@ -19,7 +19,6 @@ import javax.inject.Inject
 
 class SessionDetailsActivity : BaseActivity() {
 
-    @Inject lateinit var repo: Repository
     @Inject lateinit var storage: SessionStorage
     @Inject lateinit var authStorage: AuthStorage
 

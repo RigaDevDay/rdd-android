@@ -4,6 +4,7 @@ import io.reactivex.Flowable
 import io.reactivex.Single
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.functions.BiFunction
+import io.reactivex.schedulers.Schedulers
 import lv.rigadevday.android.repository.Repository
 
 
@@ -13,12 +14,12 @@ fun <T> T.asFlowable(): Flowable<T> = Flowable.just<T>(this)
 
 fun <T> Single<T>.bindSchedulers(): Single<T> = this
     .cache()
-    .subscribeOn(io.reactivex.schedulers.Schedulers.io())
+    .subscribeOn(Schedulers.io())
     .observeOn(AndroidSchedulers.mainThread())
 
 fun <T> Flowable<T>.bindSchedulers(): Flowable<T> = this
     .cache()
-    .subscribeOn(io.reactivex.schedulers.Schedulers.io())
+    .subscribeOn(Schedulers.io())
     .observeOn(AndroidSchedulers.mainThread())
 
 fun <T, R> biFunction(function: (T, R) -> T): BiFunction<T, R, T> = BiFunction(function)

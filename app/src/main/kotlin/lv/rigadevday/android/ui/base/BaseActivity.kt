@@ -13,6 +13,7 @@ import com.google.firebase.auth.GoogleAuthProvider
 import io.reactivex.disposables.Disposable
 import kotlinx.android.synthetic.main.part_toolbar.*
 import lv.rigadevday.android.R
+import lv.rigadevday.android.repository.Repository
 import lv.rigadevday.android.utils.auth.AuthWrapper
 import lv.rigadevday.android.utils.auth.LoginContract
 import lv.rigadevday.android.utils.showMessage
@@ -21,6 +22,7 @@ import javax.inject.Inject
 abstract class BaseActivity : AppCompatActivity(), LoginContract {
 
     @Inject lateinit var loginWrapper: AuthWrapper
+    @Inject lateinit var repo: Repository
 
     abstract val layoutId: Int
     open val contentFrameId: Int = -1

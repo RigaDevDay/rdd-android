@@ -8,7 +8,6 @@ import android.view.Menu
 import android.view.MenuItem
 import kotlinx.android.synthetic.main.fragment_list.*
 import lv.rigadevday.android.R
-import lv.rigadevday.android.repository.Repository
 import lv.rigadevday.android.repository.SessionStorage
 import lv.rigadevday.android.repository.model.schedule.Session
 import lv.rigadevday.android.ui.EXTRA_SESSION_DATA
@@ -24,7 +23,6 @@ import javax.inject.Inject
 
 class SessionsActivity : BaseActivity() {
 
-    @Inject lateinit var repo: Repository
     @Inject lateinit var sessions: SessionStorage
 
     override val layoutId = R.layout.fragment_list
