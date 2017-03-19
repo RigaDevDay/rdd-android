@@ -47,7 +47,6 @@
         <activity
             android:name=".ui.schedule.details.SessionDetailsActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/ThemeTranslucent"
             />
 
         <activity

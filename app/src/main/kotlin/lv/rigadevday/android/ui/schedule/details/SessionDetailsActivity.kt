@@ -1,6 +1,7 @@
 package lv.rigadevday.android.ui.schedule.details
 
 import android.app.Activity
+import android.os.Build
 import io.reactivex.Maybe
 import kotlinx.android.synthetic.main.activity_session_details.*
 import lv.rigadevday.android.R
@@ -38,8 +39,10 @@ class SessionDetailsActivity : BaseActivity() {
         sessionId = intent.extras.getInt(EXTRA_SESSION_ID)
         val skippable = intent.extras.getBoolean(EXTRA_SESSION_SKIPPABLE, false)
 
+        setupActionBar("")
+        homeAsUp()
+
         updateLoginRateButton()
-        session_background.setOnClickListener { finish() }
 
         if (skippable) with(session_to_schedule) {
             show()
@@ -58,7 +61,7 @@ class SessionDetailsActivity : BaseActivity() {
             })
             .subscribe(
                 { session ->
-                    session_details_header.setBackgroundColor(session.color)
+                    setToolbarColor(session.color)
                     session_details_title.text = session.title
 
                     val speaker = session.speakerObjects.first()
@@ -70,8 +73,22 @@ class SessionDetailsActivity : BaseActivity() {
 
                     updateBookmarkIcon(session, sessionId)
                 },
-                { session_details_description.showMessage(R.string.error_message) }
+                { e ->
+                    if (e is NoSuchElementException) {
+                        session_details_description.showMessage(R.string.session_cancelled)
+                    } else {
+                        session_details_description.showMessage(R.string.error_message)
+                    }
+                    finish()
+                }
             )
+    }
+
+    private fun setToolbarColor(color: Int) {
+        toolbar.setBackgroundColor(color)
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            window.statusBarColor = color.darker()
+        }
     }
 
     private fun updateLoginRateButton() {
@@ -108,7 +125,7 @@ class SessionDetailsActivity : BaseActivity() {
     private fun getTimeslot(sessionId: Int) = repo.schedule().flatMapMaybe { (date, _, timeslots) ->
         timeslots.firstOrNull { it.sessionIds.contains(sessionId) }
             ?.let { Maybe.just(TimeDataPair(it.startTime, date)) }
-            ?: Maybe.empty()
+            ?: Maybe.error(NoSuchElementException())
     }.firstElement()
 
     private data class TimeDataPair(
