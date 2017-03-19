@@ -32,7 +32,8 @@ class SplashActivity : AppCompatActivity() {
             .concat(listOf(
                 repo.speakers().toList().toCompletable(),
                 repo.sessions().toList().toCompletable(),
-                repo.schedule().toList().toCompletable()
+                repo.schedule().toList().toCompletable(),
+                repo.cacheResources()
             ))
             .timeout(TIME_OUT, TimeUnit.SECONDS, AndroidSchedulers.mainThread())
             .subscribe(

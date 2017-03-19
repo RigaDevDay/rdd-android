@@ -4,6 +4,7 @@ import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import durdinapps.rxfirebase2.DataSnapshotMapper
 import durdinapps.rxfirebase2.RxFirebaseDatabase
+import io.reactivex.Completable
 import io.reactivex.Flowable
 import io.reactivex.Maybe
 import lv.rigadevday.android.repository.model.other.Venue
@@ -44,6 +45,13 @@ class Repository(val authStorage: AuthStorage) {
 
     fun venue(id: Int): Maybe<Venue> = getSingle("venues", id, Venue::class.java).bindSchedulers()
 
+    fun cacheResources(): Completable = RxFirebaseDatabase.observeSingleValueEvent(
+        database.child("resources"),
+        DataSnapshotMapper.mapOf(String::class.java)
+    ).flatMapCompletable {
+        ResourceCache.update(it)
+        Completable.complete()
+    }
 
     // More complicated requests
     fun sessions(): Flowable<Session> = getFlowable("sessions", Session::class.java)
