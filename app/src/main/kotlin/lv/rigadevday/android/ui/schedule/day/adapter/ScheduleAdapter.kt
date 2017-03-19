@@ -10,7 +10,6 @@ import lv.rigadevday.android.R
 import lv.rigadevday.android.repository.model.schedule.Session
 import lv.rigadevday.android.repository.model.schedule.Session.Companion.TBD
 import lv.rigadevday.android.ui.schedule.day.DayScheduleContract
-import lv.rigadevday.android.ui.schedule.day.adapter.ScheduleItem.*
 import lv.rigadevday.android.utils.*
 
 class ScheduleAdapter(val contract: DayScheduleContract) : RecyclerView.Adapter<ScheduleViewHolder>() {
@@ -51,6 +50,7 @@ class ScheduleViewHolder(itemView: View) : ViewHolder(itemView) {
     fun bind(item: NonSessionTimeslot) = with(itemView) {
         schedule_single_time.text = item.timeslot.formattedStartTime
         schedule_single_title.text = item.timeslot.sessionObjects.first().title
+        schedule_single_subtitle.text = item.timeslot.sessionObjects.first().location
     }
 
 
@@ -93,7 +93,7 @@ class ScheduleViewHolder(itemView: View) : ViewHolder(itemView) {
         schedule_multiple_content.show()
 
         schedule_multiple_title.text = session.title
-        schedule_multiple_room.text = session.room
+        schedule_multiple_room.text = session.location
 
         session.speakerObjects.firstOrNull()?.let { (id, _, name, _, _, photoUrl) ->
             schedule_multiple_strip.setBackgroundColor(session.color)

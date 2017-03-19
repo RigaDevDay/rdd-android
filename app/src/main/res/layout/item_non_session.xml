@@ -26,9 +26,10 @@
         app:cardPreventCornerOverlap="true"
         >
 
-        <FrameLayout
+        <LinearLayout
             android:id="@+id/schedule_single_content"
             style="@style/Schedule.Card"
+            android:orientation="vertical"
             >
 
             <TextView
@@ -38,7 +39,15 @@
                 tools:text="Some title"
                 />
 
-        </FrameLayout>
+            <TextView
+                android:id="@+id/schedule_single_subtitle"
+                style="@style/Schedule.Item.Text"
+                android:layout_marginTop="@dimen/base_margin"
+                android:fontFamily="@string/family_light"
+                android:textColor="@color/text_dark_secondary"
+                android:textSize="@dimen/text_size_caption"
+                />
+        </LinearLayout>
 
     </android.support.v7.widget.CardView>
 

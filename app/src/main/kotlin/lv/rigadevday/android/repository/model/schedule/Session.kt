@@ -8,6 +8,8 @@ import lv.rigadevday.android.repository.model.speakers.Speaker
 data class Session(
     val id: Int = -1,
 
+    val auditorium : String = "",
+
     val title: String = "",
     val description: String = "",
     val speakers: List<Int> = emptyList(),
@@ -24,11 +26,11 @@ data class Session(
 
     var rating: Rating = Rating()
 
-    val complexityAndTags: String
-        get() = "$complexity / ${tags.joinToString()}"
+    val complexityAndTags: String get() = "$complexity / ${tags.joinToString()}"
 
-    val color: Int
-        get() = ColorStorage.get(tags.firstOrNull() ?: "")
+    val color: Int get() = ColorStorage.get(tags.firstOrNull() ?: "")
+
+    val location: String get() = auditorium.takeIf(String::isNotEmpty) ?: room
 
     companion object {
         val TBD = Session(
