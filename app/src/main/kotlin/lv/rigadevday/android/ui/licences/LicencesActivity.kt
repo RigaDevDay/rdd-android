@@ -11,7 +11,7 @@ class LicencesActivity : BaseActivity() {
 
     override val layoutId = R.layout.activity_licences
 
-    override fun inject() {}
+    override fun inject() = BaseApp.graph.inject(this)
 
     override fun viewReady() {
         BaseApp.graph.analytics().aboutOpened()
