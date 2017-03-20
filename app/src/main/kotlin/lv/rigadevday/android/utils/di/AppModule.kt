@@ -21,7 +21,11 @@ class AppModule(private val application: BaseApp) {
 
     @Provides
     @Singleton
-    fun provideRepository(authStorage: AuthStorage, data: DataCache): Repository = Repository(authStorage, data)
+    fun provideRepository(
+        context: Context,
+        authStorage: AuthStorage,
+        data: DataCache
+    ): Repository = Repository(context, authStorage, data)
 
     @Provides
     @Singleton

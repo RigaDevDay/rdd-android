@@ -13,12 +13,10 @@ fun <T> Iterable<T>.asFlowable(): Flowable<T> = Flowable.fromIterable<T>(this)
 fun <T> T.asFlowable(): Flowable<T> = Flowable.just<T>(this)
 
 fun <T> Single<T>.bindSchedulers(): Single<T> = this
-    .cache()
     .subscribeOn(Schedulers.io())
     .observeOn(AndroidSchedulers.mainThread())
 
 fun <T> Flowable<T>.bindSchedulers(): Flowable<T> = this
-    .cache()
     .subscribeOn(Schedulers.io())
     .observeOn(AndroidSchedulers.mainThread())
 

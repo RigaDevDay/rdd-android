@@ -11,6 +11,7 @@ import lv.rigadevday.android.utils.showMessage
 class VenuesFragment : BaseFragment() {
 
     override val layoutId = R.layout.fragment_venues_root
+    override val ignoreUiUpdates = true
 
     private lateinit var pageAdapter: ViewPagerAdapter
 

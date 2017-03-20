@@ -20,6 +20,7 @@ import java.util.*
 class MyScheduleFragment : BaseFragment() {
 
     override val layoutId = R.layout.fragment_my_schedule
+    override val ignoreUiUpdates = true
 
     private lateinit var pageAdapter: ViewPagerAdapter
 

@@ -10,7 +10,9 @@ import android.view.MenuItem
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.GoogleAuthProvider
+import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
+import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.part_toolbar.*
 import lv.rigadevday.android.R
 import lv.rigadevday.android.repository.Repository
@@ -26,12 +28,14 @@ abstract class BaseActivity : AppCompatActivity(), LoginContract {
 
     abstract val layoutId: Int
     open val contentFrameId: Int = -1
+    open val ignoreUiUpdates: Boolean = false
 
     abstract fun inject()
 
     abstract fun viewReady()
 
     protected var dataFetchSubscription: Disposable? = null
+    protected var uiUpdateSubscription: Disposable? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -47,6 +51,18 @@ abstract class BaseActivity : AppCompatActivity(), LoginContract {
         super.onResume()
         loginWrapper.contract = this
         refreshLoginState()
+
+        if (!ignoreUiUpdates) {
+            uiUpdateSubscription = repo.cacheUpdated
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe { viewReady() }
+        }
+    }
+
+    override fun onPause() {
+        uiUpdateSubscription?.takeUnless { it.isDisposed }?.dispose()
+        super.onPause()
     }
 
     override fun onStop() {

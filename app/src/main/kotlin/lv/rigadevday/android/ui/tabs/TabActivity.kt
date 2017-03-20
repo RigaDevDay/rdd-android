@@ -24,6 +24,7 @@ class TabActivity : BaseActivity() {
 
     override val layoutId = R.layout.activity_tab
     override val contentFrameId = R.id.tabs_content_container
+    override val ignoreUiUpdates = true
 
     private val scheduleFragment: Fragment by lazy { MyScheduleFragment() }
     private val speakersFragment: Fragment by lazy { SpeakerListFragment() }

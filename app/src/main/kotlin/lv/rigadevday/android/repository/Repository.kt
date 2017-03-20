@@ -1,10 +1,13 @@
 package lv.rigadevday.android.repository
 
+import android.content.Context
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import durdinapps.rxfirebase2.RxFirebaseDatabase
 import io.reactivex.Flowable
 import io.reactivex.Single
+import io.reactivex.subjects.PublishSubject
+import lv.rigadevday.android.R
 import lv.rigadevday.android.repository.model.Root
 import lv.rigadevday.android.repository.model.other.Venue
 import lv.rigadevday.android.repository.model.partners.Partners
@@ -15,15 +18,30 @@ import lv.rigadevday.android.repository.model.schedule.Timeslot
 import lv.rigadevday.android.repository.model.speakers.Speaker
 import lv.rigadevday.android.utils.auth.AuthStorage
 import lv.rigadevday.android.utils.bindSchedulers
+import lv.rigadevday.android.utils.showMessage
+import java.util.concurrent.TimeUnit
 
 /**
  * All of the observables provided by repository are non-closable so it is mandatory
  * to unsubscribe any subscription when closing screen to prevent memory leak.
  */
-class Repository(val authStorage: AuthStorage, val dataCache: DataCache) {
+class Repository(val context: Context, val authStorage: AuthStorage, val dataCache: DataCache) {
 
     private val database: DatabaseReference by lazy {
         FirebaseDatabase.getInstance().reference.apply { keepSynced(true) }
+    }
+
+    val cacheUpdated: PublishSubject<Boolean> by lazy {
+        PublishSubject.create<Boolean>().also { sub ->
+            RxFirebaseDatabase.observeChildEvent(database)
+                .debounce(1, TimeUnit.SECONDS)
+                .skip(1)
+                .flatMapSingle { updateCache() }
+                .subscribe {
+                    sub.onNext(true)
+                    context.showMessage(R.string.data_updated)
+                }
+        }
     }
 
     private fun getCache(predicate: () -> Boolean): Single<DataCache> =
@@ -32,7 +50,7 @@ class Repository(val authStorage: AuthStorage, val dataCache: DataCache) {
 
     // Basic requests
     fun updateCache(): Single<DataCache> = RxFirebaseDatabase
-        .observeValueEvent(database, Root::class.java)
+        .observeSingleValueEvent(database, Root::class.java)
         .firstElement()
         .map { dataCache.update(it) }
         .toSingle()

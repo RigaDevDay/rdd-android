@@ -52,4 +52,6 @@
 
     <string name="error_message">Oops, something went wrong</string>
     <string name="error_connection_message">Please connect to network to download data</string>
+
+    <string name="data_updated">Just got latest updates!</string>
 </resources>
