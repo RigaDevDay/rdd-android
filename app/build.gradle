@@ -15,8 +15,8 @@ android {
         applicationId "lv.rigadevday.android.v2"
         minSdkVersion 19
         targetSdkVersion 25
-        versionCode 8
-        versionName "3.0.2"
+        versionCode 9
+        versionName "3.0.3"
     }
 
     signingConfigs {
