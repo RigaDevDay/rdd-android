@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    style="@style/Schedule.Item"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    >
+
+    <TextView
+        android:id="@+id/schedule_single_time"
+        style="@style/Schedule.Item.Text.Time"
+        android:layout_marginTop="@dimen/half_margin"
+        android:paddingEnd="@dimen/base_margin"
+        android:paddingStart="@dimen/base_margin"
+        tools:text="12:40"
+        />
+
+    <android.support.v7.widget.CardView
+        android:id="@+id/schedule_single_card"
+        style="@style/MatchWrap"
+        android:layout_margin="@dimen/half_margin"
+        android:layout_marginEnd="@dimen/base_margin"
+        android:layout_marginStart="@dimen/base_margin"
+        android:clickable="false"
+        app:cardElevation="@dimen/card_elevation"
+        app:cardPreventCornerOverlap="true"
+        >
+
+        <LinearLayout
+            android:id="@+id/schedule_single_content"
+            style="@style/Schedule.Card"
+            android:orientation="vertical"
+            >
+
+            <TextView
+                android:id="@+id/schedule_single_title"
+                style="@style/Schedule.Item.Text"
+                android:textStyle="italic"
+                tools:text="Some title"
+                />
+
+            <TextView
+                android:id="@+id/schedule_single_subtitle"
+                style="@style/Schedule.Item.Text"
+                android:layout_marginTop="@dimen/base_margin"
+                android:fontFamily="@string/family_light"
+                android:textColor="@color/text_dark_secondary"
+                android:textSize="@dimen/text_size_caption"
+                />
+        </LinearLayout>
+
+    </android.support.v7.widget.CardView>
+
+</LinearLayout>

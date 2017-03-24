@@ -1,37 +1,57 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">RigaDevDay 2016</string>
+    <string name="app_name">RigaDevDays 2017</string>
+    <string name="hashtag">#RigaDevDays</string>
 
-    <string name="hashtag">#RigaDevDay</string>
-
-    <string name="drawer_schedule">Schedule</string>
-    <string name="drawer_speakers">Speakers</string>
-    <string name="drawer_organizers">Organizers</string>
-    <string name="drawer_venues">Venues</string>
-
-    <string name="talk_time_pattern">%1$s - %2$s</string>
-    <string name="talk_speaker_by">by\u0020</string>
-    <string name="talk_speaker_ampersand">\u0020&amp;\u0020</string>
-
-    <string name="speaker_title_company_pattern">%1$s\n at %2$s</string>
-
-    <string name="venue_conference">Conference</string>
-    <string name="venue_workshops">Workshops</string>
-    <string name="venue_afterparty">Afterparty</string>
-    <string name="venue_hotel">Avalon hotel</string>
-
-    <string name="venue_address">Address:</string>
-    <string name="venue_website">Website:</string>
-    <string name="venue_reservation">Reservation:</string>
-    <string name="venue_wifi">Wifi pass:</string>
-
-    <string name="action_twitter">Tweet ar us</string>
+    <string name="action_twitter">Tweet at us</string>
+    <string name="action_login">Log In</string>
+    <string name="action_logout">Log Out</string>
     <string name="action_licences">About &amp; Licences</string>
 
-    <string name="action_favorite">Toggle favorite</string>
+    <string name="tab_schedule">Schedule</string>
+    <string name="tab_speakers">Speakers</string>
+    <string name="tab_venues">Venues</string>
+    <string name="tab_partners">Partners</string>
 
-    <string name="error_message">Oops! Check Internet connection and try again</string>
-    <string name="error_retry">Retry</string>
+    <string name="close_dialog">Hide</string>
 
+    <string name="speaker_company">at %s</string>
+
+    <string name="schedule_title">My schedule</string>
+    <string name="schedule_add">Tap to choose session</string>
+    <string name="schedule_change">Long tap to change it later</string>
+
+    <string name="sessions_title">All sessions</string>
+    <string name="sessions_filter">Filter sessions</string>
+    <string name="sessions_filter_title">Filter by tag</string>
+    <string name="sessions_filter_clear">Clear filter</string>
+    <string name="sessions_bookmark_saved">Bookmark saved</string>
+    <string name="sessions_to_schedule">To schedule</string>
+    <string name="session_login_to_rate">Login to rate</string>
+    <string name="session_rate">Rate session</string>
+    <string name="session_cancelled">This session has been cancelled</string>
+
+    <string name="rate_quality_of_content">Quality of content</string>
+    <string name="rate_speaker_performance">Speaker performance:</string>
+    <string name="rate_your_comment">Your comment</string>
+    <string name="rate_submit">Submit</string>
+
+    <string name="venues_title">Venues</string>
+    <string name="venues_address">Address:</string>
+    <string name="venues_website">Website:</string>
+    <string name="venues_reservation">Reservation:</string>
+
+    <string name="licenses_title">Licenses</string>
+
+    <string name="partners_title">Partners</string>
+
+    <string name="auth_login_success">Login successful</string>
+    <string name="auth_login_failed">Login failed</string>
+    <string name="auth_logout_happened">Logged out</string>
+
+    <string name="error_message">Oops, something went wrong</string>
+    <string name="error_connection_message">Please connect to network to download data</string>
+
+    <string name="data_updated">Just got latest updates!</string>
 </resources>
