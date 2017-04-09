@@ -4,20 +4,17 @@ import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
 import android.support.v7.app.AppCompatActivity
-import io.reactivex.android.schedulers.AndroidSchedulers
 import lv.rigadevday.android.R
 import lv.rigadevday.android.repository.Repository
 import lv.rigadevday.android.ui.tabs.TabActivity
 import lv.rigadevday.android.utils.BaseApp
 import lv.rigadevday.android.utils.showMessage
-import java.util.concurrent.TimeUnit
 import javax.inject.Inject
 
 
 class SplashActivity : AppCompatActivity() {
 
     val TIME_TO_EXIT: Long = 2000
-    val TIME_OUT: Long = 5
 
     @Inject lateinit var repo: Repository
 
@@ -28,12 +25,11 @@ class SplashActivity : AppCompatActivity() {
         // Cache and enrich data into memory
         repo.updateCache()
             .toCompletable()
-            .timeout(TIME_OUT, TimeUnit.SECONDS, AndroidSchedulers.mainThread())
             .subscribe(
                 {
-                    val intent = Intent(this, TabActivity::class.java)
-                    startActivity(intent)
-                    finish()
+                    Intent(this, TabActivity::class.java)
+                        .let { startActivity(it) }
+                        .also { finish() }
                 },
                 {
                     showMessage(R.string.error_connection_message)
