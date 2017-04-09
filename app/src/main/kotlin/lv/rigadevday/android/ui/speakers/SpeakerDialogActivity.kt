@@ -1,5 +1,6 @@
 package lv.rigadevday.android.ui.speakers
 
+import android.text.method.LinkMovementMethod
 import android.widget.ImageView
 import kotlinx.android.synthetic.main.activity_speaker.*
 import lv.rigadevday.android.R
@@ -39,6 +40,7 @@ class SpeakerDialogActivity : BaseActivity() {
         speaker_title.text = speaker.title
         speaker_company.text = getString(R.string.speaker_company, speaker.company)
 
+        speaker_bio.movementMethod = LinkMovementMethod.getInstance()
         speaker_bio.text = speaker.shortBio.fromHtml()
 
         if (speaker.socials.isEmpty()) {

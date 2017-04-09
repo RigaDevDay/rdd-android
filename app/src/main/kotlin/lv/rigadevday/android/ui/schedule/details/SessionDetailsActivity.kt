@@ -2,9 +2,9 @@ package lv.rigadevday.android.ui.schedule.details
 
 import android.app.Activity
 import android.os.Build
+import android.text.method.LinkMovementMethod
 import kotlinx.android.synthetic.main.activity_session_details.*
 import lv.rigadevday.android.R
-import lv.rigadevday.android.repository.Repository
 import lv.rigadevday.android.repository.SessionStorage
 import lv.rigadevday.android.repository.model.schedule.Session
 import lv.rigadevday.android.ui.EXTRA_SESSION_ID
@@ -62,6 +62,7 @@ class SessionDetailsActivity : BaseActivity() {
                     session_details_speaker.setOnClickListener { it.context.openSpeakerActivity(speaker.id) }
 
                     session_details_tags.text = session.complexityAndTags
+                    session_details_description.movementMethod = LinkMovementMethod.getInstance()
                     session_details_description.text = session.description.fromHtml()
 
                     updateBookmarkIcon(session, sessionId)
