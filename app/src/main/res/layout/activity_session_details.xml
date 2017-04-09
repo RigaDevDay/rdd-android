@@ -86,6 +86,7 @@
         <TextView
             android:id="@+id/session_details_description"
             style="@style/Speakers.Text"
+            android:textIsSelectable="true"
             android:padding="@dimen/speaker_content_padding"
             tools:text="Bacon ipsum dolor amet bacon beef pork belly, leberkas biltong bresaola shoulder flank pork chop. Pork capicola t-bone ground round meatloaf fatback. Ham hock kielbasa pork belly, ground round swine brisket cow shank turkey beef pork loin biltong. Bacon ipsum dolor amet bacon beef pork belly, leberkas biltong bresaola shoulder flank pork chop. Pork capicola t-bone ground round meatloaf fatback. Ham hock kielbasa pork belly, ground round swine brisket cow shank turkey beef pork loin biltong. Bacon ipsum dolor amet bacon beef pork belly, leberkas biltong bresaola shoulder flank pork chop. Pork capicola t-bone ground round meatloaf fatback. Ham hock kielbasa pork belly, ground round swine brisket cow shank turkey beef pork loin biltong."
             />
