@@ -14,7 +14,9 @@ fun String.toImageUrl() =
     else "http://rigadevdays.lv${this.replace("..", "")}"
 
 @Suppress("DEPRECATION")
-fun String.fromHtml(): Spanned = Html.fromHtml(this)
+fun String.fromHtml(): Spanned = this
+    .replace("</br>", "<br/>")
+    .let { Html.fromHtml(it) }
 
 fun String.urlEncoded(): String {
     try {
