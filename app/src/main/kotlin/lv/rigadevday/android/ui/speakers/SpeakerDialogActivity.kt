@@ -22,7 +22,6 @@ class SpeakerDialogActivity : BaseActivity() {
         val speakerId = intent.extras.getInt(EXTRA_SPEAKER_ID, -1)
 
         speaker_background.setOnClickListener { finish() }
-        speaker_close.setOnClickListener { finish() }
 
         repo.speaker(speakerId).subscribe(
             { renderSpeaker(it) },

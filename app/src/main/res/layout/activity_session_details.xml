@@ -78,7 +78,7 @@
         android:id="@+id/session_details_content"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_above="@+id/session_to_schedule"
+        android:layout_above="@+id/session_login_rate"
         android:layout_below="@id/toolbar"
         android:layout_marginTop="24dp"
         >
@@ -92,7 +92,7 @@
     </ScrollView>
 
     <Button
-        android:id="@id/session_to_schedule"
+        android:id="@+id/session_to_schedule"
         style="@style/Widget.AppCompat.Button.Borderless.Colored"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -108,7 +108,7 @@
         />
 
     <Button
-        android:id="@+id/session_login_rate"
+        android:id="@id/session_login_rate"
         style="@style/Widget.AppCompat.Button.Borderless.Colored"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
