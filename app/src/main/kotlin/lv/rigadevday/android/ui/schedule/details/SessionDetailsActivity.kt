@@ -19,6 +19,11 @@ import javax.inject.Inject
 
 class SessionDetailsActivity : BaseActivity() {
 
+    companion object {
+        val CONF_START = Date(1494828000000L)
+        val CONF_END = Date(1495051200000L)
+    }
+
     @Inject lateinit var storage: SessionStorage
     @Inject lateinit var authStorage: AuthStorage
 
@@ -94,7 +99,13 @@ class SessionDetailsActivity : BaseActivity() {
         } else {
             session_login_rate.setText(R.string.session_rate)
             session_login_rate.setOnClickListener {
-                openRateSessionActivity(sessionId)
+
+                val now = Date()
+                if (now.after(CONF_START) && now.before(CONF_END)) {
+                    openRateSessionActivity(sessionId)
+                } else {
+                    showMessage(R.string.session_rate_disabled)
+                }
             }
         }
     }

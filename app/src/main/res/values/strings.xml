@@ -30,6 +30,7 @@
     <string name="sessions_to_schedule">To schedule</string>
     <string name="session_login_to_rate">Login to rate</string>
     <string name="session_rate">Rate session</string>
+    <string name="session_rate_disabled">Session feedback is available only during the conference</string>
     <string name="session_cancelled">This session has been cancelled</string>
 
     <string name="rate_quality_of_content">Quality of content</string>
