@@ -1,6 +1,7 @@
 package lv.rigadevday.android.ui.venues
 
 import android.os.Bundle
+import android.text.method.LinkMovementMethod
 import android.view.View
 import kotlinx.android.synthetic.main.fragment_venue.view.*
 import lv.rigadevday.android.R
@@ -45,6 +46,8 @@ class VenueDetailsFragment : BaseFragment() {
         venue_address_button.setOnClickListener { context.openMap(venue.coordinates) }
         venue_web_page_link.text = venue.web
         venue_web_page_link.setOnClickListener { context.openWeb(venue.web) }
+
+        venue_description.movementMethod = LinkMovementMethod.getInstance()
         venue_description.text = venue.description.fromHtml()
     }
 }

@@ -56,6 +56,7 @@
             <TextView
                 android:id="@+id/venue_description"
                 style="@style/Venues.Text"
+                android:textIsSelectable="true"
                 android:layout_marginTop="@dimen/venues_block_spacing_bottom"
                 tools:text="description \na\na\na\na\na\na\na\na\na\na\na"/>
 

@@ -98,9 +98,9 @@ abstract class BaseActivity : AppCompatActivity(), LoginContract {
         }
     }
 
-    fun setFragment(nextFragment: Fragment) {
+    fun Fragment.setAsMain() {
         supportFragmentManager.beginTransaction()
-            .replace(contentFrameId, nextFragment, nextFragment.tag)
+            .replace(contentFrameId, this, this.tag)
             .commit()
     }
 

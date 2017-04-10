@@ -2,9 +2,9 @@ package lv.rigadevday.android.ui.schedule.details
 
 import android.app.Activity
 import android.os.Build
+import android.text.method.LinkMovementMethod
 import kotlinx.android.synthetic.main.activity_session_details.*
 import lv.rigadevday.android.R
-import lv.rigadevday.android.repository.Repository
 import lv.rigadevday.android.repository.SessionStorage
 import lv.rigadevday.android.repository.model.schedule.Session
 import lv.rigadevday.android.ui.EXTRA_SESSION_ID
@@ -18,6 +18,11 @@ import java.util.*
 import javax.inject.Inject
 
 class SessionDetailsActivity : BaseActivity() {
+
+    companion object {
+        val CONF_START = Date(1494828000000L)
+        val CONF_END = Date(1495051200000L)
+    }
 
     @Inject lateinit var storage: SessionStorage
     @Inject lateinit var authStorage: AuthStorage
@@ -62,6 +67,7 @@ class SessionDetailsActivity : BaseActivity() {
                     session_details_speaker.setOnClickListener { it.context.openSpeakerActivity(speaker.id) }
 
                     session_details_tags.text = session.complexityAndTags
+                    session_details_description.movementMethod = LinkMovementMethod.getInstance()
                     session_details_description.text = session.description.fromHtml()
 
                     updateBookmarkIcon(session, sessionId)
@@ -93,7 +99,13 @@ class SessionDetailsActivity : BaseActivity() {
         } else {
             session_login_rate.setText(R.string.session_rate)
             session_login_rate.setOnClickListener {
-                openRateSessionActivity(sessionId)
+
+                val now = Date()
+                if (now.after(CONF_START) && now.before(CONF_END)) {
+                    openRateSessionActivity(sessionId)
+                } else {
+                    showMessage(R.string.session_rate_disabled)
+                }
             }
         }
     }

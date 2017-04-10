@@ -1,5 +1,6 @@
 package lv.rigadevday.android.ui.tabs
 
+import android.content.res.Configuration
 import android.support.design.widget.BottomNavigationView
 import android.support.v4.app.Fragment
 import android.view.Menu
@@ -38,18 +39,24 @@ class TabActivity : BaseActivity() {
     override fun viewReady() {
         tabs_buttons.setOnNavigationItemSelectedListener(tabClickListener)
         tabs_buttons.menu.findItem(R.id.action_tab_schedule).isChecked = true
-        setFragment(scheduleFragment)
+        scheduleFragment.setAsMain()
     }
 
     val tabClickListener = BottomNavigationView.OnNavigationItemSelectedListener { item ->
-        val nextFragment: Fragment = when (item.itemId) {
-            R.id.action_tab_schedule -> scheduleFragment
-            R.id.action_tab_speakers -> speakersFragment
-            R.id.action_tab_venues -> venuesFragment
-            else -> partnersFragment
-        }
-        setFragment(nextFragment)
+        item.itemId.toFragment().setAsMain()
         true
+    }
+
+    override fun onConfigurationChanged(newConfig: Configuration?) {
+        super.onConfigurationChanged(newConfig)
+        tabs_buttons.selectedItemId.toFragment().setAsMain()
+    }
+
+    private fun Int.toFragment(): Fragment = when (this) {
+        R.id.action_tab_schedule -> scheduleFragment
+        R.id.action_tab_speakers -> speakersFragment
+        R.id.action_tab_venues -> venuesFragment
+        else -> partnersFragment
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {

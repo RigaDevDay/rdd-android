@@ -78,7 +78,7 @@
         android:id="@+id/session_details_content"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_above="@+id/session_to_schedule"
+        android:layout_above="@+id/session_login_rate"
         android:layout_below="@id/toolbar"
         android:layout_marginTop="24dp"
         >
@@ -86,13 +86,14 @@
         <TextView
             android:id="@+id/session_details_description"
             style="@style/Speakers.Text"
+            android:textIsSelectable="true"
             android:padding="@dimen/speaker_content_padding"
             tools:text="Bacon ipsum dolor amet bacon beef pork belly, leberkas biltong bresaola shoulder flank pork chop. Pork capicola t-bone ground round meatloaf fatback. Ham hock kielbasa pork belly, ground round swine brisket cow shank turkey beef pork loin biltong. Bacon ipsum dolor amet bacon beef pork belly, leberkas biltong bresaola shoulder flank pork chop. Pork capicola t-bone ground round meatloaf fatback. Ham hock kielbasa pork belly, ground round swine brisket cow shank turkey beef pork loin biltong. Bacon ipsum dolor amet bacon beef pork belly, leberkas biltong bresaola shoulder flank pork chop. Pork capicola t-bone ground round meatloaf fatback. Ham hock kielbasa pork belly, ground round swine brisket cow shank turkey beef pork loin biltong."
             />
     </ScrollView>
 
     <Button
-        android:id="@id/session_to_schedule"
+        android:id="@+id/session_to_schedule"
         style="@style/Widget.AppCompat.Button.Borderless.Colored"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -108,7 +109,7 @@
         />
 
     <Button
-        android:id="@+id/session_login_rate"
+        android:id="@id/session_login_rate"
         style="@style/Widget.AppCompat.Button.Borderless.Colored"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
