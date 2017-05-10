@@ -55,8 +55,12 @@ class ScheduleViewHolder(itemView: View) : ViewHolder(itemView) {
 
 
     fun bind(item: SingleSessionTimeslot, contract: DayScheduleContract) = with(itemView) {
+        itemView.schedule_multiple_time.text = item.timeslot.formattedStartTime
+
         val session = item.timeslot.sessionObjects.firstOrNull { it.speakers.isNotEmpty() } ?: TBD
         populateSessionContent(session, contract)
+        schedule_multiple_card.setOnLongClickListener(null)
+        schedule_multiple_card.setOnClickListener(null)
     }
 
 
