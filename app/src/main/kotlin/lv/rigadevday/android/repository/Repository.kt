@@ -3,9 +3,11 @@ package lv.rigadevday.android.repository
 import android.content.Context
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
+import durdinapps.rxfirebase2.DataSnapshotMapper
 import durdinapps.rxfirebase2.RxFirebaseDatabase
 import io.reactivex.Flowable
 import io.reactivex.Single
+import io.reactivex.functions.Function6
 import io.reactivex.subjects.PublishSubject
 import lv.rigadevday.android.R
 import lv.rigadevday.android.repository.model.Root
@@ -33,7 +35,15 @@ class Repository(val context: Context, val authStorage: AuthStorage, val dataCac
 
     val cacheUpdated: PublishSubject<Boolean> by lazy {
         PublishSubject.create<Boolean>().also { sub ->
-            RxFirebaseDatabase.observeChildEvent(database)
+            Flowable.combineLatest(
+                RxFirebaseDatabase.observeValueEvent(database.child("partners"), DataSnapshotMapper.listOf(Partners::class.java)),
+                RxFirebaseDatabase.observeValueEvent(database.child("venues"), DataSnapshotMapper.listOf(Venue::class.java)),
+                RxFirebaseDatabase.observeValueEvent(database.child("speakers"), DataSnapshotMapper.listOf(Speaker::class.java)),
+                RxFirebaseDatabase.observeValueEvent(database.child("schedule"), DataSnapshotMapper.listOf(Schedule::class.java)),
+                RxFirebaseDatabase.observeValueEvent(database.child("sessions"), DataSnapshotMapper.mapOf(Session::class.java)),
+                RxFirebaseDatabase.observeValueEvent(database.child("resources"), DataSnapshotMapper.mapOf(String::class.java)),
+                Function6 { t1: List<Partners>, t2: List<Venue>, t3: List<Speaker>, t4: List<Schedule>, t5: Map<String, Session>, t6: Map<String, String> -> }
+            )
                 .debounce(1, TimeUnit.SECONDS)
                 .skip(1)
                 .flatMapSingle { updateCache() }
