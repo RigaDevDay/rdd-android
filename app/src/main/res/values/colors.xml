@@ -10,6 +10,8 @@
     <color name="text_dark_primary">#de000000</color>
     <color name="text_dark_secondary">#88000000</color>
 
+    <color name="divider_dark">#11000000</color>
+
     <!-- Theme colors -->
     <color name="color_primary">#00a6ec</color>
     <color name="color_primary_dark">#006590</color>

@@ -8,7 +8,7 @@ import lv.rigadevday.android.repository.model.speakers.Speaker
 data class Session(
     val id: Int = -1,
 
-    val auditorium : String = "",
+    val auditorium: String = "",
 
     val title: String = "",
     val description: String = "",
@@ -31,6 +31,10 @@ data class Session(
     val color: Int get() = ColorStorage.get(tags.firstOrNull() ?: "")
 
     val location: String get() = auditorium.takeIf(String::isNotEmpty) ?: room
+
+    val mainSpeaker get() = speakerObjects.firstOrNull()
+
+    val isSession get() = speakerObjects.isNotEmpty()
 
     companion object {
         val TBD = Session(

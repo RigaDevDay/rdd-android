@@ -1,113 +1,62 @@
 package lv.rigadevday.android.ui.schedule.day.adapter
 
-import android.support.v7.widget.RecyclerView
-import android.support.v7.widget.RecyclerView.ViewHolder
-import android.view.View
 import android.view.ViewGroup
-import kotlinx.android.synthetic.main.item_multiple_session.view.*
-import kotlinx.android.synthetic.main.item_non_session.view.*
 import lv.rigadevday.android.R
-import lv.rigadevday.android.repository.model.schedule.Session
-import lv.rigadevday.android.repository.model.schedule.Session.Companion.TBD
+import lv.rigadevday.android.repository.model.schedule.Timeslot
 import lv.rigadevday.android.ui.schedule.day.DayScheduleContract
-import lv.rigadevday.android.utils.*
+import lv.rigadevday.android.ui.schedule.day.adapter.holders.ScheduleHeaderViewHolder
+import lv.rigadevday.android.ui.schedule.day.adapter.holders.ScheduleNonSessionViewHolder
+import lv.rigadevday.android.ui.schedule.day.adapter.holders.ScheduleSessionViewHolder
+import lv.rigadevday.android.utils.inflate
+import org.zakariya.stickyheaders.SectioningAdapter
 
-class ScheduleAdapter(val contract: DayScheduleContract) : RecyclerView.Adapter<ScheduleViewHolder>() {
+class ScheduleAdapter(private val contract: DayScheduleContract) : SectioningAdapter() {
 
-    var data: List<ScheduleItem> = emptyList()
+    companion object {
+        private const val TYPE_SESSION = 0
+        private const val TYPE_NON_SESSION = 1
+    }
+
+    var data: List<Timeslot> = emptyList()
         set(value) {
             field = value
-            notifyDataSetChanged()
+            notifyAllSectionsDataSetChanged()
         }
 
-    init {
-        BaseApp.graph.inject(this)
+    override fun getNumberOfSections(): Int = data.size
+
+    override fun getNumberOfItemsInSection(sectionIndex: Int): Int = data[sectionIndex].sessionObjects.size
+
+    override fun doesSectionHaveHeader(sectionIndex: Int): Boolean = true
+
+    override fun getSectionItemUserType(sectionIndex: Int, itemIndex: Int): Int = when {
+        data[sectionIndex].sessionObjects[itemIndex].isSession -> TYPE_SESSION
+        else -> TYPE_NON_SESSION
     }
 
-    override fun getItemCount() = data.size
+    override fun getItemCount(): Int = data.map { 1 + it.sessionObjects.size }.sum()
 
-    override fun getItemViewType(position: Int) = when (data[position]) {
-        is NonSessionTimeslot -> R.layout.item_non_session
-        is MultiSessionTimeslot -> R.layout.item_multiple_session
-        is SingleSessionTimeslot -> R.layout.item_multiple_session
+    override fun onCreateItemViewHolder(parent: ViewGroup, viewType: Int) = when (viewType) {
+        TYPE_SESSION -> ScheduleSessionViewHolder(parent.inflate(R.layout.item_schedule_session))
+        else -> ScheduleNonSessionViewHolder(parent.inflate(R.layout.item_schedule_non_session))
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int)
-        = ScheduleViewHolder(parent.inflate(viewType))
-
-    override fun onBindViewHolder(holder: ScheduleViewHolder, position: Int) {
-        val item = data[position]
-        when (item) {
-            is NonSessionTimeslot -> holder.bind(item)
-            is MultiSessionTimeslot -> holder.bind(item, contract)
-            is SingleSessionTimeslot -> holder.bind(item, contract)
-        }
-    }
-}
-
-class ScheduleViewHolder(itemView: View) : ViewHolder(itemView) {
-
-    fun bind(item: NonSessionTimeslot) = with(itemView) {
-        schedule_single_time.text = item.timeslot.formattedStartTime
-        schedule_single_title.text = item.timeslot.sessionObjects.first().title
-        schedule_single_subtitle.text = item.timeslot.sessionObjects.first().location
-    }
+    override fun onCreateHeaderViewHolder(parent: ViewGroup, headerUserType: Int): HeaderViewHolder =
+        ScheduleHeaderViewHolder(parent.inflate(R.layout.item_schedule_header))
 
 
-    fun bind(item: SingleSessionTimeslot, contract: DayScheduleContract) = with(itemView) {
-        itemView.schedule_multiple_time.text = item.timeslot.formattedStartTime
-
-        val session = item.timeslot.sessionObjects.firstOrNull { it.speakers.isNotEmpty() } ?: TBD
-        populateSessionContent(session, contract)
-        schedule_multiple_card.setOnLongClickListener(null)
-        schedule_multiple_card.setOnClickListener(null)
-    }
-
-
-    fun bind(item: MultiSessionTimeslot, contract: DayScheduleContract) = with(itemView) {
-        itemView.schedule_multiple_time.text = item.timeslot.formattedStartTime
-
-        val savedSessionId = contract.getSavedSessionId(item.timeslot)
-
-        if (savedSessionId != null) {
-            val session = item.timeslot.sessionObjects.firstOrNull { savedSessionId == it.id } ?: TBD
-            populateSessionContent(session, contract)
-
-            schedule_multiple_card.setOnLongClickListener {
-                contract.openTimeslot(item.timeslot)
-                true
-            }
-            schedule_multiple_card.setOnClickListener {
-                contract.openSession(savedSessionId)
-            }
-        } else {
-            schedule_multiple_placeholder.show()
-            schedule_multiple_content.hide()
-
-            schedule_multiple_card.setOnLongClickListener(null)
-            schedule_multiple_card.setOnClickListener {
-                contract.openTimeslot(item.timeslot)
-            }
-        }
-
-    }
-
-    private fun View.populateSessionContent(session: Session, contract: DayScheduleContract) {
-        schedule_multiple_placeholder.hide()
-        schedule_multiple_content.show()
-
-        schedule_multiple_title.text = session.title
-        schedule_multiple_room.text = session.location
-
-        session.speakerObjects.firstOrNull()?.let { (id, _, name, _, _, photoUrl) ->
-            schedule_multiple_strip.setBackgroundColor(session.color)
-
-            schedule_multiple_speaker.text = name
-            schedule_multiple_speaker.setOnClickListener { contract.openSpeaker(id) }
-
-            schedule_multiple_speaker_photo.loadCircleAvatar(photoUrl)
-            schedule_multiple_speaker_photo.setOnClickListener { contract.openSpeaker(id) }
+    override fun onBindItemViewHolder(viewHolder: ItemViewHolder, sectionIndex: Int, itemIndex: Int, itemUserType: Int) {
+        val item = data[sectionIndex].sessionObjects[itemIndex]
+        when (itemUserType) {
+            TYPE_SESSION -> viewHolder.let { it as ScheduleSessionViewHolder }.bind(item, contract, showDivider(sectionIndex, itemIndex))
+            else -> viewHolder.let { it as ScheduleNonSessionViewHolder }.bind(item)
         }
     }
 
+    override fun onBindHeaderViewHolder(viewHolder: HeaderViewHolder, sectionIndex: Int, headerUserType: Int) {
+        viewHolder.let { it as ScheduleHeaderViewHolder }.bind(data[sectionIndex])
+    }
+
+    private fun showDivider(sectionIndex: Int, itemIndex: Int): Boolean =
+        data[sectionIndex].sessionObjects.lastIndex != itemIndex
 }

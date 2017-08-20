@@ -55,4 +55,6 @@
     <string name="error_connection_message">Please connect to network to download data</string>
 
     <string name="data_updated">Just got latest updates!</string>
+
+    <string name="speaker_photo">Speaker\'s photo</string>
 </resources>

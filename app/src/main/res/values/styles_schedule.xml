@@ -2,19 +2,17 @@
 <resources>
 
     <style name="Schedule.Item" parent="MatchWrap">
-        <item name="android:padding">@dimen/base_margin</item>
+        <item name="android:paddingStart">@dimen/base_margin</item>
+        <item name="android:paddingEnd">@dimen/base_margin</item>
+        <item name="android:paddingTop">@dimen/half_margin</item>
+        <item name="android:paddingBottom">@dimen/half_margin</item>
         <item name="android:orientation">horizontal</item>
-    </style>
-
-    <style name="Schedule.Card" parent="MatchWrap">
-        <item name="android:padding">@dimen/schedule_card_padding</item>
-        <item name="android:orientation">vertical</item>
     </style>
 
     <style name="Schedule.Item.Text.Time" parent="Wrap">
         <item name="android:textColor">@color/text_dark_secondary</item>
         <item name="android:fontFamily">@string/family_condensed</item>
-        <item name="android:textSize">@dimen/text_size_caption</item>
+        <item name="android:textSize">@dimen/text_size_title</item>
         <item name="android:textStyle">bold</item>
     </style>
 

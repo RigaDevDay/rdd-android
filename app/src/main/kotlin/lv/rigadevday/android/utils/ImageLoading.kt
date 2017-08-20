@@ -4,11 +4,11 @@ import android.graphics.drawable.Drawable
 import android.widget.ImageView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
+import com.bumptech.glide.load.resource.bitmap.CircleCrop
 import com.bumptech.glide.request.RequestOptions
 import com.bumptech.glide.request.target.Target
 import com.bumptech.glide.request.target.ViewTarget
 import com.bumptech.glide.request.transition.Transition
-import jp.wasabeef.glide.transformations.CropCircleTransformation
 import lv.rigadevday.android.R
 
 private fun ImageView.getFetcherInstance(url: String) = Glide
@@ -20,7 +20,7 @@ private val defaultOptions get() = RequestOptions().diskCacheStrategy(DiskCacheS
 fun ImageView.loadCircleAvatar(url: String): Target<Drawable> = getFetcherInstance(url)
     .apply(defaultOptions
         .centerCrop()
-        .transform(CropCircleTransformation(this.context))
+        .transform(CircleCrop())
     )
     .into(this)
 
