@@ -24,11 +24,11 @@ class CustomMessagingService : FirebaseMessagingService() {
     override fun onMessageReceived(remoteMessage: RemoteMessage) {
         notifications.notify(
             Random().nextInt(),
-            NotificationCompat.Builder(this)
+            NotificationCompat.Builder(this, this.packageName)
                 .setContentTitle(remoteMessage.notification.title)
                 .setContentText(remoteMessage.notification.body)
                 .setSmallIcon(R.drawable.ic_notification)
-                .setColor(R.color.color_accent)
+                .setColorized(false)
                 .setAutoCancel(true)
                 .build()
         )
