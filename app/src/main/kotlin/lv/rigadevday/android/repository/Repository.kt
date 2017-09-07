@@ -27,7 +27,11 @@ import java.util.concurrent.TimeUnit
  * All of the observables provided by repository are non-closable so it is mandatory
  * to unsubscribe any subscription when closing screen to prevent memory leak.
  */
-class Repository(val context: Context, val authStorage: AuthStorage, val dataCache: DataCache) {
+class Repository(
+    private val context: Context,
+    private val authStorage: AuthStorage,
+    private val dataCache: DataCache
+) {
 
     private val database: DatabaseReference by lazy {
         FirebaseDatabase.getInstance().reference.apply { keepSynced(true) }
@@ -101,6 +105,8 @@ class Repository(val context: Context, val authStorage: AuthStorage, val dataCac
         .bindSchedulers()
 
     // Read-Write stuff
+
+    // Ratings
     private fun sessionRating() = database.child("userFeedbacks").child(authStorage.uId)
 
     fun rating(sessionId: Int): Single<Rating> = if (authStorage.hasLogin) {
@@ -113,6 +119,32 @@ class Repository(val context: Context, val authStorage: AuthStorage, val dataCac
     fun saveRating(sessionId: Int, rating: Rating) {
         if (authStorage.hasLogin) {
             sessionRating().child(sessionId.toString()).setValue(rating)
+        }
+    }
+
+    // Bookmarks
+    private fun bookmarkedSessions() = database.child("userSessions").child(authStorage.uId)
+
+    fun isSessionBookmarked(sessionId: Int): Single<Boolean> = if (authStorage.hasLogin) {
+        RxFirebaseDatabase.observeSingleValueEvent(
+            bookmarkedSessions(),
+            DataSnapshotMapper.mapOf(Boolean::class.java)
+        )
+            .map { it.keys.contains(sessionId.toString()) }
+            .toSingle(false)
+    } else {
+        Single.just(false)
+    }
+
+    fun bookmarkSession(sessionId: Int) {
+        if (authStorage.hasLogin) {
+            bookmarkedSessions().child(sessionId.toString()).setValue(true)
+        }
+    }
+
+    fun removeBookmark(sessionId: Int) {
+        if (authStorage.hasLogin) {
+            bookmarkedSessions().child(sessionId.toString()).removeValue()
         }
     }
 }

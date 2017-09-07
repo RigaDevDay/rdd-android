@@ -1,19 +1,20 @@
 package lv.rigadevday.android.ui.schedule.details
 
-import android.app.Activity
 import android.os.Build
 import android.text.method.LinkMovementMethod
 import kotlinx.android.synthetic.main.activity_session_details.*
 import lv.rigadevday.android.R
-import lv.rigadevday.android.repository.SessionStorage
-import lv.rigadevday.android.repository.model.schedule.Session
 import lv.rigadevday.android.ui.EXTRA_SESSION_ID
-import lv.rigadevday.android.ui.EXTRA_SESSION_SKIPPABLE
 import lv.rigadevday.android.ui.base.BaseActivity
 import lv.rigadevday.android.ui.openRateSessionActivity
 import lv.rigadevday.android.ui.openSpeakerActivity
-import lv.rigadevday.android.utils.*
+import lv.rigadevday.android.utils.BaseApp
 import lv.rigadevday.android.utils.auth.AuthStorage
+import lv.rigadevday.android.utils.bindSchedulers
+import lv.rigadevday.android.utils.darker
+import lv.rigadevday.android.utils.fromHtml
+import lv.rigadevday.android.utils.hide
+import lv.rigadevday.android.utils.showMessage
 import java.util.*
 import javax.inject.Inject
 
@@ -24,7 +25,6 @@ class SessionDetailsActivity : BaseActivity() {
         val CONF_END = Date(1495051200000L)
     }
 
-    @Inject lateinit var storage: SessionStorage
     @Inject lateinit var authStorage: AuthStorage
 
     override val layoutId = R.layout.activity_session_details
@@ -37,24 +37,16 @@ class SessionDetailsActivity : BaseActivity() {
 
     override fun refreshLoginState() {
         updateLoginRateButton()
+        updateBookmarkIcon()
     }
 
     override fun viewReady() {
         sessionId = intent.extras.getInt(EXTRA_SESSION_ID)
-        val skippable = intent.extras.getBoolean(EXTRA_SESSION_SKIPPABLE, false)
 
         setupActionBar("")
         homeAsUp()
 
         updateLoginRateButton()
-
-        if (skippable) with(session_to_schedule) {
-            show()
-            setOnClickListener {
-                setResult(Activity.RESULT_FIRST_USER)
-                finish()
-            }
-        }
 
         dataFetchSubscription = repo.session(sessionId)
             .subscribe(
@@ -70,7 +62,7 @@ class SessionDetailsActivity : BaseActivity() {
                     session_details_description.movementMethod = LinkMovementMethod.getInstance()
                     session_details_description.text = session.description.fromHtml()
 
-                    updateBookmarkIcon(session, sessionId)
+                    updateBookmarkIcon()
                 },
                 {
                     if (it is NoSuchElementException) {
@@ -110,20 +102,40 @@ class SessionDetailsActivity : BaseActivity() {
         }
     }
 
-    private fun updateBookmarkIcon(session: Session, sessionId: Int) {
-        val savedSessionId = storage.getSessionId(session.time, session.date)
-        if (savedSessionId != null && savedSessionId == sessionId) {
-            session_details_bookmark.setImageResource(R.drawable.vector_remove_bookmark)
-            session_details_bookmark.setOnClickListener {
-                storage.removeSession(session.time, session.date)
-                updateBookmarkIcon(session, sessionId)
+    private fun updateBookmarkIcon() {
+        if (!authStorage.hasLogin) {
+            session_details_bookmark.apply {
+                setImageResource(R.drawable.vector_login)
+                setOnClickListener {
+                    loginWrapper.logIn(this@SessionDetailsActivity)
+                    updateBookmarkIcon()
+                    updateLoginRateButton()
+                }
             }
         } else {
-            session_details_bookmark.setImageResource(R.drawable.vector_add_bookmark)
-            session_details_bookmark.setOnClickListener {
-                storage.saveSession(session.time, session.date, sessionId)
-                updateBookmarkIcon(session, sessionId)
-            }
+            repo.isSessionBookmarked(sessionId)
+                .bindSchedulers()
+                .subscribe(
+                    { isBookmarked ->
+                        session_details_bookmark.apply {
+                            if (isBookmarked) {
+                                setImageResource(R.drawable.vector_remove_bookmark)
+                                setOnClickListener {
+                                    repo.removeBookmark(sessionId)
+                                    updateBookmarkIcon()
+                                }
+                            } else {
+                                setImageResource(R.drawable.vector_add_bookmark)
+                                setOnClickListener {
+                                    repo.bookmarkSession(sessionId)
+                                    updateBookmarkIcon()
+                                }
+                            }
+
+                        }
+                    },
+                    { session_details_bookmark.hide() }
+                )
         }
     }
 

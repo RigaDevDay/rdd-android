@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.view.View
 import kotlinx.android.synthetic.main.fragment_day_schedule.view.*
 import lv.rigadevday.android.R
-import lv.rigadevday.android.repository.SessionStorage
 import lv.rigadevday.android.ui.EXTRA_SESSION_DATA
 import lv.rigadevday.android.ui.base.BaseFragment
 import lv.rigadevday.android.ui.openSessionDetailsActivity
@@ -16,7 +15,6 @@ import lv.rigadevday.android.ui.schedule.toIntentData
 import lv.rigadevday.android.utils.BaseApp
 import lv.rigadevday.android.utils.showMessage
 import org.zakariya.stickyheaders.StickyHeaderLayoutManager
-import javax.inject.Inject
 
 class DayScheduleFragment : BaseFragment(), DayScheduleContract {
 
@@ -27,8 +25,6 @@ class DayScheduleFragment : BaseFragment(), DayScheduleContract {
             }
         }
     }
-
-    @Inject lateinit var storage: SessionStorage
 
     override val layoutId = R.layout.fragment_day_schedule
 

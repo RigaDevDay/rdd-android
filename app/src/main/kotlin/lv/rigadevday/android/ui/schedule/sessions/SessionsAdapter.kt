@@ -11,7 +11,7 @@ import lv.rigadevday.android.utils.inflate
 import lv.rigadevday.android.utils.loadCircleAvatar
 import lv.rigadevday.android.utils.show
 
-class SessionsAdapter(val contract: SessionContract) : RecyclerView.Adapter<SessionsHolder>() {
+class SessionsAdapter(private val contract: SessionContract) : RecyclerView.Adapter<SessionsHolder>() {
 
     var data: List<Session> = emptyList()
         set(value) {

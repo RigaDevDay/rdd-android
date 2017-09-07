@@ -8,32 +8,21 @@ import android.view.Menu
 import android.view.MenuItem
 import kotlinx.android.synthetic.main.fragment_list.*
 import lv.rigadevday.android.R
-import lv.rigadevday.android.repository.SessionStorage
 import lv.rigadevday.android.repository.model.schedule.Session
-import lv.rigadevday.android.ui.EXTRA_SESSION_DATA
 import lv.rigadevday.android.ui.base.BaseActivity
 import lv.rigadevday.android.ui.openSessionDetailsActivity
-import lv.rigadevday.android.ui.openSessionDetailsActivityForResult
 import lv.rigadevday.android.ui.openSpeakerActivity
-import lv.rigadevday.android.ui.schedule.TimeslotData
-import lv.rigadevday.android.ui.schedule.toIntentData
 import lv.rigadevday.android.utils.BaseApp
 import lv.rigadevday.android.utils.showMessage
-import javax.inject.Inject
 
 class SessionsActivity : BaseActivity() {
-
-    @Inject lateinit var sessions: SessionStorage
 
     override val layoutId = R.layout.fragment_list
 
     private val listAdapter: SessionsAdapter = SessionsAdapter(object : SessionContract {
         override fun openSession(id: Int) {
-            if (intentData == null) openSessionDetailsActivity(id)
-            else openSessionDetailsActivityForResult(id)
+            openSessionDetailsActivity(id)
         }
-
-        override fun isSessionBookmarked(id: Int) = sessions.isBookmarked(id)
 
         override fun openSpeaker(id: Int) {
             openSpeakerActivity(id)
@@ -41,7 +30,6 @@ class SessionsActivity : BaseActivity() {
 
     })
 
-    private var intentData: TimeslotData? = null
     private var tags: Array<String>? = null
     private var cachedSessions: List<Session>? = null
 
@@ -67,9 +55,7 @@ class SessionsActivity : BaseActivity() {
     }
 
     override fun viewReady() {
-        intentData = intent.extras?.getBundle(EXTRA_SESSION_DATA)?.toIntentData()
-
-        setupActionBar(intentData?.formattedTitle() ?: getString(R.string.sessions_title))
+        setupActionBar(getString(R.string.sessions_title))
         homeAsUp()
 
         list_fragment_recycler.run {
@@ -79,7 +65,6 @@ class SessionsActivity : BaseActivity() {
 
         dataFetchSubscription = repo.sessions()
             .filter { it.speakers.isNotEmpty() }
-            .filter { intentData?.ids?.contains(it.id) ?: true }
             .toList()
             .subscribe(
                 { sessions ->
@@ -102,9 +87,7 @@ class SessionsActivity : BaseActivity() {
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
-        if (intentData == null) {
-            menuInflater.inflate(R.menu.menu_sessions, menu)
-        }
+        menuInflater.inflate(R.menu.menu_sessions, menu)
         return super.onCreateOptionsMenu(menu)
     }
 
@@ -120,8 +103,5 @@ class SessionsActivity : BaseActivity() {
 
 interface SessionContract {
     fun openSession(id: Int)
-    fun isSessionBookmarked(id: Int): Boolean
     fun openSpeaker(id: Int)
 }
-
-private fun TimeslotData.formattedTitle() = "$readableDate - $time"
