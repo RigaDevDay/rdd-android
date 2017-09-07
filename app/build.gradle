@@ -64,7 +64,7 @@ dependencies {
 
     implementation "com.google.firebase:firebase-core:${versions.firebase}"
     implementation "com.google.firebase:firebase-database:${versions.firebase}"
-    implementation "com.google.firebase:firebase-crash:${versions.firebase}"
+   // implementation "com.google.firebase:firebase-crash:${versions.firebase}"
     implementation "com.google.firebase:firebase-messaging:${versions.firebase}"
     implementation "com.google.firebase:firebase-auth:${versions.firebase}"
 
