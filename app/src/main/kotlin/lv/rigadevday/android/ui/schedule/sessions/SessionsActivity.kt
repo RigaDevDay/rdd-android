@@ -1,7 +1,5 @@
 package lv.rigadevday.android.ui.schedule.sessions
 
-import android.app.Activity
-import android.content.Intent
 import android.support.v7.app.AlertDialog
 import android.support.v7.widget.LinearLayoutManager
 import android.view.Menu
@@ -13,6 +11,7 @@ import lv.rigadevday.android.ui.base.BaseActivity
 import lv.rigadevday.android.ui.openSessionDetailsActivity
 import lv.rigadevday.android.ui.openSpeakerActivity
 import lv.rigadevday.android.utils.BaseApp
+import lv.rigadevday.android.utils.bindSchedulers
 import lv.rigadevday.android.utils.showMessage
 
 class SessionsActivity : BaseActivity() {
@@ -27,9 +26,9 @@ class SessionsActivity : BaseActivity() {
         override fun openSpeaker(id: Int) {
             openSpeakerActivity(id)
         }
-
     })
 
+    private lateinit var bookmarkedTag: String
     private var tags: Array<String>? = null
     private var cachedSessions: List<Session>? = null
 
@@ -37,11 +36,15 @@ class SessionsActivity : BaseActivity() {
         AlertDialog.Builder(this@SessionsActivity)
             .setTitle(R.string.sessions_filter_title)
             .setItems(tags) { _, index ->
-                if (cachedSessions != null && tags != null) {
-                    val tag = tags!![index]
-                    listAdapter.data = cachedSessions!!.filter { it.tags.contains(tag) }
-                    supportActionBar?.title = tag
+                val tag = tags?.get(index) ?: bookmarkedTag
+
+                if (tag == bookmarkedTag) {
+                    filterBookmarked()
+                } else {
+                    filerByTag(tag)
                 }
+                supportActionBar?.title = tag
+
             }
             .setPositiveButton(R.string.sessions_filter_clear) { _, _ ->
                 cachedSessions?.let { listAdapter.data = it }
@@ -50,11 +53,30 @@ class SessionsActivity : BaseActivity() {
             .create()
     }
 
+    private fun filerByTag(tag: String) {
+        cachedSessions?.let { listAdapter.data = it.filter { it.tags.contains(tag) } }
+    }
+
+    private fun filterBookmarked() {
+        repo.bookmarkedIds()
+            .bindSchedulers()
+            .subscribe(
+                { bookmarkedIds ->
+                    cachedSessions?.let { sessions ->
+                        listAdapter.data = sessions.filter { bookmarkedIds.contains(it.id.toString()) }
+                    }
+                },
+                { cachedSessions?.let { listAdapter.data = emptyList() } }
+            )
+    }
+
     override fun inject() {
         BaseApp.graph.inject(this)
     }
 
     override fun viewReady() {
+        bookmarkedTag = getString(R.string.schedule_filter_bookmarked)
+
         setupActionBar(getString(R.string.sessions_title))
         homeAsUp()
 
@@ -68,7 +90,7 @@ class SessionsActivity : BaseActivity() {
             .toList()
             .subscribe(
                 { sessions ->
-                    tags = sessions.flatMap { it.tags }.distinct().toTypedArray()
+                    tags = prependBokmarked(sessions)
                     cachedSessions = sessions
                     listAdapter.data = sessions
                 },
@@ -76,10 +98,9 @@ class SessionsActivity : BaseActivity() {
             )
     }
 
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        if (resultCode == Activity.RESULT_FIRST_USER) finish()
-        super.onActivityResult(requestCode, resultCode, data)
-    }
+    private fun prependBokmarked(sessions: List<Session>) =
+        arrayOf(bookmarkedTag) + sessions.flatMap { it.tags }.distinct().toTypedArray()
+
 
     override fun onResume() {
         super.onResume()

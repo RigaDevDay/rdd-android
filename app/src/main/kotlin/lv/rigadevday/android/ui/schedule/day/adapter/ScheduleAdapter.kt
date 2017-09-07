@@ -34,8 +34,6 @@ class ScheduleAdapter(private val contract: DayScheduleContract) : SectioningAda
         else -> TYPE_NON_SESSION
     }
 
-    override fun getItemCount(): Int = data.map { 1 + it.sessionObjects.size }.sum()
-
     override fun onCreateItemViewHolder(parent: ViewGroup, viewType: Int) = when (viewType) {
         TYPE_SESSION -> ScheduleSessionViewHolder(parent.inflate(R.layout.item_schedule_session))
         else -> ScheduleNonSessionViewHolder(parent.inflate(R.layout.item_schedule_non_session))

@@ -26,6 +26,7 @@
     <string name="sessions_filter">Filter sessions</string>
     <string name="sessions_filter_title">Filter by tag</string>
     <string name="sessions_filter_clear">Clear filter</string>
+    <string name="schedule_filter_bookmarked">Bookmarked</string>
     <string name="sessions_bookmark_saved">Bookmark saved</string>
     <string name="sessions_to_schedule">To schedule</string>
     <string name="session_login_to_rate">Login to rate</string>

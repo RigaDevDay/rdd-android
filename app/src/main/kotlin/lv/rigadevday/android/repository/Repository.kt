@@ -125,16 +125,17 @@ class Repository(
     // Bookmarks
     private fun bookmarkedSessions() = database.child("userSessions").child(authStorage.uId)
 
-    fun isSessionBookmarked(sessionId: Int): Single<Boolean> = if (authStorage.hasLogin) {
+    fun bookmarkedIds(): Single<List<String>> = if (authStorage.hasLogin) {
         RxFirebaseDatabase.observeSingleValueEvent(
             bookmarkedSessions(),
             DataSnapshotMapper.mapOf(Boolean::class.java)
-        )
-            .map { it.keys.contains(sessionId.toString()) }
-            .toSingle(false)
+        ).map { it.keys.toList() }.toSingle(emptyList())
     } else {
-        Single.just(false)
+        Single.just(emptyList())
     }
+
+    fun isSessionBookmarked(sessionId: Int): Single<Boolean> = bookmarkedIds()
+        .map { it.contains(sessionId.toString()) }
 
     fun bookmarkSession(sessionId: Int) {
         if (authStorage.hasLogin) {
