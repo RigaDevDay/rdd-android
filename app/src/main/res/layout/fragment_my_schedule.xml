@@ -16,7 +16,8 @@
         <android.support.design.widget.TabLayout
             android:id="@+id/schedule_tabs"
             style="@style/MatchWrap"
-            app:tabGravity="fill"
+            app:tabGravity="center"
+            app:tabMode="scrollable"
             app:tabIndicatorColor="@color/text_light_primary"
             app:tabSelectedTextColor="@color/text_light_primary"
             app:tabTextColor="@color/text_light_secondary"

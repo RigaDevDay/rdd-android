@@ -12,6 +12,7 @@ import lv.rigadevday.android.ui.partners.adapter.PartnersItem.PartnerLogo
 import lv.rigadevday.android.ui.partners.adapter.PartnersItem.PartnerTitle
 import lv.rigadevday.android.utils.hide
 import lv.rigadevday.android.utils.loadLogo
+import lv.rigadevday.android.utils.show
 
 class PartnersAdapter(val openOnClick: (String) -> Unit) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
@@ -44,10 +45,11 @@ class PartnersAdapter(val openOnClick: (String) -> Unit) : RecyclerView.Adapter<
         }
     }
 
-
     private class LogoHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         fun bind(logo: Logo, openOnClick: (String) -> Unit) = with(itemView) {
+            partners_logo_item_image.setImageDrawable(null)
             partners_logo_item_image.loadLogo(logo.logoUrl) { partners_logo_item_name.hide() }
+            partners_logo_item_name.show()
             partners_logo_item_name.text = logo.name
             setOnClickListener { openOnClick(logo.url) }
         }
