@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">RigaDevDays 2017</string>
-    <string name="hashtag">#RigaDevDays</string>
+    <string name="app_name">DevFest Baltics</string>
+    <string name="hashtag">#DevFestBaltics</string>
 
     <string name="action_twitter">Tweet at us</string>
     <string name="action_login">Log In</string>
