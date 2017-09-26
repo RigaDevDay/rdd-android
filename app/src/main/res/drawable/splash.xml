@@ -8,7 +8,8 @@
     <item
         android:left="32dp"
         android:right="32dp"
-        android:top="120dp">
+        android:top="120dp"
+        android:bottom="320dp">
         <bitmap
             android:gravity="top"
             android:src="@drawable/logo_icon"/>
