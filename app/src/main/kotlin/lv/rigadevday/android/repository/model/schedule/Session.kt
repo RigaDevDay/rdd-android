@@ -7,7 +7,7 @@ import lv.rigadevday.android.repository.model.speakers.Speaker
 data class Session(
     val id: Int = -1,
 
-    private val auditorium: String = "",
+    val auditorium: String = "",
 
     val title: String = "",
     val description: String = "",
@@ -15,7 +15,7 @@ data class Session(
     val tags: List<String> = emptyList(),
 
     val image: String = "",
-    private val complexity: String = ""
+    val complexity: String = ""
 ) {
     var speakerObjects: List<Speaker> = listOf()
     var room: String = ""
