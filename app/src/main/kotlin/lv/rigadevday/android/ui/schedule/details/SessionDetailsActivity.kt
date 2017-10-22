@@ -1,6 +1,5 @@
 package lv.rigadevday.android.ui.schedule.details
 
-import android.os.Build
 import android.text.method.LinkMovementMethod
 import kotlinx.android.synthetic.main.activity_session_details.*
 import lv.rigadevday.android.R
@@ -11,7 +10,6 @@ import lv.rigadevday.android.ui.openSpeakerActivity
 import lv.rigadevday.android.utils.BaseApp
 import lv.rigadevday.android.utils.auth.AuthStorage
 import lv.rigadevday.android.utils.bindSchedulers
-import lv.rigadevday.android.utils.darker
 import lv.rigadevday.android.utils.fromHtml
 import lv.rigadevday.android.utils.hide
 import lv.rigadevday.android.utils.showMessage
@@ -51,7 +49,6 @@ class SessionDetailsActivity : BaseActivity() {
         dataFetchSubscription = repo.session(sessionId)
             .subscribe(
                 { session ->
-                    setToolbarColor(session.color)
                     session_details_title.text = session.title
 
                     val speaker = session.speakerObjects.first()
@@ -73,13 +70,6 @@ class SessionDetailsActivity : BaseActivity() {
                     finish()
                 }
             )
-    }
-
-    private fun setToolbarColor(color: Int) {
-        toolbar.setBackgroundColor(color)
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            window.statusBarColor = color.darker()
-        }
     }
 
     private fun updateLoginRateButton() {
