@@ -113,7 +113,7 @@ class Repository(
         RxFirebaseDatabase.observeSingleValueEvent(
             sessionRating().child(sessionId.toString()),
             Rating::class.java
-        ).toSingle(Rating())
+        ).toSingle(Rating()).onErrorResumeNext(Single.just(Rating()))
     } else Single.just(Rating())
 
     fun saveRating(sessionId: Int, rating: Rating) {

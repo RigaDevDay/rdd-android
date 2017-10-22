@@ -67,6 +67,7 @@ dependencies {
    // implementation "com.google.firebase:firebase-crash:${versions.firebase}"
     implementation "com.google.firebase:firebase-messaging:${versions.firebase}"
     implementation "com.google.firebase:firebase-auth:${versions.firebase}"
+    implementation "com.google.firebase:firebase-config:${versions.firebase}"
 
     implementation "com.google.android.gms:play-services-auth:${versions.firebase}"
 
