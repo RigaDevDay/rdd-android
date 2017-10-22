@@ -42,10 +42,10 @@
                     android:layout_height="@dimen/venues_open_button_size"
                     android:background="@drawable/item_selector_borderless"
                     android:clickable="true"
+                    android:focusable="true"
                     android:padding="@dimen/base_margin"
                     android:src="@drawable/vector_map_pointer"
-                    android:tint="@color/color_accent"
-                    />
+                    android:tint="@color/color_accent"/>
             </LinearLayout>
 
             <TextView
@@ -56,8 +56,8 @@
             <TextView
                 android:id="@+id/venue_description"
                 style="@style/Venues.Text"
-                android:textIsSelectable="true"
                 android:layout_marginTop="@dimen/venues_block_spacing_bottom"
+                android:textIsSelectable="true"
                 tools:text="description \na\na\na\na\na\na\na\na\na\na\na"/>
 
         </LinearLayout>

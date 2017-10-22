@@ -19,9 +19,6 @@
 
     <!-- main color for drawable-v21/my_ripple -->
     <color name="selector_color">#998f5fff</color>
-    <!-- main color for drawable/my_ripple -->
-    <color name="selector_pressed_color">#778f5fff</color>
-    <color name="selector_focused_color">#cc8f5fff</color>
 
     <!-- Specific colors -->
     <color name="tab_bar_background">@color/color_primary</color>
@@ -32,8 +29,6 @@
     <color name="speakers_item_badge">@color/color_primary</color>
     <color name="speaker_header">@color/color_primary</color>
 
-    <color name="session_bookmarked">#1e5a73ff</color>
     <color name="session_header">@color/color_primary</color>
 
-    <color name="venues_map_button">@color/color_primary</color>
 </resources>

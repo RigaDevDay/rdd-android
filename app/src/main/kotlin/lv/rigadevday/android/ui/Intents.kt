@@ -11,7 +11,6 @@ import lv.rigadevday.android.ui.schedule.rate.RateActivity
 import lv.rigadevday.android.ui.schedule.sessions.SessionsActivity
 import lv.rigadevday.android.ui.schedule.toBundle
 import lv.rigadevday.android.ui.speakers.SpeakerDialogActivity
-import lv.rigadevday.android.utils.BaseApp
 import lv.rigadevday.android.utils.toExtraKey
 import lv.rigadevday.android.utils.urlEncoded
 
@@ -54,8 +53,6 @@ fun Context.openLicencesActivity() {
 }
 
 fun Context.openWeb(link: String) {
-    BaseApp.graph.analytics().linkOpened(link)
-
     Intent(Intent.ACTION_VIEW, Uri.parse(link)).apply {
         flags = Intent.FLAG_ACTIVITY_NEW_TASK
     }.start(from = this)

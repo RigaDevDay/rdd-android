@@ -42,7 +42,7 @@ class TabActivity : BaseActivity() {
         scheduleFragment.setAsMain()
     }
 
-    val tabClickListener = BottomNavigationView.OnNavigationItemSelectedListener { item ->
+    private val tabClickListener = BottomNavigationView.OnNavigationItemSelectedListener { item ->
         item.itemId.toFragment().setAsMain()
         true
     }

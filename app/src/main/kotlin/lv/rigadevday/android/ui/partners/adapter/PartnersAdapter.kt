@@ -14,7 +14,7 @@ import lv.rigadevday.android.utils.hide
 import lv.rigadevday.android.utils.loadLogo
 import lv.rigadevday.android.utils.show
 
-class PartnersAdapter(val openOnClick: (String) -> Unit) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+class PartnersAdapter(private val openOnClick: (String) -> Unit) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     var data: List<PartnersItem> = emptyList()
         set(value) {

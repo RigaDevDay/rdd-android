@@ -50,7 +50,7 @@ class PartnersFragment : BaseFragment() {
             )
     }
 
-    val spanLookup = object : GridLayoutManager.SpanSizeLookup() {
+    private val spanLookup = object : GridLayoutManager.SpanSizeLookup() {
         override fun getSpanSize(position: Int) = when (listAdapter.getItemViewType(position)) {
             R.layout.item_partners_logo -> 1
             else -> 3

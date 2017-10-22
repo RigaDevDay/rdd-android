@@ -39,12 +39,10 @@ private class GoToURLSpan(internal var url: String) : ClickableSpan() {
     }
 }
 
-fun String.urlEncoded(): String {
-    try {
-        return URLEncoder.encode(this, "UTF-8")
-    } catch (e: UnsupportedEncodingException) {
-        throw RuntimeException("URLEncoder.encode() failed for " + this)
-    }
+fun String.urlEncoded(): String = try {
+    URLEncoder.encode(this, "UTF-8")
+} catch (e: UnsupportedEncodingException) {
+    throw RuntimeException("URLEncoder.encode() failed for " + this)
 }
 
 val DATE_FORMAT = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())

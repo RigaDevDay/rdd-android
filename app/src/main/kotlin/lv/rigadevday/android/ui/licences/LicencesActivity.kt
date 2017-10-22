@@ -14,7 +14,6 @@ class LicencesActivity : BaseActivity() {
     override fun inject() = BaseApp.graph.inject(this)
 
     override fun viewReady() {
-        BaseApp.graph.analytics().aboutOpened()
         setupActionBar(R.string.licenses_title)
         homeAsUp()
         licences_webview.loadUrl("file:///android_asset/licenses.html")

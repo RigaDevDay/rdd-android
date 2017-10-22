@@ -1,6 +1,5 @@
 package lv.rigadevday.android.ui.schedule
 
-import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuInflater
@@ -69,9 +68,5 @@ class MyScheduleFragment : BaseFragment() {
             }
             else -> super.onOptionsItemSelected(item)
         }
-    }
-
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
     }
 }
