@@ -9,7 +9,11 @@ import lv.rigadevday.android.repository.model.other.Venue
 import lv.rigadevday.android.ui.base.BaseFragment
 import lv.rigadevday.android.ui.openMap
 import lv.rigadevday.android.ui.openWeb
-import lv.rigadevday.android.utils.*
+import lv.rigadevday.android.utils.BaseApp
+import lv.rigadevday.android.utils.fromHtml
+import lv.rigadevday.android.utils.loadVenueImage
+import lv.rigadevday.android.utils.showMessage
+import lv.rigadevday.android.utils.toExtraKey
 
 class VenueDetailsFragment : BaseFragment() {
 
@@ -38,7 +42,7 @@ class VenueDetailsFragment : BaseFragment() {
         )
     }
 
-    fun populateView(view: View, venue: Venue) = with(view) {
+    private fun populateView(view: View, venue: Venue) = with(view) {
         venue_image.loadVenueImage(venue.imageUrl)
 
         venue_name.text = venue.name

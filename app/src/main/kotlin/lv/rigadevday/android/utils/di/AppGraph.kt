@@ -15,7 +15,6 @@ import lv.rigadevday.android.ui.tabs.TabActivity
 import lv.rigadevday.android.ui.venues.VenueDetailsFragment
 import lv.rigadevday.android.ui.venues.VenuesFragment
 import lv.rigadevday.android.utils.BaseApp
-import lv.rigadevday.android.utils.analytics.Analytics
 import lv.rigadevday.android.utils.push.CustomMessagingService
 import javax.inject.Singleton
 
@@ -45,7 +44,4 @@ interface AppGraph {
 
     // Services
     fun inject(service: CustomMessagingService)
-
-
-    fun analytics() : Analytics
 }

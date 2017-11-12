@@ -9,14 +9,14 @@ kapt {
 
 android {
     compileSdkVersion 26
-    buildToolsVersion '26.0.1'
+    buildToolsVersion '26.0.2'
 
     defaultConfig {
-        applicationId "lv.rigadevday.android.v2"
+        applicationId "lv.gdg.devfest2017"
         minSdkVersion 21
         targetSdkVersion 26
-        versionCode 13
-        versionName "3.1.3"
+        versionCode 351
+        versionName "3.5.1"
     }
 
     signingConfigs {
@@ -67,6 +67,7 @@ dependencies {
    // implementation "com.google.firebase:firebase-crash:${versions.firebase}"
     implementation "com.google.firebase:firebase-messaging:${versions.firebase}"
     implementation "com.google.firebase:firebase-auth:${versions.firebase}"
+    implementation "com.google.firebase:firebase-config:${versions.firebase}"
 
     implementation "com.google.android.gms:play-services-auth:${versions.firebase}"
 
@@ -81,7 +82,7 @@ dependencies {
 
     implementation 'com.github.frangsierra:rx2firebase:1.1.3'
 
-    implementation 'com.github.bumptech.glide:glide:4.0.0'
+    implementation 'com.github.bumptech.glide:glide:4.2.0'
 
     implementation 'org.zakariya.stickyheaders:stickyheaders:0.7.6'
     implementation 'com.android.support.constraint:constraint-layout:1.0.2'

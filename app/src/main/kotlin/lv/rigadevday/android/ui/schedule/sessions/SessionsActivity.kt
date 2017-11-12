@@ -6,6 +6,7 @@ import android.view.Menu
 import android.view.MenuItem
 import kotlinx.android.synthetic.main.fragment_list.*
 import lv.rigadevday.android.R
+import lv.rigadevday.android.repository.LocalPrefs
 import lv.rigadevday.android.repository.model.schedule.Session
 import lv.rigadevday.android.ui.base.BaseActivity
 import lv.rigadevday.android.ui.openSessionDetailsActivity
@@ -13,6 +14,7 @@ import lv.rigadevday.android.ui.openSpeakerActivity
 import lv.rigadevday.android.utils.BaseApp
 import lv.rigadevday.android.utils.bindSchedulers
 import lv.rigadevday.android.utils.showMessage
+import javax.inject.Inject
 
 class SessionsActivity : BaseActivity() {
 
@@ -28,29 +30,36 @@ class SessionsActivity : BaseActivity() {
         }
     })
 
+    @Inject lateinit var localPrefs: LocalPrefs
+
     private lateinit var bookmarkedTag: String
     private var tags: Array<String>? = null
     private var cachedSessions: List<Session>? = null
+
 
     private val filterDialog: AlertDialog by lazy {
         AlertDialog.Builder(this@SessionsActivity)
             .setTitle(R.string.sessions_filter_title)
             .setItems(tags) { _, index ->
                 val tag = tags?.get(index) ?: bookmarkedTag
-
-                if (tag == bookmarkedTag) {
-                    filterBookmarked()
-                } else {
-                    filerByTag(tag)
-                }
-                supportActionBar?.title = tag
-
+                localPrefs.lastUsedTag = tag
+                applyFilter(tag)
             }
             .setPositiveButton(R.string.sessions_filter_clear) { _, _ ->
                 cachedSessions?.let { listAdapter.data = it }
+                localPrefs.lastUsedTag = ""
                 supportActionBar?.setTitle(R.string.sessions_title)
             }
             .create()
+    }
+
+    private fun applyFilter(tag: String) {
+        if (tag == bookmarkedTag) {
+            filterBookmarked()
+        } else {
+            filerByTag(tag)
+        }
+        supportActionBar?.title = tag
     }
 
     private fun filerByTag(tag: String) {
@@ -92,7 +101,10 @@ class SessionsActivity : BaseActivity() {
                 { sessions ->
                     tags = prependBokmarked(sessions)
                     cachedSessions = sessions
-                    listAdapter.data = sessions
+
+                    localPrefs.lastUsedTag.takeUnless { it.isEmpty() }
+                        ?.let { applyFilter(it) }
+                        ?: run { listAdapter.data = sessions }
                 },
                 { _ -> list_fragment_recycler.showMessage(R.string.error_message) }
             )
