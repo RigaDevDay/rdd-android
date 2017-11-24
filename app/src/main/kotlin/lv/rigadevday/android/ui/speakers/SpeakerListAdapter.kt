@@ -11,7 +11,7 @@ import lv.rigadevday.android.utils.inflate
 import lv.rigadevday.android.utils.loadSquareAvatar
 import lv.rigadevday.android.utils.show
 
-class SpeakersAdapter(val onItemClick: (Int) -> Unit) : RecyclerView.Adapter<SpeakerViewHolder>() {
+class SpeakersAdapter(private val onItemClick: (Int) -> Unit) : RecyclerView.Adapter<SpeakerViewHolder>() {
 
     var data: List<Speaker> = emptyList()
         set(value) {

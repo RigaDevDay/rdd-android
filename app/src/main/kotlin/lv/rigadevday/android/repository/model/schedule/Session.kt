@@ -1,14 +1,13 @@
 package lv.rigadevday.android.repository.model.schedule
 
 import com.google.firebase.database.IgnoreExtraProperties
-import lv.rigadevday.android.repository.ColorStorage
 import lv.rigadevday.android.repository.model.speakers.Speaker
 
 @IgnoreExtraProperties
 data class Session(
     val id: Int = -1,
 
-    val auditorium : String = "",
+    val auditorium: String = "",
 
     val title: String = "",
     val description: String = "",
@@ -28,15 +27,11 @@ data class Session(
 
     val complexityAndTags: String get() = "$complexity / ${tags.joinToString()}"
 
-    val color: Int get() = ColorStorage.get(tags.firstOrNull() ?: "")
-
     val location: String get() = auditorium.takeIf(String::isNotEmpty) ?: room
 
-    companion object {
-        val TBD = Session(
-            title = "TBD",
-            description = "TBD"
-        )
-    }
+    val mainSpeaker get() = speakerObjects.firstOrNull()
+
+    val isSession get() = speakerObjects.isNotEmpty()
+
 }
 

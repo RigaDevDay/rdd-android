@@ -27,7 +27,11 @@ import java.util.concurrent.TimeUnit
  * All of the observables provided by repository are non-closable so it is mandatory
  * to unsubscribe any subscription when closing screen to prevent memory leak.
  */
-class Repository(val context: Context, val authStorage: AuthStorage, val dataCache: DataCache) {
+class Repository(
+    private val context: Context,
+    private val authStorage: AuthStorage,
+    private val dataCache: DataCache
+) {
 
     private val database: DatabaseReference by lazy {
         FirebaseDatabase.getInstance().reference.apply { keepSynced(true) }
@@ -42,7 +46,7 @@ class Repository(val context: Context, val authStorage: AuthStorage, val dataCac
                 RxFirebaseDatabase.observeValueEvent(database.child("schedule"), DataSnapshotMapper.listOf(Schedule::class.java)),
                 RxFirebaseDatabase.observeValueEvent(database.child("sessions"), DataSnapshotMapper.mapOf(Session::class.java)),
                 RxFirebaseDatabase.observeValueEvent(database.child("resources"), DataSnapshotMapper.mapOf(String::class.java)),
-                Function6 { t1: List<Partners>, t2: List<Venue>, t3: List<Speaker>, t4: List<Schedule>, t5: Map<String, Session>, t6: Map<String, String> -> }
+                Function6 { _: List<Partners>, _: List<Venue>, _: List<Speaker>, _: List<Schedule>, _: Map<String, Session>, _: Map<String, String> -> }
             )
                 .debounce(1, TimeUnit.SECONDS)
                 .skip(1)
@@ -61,7 +65,6 @@ class Repository(val context: Context, val authStorage: AuthStorage, val dataCac
     // Basic requests
     fun updateCache(): Single<DataCache> = RxFirebaseDatabase
         .observeSingleValueEvent(database, Root::class.java)
-        .firstElement()
         .map { dataCache.update(it) }
         .toSingle()
 
@@ -102,18 +105,47 @@ class Repository(val context: Context, val authStorage: AuthStorage, val dataCac
         .bindSchedulers()
 
     // Read-Write stuff
+
+    // Ratings
     private fun sessionRating() = database.child("userFeedbacks").child(authStorage.uId)
 
     fun rating(sessionId: Int): Single<Rating> = if (authStorage.hasLogin) {
         RxFirebaseDatabase.observeSingleValueEvent(
             sessionRating().child(sessionId.toString()),
             Rating::class.java
-        ).onErrorReturnItem(Rating()).firstOrError()
+        ).toSingle(Rating()).onErrorResumeNext(Single.just(Rating()))
     } else Single.just(Rating())
 
     fun saveRating(sessionId: Int, rating: Rating) {
         if (authStorage.hasLogin) {
             sessionRating().child(sessionId.toString()).setValue(rating)
+        }
+    }
+
+    // Bookmarks
+    private fun bookmarkedSessions() = database.child("userSessions").child(authStorage.uId)
+
+    fun bookmarkedIds(): Single<List<String>> = if (authStorage.hasLogin) {
+        RxFirebaseDatabase.observeSingleValueEvent(
+            bookmarkedSessions(),
+            DataSnapshotMapper.mapOf(Boolean::class.java)
+        ).map { it.keys.toList() }.toSingle(emptyList())
+    } else {
+        Single.just(emptyList())
+    }
+
+    fun isSessionBookmarked(sessionId: Int): Single<Boolean> = bookmarkedIds()
+        .map { it.contains(sessionId.toString()) }
+
+    fun bookmarkSession(sessionId: Int) {
+        if (authStorage.hasLogin) {
+            bookmarkedSessions().child(sessionId.toString()).setValue(true)
+        }
+    }
+
+    fun removeBookmark(sessionId: Int) {
+        if (authStorage.hasLogin) {
+            bookmarkedSessions().child(sessionId.toString()).removeValue()
         }
     }
 }

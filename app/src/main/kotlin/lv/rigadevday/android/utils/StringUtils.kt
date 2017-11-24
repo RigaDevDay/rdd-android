@@ -13,11 +13,11 @@ import java.text.SimpleDateFormat
 import java.util.*
 
 
-fun String.toExtraKey() = "lv.rigadevday.android.extra.$this"
+fun String.toExtraKey() = "lv.devfest.android.extra.$this"
 
 fun String.toImageUrl() =
     if (this.startsWith("http")) this
-    else "http://rigadevdays.lv${this.replace("..", "")}"
+    else "http://devfest.gdg.lv${this.replace("..", "")}"
 
 @Suppress("DEPRECATION")
 fun String.fromHtml(): Spanned = this
@@ -39,12 +39,10 @@ private class GoToURLSpan(internal var url: String) : ClickableSpan() {
     }
 }
 
-fun String.urlEncoded(): String {
-    try {
-        return URLEncoder.encode(this, "UTF-8")
-    } catch (e: UnsupportedEncodingException) {
-        throw RuntimeException("URLEncoder.encode() failed for " + this)
-    }
+fun String.urlEncoded(): String = try {
+    URLEncoder.encode(this, "UTF-8")
+} catch (e: UnsupportedEncodingException) {
+    throw RuntimeException("URLEncoder.encode() failed for " + this)
 }
 
 val DATE_FORMAT = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())

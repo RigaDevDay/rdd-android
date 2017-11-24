@@ -27,7 +27,7 @@ abstract class BaseFragment : Fragment() {
     open val ignoreUiUpdates: Boolean = false
 
     protected var dataFetchSubscription: Disposable? = null
-    protected var uiUpdateSubscription: Disposable? = null
+    private var uiUpdateSubscription: Disposable? = null
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View
         = inflater.inflate(layoutId, container, false)
@@ -63,7 +63,7 @@ abstract class BaseFragment : Fragment() {
         setupActionBar(getString(title))
     }
 
-    fun setupActionBar(title: String) {
+    private fun setupActionBar(title: String) {
         (activity as TabActivity).let {
             it.setSupportActionBar(toolbar)
             it.supportActionBar?.title = title

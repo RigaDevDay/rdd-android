@@ -10,16 +10,15 @@
     <color name="text_dark_primary">#de000000</color>
     <color name="text_dark_secondary">#88000000</color>
 
+    <color name="divider_dark">#11000000</color>
+
     <!-- Theme colors -->
-    <color name="color_primary">#00a6ec</color>
-    <color name="color_primary_dark">#006590</color>
-    <color name="color_accent">#3f51b5</color>
+    <color name="color_primary">#5130f2</color>
+    <color name="color_primary_dark">#0000be</color>
+    <color name="color_accent">#ff8a80</color>
 
     <!-- main color for drawable-v21/my_ripple -->
-    <color name="selector_color">#993f51b5</color>
-    <!-- main color for drawable/my_ripple -->
-    <color name="selector_pressed_color">#773f51b5</color>
-    <color name="selector_focused_color">#cc3f51b5</color>
+    <color name="selector_color">#998f5fff</color>
 
     <!-- Specific colors -->
     <color name="tab_bar_background">@color/color_primary</color>
@@ -30,8 +29,6 @@
     <color name="speakers_item_badge">@color/color_primary</color>
     <color name="speaker_header">@color/color_primary</color>
 
-    <color name="session_bookmarked">#1e5a73ff</color>
     <color name="session_header">@color/color_primary</color>
 
-    <color name="venues_map_button">@color/color_primary</color>
 </resources>

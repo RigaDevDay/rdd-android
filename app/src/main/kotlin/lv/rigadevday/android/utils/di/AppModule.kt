@@ -6,9 +6,7 @@ import dagger.Module
 import dagger.Provides
 import lv.rigadevday.android.repository.DataCache
 import lv.rigadevday.android.repository.Repository
-import lv.rigadevday.android.repository.SessionStorage
 import lv.rigadevday.android.utils.BaseApp
-import lv.rigadevday.android.utils.analytics.Analytics
 import lv.rigadevday.android.utils.auth.AuthStorage
 import javax.inject.Singleton
 
@@ -26,14 +24,6 @@ class AppModule(private val application: BaseApp) {
         authStorage: AuthStorage,
         data: DataCache
     ): Repository = Repository(context, authStorage, data)
-
-    @Provides
-    @Singleton
-    fun provideAnalytics() = Analytics(application)
-
-    @Provides
-    @Singleton
-    fun provideSessionStorage(analytics: Analytics): SessionStorage = SessionStorage(application, analytics)
 
     @Provides
     @Singleton

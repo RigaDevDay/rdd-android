@@ -40,10 +40,10 @@
                 android:layout_marginEnd="@dimen/session_details_header_padding"
                 android:layout_marginTop="@dimen/base_margin"
                 android:clickable="true"
+                android:focusable="true"
                 android:textColor="@color/text_light_primary"
                 android:textSize="@dimen/text_size_caption"
-                tools:text="Speaker Name"
-                />
+                tools:text="Speaker Name"/>
         </LinearLayout>
 
         <TextView

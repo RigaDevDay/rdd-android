@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.os.Handler
 import android.support.v7.app.AppCompatActivity
 import lv.rigadevday.android.R
+import lv.rigadevday.android.repository.RemotePrefs
 import lv.rigadevday.android.repository.Repository
 import lv.rigadevday.android.ui.tabs.TabActivity
 import lv.rigadevday.android.utils.BaseApp
@@ -14,13 +15,18 @@ import javax.inject.Inject
 
 class SplashActivity : AppCompatActivity() {
 
-    val TIME_TO_EXIT: Long = 2000
+    companion object {
+        private const val TIME_TO_EXIT: Long = 2000
+    }
 
     @Inject lateinit var repo: Repository
+    @Inject lateinit var remotePrefs: RemotePrefs
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         BaseApp.graph.inject(this)
+
+        remotePrefs.refresh()
 
         // Cache and enrich data into memory
         repo.updateCache()
@@ -38,7 +44,7 @@ class SplashActivity : AppCompatActivity() {
             )
     }
 
-    fun exitApp() = Handler().postDelayed(
+    private fun exitApp() = Handler().postDelayed(
         { finish() },
         TIME_TO_EXIT
     )

@@ -35,7 +35,7 @@ abstract class BaseActivity : AppCompatActivity(), LoginContract {
     abstract fun viewReady()
 
     protected var dataFetchSubscription: Disposable? = null
-    protected var uiUpdateSubscription: Disposable? = null
+    private var uiUpdateSubscription: Disposable? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

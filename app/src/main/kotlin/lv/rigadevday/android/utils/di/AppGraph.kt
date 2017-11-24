@@ -5,7 +5,6 @@ import lv.rigadevday.android.ui.licences.LicencesActivity
 import lv.rigadevday.android.ui.partners.PartnersFragment
 import lv.rigadevday.android.ui.schedule.MyScheduleFragment
 import lv.rigadevday.android.ui.schedule.day.DayScheduleFragment
-import lv.rigadevday.android.ui.schedule.day.adapter.ScheduleAdapter
 import lv.rigadevday.android.ui.schedule.details.SessionDetailsActivity
 import lv.rigadevday.android.ui.schedule.rate.RateActivity
 import lv.rigadevday.android.ui.schedule.sessions.SessionsActivity
@@ -16,7 +15,6 @@ import lv.rigadevday.android.ui.tabs.TabActivity
 import lv.rigadevday.android.ui.venues.VenueDetailsFragment
 import lv.rigadevday.android.ui.venues.VenuesFragment
 import lv.rigadevday.android.utils.BaseApp
-import lv.rigadevday.android.utils.analytics.Analytics
 import lv.rigadevday.android.utils.push.CustomMessagingService
 import javax.inject.Singleton
 
@@ -44,12 +42,6 @@ interface AppGraph {
     fun inject(fragment: VenuesFragment)
     fun inject(fragment: VenueDetailsFragment)
 
-    // Adapters
-    fun inject(adapter: ScheduleAdapter)
-
     // Services
     fun inject(service: CustomMessagingService)
-
-
-    fun analytics() : Analytics
 }

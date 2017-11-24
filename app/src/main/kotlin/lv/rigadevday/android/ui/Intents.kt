@@ -1,6 +1,5 @@
 package lv.rigadevday.android.ui
 
-import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.net.Uri
@@ -12,16 +11,12 @@ import lv.rigadevday.android.ui.schedule.rate.RateActivity
 import lv.rigadevday.android.ui.schedule.sessions.SessionsActivity
 import lv.rigadevday.android.ui.schedule.toBundle
 import lv.rigadevday.android.ui.speakers.SpeakerDialogActivity
-import lv.rigadevday.android.utils.BaseApp
 import lv.rigadevday.android.utils.toExtraKey
 import lv.rigadevday.android.utils.urlEncoded
 
 val EXTRA_SPEAKER_ID = "speaker_id".toExtraKey()
 val EXTRA_SESSION_DATA = "session_data".toExtraKey()
 val EXTRA_SESSION_ID = "session_id".toExtraKey()
-val EXTRA_SESSION_SKIPPABLE = "session_skippable".toExtraKey()
-
-val REQUEST_CODE_SESSION = 123
 
 fun Intent.start(from: Context) {
     from.startActivity(this)
@@ -43,16 +38,9 @@ fun Context.openSessionDetailsActivity(sessionId: Int) {
     sessionDetailsIntent(sessionId).start(from = this)
 }
 
-fun Activity.openSessionDetailsActivityForResult(sessionId: Int) {
-    startActivityForResult(sessionDetailsIntent(sessionId, true), REQUEST_CODE_SESSION)
-}
-
-private fun Context.sessionDetailsIntent(sessionId: Int, skippable: Boolean = false)
+private fun Context.sessionDetailsIntent(sessionId: Int)
     = Intent(this, SessionDetailsActivity::class.java)
-    .apply {
-        putExtra(EXTRA_SESSION_ID, sessionId)
-        putExtra(EXTRA_SESSION_SKIPPABLE, skippable)
-    }
+    .apply { putExtra(EXTRA_SESSION_ID, sessionId) }
 
 fun Context.openRateSessionActivity(sessionId: Int) {
     Intent(this, RateActivity::class.java).apply {
@@ -65,8 +53,6 @@ fun Context.openLicencesActivity() {
 }
 
 fun Context.openWeb(link: String) {
-    BaseApp.graph.analytics().linkOpened(link)
-
     Intent(Intent.ACTION_VIEW, Uri.parse(link)).apply {
         flags = Intent.FLAG_ACTIVITY_NEW_TASK
     }.start(from = this)

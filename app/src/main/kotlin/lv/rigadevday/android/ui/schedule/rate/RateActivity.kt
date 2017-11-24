@@ -27,7 +27,6 @@ class RateActivity : BaseActivity() {
                 { session ->
                     rate_background.setOnClickListener { finish() }
 
-                    rate_session_header.setBackgroundColor(session.color)
                     rate_session_title.text = session.title
 
                     session.speakerObjects.first().let {

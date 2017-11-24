@@ -2,24 +2,16 @@
 <layer-list xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:drawable="@color/screen_background"/>
-
+        android:drawable="@color/color_primary"/>
 
     <item
         android:left="32dp"
         android:right="32dp"
-        android:top="120dp">
+        android:top="120dp"
+        android:bottom="120dp">
         <bitmap
-            android:gravity="top"
-            android:src="@drawable/logo_icon"/>
+            android:gravity="center"
+            android:src="@drawable/logo_combined"/>
     </item>
-    <item
-        android:bottom="120dp"
-        android:left="32dp"
-        android:right="32dp"
-        >
-        <bitmap
-            android:gravity="bottom"
-            android:src="@drawable/logo_text"/>
-    </item>
+
 </layer-list>
